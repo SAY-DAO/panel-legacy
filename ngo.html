@@ -363,8 +363,8 @@
                                   <div class="option-group">
                                     <select id="ngoCountry" name="ngoCountry" class="form-control" required>
                                       <option value="">کشور را انتخاب کنید...</option>
-                                      <option value="country1">کشور 1</option>
-                                      <option value="country2">کشور 2</option>
+                                      <option value="1">کشور 1</option>
+                                      <option value="2">کشور 2</option>
                                     </select>
                                   </div>
                                 </div>
@@ -376,8 +376,8 @@
                                   <div class="option-group">
                                     <select id="ngoCity" name="ngoCity" class="form-control" required>
                                       <option value="">شهر را انتخاب کنید...</option>
-                                      <option value="city1">شهر 1</option>
-                                      <option value="city2">شهر 2</option>
+                                      <option value="1">شهر 1</option>
+                                      <option value="2">شهر 2</option>
                                     </select>
                                   </div>
                                 </div>
@@ -387,7 +387,7 @@
                                 <div class="form-group">
                                   <label for="ngoCordinator" class="control-label">هماهنگ کننده انجمن</label>
                                   <div class="append-icon">
-                                    <input type="text" class="form-control" id="ngoCordinator" name="ngoCordinator" placeholder="نام هماهنگ کننده انجمن را وارد نمایید" required>
+                                    <input type="number" class="form-control" id="ngoCordinator" name="ngoCordinator" placeholder="نام هماهنگ کننده انجمن را وارد نمایید" required>
                                     <i class="fa fa-user"></i>
                                   </div>
                                 </div>
@@ -422,12 +422,12 @@
 
                               <div class="col-sm-4">
                                 <div class="form-group">
-                                  <label class="control-label" for="ngoLogoUrl">لوگوی انجمن</label>
+                                  <label class="control-label" for="ngoLogo">لوگوی انجمن</label>
                                   <div class="file">
                                     <div class="option-group">
                                       <span class="file-button btn-primary">انتخاب فایل</span>
-                                      <input type="file" class="custom-file" name="ngoLogoUrl" id="ngoLogoUrl" onchange="document.getElementById('uploader').value = this.value;" required>
-                                      <input type="text" class="form-control" id="uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="">
+                                      <input type="file" class="custom-file" name="ngoLogo" id="ngoLogo" onchange="document.getElementById('ngoLogoUrl').value = this.value;" required>
+                                      <input type="text" class="form-control" id="ngoLogoUrl" placeholder="هیج فایلی انتخاب نشده است" readonly="">
                                     </div>
                                   </div>
                                 </div>
@@ -437,7 +437,7 @@
                                 <div class="form-group">
                                   <label for="ngoBalance" class="control-label">بالانس</label>
                                   <div class="append-icon">
-                                    <input type="text" id="ngoBalance" name="ngoBalance" class="form-control" placeholder="بالانس را وارد نمایید" required>
+                                    <input type="number" id="ngoBalance" name="ngoBalance" class="form-control" placeholder="بالانس را وارد نمایید" required>
                                     <i class="icon-tag"></i>
                                   </div>
                                 </div>
@@ -470,10 +470,10 @@
                                     <div class="input-group">
                                       <div class="icheck-inline" id="ngoActive">
                                         <label>
-                                          <input type="radio" name="ngoActive" class="icheck" data-radio="iradio_square-blue" required> فعال
+                                          <input type="radio" name="ngoActive" id="ngoActive" value="1" class="icheck" data-radio="iradio_square-blue"> فعال
                                         </label>
                                         <label>
-                                          <input type="radio" name="ngoActive" class="icheck" data-radio="iradio_square-blue"> غیرفعال
+                                          <input type="radio" name="ngoActive" id="ngoActive" value="0" class="icheck" data-radio="iradio_square-blue"> غیرفعال
                                         </label>
                                       </div>
                                     </div>
@@ -496,7 +496,7 @@
                             </div>
   
                             <div class="text-center  m-t-20">
-                              <button type="submit" class="btn btn-embossed btn-primary">ارسال</button>
+                              <button type="submit" class="btn btn-embossed btn-primary" id="sendNgoData">ارسال</button>
                               <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">پاک کردن</button>
                             </div>
                           </form>
@@ -1085,8 +1085,7 @@
 <script src="../builder/page-builder/plugins/slider-pips/jquery-ui-slider-pips.min.js"></script>
 <script src="../builder/page-builder/plugins/saveas/saveAs.js"></script>
 <script src="../builder/page-builder/js/builder_page.js"></script>
-<!-- <script src="assets/js/pages/table_dynamic.js"></script> -->
-<!-- <script src="assets/js/pages/table_editable.js"></script> -->
+<script src="assets/js/ngo_dataServe.js"></script>
 
 <!-- END PAGE SCRIPTS -->
 </body>

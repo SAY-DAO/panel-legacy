@@ -384,11 +384,11 @@
                                   <div class="option-group">
                                     <select id="socialWorkerType" name="socialWorkerType" class="form-control" required>
                                       <option value="">نوع مددکار را انتخاب کنید...</option>
-                                      <option value="type1">نوع 1</option>
-                                      <option value="type2">نوع 2</option>
-                                      <option value="type3">نوع 3</option>
-                                      <option value="type4">نوع 4</option>
-                                      <option value="type5">نوع 5</option>
+                                      <option value="1">نوع 1</option>
+                                      <option value="2">نوع 2</option>
+                                      <option value="3">نوع 3</option>
+                                      <option value="4">نوع 4</option>
+                                      <option value="5">نوع 5</option>
                                     </select>
                                   </div>
                                 </div>
@@ -400,11 +400,11 @@
                                   <div class="option-group">
                                     <select id="socialWorkerNGO" name="socialWorkerNGO" class="form-control" required>
                                       <option value="">انجمن مددکار را انتخاب کنید...</option>
-                                      <option value="ngo1">انجمن 1</option>
-                                      <option value="ngo2">انجمن 2</option>
-                                      <option value="ngo3">انجمن 3</option>
-                                      <option value="ngo4">انجمن 4</option>
-                                      <option value="ngo5">انجمن 5</option>
+                                      <option value="11">انجمن 1</option>
+                                      <option value="22">انجمن 2</option>
+                                      <option value="33">انجمن 3</option>
+                                      <option value="44">انجمن 4</option>
+                                      <option value="55">انجمن 5</option>
                                     </select>
                                   </div>
                                 </div>
@@ -426,8 +426,8 @@
                                   <div class="option-group">
                                     <select id="socialWorkerCountry" name="socialWorkerCountry" class="form-control" required>
                                       <option value="">کشور را انتخاب کنید...</option>
-                                      <option value="country1">کشور 1</option>
-                                      <option value="country2">کشور 2</option>
+                                      <option value="111">کشور 1</option>
+                                      <option value="222">کشور 2</option>
                                     </select>
                                   </div>
                                 </div>
@@ -439,8 +439,8 @@
                                   <div class="option-group">
                                     <select id="socialWorkerCity" name="socialWorkerCity" class="form-control" required>
                                       <option value="">شهر را انتخاب کنید...</option>
-                                      <option value="city1">شهر 1</option>
-                                      <option value="city2">شهر 2</option>
+                                      <option value="1">شهر 1</option>
+                                      <option value="2">شهر 2</option>
                                     </select>
                                   </div>
                                 </div>
@@ -458,12 +458,12 @@
 
                               <div class="col-sm-6">
                                 <div class="form-group">
-                                  <label class="control-label" for="socialWorkerIdCardUrl">تصویر کارت ملی</label>
+                                  <label class="control-label" for="socialWorkerIdCard">تصویر کارت ملی</label>
                                   <div class="file">
                                     <div class="option-group">
                                       <span class="file-button btn-primary">انتخاب فایل</span>
-                                      <input type="file" class="custom-file" name="socialWorkerIdCardUrl" id="socialWorkerIdCardUrl" onchange="document.getElementById('uploader').value = this.value;" required>
-                                      <input type="text" class="form-control" id="uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="">
+                                      <input type="file" class="custom-file" name="socialWorkerIdCard" id="socialWorkerIdCard" onchange="document.getElementById('socialWorkerIdCardUrl').value = this.value;" required>
+                                      <input type="text" class="form-control" id="socialWorkerIdCardUrl" placeholder="هیج فایلی انتخاب نشده است" readonly="">
                                     </div>
                                   </div>
                                 </div>
@@ -481,12 +481,12 @@
 
                               <div class="col-sm-6">
                                 <div class="form-group">
-                                  <label class="control-label" for="socialWorkerPassportUrl">تصویر پاسپورت</label>
+                                  <label class="control-label" for="socialWorkerPassport">تصویر پاسپورت</label>
                                   <div class="file">
                                     <div class="option-group">
                                       <span class="file-button btn-primary">انتخاب فایل</span>
-                                      <input type="file" class="custom-file" name="socialWorkerPassportUrl" id="socialWorkerPassportUrl" onchange="document.getElementById('uploader').value = this.value;" required>
-                                      <input type="text" class="form-control" id="uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="">
+                                      <input type="file" class="custom-file" name="socialWorkerPassport" id="socialWorkerPassport" onchange="document.getElementById('socialWorkerPassportUrl').value = this.value;" required>
+                                      <input type="text" class="form-control" id="socialWorkerPassportUrl" placeholder="هیج فایلی انتخاب نشده است" readonly="">
                                     </div>
                                   </div>
                                 </div>
@@ -498,8 +498,8 @@
                                   <div class="option-group">
                                     <select id="socialWorkerGender" name="socialWorkerGender" class="form-control" required>
                                       <option value="">جنسیت مددکار را انتخاب کنید...</option>
-                                      <option value="female">خانم</option>
-                                      <option value="male">آقا</option>
+                                      <option value="0">خانم</option>
+                                      <option value="1">آقا</option>
                                     </select>
                                   </div>
                                 </div>
@@ -566,12 +566,12 @@
                               
                               <div class="col-sm-6">
                                 <div class="form-group">
-                                  <label class="control-label" for="socialWorkerAvatarUrl">آواتار</label>
+                                  <label class="control-label" for="socialWorkerAvatar">آواتار</label>
                                   <div class="file">
                                     <div class="option-group">
                                       <span class="file-button btn-primary">انتخاب فایل</span>
-                                      <input type="file" class="custom-file" name="socialWorkerAvatarUrl" id="socialWorkerAvatarUrl" onchange="document.getElementById('uploader').value = this.value;" required>
-                                      <input type="text" class="form-control" id="uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="">
+                                      <input type="file" class="custom-file" name="socialWorkerAvatar" id="socialWorkerAvatar" onchange="document.getElementById('socialWorkerAvatarUrl').value = this.value;" required>
+                                      <input type="text" class="form-control" id="socialWorkerAvatarUrl" placeholder="هیج فایلی انتخاب نشده است" readonly="">
                                     </div>
                                   </div>
                                 </div>
@@ -642,7 +642,7 @@
                             </div>
   
                             <div class="text-center  m-t-20">
-                              <button type="submit" class="btn btn-embossed btn-primary">ارسال</button>
+                              <button type="submit" class="btn btn-embossed btn-primary" id="sendSocialWorkerData">ارسال</button>
                               <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">پاک کردن</button>
                             </div>
                           </form>
@@ -1246,9 +1246,7 @@
 <script src="../builder/page-builder/plugins/slider-pips/jquery-ui-slider-pips.min.js"></script>
 <script src="../builder/page-builder/plugins/saveas/saveAs.js"></script>
 <script src="../builder/page-builder/js/builder_page.js"></script>
-<!-- <script src="assets/js/pages/table_dynamic.js"></script> -->
-<!-- <script src="assets/js/pages/table_editable.js"></script> -->
-
+<script src="assets/js/socialworker_dataServe.js" charset="utf-8"></script>
 <!-- END PAGE SCRIPTS -->
 </body>
 </html>
