@@ -68,10 +68,10 @@
 </div>
           <ul class="nav nav-sidebar">
             <li class="tm"><a href="dashboard.html"><i class="icon-home"></i><span>داشبورد</span></a></li>
-            <li class="tm"><a href="childs.html"><i class="fa fa-child"></i><span>کودکان من</span></a></li>
+            <li class="tm"><a href="children.html"><i class="fa fa-child"></i><span>کودکان من</span></a></li>
             <li class="tm"><a href="needs.html"><i class="fa fa-heart-o"></i><span>نیازها</span></a></li>
             <li class="tm"><a href="reports.html"><i class="fa icon-bar-chart"></i><span>گزارش</span></a></li>
-            <li class="tm nav-active active"><a href="socialW.html"><i class="fa icon-users"></i><span>مددکاران</span></a></li>
+            <li class="tm nav-active active"><a href="social_worker.html"><i class="fa icon-users"></i><span>مددکاران</span></a></li>
             
             <li class="tm nav-parent">
               <a href=""><i class="fa fa-edit"></i><span>تنظیمات</span> <span class="fa arrow"></span></a>
@@ -348,215 +348,204 @@
   
                               
 
-                              <div class="col-xs-12 col-sm-4 col-md-4">
+                              <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group">
-                                  <label for="socialWorkerFirstName" class="control-label">نام مددکار</label>
+                                  <label for="social_worker_first_name" class="control-label">نام مددکار</label>
                                   <div class="append-icon">
-                                    <input type="text" id="socialWorkerFirstName" name="socialWorkerFirstName" class="form-control" placeholder="نام مددکار را وارد نمایید" required>
+                                    <input type="text" id="social_worker_first_name" name="social_worker_first_name" class="form-control" placeholder="نام مددکار را وارد نمایید">
                                     <i class="icon-user"></i>
                                   </div>
                                 </div>
                               </div>
 
-                              <div class="col-xs-12 col-sm-4 col-md-4">
+                              <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group">
-                                  <label for="socialWorkerLastName" class="control-label">نام خانوادگی مددکار</label>
+                                  <label for="social_worker_last_name" class="control-label">نام خانوادگی مددکار <span class="required">*</span></label>
                                   <div class="append-icon">
-                                    <input type="text" id="socialWorkerLastName" name="socialWorkerLastName" class="form-control" placeholder="نام خانوادگی مددکار را وارد نمایید" required>
-                                    <i class="icon-user"></i>
-                                  </div>
-                                </div>
-                              </div>
-                              
-                              <div class="col-xs-12 col-sm-4 col-md-4">
-                                <div class="form-group">
-                                  <label for="socialWorkerUserName" class="control-label">نام کاربری مددکار</label>
-                                  <div class="append-icon">
-                                    <input type="text" id="socialWorkerUserName" name="socialWorkerUserName" class="form-control" placeholder="نام کاربری مددکار را وارد نمایید" required>
+                                    <input type="text" id="social_worker_last_name" name="social_worker_last_name" class="form-control" placeholder="نام خانوادگی مددکار را وارد نمایید" required>
                                     <i class="icon-user"></i>
                                   </div>
                                 </div>
                               </div>
                               
-                              <div class="col-sm-6">
+                              <!-- <div class="col-xs-12 col-sm-4 col-md-4">
                                 <div class="form-group">
-                                  <label for="socialWorkerType" class="control-label">نوع مددکار</label>
-                                  <div class="option-group">
-                                    <select id="socialWorkerType" name="socialWorkerType" class="form-control" required>
-                                      <option value="">نوع مددکار را انتخاب کنید...</option>
-                                      <option value="1">نوع 1</option>
-                                      <option value="2">نوع 2</option>
-                                      <option value="3">نوع 3</option>
-                                      <option value="4">نوع 4</option>
-                                      <option value="5">نوع 5</option>
-                                    </select>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div class="col-sm-6">
-                                <div class="form-group">
-                                  <label for="socialWorkerNGO" class="control-label">انجمن</label>
-                                  <div class="option-group">
-                                    <select id="socialWorkerNGO" name="socialWorkerNGO" class="form-control" required>
-                                      <option value="">انجمن مددکار را انتخاب کنید...</option>
-                                      <option value="11">انجمن 1</option>
-                                      <option value="22">انجمن 2</option>
-                                      <option value="33">انجمن 3</option>
-                                      <option value="44">انجمن 4</option>
-                                      <option value="55">انجمن 5</option>
-                                    </select>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div class="col-sm-6">
-                                <div class="form-group">
-                                  <label for="socialWorkerBirthCertificateNumber" class="control-label">شماره شناسنامه</label>
+                                  <label for="socialWorkerUserName" class="control-label">نام کاربری مددکار <span class="required">*</span></label>
                                   <div class="append-icon">
-                                    <input type="text" id="socialWorkerBirthCertificateNumber" name="socialWorkerBirthCertificateNumber" class="form-control" placeholder="شماره شناسنامه را وارد نمایید" required>
+                                    <input type="text" id="socialWorkerUserName" name="socialWorkerUserName" class="form-control" placeholder="{NGO name}-sw{social worker generated code}" required>
+                                    <i class="icon-user"></i>
+                                  </div>
+                                </div>
+                              </div> -->
+                              
+                              <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="form-group">
+                                  <label for="social_worker_type" class="control-label">نوع مددکار <span class="required">*</span></label>
+                                  <div class="option-group">
+                                    <select id="social_worker_type" name="social_worker_type" class="form-control" required>
+                                      <option value="">نوع مددکار را انتخاب کنید.</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="form-group">
+                                  <label for="social_worker_ngo" class="control-label">انجمن <span class="required">*</span></label>
+                                  <div class="option-group">
+                                    <select id="social_worker_ngo" name="social_worker_ngo" class="form-control ngo_id" required>
+                                      <option value="">انجمن مددکار را انتخاب کنید</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="form-group">
+                                  <label for="social_worker_certificate_number" class="control-label">شماره شناسنامه</label>
+                                  <div class="append-icon">
+                                    <input type="text" id="social_worker_certificate_number" name="social_worker_certificate_number" class="form-control" placeholder="شماره شناسنامه را وارد نمایید">
                                     <i class="icon-credit-card"></i>
                                   </div>
                                 </div>
                               </div>
 
-                              <div class="col-sm-6">
+                              <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group">
-                                  <label for="socialWorkerCountry" class="control-label">کشور</label>
+                                  <label for="social_worker_country" class="control-label">کشور</label>
                                   <div class="option-group">
-                                    <select id="socialWorkerCountry" name="socialWorkerCountry" class="form-control" required>
-                                      <option value="">کشور را انتخاب کنید...</option>
-                                      <option value="111">کشور 1</option>
-                                      <option value="222">کشور 2</option>
+                                    <select id="social_worker_country" name="social_worker_country" class="form-control">
+                                      <option value="">کشور را انتخاب کنید</option>
+                                      <option value="98">ایران</option>
                                     </select>
                                   </div>
                                 </div>
                               </div>
 
-                              <div class="col-sm-6">
+                              <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group">
-                                  <label for="socialWorkerCity" class="control-label">شهر</label>
+                                  <label for="social_worker_city" class="control-label">شهر</label>
                                   <div class="option-group">
-                                    <select id="socialWorkerCity" name="socialWorkerCity" class="form-control" required>
-                                      <option value="">شهر را انتخاب کنید...</option>
-                                      <option value="1">شهر 1</option>
-                                      <option value="2">شهر 2</option>
+                                    <select id="social_worker_city" name="social_worker_city" class="form-control" >
+                                      <option value="">شهر را انتخاب کنید</option>
+                                      <option value="1">تهران</option>
+                                      <option value="2">کرج</option>
                                     </select>
                                   </div>
                                 </div>
                               </div>
 
-                              <div class="col-sm-6">
+                              <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group">
-                                  <label for="socialWorkerIdNumber" class="control-label">کد ملی</label>
+                                  <label for="social_worker_id_number" class="control-label">کد ملی <span class="required">*</span></label>
                                   <div class="append-icon">
-                                    <input type="text" id="socialWorkerIdNumber" name="socialWorkerIdNumber" class="form-control" placeholder="کد ملی را وارد نمایید" required>
+                                    <input type="text" id="social_worker_id_number" name="social_worker_id_number" class="form-control" placeholder="کد ملی را وارد نمایید" required>
                                     <i class="icon-credit-card"></i>
                                   </div>
                                 </div>
                               </div>
 
-                              <div class="col-sm-6">
+                              <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group">
-                                  <label class="control-label" for="socialWorkerIdCard">تصویر کارت ملی</label>
+                                  <label class="control-label" for="social_worker_id_card">تصویر کارت ملی</label>
                                   <div class="file">
                                     <div class="option-group">
                                       <span class="file-button btn-primary">انتخاب فایل</span>
-                                      <input type="file" class="custom-file" name="socialWorkerIdCard" id="socialWorkerIdCard" onchange="document.getElementById('socialWorkerIdCardUrl').value = this.value;" required>
-                                      <input type="text" class="form-control" id="socialWorkerIdCardUrl" placeholder="هیج فایلی انتخاب نشده است" readonly="">
+                                      <input type="file" class="custom-file" name="social_worker_id_card[]" id="social_worker_id_card" title="حجم فایل انتخابی می‌بایست کمتر از ۱ مگابایت باشد" multiple="multiple" onchange="document.getElementById('social_worker_id_card_url').value = this.value;">
+                                      <input type="text" class="form-control" id="social_worker_id_card_url" placeholder="هیج فایلی انتخاب نشده است" readonly="">
                                     </div>
                                   </div>
                                 </div>
                               </div>
 
-                              <div class="col-sm-6">
+                              <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group">
-                                  <label for="socialWorkerPassportNumber" class="control-label">شماره پاسپورت</label>
+                                  <label for="social_worker_passport_number" class="control-label">شماره پاسپورت</label>
                                   <div class="append-icon">
-                                    <input type="text" id="socialWorkerPassportNumber" name="socialWorkerPassportNumber" class="form-control" placeholder="شماره پاسپورت را وارد نمایید" required>
+                                    <input type="text" id="social_worker_passport_number" name="social_worker_passport_number" class="form-control" placeholder="شماره پاسپورت را وارد نمایید">
                                     <i class="icon-credit-card"></i>
                                   </div>
                                 </div>
                               </div>
 
-                              <div class="col-sm-6">
+                              <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group">
-                                  <label class="control-label" for="socialWorkerPassport">تصویر پاسپورت</label>
+                                  <label class="control-label" for="social_worker_passport">تصویر پاسپورت</label>
                                   <div class="file">
                                     <div class="option-group">
                                       <span class="file-button btn-primary">انتخاب فایل</span>
-                                      <input type="file" class="custom-file" name="socialWorkerPassport" id="socialWorkerPassport" onchange="document.getElementById('socialWorkerPassportUrl').value = this.value;" required>
-                                      <input type="text" class="form-control" id="socialWorkerPassportUrl" placeholder="هیج فایلی انتخاب نشده است" readonly="">
+                                      <input type="file" class="custom-file" name="social_worker_passport[]" id="social_worker_passport" title="حجم فایل انتخابی می‌بایست کمتر از ۱ مگابایت باشد" multiple="multiple" onchange="document.getElementById('social_worker_passport_url').value = this.value;">
+                                      <input type="text" class="form-control" id="social_worker_passport_url" placeholder="هیج فایلی انتخاب نشده است" readonly="">
                                     </div>
                                   </div>
                                 </div>
                               </div>
 
-                              <div class="col-sm-6">
+                              <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group">
-                                  <label for="socialWorkerGender" class="control-label">جنسیت</label>
+                                  <label for="social_worker_gender" class="control-label">جنسیت <span class="required">*</span></label>
                                   <div class="option-group">
-                                    <select id="socialWorkerGender" name="socialWorkerGender" class="form-control" required>
-                                      <option value="">جنسیت مددکار را انتخاب کنید...</option>
-                                      <option value="0">خانم</option>
-                                      <option value="1">آقا</option>
+                                    <select id="social_worker_gender" name="social_worker_gender" class="form-control" required>
+                                      <option value="">جنسیت مددکار را انتخاب کنید</option>
+                                      <option value="false">خانم</option>
+                                      <option value="true">آقا</option>
                                     </select>
                                   </div>
                                 </div>
                               </div>
 
-                              <div class="col-sm-6">
+                              <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group">
-                                  <label for="socialWorkerBirthDate" class="control-label">تاریخ تولد</label>
+                                  <label for="social_worker_birth_date" class="control-label">تاریخ تولد</label>
                                   <div class="append-icon">
-                                    <input type="date" id="socialWorkerBirthDate" name="socialWorkerBirthDate" class="form-control" required>
+                                    <input type="date" id="social_worker_birth_date" name="social_worker_birth_date" class="form-control">
                                     <i class="icon-calendar"></i>
                                   </div>
                                 </div>
                               </div>
 
-                              <div class="col-sm-6">
+                              <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group">
-                                  <label for="socialWorkerPhoneNumber" class="control-label">شماره تماس</label>
+                                  <label for="social_worker_phone_number" class="control-label">شماره تماس <span class="required">*</span></label>
                                   <div class="append-icon">
-                                    <input type="text" id="socialWorkerPhoneNumber" name="socialWorkerPhoneNumber" class="form-control" placeholder="شماره تماس را وارد نمایید" required>
+                                    <input type="text" id="social_worker_phone_number" name="social_worker_phone_number" class="form-control" placeholder="شماره تماس مددکار را وارد نمایید" required>
                                     <i class="icon-screen-smartphone"></i>
                                   </div>
                                 </div>
                               </div>
 
-                              <div class="col-sm-6">
+                              <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group">
-                                  <label for="socialWorkerEmergencyPhoneNumber" class="control-label">شماره تماس ضروری</label>
+                                  <label for="social_worker_emergency_phone_number" class="control-label">شماره تماس ضروری <span class="required">*</span></label>
                                   <div class="append-icon">
-                                    <input type="text" id="socialWorkerEmergencyPhoneNumber" name="socialWorkerEmergencyPhoneNumber" class="form-control" placeholder="شماره تماس ضروری را وارد نمایید" required>
+                                    <input type="text" id="social_worker_emergency_phone_number" name="social_worker_emergency_phone_number" class="form-control" placeholder="شماره تماس ضروری مددکار را وارد نمایید" required>
                                     <i class="icon-screen-smartphone"></i>
                                   </div>
                                 </div>
                               </div>
 
-                              <div class="col-sm-6">
+                              <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group">
-                                  <label for="socialWorkerEmailAddress" class="control-label">ایمیل</label>
+                                  <label for="social_worker_email_address" class="control-label">ایمیل <span class="required">*</span></label>
                                   <div class="append-icon">
-                                    <input type="text" id="socialWorkerEmailAddress" name="socialWorkerEmailAddress" class="form-control" placeholder="آدرس ایمیل را وارد نمایید" required>
+                                    <input type="text" id="social_worker_email_address" name="social_worker_email_address" class="form-control" placeholder="آدرس ایمیل مددکار را وارد نمایید" required>
                                     <i class="fa fa-envelope"></i>
                                   </div>
                                 </div>
                               </div>
 
-                              <div class="col-sm-6">
+                              <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group">
-                                  <label for="socialWorkerPostalAddress" class="control-label">آدرس</label>
-                                  <textarea name="socialWorkerPostalAddress" id="socialWorkerPostalAddress" rows="4" class="form-control" placeholder="آدرس را وارد نمایید..." minlength="5" required="" aria-required="true"></textarea>
+                                  <label for="social_worker_postal_address" class="control-label">آدرس</label>
+                                  <textarea name="social_worker_postal_address" id="social_worker_postal_address" rows="4" class="form-control" placeholder="آدرس مددکار را وارد نمایید" minlength="5" aria-required="true"></textarea>
                                 </div>
                               </div>
 
-                              <div class="col-sm-6">
+                              <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group">
-                                  <label for="socialWorkerTelegramId" class="control-label">ID تلگرام</label>
+                                  <label for="social_worker_telegram_id" class="control-label">ID تلگرام <span class="required">*</span></label>
                                   <div class="append-icon">
-                                    <input type="text" id="socialWorkerTelegramId" name="socialWorkerTelegramId" class="form-control" placeholder="ID تلگرام را وارد نمایید" required>
+                                    <input type="text" id="social_worker_telegram_id" name="social_worker_telegram_id" class="form-control" placeholder="ID تلگرام مددکار را وارد نمایید" required>
                                     <i class="fa fa-send"></i>
                                   </div>
                                 </div>
@@ -564,24 +553,54 @@
                               
                               
                               
-                              <div class="col-sm-6">
+                              <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group">
-                                  <label class="control-label" for="socialWorkerAvatar">آواتار</label>
+                                  <label class="control-label" for="social_worker_avatar">تصویر مددکار <span class="required">*</span></label>
                                   <div class="file">
                                     <div class="option-group">
                                       <span class="file-button btn-primary">انتخاب فایل</span>
-                                      <input type="file" class="custom-file" name="socialWorkerAvatar" id="socialWorkerAvatar" onchange="document.getElementById('socialWorkerAvatarUrl').value = this.value;" required>
-                                      <input type="text" class="form-control" id="socialWorkerAvatarUrl" placeholder="هیج فایلی انتخاب نشده است" readonly="">
+                                      <input type="file" class="custom-file" name="social_worker_avatar[]" id="social_worker_avatar" title="حجم فایل انتخابی می‌بایست کمتر از ۱ مگابایت باشد" multiple="multiple" onchange="document.getElementById('social_worker_avatar_url').value = this.value;" required>
+                                      <input type="text" class="form-control" id="social_worker_avatar_url" placeholder="هیج فایلی انتخاب نشده است" readonly="">
                                     </div>
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="form-group">
+                                  <label for="social_worker_bank_account_number" class="control-label">شماره حساب بانکی</label>
+                                  <div class="append-icon">
+                                    <input type="text" id="social_worker_bank_account_number" name="social_worker_bank_account_number" class="form-control" placeholder="شماره حساب بانکی را وارد نمایید">
+                                    <i class="icon-credit-card"></i>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="form-group">
+                                  <label for="social_worker_bank_account_sheba_number" class="control-label">شماره شبای حساب بانکی</label>
+                                  <div class="append-icon">
+                                    <input type="text" id="social_worker_bank_account_sheba_number" name="social_worker_bank_account_sheba_number" class="form-control" placeholder="شماره شبای حساب بانکی را وارد نمایید">
+                                    <i class="icon-credit-card"></i>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="form-group">
+                                  <label for="social_worker_bank_account_card_number" class="control-label">شماره کارت بانکی</label>
+                                  <div class="append-icon">
+                                    <input type="text" id="social_worker_bank_account_card_number" name="social_worker_bank_account_card_number" class="form-control" placeholder="شماره کارت بانکی را وارد نمایید">
+                                    <i class="icon-credit-card"></i>
                                   </div>
                                 </div>
                               </div>
 
                               <div class="col-sm-6">
                                 <div class="form-group">
-                                  <label for="socialWorkerChildCount" class="control-label">تعداد کودکان</label>
+                                  <label for="social_worker_current_child_count" class="control-label">تعداد کودکان</label>
                                   <div class="append-icon">
-                                    <input type="text" id="socialWorkerChildCount" name="socialWorkerChildCount" class="form-control" value="0" readonly>
+                                    <input type="text" id="social_worker_current_child_count" name="social_worker_current_child_count" class="form-control" value="0" readonly>
                                     <i class="fa fa-child"></i>
                                   </div>
                                 </div>
@@ -589,45 +608,15 @@
 
                               <div class="col-sm-6">
                                 <div class="form-group">
-                                  <label for="socialWorkerNeedCount" class="control-label">تعداد نیازهای وارد شده توسط مددکار</label>
+                                  <label for="social_worker_current_need_count" class="control-label">تعداد نیازهای وارد شده توسط مددکار</label>
                                   <div class="append-icon">
-                                    <input type="text" id="socialWorkerNeedCount" name="socialWorkerNeedCount" class="form-control" value="0" readonly>
+                                    <input type="text" id="social_worker_current_need_count" name="social_worker_current_need_count" class="form-control" value="0" readonly>
                                     <i class=""></i>
                                   </div>
                                 </div>
                               </div>
-                              
-                              <div class="col-xs-12 col-sm-4 col-md-4">
-                                <div class="form-group">
-                                  <label for="socialWorkerBankAccountNumber" class="control-label">شماره حساب بانکی</label>
-                                  <div class="append-icon">
-                                    <input type="text" id="socialWorkerBankAccountNumber" name="socialWorkerBankAccountNumber" class="form-control" placeholder="شماره حساب بانکی را وارد نمایید" required>
-                                    <i class="icon-credit-card"></i>
-                                  </div>
-                                </div>
-                              </div>
 
-                              <div class="col-xs-12 col-sm-4 col-md-4">
-                                <div class="form-group">
-                                  <label for="socialWorkerBankAccountShebaNumber" class="control-label">شماره شبای حساب بانکی</label>
-                                  <div class="append-icon">
-                                    <input type="text" id="socialWorkerBankAccountShebaNumber" name="socialWorkerBankAccountShebaNumber" class="form-control" placeholder="شماره شبای حساب بانکی را وارد نمایید" required>
-                                    <i class="icon-credit-card"></i>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div class="col-xs-12 col-sm-4 col-md-4">
-                                <div class="form-group">
-                                  <label for="socialWorkerBankAccountCardNumber" class="control-label">شماره کارت بانکی</label>
-                                  <div class="append-icon">
-                                    <input type="text" id="socialWorkerBankAccountCardNumber" name="socialWorkerBankAccountCardNumber" class="form-control" placeholder="شماره کارت بانکی را وارد نمایید" required>
-                                    <i class="icon-credit-card"></i>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div class="col-sm-6">
+                              <!-- <div class="col-sm-6">
                                 <div class="form-group">
                                   <label class="control-label">آیا شرایط و ضوابط ما را می پذیرید؟</label>
                                   <div class="option-group">
@@ -637,7 +626,7 @@
                                     </label>    
                                   </div>
                                 </div>
-                              </div>
+                              </div> -->
   
                             </div>
   
@@ -683,16 +672,16 @@
                           <th>شماره تماس ضروری</th>
                           <th>ایمیل</th>
                           <th>ID تلگرام</th>
-                          <th>آدرس</th>
+                          <th class="medium_th">آدرس</th>
                           <th>آواتار</th>
                           <th>تعداد کودکان</th>
                           <th>تعداد نیازها</th>
-                          <th>شماره حساب بانکی</th>
-                          <th>شماره شبا</th>
-                          <th>شماره کارت بانکی</th>
-                          <th>زمان ثبت نام</th>
-                          <th>آخرین ورود</th>
-                          <th>آخرین آپدیت</th>
+                          <th class="medium_th">شماره حساب بانکی</th>
+                          <th class="medium_th">شماره شبا</th>
+                          <th class="medium_th">شماره کارت بانکی</th>
+                          <th class="medium_th">زمان ثبت نام</th>
+                          <th class="medium_th">آخرین ورود</th>
+                          <th class="medium_th">آخرین آپدیت</th>
                           <th class="text-right">عملیات</th>
                         </tr>
                       </thead>
@@ -1246,7 +1235,12 @@
 <script src="../builder/page-builder/plugins/slider-pips/jquery-ui-slider-pips.min.js"></script>
 <script src="../builder/page-builder/plugins/saveas/saveAs.js"></script>
 <script src="../builder/page-builder/js/builder_page.js"></script>
-<script src="assets/js/socialworker_dataServe.js" charset="utf-8"></script>
+<script src="assets/js/socialworker_dataServe.js" charset="utf-8"></script> <!--data serve for Social Worker-->
+<script src="assets/js/privilege_dataServe.js" charset="utf-8"></script> <!--data serve social worker type field (privilege)-->
+<script src="assets/js/ngo_dataServe.js" charset="utf-8"></script> <!--data serve NGO field-->
+
+<script src="assets/js/custom.js"></script>  <!--custom functions-->
+
 <!-- END PAGE SCRIPTS -->
 </body>
 </html>

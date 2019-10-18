@@ -68,10 +68,10 @@
 </div>
           <ul class="nav nav-sidebar">
             <li class="tm"><a href="dashboard.html"><i class="icon-home"></i><span>داشبورد</span></a></li>
-            <li class="tm"><a href="childs.html"><i class="fa fa-child"></i><span>کودکان من</span></a></li>
+            <li class="tm"><a href="children.html"><i class="fa fa-child"></i><span>کودکان من</span></a></li>
             <li class="tm nav-active active"><a href="needs.html"><i class="fa fa-heart-o"></i><span>نیازها</span></a></li>
             <li class="tm"><a href="reports.html"><i class="fa icon-bar-chart"></i><span>گزارش</span></a></li>
-            <li class="tm"><a href="socialW.html"><i class="fa icon-users"></i><span>مددکاران</span></a></li>
+            <li class="tm"><a href="social_worker.html"><i class="fa icon-users"></i><span>مددکاران</span></a></li>
             
             <li class="tm nav-parent">
               <a href=""><i class="fa fa-edit"></i><span>تنظیمات</span> <span class="fa arrow"></span></a>
@@ -344,24 +344,25 @@
                   <div class="panel-content bg-white">
                     <div class="row">
                       <div class="col-md-12 col-sm-12 col-xs-12">
-                        <form role="form" class="form-validation" id="needs">
+                        <form role="form" class="form-validation" id="need_form" method="POST" enctype="multipart/form-data">
                           <div class="row">
 
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="ncode" class="control-label">کد نیاز</label>
-                                    <div class="append-icon">
-                                        <input type="text" class="form-control" id="ncode" name="ncode" placeholder="کد نیاز را وارد نمایید" required>
-                                        <i class="icon-key"></i>
+                                    <label for="child_id" class="control-label">کودک <span class="required">*</span></label>
+                                    <div class="option-group">
+                                        <select id="child_id" name="child_id" class="form-control" required>
+                                          <option value="">کودک مورد نظر را انتخاب کنید</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                             
                             <div class="col-sm-6">
                               <div class="form-group">
-                                <label for="nname" class="control-label">نام نیاز</label>
+                                <label for="need_name" class="control-label">نام نیاز <span class="required">*</span></label>
                                 <div class="append-icon">
-                                  <input type="text" id="nname" name="nname" class="form-control" minlength="3" placeholder="نام نیاز را وارد نمایید" required>
+                                  <input type="text" id="need_name" name="need_name" class="form-control" minlength="3" placeholder="نام نیاز را وارد نمایید" required>
                                   <i class="icon-heart"></i>
                                 </div>
                               </div>
@@ -369,75 +370,93 @@
 
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="ncat" class="control-label">دسته بندی</label>
+                                    <label for="need_category" class="control-label">دسته‌بندی <span class="required">*</span></label>
                                     <div class="option-group">
-                                        <select id="ncat" name="ncat" class="form-control" required>
-                                          <option value="">دسته مورد نظر را انتخاب کنید...</option>
-                                          <option value="ncat1">Love</option>
-                                          <option value="ncat2">Joy</option>
-                                          <option value="ncat3">دسته 3</option>
-                                          <option value="ncat4">دسته 4</option>
-                                          <option value="ncat5">دسته 5</option>
+                                        <select id="need_category" name="need_category" class="form-control" required>
+                                          <option value="">دسته مورد نظر را انتخاب کنید</option>
+                                          <option value="0">Growth</option>
+                                          <option value="1">Joy</option>
+                                          <option value="2">Health</option>
+                                          <option value="3">Surroundings</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
 
-                            
                             <div class="col-sm-6">
                               <div class="form-group">
-                                <label class="control-label" for="npic">عکس</label>
-                                <div class="file">
-                                  <div class="option-group">
-                                    <span class="file-button btn-primary">انتخاب عکس</span>
-                                    <input type="file" class="custom-file" name="npic" id="npic" onchange="document.getElementById('uploader').value = this.value;" required>
-                                    <input type="text" class="form-control" id="uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="">
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="col-sm-6">
-                              <div class="form-group">
-                                <label for="desc" class="control-label">توضیحات</label>
-                                <textarea name="desc" id="desc" rows="2" class="form-control" placeholder="توضیحات را وارد نمایید..." minlength="5" required="" aria-required="true"></textarea>
-                              </div>
-                            </div>
-                            
-                            <div class="col-sm-6">
-                              <div class="form-group">
-                                <label for="price" class="control-label">قیمت</label>
+                                <label for="need_cost" class="control-label">هزینه نیاز (تومان) <span class="required">*</span></label>
                                 <div class="append-icon">
-                                  <input type="text" id="price" name="price" class="form-control" placeholder="قیمت را وارد نمایید" required>
+                                  <input type="text" id="need_cost" name="need_cost" class="form-control" placeholder="هزینه نیاز را وارد نمایید" required>
                                   <i class="icon-tag"></i>
                                 </div>
                               </div>
                             </div>
 
                             <div class="col-sm-6">
+                              <div class="form-group">
+                                <label for="need_description" class="control-label">توضیحات نیاز <span class="required">*</span></label>
+                                <textarea name="need_description" id="need_description" rows="2" class="form-control" placeholder="توضیحات نیاز را وارد نمایید" minlength="5" required="" aria-required="true"></textarea>
+                              </div>
+                            </div>
+                            
+                            <div class="col-sm-6">
+                              <div class="form-group">
+                                <label for="need_description_summary" class="control-label">خلاصه توضیحات نیاز <span class="required">*</span></label>
+                                <textarea name="need_description_summary" id="need_description_summary" rows="2" class="form-control" placeholder="خلاصه توضیحات نیاز را وارد نمایید" minlength="5" required="" aria-required="true"></textarea>
+                              </div>
+                            </div>
+
+                            <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="digi_link" class="control-label">لینک دیجیکالا</label>
+                                  <label class="control-label" for="need_icon">آیکون نیاز <span class="required">*</span></label>
+                                  <div class="file">
+                                    <div class="option-group">
+                                      <span class="file-button btn-primary">انتخاب عکس</span>
+                                      <input type="file" class="custom-file" name="need_icon[]" id="need_icon" multiple="multiple" title="حجم فایل انتخابی می‌بایست کمتر از 3 مگابایت باشد" onchange="document.getElementById('need_icon_uploader').value = this.value;" required>
+                                      <input type="text" class="form-control" id="need_icon_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="col-sm-6">
+                                <div class="form-group">
+                                  <label class="control-label" for="need_receipts">رسید پرداخت</label>
+                                  <div class="file">
+                                    <div class="option-group">
+                                      <span class="file-button btn-primary">انتخاب عکس</span>
+                                      <input type="file" class="custom-file" name="need_receipts[]" id="need_receipts" title="حجم فایل انتخابی می‌بایست کمتر از 3 مگابایت باشد" multiple="multiple" onchange="document.getElementById('need_receipts_uploader').value = this.value;">
+                                      <input type="text" class="form-control" id="need_receipts_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="need_type" class="control-label"> نوع نیاز <span class="required">*</span></label>
+                                    <div class="option-group">
+                                        <select id="need_type" name="need_type" class="form-control" required>
+                                            <option value="">نوع نیاز را انتخاب کنید</option>
+                                            <option value="0">Donate</option>
+                                            <option value="1">Affiliate</option>
+                                        </select>
+                                    </div>
+                                </div>
+                              </div>
+                            
+                              <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="digikala_affiliate_link" class="control-label">لینک دیجیکالا</label>
                                     <div class="append-icon">
-                                        <input type="url" id="digi_link" name="digi_link" class="form-control" placeholder="لینک دیجیکالا را وارد نمایید" required>
+                                        <input type="url" id="digikala_affiliate_link" name="digikala_affiliate_link" class="form-control" placeholder="لینک affiliate دیجیکالا را وارد نمایید">
                                         <i class="icon-globe"></i>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="ntype" class="control-label">نوع</label>
-                                    <div class="option-group">
-                                        <select id="ntype" name="ntype" class="form-control" required>
-                                            <option value="">نوع مورد نظر را انتخاب کنید...</option>
-                                            <option value="ncat1">Donate</option>
-                                            <option value="ncat2">Affiliate</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div> -->
-
-                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="ntype" class="col-sm-3 control-label">نوع</label>
                                     <div class="col-sm-9 p-t-10">
@@ -453,7 +472,7 @@
                                       </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- <div class="col-sm-6">
                                 <div class="onoffswitch2">
@@ -466,18 +485,18 @@
                             </div> -->
                             
                             <div class="col-sm-6">
-                                    <div class="form-group">
-                                      <!-- <label class="control-label">آیا شرایط و ضوابط ما را می پذیرید؟</label> -->
-                                      <div class="option-group">
-                                        <label  for="urgent" class="m-t-10">
-                                        <input type="checkbox" name="urgent" id="urgent" data-checkbox="icheckbox_flat-blue" />
-                                        نیاز ضروری می باشد
-                                        </label>    
-                                      </div>
-                                    </div>
-                                  </div>
+                              <div class="form-group">
+                                <div class="option-group">
+                                  <label  for="is_urgent" class="m-t-10">
+                                  <input type="checkbox" name="is_urgent" id="is_urgent" data-checkbox="icheckbox_flat-blue" />
+                                  نیاز ضروری می‌باشد؟
+                                  </label>    
+                                </div>
+                              </div>
+                            </div>
+
                             
-                            <div class="col-sm-6">
+                            <!-- <div class="col-sm-6">
                               <div class="form-group">
                                 <label class="control-label">What's the result of 4 + 8 ?</label>
                                 <input type="text" name="calcul" class="form-control" placeholder="Human verification!">
@@ -494,12 +513,12 @@
                                   </label>    
                                 </div>
                               </div>
-                            </div>
+                            </div> -->
 
                           </div>
 
                           <div class="text-center  m-t-20">
-                            <button type="submit" class="btn btn-embossed btn-primary">ارسال</button>
+                            <button type="submit" class="btn btn-embossed btn-primary" id="sendNeedData">ارسال</button>
                             <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">پاک کردن</button>
                           </div>
                         </form>
@@ -516,20 +535,36 @@
                 <div class="panel-content bg-white">
                   <div class="btn-group">
                       <button id="needTableNew" class="btn btn-sm btn-dark"><i class="fa fa-plus"></i> اضافه کردن نیاز جدید</button>
+
+                      <div class="option-group">
+                          <select id="child_need_select" name="child_need_select" class="btn btn-sm btn-dark" required>
+                              <option value="">برای دیدن نیازها کودک مورد نظر را انتخاب نمایید</option>
+                          </select>
+                      </div>
+
                   </div>
                   <table class="table table-hover dataTable" id="table-editable">
                       <thead>
                         <tr>
-                          <th>کد نیاز</th>
-                          <th>نام نیاز</th>
-                          <th>دسته بندی</th>
-                          <th>عکس</th>
-                          <th>توضیحات</th>
-                          <th>نوع نیاز</th>
-                          <th>قیمت</th>
-                          <th>لینک دیجیکالا</th>
-                          <th>ضروری</th>
                           <th class="text-right">عملیات</th>
+
+                          <th>SAY name کودک</th>
+                          <th>نام نیاز</th>
+                          <th>هزینه نیاز</th>
+                          <th>میزان پرداخت شده</th>
+                          <th>میزان پیشرفت</th>
+                          <th class="medium_th">آیکون نیاز</th>
+                          <th>ضروری</th>
+                          <th>دسته‌بندی</th>
+                          <th>نوع نیاز</th>
+                          <th>لینک affiliate</th>
+                          <th class="wide_th">توضیحات نیاز</th>
+                          <th class="wide_th">خلاصه توضیحات نیاز</th>
+                          <th>رسید(ها)</th>
+                          <th class="medium_th">تاریخ ایجاد</th>
+                          <th>وضعیت تایید</th>
+                          <th class="medium_th">تاریخ تایید</th>
+
                         </tr>
                       </thead>
                       <tbody id="needList">
@@ -1082,6 +1117,12 @@
 <script src="../builder/page-builder/plugins/slider-pips/jquery-ui-slider-pips.min.js"></script>
 <script src="../builder/page-builder/plugins/saveas/saveAs.js"></script>
 <script src="../builder/page-builder/js/builder_page.js"></script>
+<script src="assets/js/need_dataServe.js"></script>  <!--Need data feed-->
+<script src="assets/js/child_dataServe.js"></script>  <!--child data feed for child_id field-->
+<script src="assets/js/custom.js"></script>  <!--custom functions-->
+
+
+
 <!-- <script src="assets/js/pages/table_dynamic.js"></script> -->
 <!-- <script src="assets/js/pages/table_editable.js"></script> -->
 

@@ -68,10 +68,10 @@
 </div>
           <ul class="nav nav-sidebar">
             <li class="tm"><a href="dashboard.html"><i class="icon-home"></i><span>داشبورد</span></a></li>
-            <li class="tm"><a href="childs.html"><i class="fa fa-child"></i><span>کودکان من</span></a></li>
+            <li class="tm"><a href="children.html"><i class="fa fa-child"></i><span>کودکان من</span></a></li>
             <li class="tm"><a href="needs.html"><i class="fa fa-heart-o"></i><span>نیازها</span></a></li>
             <li class="tm"><a href="reports.html"><i class="fa icon-bar-chart"></i><span>گزارش</span></a></li>
-            <li class="tm"><a href="socialW.html"><i class="fa icon-users"></i><span>مددکاران</span></a></li>
+            <li class="tm"><a href="social_worker.html"><i class="fa icon-users"></i><span>مددکاران</span></a></li>
             
             <li class="tm nav-active active nav-parent">
               <a href=""><i class="fa fa-edit"></i><span>تنظیمات</span> <span class="fa arrow"></span></a>
@@ -344,126 +344,137 @@
                     <div class="panel-content bg-white">
                       <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                          <form role="form" class="form-validation" id="ngo">
+                          
+                          <form role="form" class="form-validation" id="ngo_form" method="POST" target="upload_target" enctype="multipart/form-data">
                             <div class="row">
   
-                              <div class="col-sm-4">
+                              <div class="col-md-4 col-sm-6">
                                 <div class="form-group">
-                                  <label for="ngoName" class="control-label">نام انجمن</label>
+                                  <label for="ngo_name" class="control-label">نام انجمن <span class="required">*</span></label>
                                   <div class="append-icon">
-                                    <input type="text" class="form-control" id="ngoName" name="ngoName" placeholder="نام انجمن را وارد نمایید" required>
+                                    <input type="text" class="form-control" id="ngo_name" name="ngo_name" placeholder="نام انجمن را وارد نمایید" required>
                                     <i class=""></i>
                                   </div>
                                 </div>
                               </div>
 
-                              <div class="col-sm-4">
+                              <div class="col-md-4 col-sm-6">
                                 <div class="form-group">
-                                  <label for="ngoCountry" class="control-label">کشور</label>
+                                  <label for="ngo_country" class="control-label">کشور <span class="required">*</span></label>
                                   <div class="option-group">
-                                    <select id="ngoCountry" name="ngoCountry" class="form-control" required>
-                                      <option value="">کشور را انتخاب کنید...</option>
-                                      <option value="1">کشور 1</option>
-                                      <option value="2">کشور 2</option>
+                                    <select id="ngo_country" name="ngo_country" class="form-control" required>
+                                      <option value="">کشور را انتخاب کنید</option>
+                                      <option value="98">ایران</option>
                                     </select>
                                   </div>
                                 </div>
                               </div>
 
-                              <div class="col-sm-4">
+                              <div class="col-md-4 col-sm-6">
                                 <div class="form-group">
-                                  <label for="ngoCity" class="control-label">شهر</label>
+                                  <label for="ngo_city" class="control-label">شهر <span class="required">*</span></label>
                                   <div class="option-group">
-                                    <select id="ngoCity" name="ngoCity" class="form-control" required>
-                                      <option value="">شهر را انتخاب کنید...</option>
-                                      <option value="1">شهر 1</option>
-                                      <option value="2">شهر 2</option>
+                                    <select id="ngo_city" name="ngo_city" class="form-control" required>
+                                      <option value="">شهر را انتخاب کنید</option>
+                                      <option value="1">تهران</option>
+                                      <option value="2">کرج</option>
                                     </select>
                                   </div>
                                 </div>
                               </div>
 
-                              <div class="col-sm-4">
+                              <!-- <div class="col-sm-4">
                                 <div class="form-group">
-                                  <label for="ngoCordinator" class="control-label">هماهنگ کننده انجمن</label>
+                                  <label for="ngo_cordinator" class="control-label">هماهنگ کننده انجمن</label>
                                   <div class="append-icon">
-                                    <input type="number" class="form-control" id="ngoCordinator" name="ngoCordinator" placeholder="نام هماهنگ کننده انجمن را وارد نمایید" required>
+                                    <input type="number" class="form-control" id="ngo_cordinator" name="ngo_cordinator" placeholder="نام هماهنگ کننده انجمن را وارد نمایید" required>
                                     <i class="fa fa-user"></i>
                                   </div>
                                 </div>
-                              </div>
+                              </div> -->
 
-                              <div class="col-sm-4">
+                              <div class="col-md-4 col-sm-6">
                                 <div class="form-group">
-                                  <label for="ngoAddress" class="control-label">آدرس</label>
-                                  <textarea name="ngoAddress" id="ngoAddress" rows="2" class="form-control" placeholder="آدرس را وارد نمایید..." minlength="5" required="" aria-required="true"></textarea>
+                                  <label for="ngo_address" class="control-label">آدرس <span class="required">*</span></label>
+                                  <textarea name="ngo_address" id="ngo_address" rows="4" class="form-control" placeholder="آدرس انجمن را وارد نمایید" minlength="5" required="" aria-required="true"></textarea>
                                 </div>
                               </div>
 
-                              <div class="col-sm-4">
+                              <div class="col-md-4 col-sm-6">
                                 <div class="form-group">
-                                  <label for="ngoPhoneNumber" class="control-label">شماره تماس</label>
+                                  <label for="ngo_phone_number" class="control-label">شماره تماس <span class="required">*</span></label>
                                   <div class="append-icon">
-                                    <input type="text" id="ngoPhoneNumber" name="ngoPhoneNumber" class="form-control" placeholder="شماره تماس انجمن را وارد نمایید" required>
+                                    <input type="text" id="ngo_phone_number" name="ngo_phone_number" class="form-control" placeholder="شماره تماس انجمن را وارد نمایید" required>
                                     <i class="fa fa-phone"></i>
                                   </div>
                                 </div>
                               </div>
 
-                              <div class="col-sm-4">
+                              <div class="col-md-4 col-sm-6">
                                 <div class="form-group">
-                                  <label for="ngoEmailAddress" class="control-label">ایمیل</label>
+                                  <label for="ngo_email" class="control-label">ایمیل <span class="required">*</span></label>
                                   <div class="append-icon">
-                                    <input type="text" id="ngoEmailAddress" name="ngoEmailAddress" class="form-control" placeholder="آدرس ایمیل انجمن را وارد نمایید" required>
+                                    <input type="text" id="ngo_email" name="ngo_email" class="form-control" placeholder="آدرس ایمیل انجمن را وارد نمایید" required>
                                     <i class="fa fa-envelope"></i>
                                   </div>
                                 </div>
                               </div>
 
-                              <div class="col-sm-4">
+                              <div class="col-md-4 col-sm-6">
                                 <div class="form-group">
-                                  <label class="control-label" for="ngoLogo">لوگوی انجمن</label>
+                                  <label for="ngo_website" class="control-label">آدرس وبسایت</label>
+                                  <div class="append-icon">
+                                    <input type="text" id="ngo_website" name="ngo_website" class="form-control" placeholder="آدرس وبسایت انجمن را وارد نمایید">
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="col-md-4 col-sm-6">
+                                <div class="form-group">
+                                  <label class="control-label" for="ngo_logo">لوگوی انجمن <span class="required">*</span></label>
                                   <div class="file">
                                     <div class="option-group">
                                       <span class="file-button btn-primary">انتخاب فایل</span>
-                                      <input type="file" class="custom-file" name="ngoLogo" id="ngoLogo" onchange="document.getElementById('ngoLogoUrl').value = this.value;" required>
-                                      <input type="text" class="form-control" id="ngoLogoUrl" placeholder="هیج فایلی انتخاب نشده است" readonly="">
+
+                                      <input type="file" class="custom-file" name="ngo_logo[]" id="ngo_logo" title="حجم فایل انتخابی می‌بایست کمتر از ۱ مگابایت باشد" multiple="multiple" onchange="document.getElementById('ngo_logo_url').value = this.value;" required>
+
+                                      <input type="text" class="form-control" id="ngo_logo_url" placeholder="هیج فایلی انتخاب نشده است" readonly="">
                                     </div>
                                   </div>
                                 </div>
                               </div>
 
-                              <div class="col-sm-4">
+                              <!-- <div class="col-sm-4">
                                 <div class="form-group">
-                                  <label for="ngoBalance" class="control-label">بالانس</label>
+                                  <label for="ngo_balance" class="control-label">بالانس</label>
                                   <div class="append-icon">
-                                    <input type="number" id="ngoBalance" name="ngoBalance" class="form-control" placeholder="بالانس را وارد نمایید" required>
+                                    <input type="number" id="ngo_balance" name="ngo_balance" class="form-control" placeholder="بالانس را وارد نمایید" required>
                                     <i class="icon-tag"></i>
                                   </div>
                                 </div>
-                              </div>
+                              </div> -->
 
-                              <div class="col-sm-4">
+                              <div class="col-md-4 col-sm-6">
                                 <div class="form-group">
-                                  <label for="ngoSocialWorkerCount" class="control-label">تعداد مددکاران</label>
+                                  <label for="ngo_current_social_worker_count" class="control-label">تعداد مددکاران</label>
                                   <div class="append-icon">
-                                    <input type="text" id="ngoSocialWorkerCount" name="ngoSocialWorkerCount" class="form-control" value="0" readonly>
+                                    <input type="text" id="ngo_current_social_worker_count" name="ngo_current_social_worker_count" class="form-control" value="0" readonly>
                                     <i class="fa fa-users"></i>
                                   </div>
                                 </div>
                               </div>
 
-                              <div class="col-sm-4">
+                              <div class="col-md-4 col-sm-6">
                                 <div class="form-group">
-                                  <label for="ngoChildCount" class="control-label">تعداد کودکان</label>
+                                  <label for="ngo_current_child_count" class="control-label">تعداد کودکان</label>
                                   <div class="append-icon">
-                                    <input type="text" id="ngoChildCount" name="ngoChildCount" class="form-control" value="0" readonly>
+                                    <input type="text" id="ngo_current_child_count" name="ngo_current_child_count" class="form-control" value="0" readonly>
                                     <i class="fa fa-child"></i>
                                   </div>
                                 </div>
                               </div>
 
-                              <div class="col-sm-4">
+                              <!-- <div class="col-sm-4">
                                 <div class="form-group">
                                   <label for="ngoActive" class="col-sm-3 control-label">فعالیت</label>
                                   <div class="col-sm-9 p-t-10">
@@ -479,9 +490,9 @@
                                     </div>
                                   </div>
                                 </div>
-                              </div>
+                              </div> -->
                               
-                              <div class="col-sm-9">
+                              <!-- <div class="col-sm-9">
                                 <div class="form-group">
                                   <label class="control-label">آیا شرایط و ضوابط ما را می پذیرید؟</label>
                                   <div class="option-group">
@@ -491,7 +502,7 @@
                                     </label>    
                                   </div>
                                 </div>
-                              </div>
+                              </div> -->
   
                             </div>
   
@@ -500,6 +511,7 @@
                               <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">پاک کردن</button>
                             </div>
                           </form>
+                          <iframe id="upload_target" name="upload_target" src="#" style ="width:0; height:0; border:0; border:none"></iframe>
                         </div>
                       </div>
                     </div>
@@ -518,20 +530,20 @@
                   <table class="table table-hover dataTable" id="table-editable">
                       <thead>
                         <tr>
-                          <th>نام انجمن</th>
+                          <th class="medium_th">نام انجمن</th>
                           <th>کشور</th>
                           <th>شهر</th>
                           <th>هماهنگ کننده انجمن</th>
-                          <th>آدرس</th>
+                          <th class="wide_th">آدرس</th>
                           <th>شماره تماس</th>
                           <th>آدرس ایمیل</th>
-                          <th>لوگوی انجمن</th>
-                          <th>بالانس</th>
+                          <th>آدرس وبسایت</th>
+                          <th class="medium_th">لوگوی انجمن</th>
                           <th>تعداد مددکاران</th>
                           <th>تعداد کودکان</th>
-                          <th>زمان ثبت نام</th>
-                          <th>آخرین آپدیت</th>
-                          <th>فعال/غیر فعال</th>
+                          <th class="medium_th">زمان ثبت نام</th>
+                          <th class="medium_th">آخرین آپدیت</th>
+                          <!-- <th>فعال/غیر فعال</th> -->
                           <th class="text-right">عملیات</th>
                         </tr>
                       </thead>
@@ -1085,7 +1097,9 @@
 <script src="../builder/page-builder/plugins/slider-pips/jquery-ui-slider-pips.min.js"></script>
 <script src="../builder/page-builder/plugins/saveas/saveAs.js"></script>
 <script src="../builder/page-builder/js/builder_page.js"></script>
-<script src="assets/js/ngo_dataServe.js"></script>
+<script src="assets/js/ngo_dataServe.js"></script>  <!--NGO data feed-->
+<!-- <script src="assets/js/country_dataServe.js"></script>  Country data feed -->
+
 
 <!-- END PAGE SCRIPTS -->
 </body>

@@ -15,29 +15,32 @@
         <!-- BEGIN LOGIN BOX -->
         <div class="container" id="login-block">
             <div class="row">
-                <div class="col-sm-6 col-md-4 col-md-offset-4">
+                <div class="col-md-4 col-md-offset-4">
                     <div class="account-wall">
                         <i class="user-img icons-faces-users-03"></i>
+
                         <form class="form-signin" role="form">
                             <div class="append-icon">
-                                <input type="text" name="name" id="name" class="form-control form-white username" placeholder="نام کاربری" required>
+                                <input type="text" name="name" id="username" class="form-control form-white username" placeholder="نام کاربری" required>
                                 <i class="icon-user"></i>
                             </div>
                             <div class="append-icon m-b-20">
-                                <input type="password" name="password" class="form-control form-white password" placeholder="رمز عبور" required>
+                                <input type="password" name="password" id="password" class="form-control form-white password" placeholder="رمز عبور" required>
                                 <i class="icon-lock"></i>
                             </div>
-                            <button type="submit" id="submit-form" class="btn btn-lg btn-danger btn-block ladda-button" data-style="expand-left">ورود</button>
-                            <!-- <div class="social-btn">
-                                <button type="button" class="btn-fb btn btn-lg btn-block btn-primary"><i class="icons-socialmedia-08 pull-left"></i>Connect with Facebook</button>
-                                <button type="button" class="btn btn-lg btn-block btn-blue"><i class="icon-social-twitter pull-left"></i>Login with Twitter</button>
-                            </div> -->
-                            <div class="clearfix">
+                            <button type="submit" id="login" class="btn btn-lg btn-danger btn-block ladda-button" data-style="expand-left">ورود</button>
+                            
+
+                            <!-- <div class="clearfix">
                                 <p class="pull-right m-t-20"><a id="password" href="#">رمز عبور را فراموش کرده اید؟</a></p>
-                                <!-- <p class="pull-right m-t-20"><a href="user-signup-v1.html">New here? Sign up</a></p> -->
-                            </div>
+                                
+                                <p class="pull-right m-t-20"><a href="user-signup-v1.html">New here? Sign up</a></p>
+                            </div> -->
                         </form>
-                        <form class="form-password" role="form">
+
+                        <!--Forget Password-->
+
+                        <!-- <form class="form-password" role="form">
                             <div class="append-icon m-b-20">
                                 <input type="password" name="password" class="form-control form-white password" placeholder="Password" required>
                                 <i class="icon-lock"></i>
@@ -45,9 +48,10 @@
                             <button type="submit" id="submit-password" class="btn btn-lg btn-danger btn-block ladda-button" data-style="expand-left">Send Password Reset Link</button>
                             <div class="clearfix">
                                 <p class="pull-right m-t-20"><a id="login" href="#">بازگشت به صفحه ورود</a></p>
-                                <!-- <p class="pull-right m-t-20"><a href="user-signup-v1.html">New here? Sign up</a></p> -->
+                                <p class="pull-right m-t-20"><a href="user-signup-v1.html">New here? Sign up</a></p>
                             </div>
-                        </form>
+                        </form> -->
+
                     </div>
                 </div>
             </div>
@@ -141,6 +145,6 @@
         <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/plugins/backstretch/backstretch.min.js"></script>
         <script src="assets/plugins/bootstrap-loading/lada.min.js"></script>
-        <script src="assets/js/pages/login-v1.js"></script>
+        <script src="assets/js/login.js"></script>  <!--login ajax-->
     </body>
 </html>
