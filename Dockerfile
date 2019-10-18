@@ -1,6 +1,4 @@
 # build environment
-FROM scratch
-
-WORKDIR /panel
-COPY . /panel
+FROM nginx:alpine
+COPY . /usr/share/nginx/html
 
