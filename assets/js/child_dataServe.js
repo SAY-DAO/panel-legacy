@@ -1,8 +1,7 @@
 $(document).ready(function(){
 
-    var keys = ['id' , 'generatedCode' , 'avatarUrl' , 'voiceUrl' , 'firstName' , 'lastName' , 'sayName' , 'country' , 'city' , 'gender' , 'bio' , 'bioSummary' , 'birthDate' , 'birthPlace' , 'nationality' , 'familyCount' , 'sayFamilyCount' , 'education' , 'housingStatus' , 'id_ngo' , 'id_social_worker' , 'phoneNumber' , 'address' , 'doneNeedCount' , 'spentCredit' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'createdAt']
+    var keys = ['id' , 'generatedCode' , 'avatarUrl' , 'voiceUrl' , 'firstName' , 'lastName' , 'birthDate' , 'sayName' , 'country' , 'city' , 'gender' , 'bio' , 'bioSummary' , 'birthPlace' , 'nationality' , 'familyCount' , 'sayFamilyCount' , 'education' , 'housingStatus' , 'id_ngo' , 'id_social_worker' , 'phoneNumber' , 'address' , 'doneNeedCount' , 'spentCredit' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'createdAt']
     
-    var confirmStatus = '';
 
        // getting all Child data from DB
 
@@ -15,9 +14,14 @@ $(document).ready(function(){
         },
         success: function(data) {
             console.log(data);
+            var confirmStatus = '';
+
             $.each(data , function(key ,value){
-                var query = '<tr><td><button type="submit" class="btn btn-embossed btn-dark btn-block confirmBtn" id="'+value[keys[0]]+'">Confirm</button><button class="btn btn-embossed btn-dark btn-block" disabled>Edit</button><button class="btn btn-embossed btn-dark btn-block" disabled>Delete</button></td>';
-                
+
+                var childId = value[keys[0]];
+
+                var query = '<tr><td><button type="submit" class="btn btn-embossed btn-dark btn-block confirmBtn" id="'+childId+'">Confirm</button><button class="btn btn-embossed btn-dark btn-block" disabled>Edit</button><button class="btn btn-embossed btn-dark btn-block" disabled>Delete</button></td>';
+
                 for(var i = 1 ; i < keys.length ; i++){
                     
                     if(value[keys[i]] == null){
@@ -25,7 +29,7 @@ $(document).ready(function(){
                     }
                     
                     if(keys[i] == 'birthDate'){
-                        value[keys[i]] = getAge(value[keys[i]]);
+                        value[keys[i]] = getAge(value[keys[i]]) + " Years old";
                     }
 
                     if(keys[i] == 'country'){
@@ -174,12 +178,28 @@ $(document).ready(function(){
                         value[keys[i]] = '<audio src="http://sayapp.company/'+ value[keys[i]]+'" controls></audio>';
                     }
 
+                    if(keys[i] == 'spentCredit'){
+                        value[keys[i]] = value[keys[i]] + " Toman";
+                    }
+
+                    if(keys[i] == 'familyCount' || keys[i] == 'sayFamilyCount'){
+                        value[keys[i]] = value[keys[i]] + " Members";
+                    }
+
                     query += '<td>' + value[keys[i]] + '</td>';
                 }
+                
                 query+= '</tr>';
                 $('#childList').append(query);
                 
             })
+            // if(confirmStatus == 1){
+            //     // $('#' + childId).attr("disabled" , "disabled");
+            //     $('#' + childId).on('click' , function(e){
+            //         e.preventDefault();
+            //         console.log("confirmStatus:" + confirmStatus);
+            //     })
+            // }
         },
         error: function(data) {
             console.log(data.responseJSON.message);
@@ -287,6 +307,7 @@ $(document).ready(function(){
     })
 
     // Confirm a child
+
     $('#childList').on('click' , '.confirmBtn' , function(e){
         e.preventDefault();
         var childId = $(this).attr('id');
@@ -300,6 +321,9 @@ $(document).ready(function(){
             cache: false,
             processData: false,
             contentType: false,
+            beforeSend: function(){
+                return confirm("Are you sure?");
+            },
             success: function(data) {
                 alert("Success\n" + JSON.stringify(data.message));
                 location.reload();
@@ -316,7 +340,7 @@ $(document).ready(function(){
 //Child drop down field in needs form
 
 $(document).ready(function(){
-    var keys = ['id', 'generatedCode' , 'sayName']
+    var keys = ['id', 'generatedCode' , 'firstName' , 'lastName']
 
     $.ajax({
         url: 'http://api.sayapp.company/api/v2/child/all/confirm=1',
@@ -329,7 +353,7 @@ $(document).ready(function(){
             console.log(data);
             $.each(data , function(key ,value){
                 var query = '';
-                    query += '<option value="' + value[keys[0]] + '">' + value[keys[1]] + ' - ' + value[keys[2]] + '</option>';
+                    query += '<option value="' + value[keys[0]] + '">' + value[keys[1]] + ' - ' + value[keys[2]] + ' ' + value[keys[3]] + '</option>';
                 $('#child_id').append(query);
                 $('#child_need_select').append(query);
                 // console.log("Child field query:" + query);
@@ -434,30 +458,6 @@ $(document).ready(function(){
         $('#needList').empty();
     })
 
-    // Confirm a need
-    $('#needList').on('click' , '.confirmBtn' , function(e){
-        e.preventDefault();
-        var needId = $(this).attr('id');
-        var childId = $('#child_need_select').val();
-        // console.log(childId);
-        $.ajax({
-            url: 'http://api.sayapp.company/api/v2/need/confirm/needId=' + needId + '&socialWorkerId=10&childId=' + childId,
-            method: 'PATCH',
-            headers : {
-                'Access-Control-Allow-Origin'  : 'http://www.sayapp.company'
-            },
-            cache: false,
-            processData: false,
-            contentType: false,
-            success: function(data) {
-                alert("Success\n" + JSON.stringify(data.message));
-                location.reload();
-            },
-            error: function(data) {
-                alert("Error\n" + data.responseJSON.message);
-            }
-        })
-
-    })
+    
 
 })
