@@ -85,14 +85,44 @@ $(document).ready(function(){
             data: form_data,
             success: function(data)  {
                 console.log(data);
-                alert("Success\n" + JSON.stringify(data.message));
+                alert("Success\n" + JSON.stringify(data));
                 location.reload();
             },
             error: function(data) {
                 console.log(data);
-                alert('Error!\n' + data);
+                alert('Error!\n' + data.responseJSON.message);
             }
         })
+    })
+
+    // Confirm a need
+
+    $('#needList').on('click' , '.confirmBtn' , function(e){
+        e.preventDefault();
+        var needId = $(this).attr('id');
+        var childId = $('#child_need_select').val();
+        // console.log(childId);
+        $.ajax({
+            url: 'http://api.sayapp.company/api/v2/need/confirm/needId=' + needId + '&socialWorkerId=10&childId=' + childId,
+            method: 'PATCH',
+            headers : {
+                'Access-Control-Allow-Origin'  : 'http://www.sayapp.company'
+            },
+            cache: false,
+            processData: false,
+            contentType: false,
+            beforeSend: function(){
+                return confirm("Are you sure?");
+            },
+            success: function(data) {
+                alert("Success\n" + JSON.stringify(data.message));
+                location.reload();
+            },
+            error: function(data) {
+                alert("Error\n" + data.responseJSON.message);
+            }
+        })
+
     })
 
 })
