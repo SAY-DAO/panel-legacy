@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    var keys = ['id' , 'generatedCode' , 'avatarUrl' , 'voiceUrl' , 'firstName' , 'lastName' , 'birthDate' , 'sayName' , 'country' , 'city' , 'gender' , 'bio' , 'bioSummary' , 'birthPlace' , 'nationality' , 'familyCount' , 'sayFamilyCount' , 'education' , 'housingStatus' , 'id_ngo' , 'id_social_worker' , 'phoneNumber' , 'address' , 'doneNeedCount' , 'spentCredit' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'createdAt' , 'lastUpdate']
+    var keys = ['id' , 'generatedCode' , 'avatarUrl' , 'sleptAvatarUrl' , 'voiceUrl' , 'firstName' , 'lastName' , 'birthDate' , 'sayName' , 'country' , 'city' , 'gender' , 'bio' , 'bioSummary' , 'birthPlace' , 'nationality' , 'familyCount' , 'sayFamilyCount' , 'education' , 'housingStatus' , 'id_ngo' , 'id_social_worker' , 'phoneNumber' , 'address' , 'doneNeedCount' , 'spentCredit' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'createdAt' , 'lastUpdate']
     
 
        // getting all Child data from DB
@@ -174,6 +174,10 @@ $(document).ready(function(){
                         value[keys[i]] = getImgFile(value[keys[i]]);
                     }
 
+                    if (keys[i] == 'sleptAvatarUrl'){
+                        value[keys[i]] = getImgFile(value[keys[i]]);
+                    }
+
                     if (keys[i] == 'voiceUrl'){
                         value[keys[i]] = '<audio src="http://sayapp.company/'+ value[keys[i]]+'" controls></audio>';
                     }
@@ -225,6 +229,7 @@ $(document).ready(function(){
         var bio = $('#child_story').val();
         var bioSummary = $('#child_story_summary').val();
         var avatarUrl = $('#child_avatar')[0].files[0];
+        var sleptAvatarUrl = $('#child_slept_avatar')[0].files[0];
         var voiceUrl = $('#child_voice')[0].files[0];
         //not nullable
         var firstName = $('#child_first_name').val();
@@ -241,6 +246,7 @@ $(document).ready(function(){
         //append datas to a Form Data
         var form_data = new FormData();
         form_data.append('avatarUrl', avatarUrl);
+        form_data.append('sleptAvatarUrl', sleptAvatarUrl);
         form_data.append('voiceUrl', voiceUrl);
         form_data.append('sayName', sayName);
         form_data.append('gender', gender);
@@ -304,7 +310,7 @@ $(document).ready(function(){
                 return confirm("You are about to add a new child.\nAre you sure?");
             },
             success: function(data)  {
-                alert("Success\n" + JSON.stringify(data.message));
+                alert("Success\nChild added successfully\n" + JSON.stringify(data.message));
                 location.reload();
             },
             error: function(data) {
@@ -405,6 +411,7 @@ $(document).ready(function(){
             var bio = $('#child_story').val();
             var bioSummary = $('#child_story_summary').val();
             var avatarUrl = $('#child_avatar')[0].files[0];
+            var sleptAvatarUrl = $('#child_slept_avatar')[0].files[0];
             var voiceUrl = $('#child_voice')[0].files[0];
 
             var firstName = $('#child_first_name').val();
@@ -422,6 +429,9 @@ $(document).ready(function(){
             var form_data = new FormData();
             if(avatarUrl){
                 form_data.append('avatarUrl', avatarUrl);
+            }
+            if(sleptAvatarUrl){
+                form_data.append('sleptAvatarUrl', sleptAvatarUrl);
             }
             if(voiceUrl){
                 form_data.append('voiceUrl', voiceUrl);
@@ -492,7 +502,7 @@ $(document).ready(function(){
                     return confirm("You are about to edit the child.\nAre you sure?");
                 },
                 success: function(data) {
-                    alert("Success\n" + JSON.stringify(data.message));
+                    alert("Success\nChild updated successfully\n" + JSON.stringify(data.message));
                     location.reload();
                 },
                 error: function(data) {

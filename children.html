@@ -564,20 +564,33 @@
                               </div>
                             </div>
 
-                            <div class="col-sm-6 col-md-6">
+                            <div class="col-sm-6 col-md-4">
                               <div class="form-group">
                                 <label class="control-label" for="child_avatar">آواتار کودک را بارگزاری نمایید <span class="required">*</span></label>
                                 <div class="file">
                                   <div class="option-group">
                                     <span class="file-button btn-primary">انتخاب فایل</span>
-                                    <input type="file" class="custom-file" name="child_avatar[]" id="child_avatar" title="حجم فایل انتخابی می‌بایست کمتر از ۱ مگابایت باشد" onchange="document.getElementById('child_avatar_uploader').value = this.value;" required>
+                                    <input type="file" class="custom-file" name="child_avatar[]" id="child_avatar" title="حجم فایل انتخابی می‌بایست کمتر از 3 مگابایت باشد" onchange="document.getElementById('child_avatar_uploader').value = this.value;" required>
                                     <input type="text" class="form-control" id="child_avatar_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="">
                                   </div>
                                 </div>
                               </div>
                             </div>
 
-                            <div class="col-sm-6 col-md-6">
+                            <div class="col-sm-6 col-md-4">
+                              <div class="form-group">
+                                <label class="control-label" for="child_slept_avatar">آواتار خواب کودک را بارگزاری نمایید <span class="required">*</span></label>
+                                <div class="file">
+                                  <div class="option-group">
+                                    <span class="file-button btn-primary">انتخاب فایل</span>
+                                    <input type="file" class="custom-file" name="child_slept_avatar[]" id="child_slept_avatar" title="حجم فایل انتخابی می‌بایست کمتر از 3 مگابایت باشد" onchange="document.getElementById('child_slept_avatar_uploader').value = this.value;" required>
+                                    <input type="text" class="form-control" id="child_slept_avatar_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-4">
                               <div class="form-group">
                                 <label class="control-label" for="child_voice">صدای ویرایش شده‌ی کودک را بارگزاری نمایید <span class="required">*</span></label>
                                 <div class="file">
@@ -657,6 +670,7 @@
                           <th class="text-right">عملیات</th>
                           <th>کد کودک</th>
                           <th class="medium_th">آواتار کودک</th>
+                          <th class="medium_th">آواتار خواب کودک</th>
                           <th>صدای کودک</th>
                           <th>نام</th>
                           <th>نام خانوادگی</th>
