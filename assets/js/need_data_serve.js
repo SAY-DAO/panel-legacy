@@ -115,11 +115,14 @@ $(document).ready(function(){
                 return confirm("Are you sure?");
             },
             success: function(data) {
-                alert("Success\n" + JSON.stringify(data.message));
+                bootbox.alert("Success\n" + JSON.stringify(data.message));
                 location.reload();
             },
             error: function(data) {
-                alert("Error\n" + data.responseJSON.message);
+                bootbox.alert({
+                    title: "Error!",
+                    message: data.responseJSON.message,
+                });
             }
         })
 

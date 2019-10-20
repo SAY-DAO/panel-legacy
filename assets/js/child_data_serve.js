@@ -1,12 +1,12 @@
 $(document).ready(function(){
 
-    var keys = ['id' , 'generatedCode' , 'avatarUrl' , 'voiceUrl' , 'firstName' , 'lastName' , 'birthDate' , 'sayName' , 'country' , 'city' , 'gender' , 'bio' , 'bioSummary' , 'birthPlace' , 'nationality' , 'familyCount' , 'sayFamilyCount' , 'education' , 'housingStatus' , 'id_ngo' , 'id_social_worker' , 'phoneNumber' , 'address' , 'doneNeedCount' , 'spentCredit' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'createdAt']
+    var keys = ['id' , 'generatedCode' , 'avatarUrl' , 'voiceUrl' , 'firstName' , 'lastName' , 'birthDate' , 'sayName' , 'country' , 'city' , 'gender' , 'bio' , 'bioSummary' , 'birthPlace' , 'nationality' , 'familyCount' , 'sayFamilyCount' , 'education' , 'housingStatus' , 'id_ngo' , 'id_social_worker' , 'phoneNumber' , 'address' , 'doneNeedCount' , 'spentCredit' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'createdAt' , 'lastUpdate']
     
 
        // getting all Child data from DB
 
        $.ajax({
-        url: 'http://api.sayapp.company/api/v2/child/all/confirm=2',
+        url: 'http://sayapp.company/api/v2/child/all/confirm=2',
         method: 'GET',
         dataType: 'json',
         headers : {
@@ -20,7 +20,7 @@ $(document).ready(function(){
 
                 var childId = value[keys[0]];
 
-                var query = '<tr><td><button type="submit" class="btn btn-embossed btn-dark btn-block confirmBtn" id="'+childId+'">Confirm</button><button class="btn btn-embossed btn-dark btn-block" disabled>Edit</button><button class="btn btn-embossed btn-dark btn-block" disabled>Delete</button></td>';
+                var query = '<tr><td id="'+childId+'"><button type="submit" class="btn btn-embossed btn-dark btn-block confirmBtn">Confirm</button><button class="btn btn-embossed btn-dark btn-block editBtn">Edit</button><button class="btn btn-embossed btn-dark btn-block" disabled>Delete</button></td>';
 
                 for(var i = 1 ; i < keys.length ; i++){
                     
@@ -212,7 +212,9 @@ $(document).ready(function(){
     $('#sendChildData').on('click' , function(e){
         e.preventDefault();
 
-        // recieving data from html form
+        // getting data from html form
+
+        //nullable
         var id_ngo = $('#ngo_id').val();
         var id_social_worker = $('#social_worker_id').val();
         var sayName = $('#SAY_name').val();
@@ -222,7 +224,9 @@ $(document).ready(function(){
         var phoneNumber = $('#child_phone_number').val();
         var bio = $('#child_story').val();
         var bioSummary = $('#child_story_summary').val();
-
+        var avatarUrl = $('#child_avatar')[0].files[0];
+        var voiceUrl = $('#child_voice')[0].files[0];
+        //not nullable
         var firstName = $('#child_first_name').val();
         var lastName = $('#child_last_name').val();
         var nationality = $('#child_nationality').val();
@@ -234,10 +238,10 @@ $(document).ready(function(){
         var school_type = $('#school_type').val();
         var housingStatus = $('#housing_status').val();
 
-        
+        //append datas to a Form Data
         var form_data = new FormData();
-        form_data.append('avatarUrl', $('#child_avatar')[0].files[0]);
-        form_data.append('voiceUrl', $('#child_voice')[0].files[0]);
+        form_data.append('avatarUrl', avatarUrl);
+        form_data.append('voiceUrl', voiceUrl);
         form_data.append('sayName', sayName);
         form_data.append('gender', gender);
         form_data.append('country', country);
@@ -296,12 +300,18 @@ $(document).ready(function(){
             contentType: false,
             dataType: 'json',
             data: form_data,
+            beforeSend: function(){
+                return confirm("You are about to add a new child.\nAre you sure?");
+            },
             success: function(data)  {
-                alert(data);
+                alert("Success\n" + JSON.stringify(data.message));
                 location.reload();
             },
             error: function(data) {
-                alert(data);
+                bootbox.alert({
+                    title: "Error!",
+                    message: data.responseJSON.message,
+                });
             }
         })
     })
@@ -310,7 +320,7 @@ $(document).ready(function(){
 
     $('#childList').on('click' , '.confirmBtn' , function(e){
         e.preventDefault();
-        var childId = $(this).attr('id');
+        var childId = $(this).parent().attr('id');
         console.log(childId);
         $.ajax({
             url: 'http://api.sayapp.company/api/v2/child/confirm/childId='+childId+'&socialWorkerId=10',
@@ -322,20 +332,183 @@ $(document).ready(function(){
             processData: false,
             contentType: false,
             beforeSend: function(){
-                return confirm("Are you sure?");
+                return confirm("You are about to confirm the child.\nAre you sure?");
             },
             success: function(data) {
                 alert("Success\n" + JSON.stringify(data.message));
                 location.reload();
             },
             error: function(data) {
-                alert("Error\n" + data.responseJSON.message);
+                bootbox.alert({
+                    title: "Error!",
+                    message: data.responseJSON.message,
+                });
             }
         })
 
     })
 
+
+    //Edit a child
+
+    $('#childList').on('click' , '.editBtn' , function(e){
+        e.preventDefault();
+        $('#sendChildData').attr("disabled", true);
+        var childId = $(this).parent().attr('id');
+        console.log(childId);
+
+        // get the dhild's data to the form
+        $.ajax({
+            url: 'http://api.sayapp.company/api/v2/child/childId=' + childId + '&confirm=2',
+            method: 'GET',
+            dataType: 'json',
+            headers: {
+                'Access-Control-Allow-Origin'  : 'http://www.sayapp.company'
+            },
+            success: function (data) {
+                console.log(data);
+
+                $('#SAY_name').val(data['sayName']);
+                $('#child_first_name').val(data['firstName']);
+                $('#child_last_name').val(data['lastName']);
+                $('#child_gender').val(data['gender']);
+                $('#child_nationality').val(data['nationality']);
+                $('#child_country').val(data['country']);
+                $('#child_city').val(data['city']);
+                $('#child_address').val(data['address']);
+                $('#child_birthdate').val(data['birthDate']);
+                $('#child_birthplace').val(data['birthPlace']);
+                $('#family_count').val(data['familyCount']);
+                //education??
+                $('#child_phone_number').val(data['phoneNumber']);
+                $('#housing_status').val(data['housingStatus']);
+                $('#child_story').val(data['bio']);
+                $('#child_story_summary').val(data['bioSummary']);
+
+            },
+            error: function (data) {
+                console.log(data.responseJSON.message);
+            }
+        })
+        $('#editChildData').on('click' , function(e){
+            e.preventDefault();
+
+            console.log("edit child " + childId);
+
+            // getting data from html form
+
+            var sayName = $('#SAY_name').val();
+            var gender = $('#child_gender').val();
+            var country = $('#child_country').val();
+            var city = $('#child_city').val();
+            var phoneNumber = $('#child_phone_number').val();
+            var bio = $('#child_story').val();
+            var bioSummary = $('#child_story_summary').val();
+            var avatarUrl = $('#child_avatar')[0].files[0];
+            var voiceUrl = $('#child_voice')[0].files[0];
+
+            var firstName = $('#child_first_name').val();
+            var lastName = $('#child_last_name').val();
+            var nationality = $('#child_nationality').val();
+            var address = $('#child_address').val();
+            var birthDate = $('#child_birthdate').val();
+            var birthPlace = $('#child_birthplace').val();
+            var familyCount = $('#family_count').val();
+            var education = $('#education').val();
+            var school_type = $('#school_type').val();
+            var housingStatus = $('#housing_status').val();
+
+            //append datas to a Form Data
+            var form_data = new FormData();
+            if(avatarUrl){
+                form_data.append('avatarUrl', avatarUrl);
+            }
+            if(voiceUrl){
+                form_data.append('voiceUrl', voiceUrl);
+            }
+            if(sayName){
+                form_data.append('sayName', sayName);
+            }
+            if(gender){
+                form_data.append('gender', gender);
+            }
+            if(country){
+                form_data.append('country', country);
+            }
+            if(city){
+                form_data.append('city', city);
+            }
+            if(phoneNumber){
+                form_data.append('phoneNumber', phoneNumber);
+            }
+            if(bio){
+                form_data.append('bio', bio);
+            }
+            if(bioSummary){
+                form_data.append('bioSummary', bioSummary);
+            }
+            if(firstName){
+                form_data.append('firstName', firstName);
+            }
+            if(lastName){
+                form_data.append('lastName', lastName);
+            }
+            if(nationality){
+                form_data.append('nationality', nationality);
+            }
+            if(address){
+                form_data.append('address', address);
+            }
+            if(birthDate){
+                form_data.append('birthDate', birthDate);
+            }
+            if(birthPlace){
+                form_data.append('birthPlace', birthPlace);
+            }
+            if(familyCount){
+                form_data.append('familyCount', familyCount);
+            }
+            if(education || school_type){
+                form_data.append('education', school_type+education);
+            }
+            if(housingStatus){
+                form_data.append('housingStatus', housingStatus);
+            }
+            console.log(form_data);
+
+            //update the child with new data in the form
+            $.ajax({
+                url: 'http://sayapp.company/api/v2/child/update/childId=' + childId,
+                method: 'PATCH',
+                headers : {
+                    'Access-Control-Allow-Origin'  : 'http://www.sayapp.company'
+                },
+                cache: false,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                data: form_data,
+                beforeSend: function(){
+                    return confirm("You are about to edit the child.\nAre you sure?");
+                },
+                success: function(data) {
+                    alert("Success\n" + JSON.stringify(data.message));
+                    location.reload();
+                },
+                error: function(data) {
+                    bootbox.alert({
+                        title: "Error!",
+                        message: data.responseJSON.message,
+                    });
+                }
+            })  //end of Update ajax
+
+        })  //end of 'get the dhild's data to the form' ajax
+        
+    })
+
 })
+
 
 //Child drop down field in needs form
 
@@ -366,7 +539,7 @@ $(document).ready(function(){
 
 })
 
-//Get child need by child id >> in need page
+//Get Child Needs by child id >> in need page
 
 $(document).ready(function(){
     var keys = ['id' , 'child_id' , 'ChildName' , 'name' , 'cost' , 'paid' , 'progress' , 'imageUrl' , 'isUrgent' , 'category' , 'type' , 'affiliateLinkUrl' , 'description' , 'descriptionSummary' , 'receipts' , 'createdAt' , 'isConfirmed' , 'confirmDate']

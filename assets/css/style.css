@@ -179,8 +179,9 @@ input[type="date"]{ /*say added*/
   /* line-height: normal !important; */
   height: 37px !important;
 }
-textarea{
+textarea{ /*SAY*/
   text-align: left !important;
+  direction: ltr;
 }
 div,
 p,
@@ -259,6 +260,11 @@ p {
   margin-right: auto;
   margin-left: auto;
 }
+
+.modal-dialog{  /*SAY*/
+  direction: ltr;
+}
+
 .fixed-sidebar.fixed-topbar.modal-open {
   padding-right: 0 !important;
 }

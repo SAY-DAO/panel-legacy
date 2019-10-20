@@ -611,7 +611,7 @@ function handlePanelAction() {
     /* Create Portlets Controls automatically: reload, fullscreen, toggle, remove, popout */
     function handlePanelControls() {
         $('.panel-controls').each(function() {
-            var controls_html = '<div class="control-btn">' + '<a href="#" class="panel-toggle"><i class="fa fa-angle-down"></i></a>' + '</div>';   //say changes, remove unwanted buttons
+            var controls_html = '<div class="control-btn">' + '<a href="#" class="panel-toggle"><i class="fa fa-angle-down"></i></a>' + '</div>';   //SAY changes, remove unwanted buttons
             $(this).append(controls_html);
         });
     }
@@ -634,9 +634,17 @@ function handlePanelAction() {
         event.preventDefault();
         $(this).toggleClass("closed").parents(".panel:first").find(".panel-content").slideToggle();
     });
+    
     // Say toggle for add child form
     $('#childForm').css('display', 'none');
     $('#childTableNew').click(function (e) {
+        e.preventDefault();
+        $('#childForm').slideToggle();
+    });
+
+    // Say toggle for edit child form
+    $('#childForm').css('display', 'none');
+    $('#childList').on('click' , '.editBtn' , function(e){
         e.preventDefault();
         $('#childForm').slideToggle();
     });
