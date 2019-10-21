@@ -518,8 +518,9 @@
                           </div>
 
                           <div class="text-center  m-t-20">
-                            <button type="submit" class="btn btn-embossed btn-primary" id="sendNeedData">ارسال</button>
-                            <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">پاک کردن</button>
+                            <button type="submit" class="btn btn-embossed btn-primary" id="editNeedData">ویرایش نیاز</button>
+                            <button type="submit" class="btn btn-embossed btn-primary" id="sendNeedData">افزودن نیاز</button>
+                            <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">پاک کردن فرم</button>
                           </div>
                         </form>
                       </div>
@@ -531,18 +532,18 @@
                 <div class="panel-header bg-dark panel-controls">
                   <h3 class="panel-title">لیست<strong> نیازها</strong></h3>
                 </div>
-                
+                <div class="btn-group col-md-6 col-sm-8 col-xs-12 center-block">
+                    <button id="needTableNew" class="btn btn-sm btn-dark btn-block"><i class="fa fa-plus"></i> اضافه کردن نیاز جدید</button>
+                </div>
+
+                <div class="option-group btn-group col-md-6 col-sm-8 col-xs-12 center-block">
+                    <select id="child_need_select" name="child_need_select" class="btn btn-sm btn-dark btn-block" required>
+                        <option value="">برای دیدن نیازها کودک مورد نظر را انتخاب نمایید</option>
+                    </select>
+                </div>
                 <div class="panel-content bg-white">
-                  <div class="btn-group">
-                      <button id="needTableNew" class="btn btn-sm btn-dark"><i class="fa fa-plus"></i> اضافه کردن نیاز جدید</button>
+                  
 
-                      <div class="option-group">
-                          <select id="child_need_select" name="child_need_select" class="btn btn-sm btn-dark" required>
-                              <option value="">برای دیدن نیازها کودک مورد نظر را انتخاب نمایید</option>
-                          </select>
-                      </div>
-
-                  </div>
                   <table class="table table-hover dataTable" id="table-editable">
                       <thead>
                         <tr>

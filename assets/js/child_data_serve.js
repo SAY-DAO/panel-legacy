@@ -6,11 +6,11 @@ $(document).ready(function(){
        // getting all Child data from DB
 
        $.ajax({
-        url: 'http://sayapp.company/api/v2/child/all/confirm=2',
+        url: SAYApiUrl + '/child/all/confirm=2',
         method: 'GET',
         dataType: 'json',
         headers : {
-            'Access-Control-Allow-Origin'  : '*'
+            'Access-Control-Allow-Origin'  : baseUrl
         },
         success: function(data) {
             console.log(data);
@@ -179,7 +179,7 @@ $(document).ready(function(){
                     }
 
                     if (keys[i] == 'voiceUrl'){
-                        value[keys[i]] = '<audio src="http://sayapp.company/'+ value[keys[i]]+'" controls></audio>';
+                        value[keys[i]] = getVoiceFile(value[keys[i]]);
                     }
 
                     if(keys[i] == 'spentCredit'){
@@ -197,6 +197,9 @@ $(document).ready(function(){
                 $('#childList').append(query);
                 
             })
+
+            // trying to disable confirm button if the child has confirmed already!
+
             // if(confirmStatus == 1){
             //     // $('#' + childId).attr("disabled" , "disabled");
             //     $('#' + childId).on('click' , function(e){
@@ -285,7 +288,7 @@ $(document).ready(function(){
         }
 
         if(education || school_type){
-            form_data.append('education', school_type+education);
+            form_data.append('education', education == "-2" ? "-" + school_type + "2" : school_type + education);   //because "int-2" cannot be stored. temporarily solution!
         }
 
         if(housingStatus){
@@ -296,10 +299,10 @@ $(document).ready(function(){
 
         
         $.ajax({
-            url: 'http://api.sayapp.company/api/v2/child/add/socialWorkerId=' + id_social_worker + '&ngoId=' + id_ngo,
+            url: SAYApiUrl + '/child/add/socialWorkerId=' + id_social_worker + '&ngoId=' + id_ngo,
             method: 'POST',
             headers : {
-                'Access-Control-Allow-Origin'  : 'http://www.sayapp.company'
+                'Access-Control-Allow-Origin'  : baseUrl
             },
             cache: false,
             processData: false,
@@ -327,12 +330,13 @@ $(document).ready(function(){
     $('#childList').on('click' , '.confirmBtn' , function(e){
         e.preventDefault();
         var childId = $(this).parent().attr('id');
-        console.log(childId);
+        // console.log(childId);
+
         $.ajax({
-            url: 'http://api.sayapp.company/api/v2/child/confirm/childId='+childId+'&socialWorkerId=10',
+            url: SAYApiUrl + '/child/confirm/childId='+childId+'&socialWorkerId=10',
             method: 'PATCH',
             headers : {
-                'Access-Control-Allow-Origin'  : 'http://www.sayapp.company'
+                'Access-Control-Allow-Origin'  : baseUrl
             },
             cache: false,
             processData: false,
@@ -365,11 +369,11 @@ $(document).ready(function(){
 
         // get the dhild's data to the form
         $.ajax({
-            url: 'http://api.sayapp.company/api/v2/child/childId=' + childId + '&confirm=2',
+            url: SAYApiUrl + '/child/childId=' + childId + '&confirm=2',
             method: 'GET',
             dataType: 'json',
             headers: {
-                'Access-Control-Allow-Origin'  : 'http://www.sayapp.company'
+                'Access-Control-Allow-Origin'  : baseUrl
             },
             success: function (data) {
                 console.log(data);
@@ -479,7 +483,7 @@ $(document).ready(function(){
                 form_data.append('familyCount', familyCount);
             }
             if(education || school_type){
-                form_data.append('education', school_type+education);
+                form_data.append('education', education == "-2" ? "-" + school_type + "2" : school_type + education);   //because "int-2" cannot be stored. temporarily solution!
             }
             if(housingStatus){
                 form_data.append('housingStatus', housingStatus);
@@ -488,10 +492,10 @@ $(document).ready(function(){
 
             //update the child with new data in the form
             $.ajax({
-                url: 'http://sayapp.company/api/v2/child/update/childId=' + childId,
+                url: SAYApiUrl + '/child/update/childId=' + childId,
                 method: 'PATCH',
                 headers : {
-                    'Access-Control-Allow-Origin'  : 'http://www.sayapp.company'
+                    'Access-Control-Allow-Origin'  : baseUrl
                 },
                 cache: false,
                 processData: false,
@@ -526,11 +530,11 @@ $(document).ready(function(){
     var keys = ['id', 'generatedCode' , 'firstName' , 'lastName']
 
     $.ajax({
-        url: 'http://api.sayapp.company/api/v2/child/all/confirm=1',
+        url: SAYApiUrl + '/child/all/confirm=1',
         method: 'GET',
         dataType: 'json',
         headers : {
-            'Access-Control-Allow-Origin'  : '*'
+            'Access-Control-Allow-Origin'  : baseUrl
         },
         success: function(data) {
             console.log(data);
@@ -546,101 +550,5 @@ $(document).ready(function(){
             console.log(data.responseJSON.message);
         }
     })
-
-})
-
-//Get Child Needs by child id >> in need page
-
-$(document).ready(function(){
-    var keys = ['id' , 'child_id' , 'ChildName' , 'name' , 'cost' , 'paid' , 'progress' , 'imageUrl' , 'isUrgent' , 'category' , 'type' , 'affiliateLinkUrl' , 'description' , 'descriptionSummary' , 'receipts' , 'createdAt' , 'isConfirmed' , 'confirmDate']
-
-    $('#child_need_select').change(function() {
-        var selected_child = $(this).val();
-        $.ajax({
-            url: 'http://api.sayapp.company/api/v2/child/need/childId=' + selected_child + '&confirm=2',
-            method: 'GET',
-            dataType: 'json',
-            headers: {
-                'Access-Control-Allow-Origin' : 'http://www.sayapp.company'
-            },
-            success: function(data) {
-                console.log('option:' + selected_child);
-                console.log(data);
-                $.each(data, function(key, value){
-                    var query = '<tr><td><button type="submit" class="btn btn-embossed btn-dark btn-block confirmBtn" id="'+value[keys[0]]+'">Confirm</button><button class="btn btn-embossed btn-dark btn-block" disabled>Edit</button><button class="btn btn-embossed btn-dark btn-block" disabled>Delete</button></td>';
-                    for(var i=2 ; i < keys.length ; i++){
-                        
-                        if (keys[i] == 'imageUrl') {
-                            value[keys[i]] = getImgFile(value[keys[i]]);
-                        }
-
-                        if (keys[i] == 'cost' || keys[i] == 'paid') {
-                            value[keys[i]] = value[keys[i]] + ' Toman'
-                        }
-
-                        if (keys[i] == 'progress') {
-                            value[keys[i]] = value[keys[i]] + '%'
-                        }
-
-                        if (keys[i] == 'isUrgent') {
-                            if(value[keys[i]] == false){
-                                value[keys[i]] = 'Not urgent';
-                            }
-                            if(value[keys[i]] == true){
-                                value[keys[i]] = 'Urgent';
-                            }
-                        }
-
-                        if (keys[i] == 'category') {
-                            if(value[keys[i]] == 0){
-                                value[keys[i]] = 'Growth';
-                            }
-                            if(value[keys[i]] == 1){
-                                value[keys[i]] = 'Joy';
-                            }
-                            if(value[keys[i]] == 2){
-                                value[keys[i]] = 'Health';
-                            }
-                            if(value[keys[i]] == 3){
-                                value[keys[i]] = 'Surroundings';
-                            }
-                        }
-
-                        if (keys[i] == 'type') {
-                            if(value[keys[i]] == 0){
-                                value[keys[i]] = 'Donate';
-                            }
-                            if(value[keys[i]] == 1){
-                                value[keys[i]] = 'Affiliate';
-                            }
-                        }
-
-                        if (value[keys[i]] == null) {
-                            value[keys[i]] = 'Not entered';
-                        }
-
-                        if (keys[i] == 'isConfirmed') {
-                            if(value[keys[i]] == false){
-                                value[keys[i]] = 'Not confirmed';
-                            }
-                            if(value[keys[i]] == true){
-                                value[keys[i]] = 'Confirmed';
-                            }
-                        }
-
-                        query += '<td>' + value[keys[i]] + '</td>';
-                    }
-                    query += '</tr>';
-                    $('#needList').append(query);
-                })
-            },
-            error: function(data) {
-                console.log(data);
-            }
-        })
-        $('#needList').empty();
-    })
-
-    
 
 })

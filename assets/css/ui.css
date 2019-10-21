@@ -1391,7 +1391,7 @@ fieldset[disabled].btn-link:focus {
   font-weight: 400;
 }
 .btn-group {
-  margin-right: 10px;
+  /* margin-right: 10px; */  /*SAY commented*/
 }
 .btn-group:focus .dropdown-toggle {
   -webkit-transition: .25s;

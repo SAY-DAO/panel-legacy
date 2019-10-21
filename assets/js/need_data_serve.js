@@ -1,32 +1,99 @@
 $(document).ready(function(){
-    // // This part feeded in child_dataServe.js
 
-    // var keys = ['id' , 'name' , 'category' , 'imageUrl' , 'description' , 'type' , 'cost' , 'affiliateLinkUrl' , 'isUrgent']
+    // Get Children Needs by child id
 
-    // // getting all Need data from DB
+    var keys = ['id' , 'child_id' , 'ChildName' , 'name' , 'cost' , 'paid' , 'progress' , 'imageUrl' , 'isUrgent' , 'category' , 'type' , 'affiliateLinkUrl' , 'description' , 'descriptionSummary' , 'receipts' , 'createdAt' , 'isConfirmed' , 'confirmDate']
 
-    // $.ajax({
-    //     url: 'http://api.sayapp.company/api/v2/need/all/confirm=2',
-    //     method: 'GET',
-    //     dataType: 'json',
-    //     headers : {
-    //         'Access-Control-Allow-Origin'  : '*'
-    //     },
-    //     success: function(data) {
-    //         console.log(data);
-    //         $.each(data , function(key ,value){
-    //             var query = '<tr>';
-    //             for(var i = 0 ; i < keys.length ; i++){
-    //                 query += '<td>' + value[keys[i]] + '</td>';
-    //             }
-    //             query+= '</tr>';
-    //             $('#needList').append(query);
-    //         })
-    //     },
-    //     error: function(data) {
-    //         console.log(data);
-    //     }
-    // })
+    $('#child_need_select').change(function() {
+        var selected_child = $(this).val();
+        $.ajax({
+            url: SAYApiUrl + '/child/need/childId=' + selected_child + '&confirm=2',
+            method: 'GET',
+            dataType: 'json',
+            headers: {
+                'Access-Control-Allow-Origin' : baseUrl
+            },
+            success: function(data) {
+                console.log('option:' + selected_child);
+                console.log(data);
+                $.each(data, function(key, value){
+                    var needId = value[keys[0]];
+
+                    var query = '<tr><td id="' + needId + '"><button type="submit" class="btn btn-embossed btn-dark btn-block confirmBtn">Confirm</button><button class="btn btn-embossed btn-dark btn-block editBtn">Edit</button><button class="btn btn-embossed btn-dark btn-block" disabled>Delete</button></td>';
+                    for(var i=2 ; i < keys.length ; i++){
+                        
+                        if (keys[i] == 'imageUrl') {
+                            value[keys[i]] = getImgFile(value[keys[i]]);
+                        }
+
+                        if (keys[i] == 'cost' || keys[i] == 'paid') {
+                            value[keys[i]] = value[keys[i]] + ' Toman'
+                        }
+
+                        if (keys[i] == 'progress') {
+                            value[keys[i]] = value[keys[i]] + '%'
+                        }
+
+                        if (keys[i] == 'isUrgent') {
+                            if(value[keys[i]] == false){
+                                value[keys[i]] = 'Not urgent';
+                            }
+                            if(value[keys[i]] == true){
+                                value[keys[i]] = 'Urgent';
+                            }
+                        }
+
+                        if (keys[i] == 'category') {
+                            if(value[keys[i]] == 0){
+                                value[keys[i]] = 'Growth';
+                            }
+                            if(value[keys[i]] == 1){
+                                value[keys[i]] = 'Joy';
+                            }
+                            if(value[keys[i]] == 2){
+                                value[keys[i]] = 'Health';
+                            }
+                            if(value[keys[i]] == 3){
+                                value[keys[i]] = 'Surroundings';
+                            }
+                        }
+
+                        if (keys[i] == 'type') {
+                            if(value[keys[i]] == 0){
+                                value[keys[i]] = 'Donate';
+                            }
+                            if(value[keys[i]] == 1){
+                                value[keys[i]] = 'Affiliate';
+                            }
+                        }
+
+                        if (value[keys[i]] == null) {
+                            value[keys[i]] = 'Not entered';
+                        }
+
+                        if (keys[i] == 'isConfirmed') {
+                            if(value[keys[i]] == false){
+                                value[keys[i]] = 'Not confirmed';
+                            }
+                            if(value[keys[i]] == true){
+                                value[keys[i]] = 'Confirmed';
+                            }
+                        }
+
+                        query += '<td>' + value[keys[i]] + '</td>';
+                    }
+                    query += '</tr>';
+                    $('#needList').append(query);
+                })
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        })
+        $('#needList').empty();
+    })
+
+
 
 
     // Add new Need
@@ -74,10 +141,10 @@ $(document).ready(function(){
 
         
         $.ajax({
-            url: 'http://api.sayapp.company/api/v2/need/add/childId=' + childId,
+            url: SAYApiUrl + '/need/add/childId=' + childId,
             method: 'POST',
             headers : {
-                'Access-Control-Allow-Origin'  : 'http://www.sayapp.company'
+                'Access-Control-Allow-Origin'  : baseUrl
             },
             cache: false,
             processData: false,
@@ -99,14 +166,15 @@ $(document).ready(function(){
 
     $('#needList').on('click' , '.confirmBtn' , function(e){
         e.preventDefault();
-        var needId = $(this).attr('id');
+        var needId = $(this).parent().attr('id');
         var childId = $('#child_need_select').val();
-        // console.log(childId);
+        console.log(needId);
+
         $.ajax({
-            url: 'http://api.sayapp.company/api/v2/need/confirm/needId=' + needId + '&socialWorkerId=10&childId=' + childId,
+            url: SAYApiUrl + '/need/confirm/needId=' + needId + '&socialWorkerId=10&childId=' + childId,
             method: 'PATCH',
             headers : {
-                'Access-Control-Allow-Origin'  : 'http://www.sayapp.company'
+                'Access-Control-Allow-Origin'  : baseUrl
             },
             cache: false,
             processData: false,
@@ -125,6 +193,18 @@ $(document).ready(function(){
                 });
             }
         })
+
+    })
+
+
+    // Edit a need
+
+    $('#needList').on('click' , '.editBtn' , function(e){
+        e.preventDefault();
+
+        $('#sendNeedData').attr("disabled" , true);
+        var needId = $(this).parent().attr('id');
+        console.log(needId);
 
     })
 

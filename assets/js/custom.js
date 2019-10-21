@@ -1,5 +1,10 @@
 //****************** YOUR CUSTOMIZED JAVASCRIPT **********************//
 
+var baseUrl = 'http://sayapp.company';
+var apiEndPointUrl = '/api/v2';
+var SAYApiUrl = baseUrl + apiEndPointUrl;
+// console.log("SAY API url: " + SAYApiUrl);
+
 // calculate age from birth date
 
 function getAge(DOB){
@@ -17,11 +22,11 @@ function getAge(DOB){
 // get the file url and return the tag to show it on html
 
 function getImgFile(fileUrl){
-    var show_file = '<a target="_blank" href="http://sayapp.company/'+ fileUrl +'"><img class="tableImg" src="http://sayapp.company/'+ fileUrl +'" /></a>';
+    var show_file = '<a target="_blank" href="' + baseUrl + fileUrl +'"><img class="tableImg" src="' + baseUrl + fileUrl +'" /></a>';
     return show_file;
 }
 
-
-// test
-
-
+function getVoiceFile(fileUrl){
+    var show_file = '<audio src="' + baseUrl + fileUrl +'" controls></audio>';
+    return show_file;
+}

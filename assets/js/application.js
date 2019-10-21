@@ -656,6 +656,13 @@ function handlePanelAction() {
         $('#needForm').slideToggle();
     });
 
+    // Say toggle for edit need form
+    $('#needForm').css('display', 'none');
+    $('#needList').on('click' , '.editBtn' , function(e){
+        e.preventDefault();
+        $('#needForm').slideToggle();
+    });
+
     // Say toggle for add social worker form
     $('#socialWorkerForm').css('display', 'none');
     $('#socialWorkerTableNew').click(function (e) {
