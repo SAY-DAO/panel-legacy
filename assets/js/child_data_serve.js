@@ -429,7 +429,7 @@ $(document).ready(function(){
             var school_type = $('#school_type').val();
             var housingStatus = $('#housing_status').val();
 
-            //append datas to a Form Data
+            // append datas to a Form Data
             var form_data = new FormData();
             if(avatarUrl){
                 form_data.append('avatarUrl', avatarUrl);
@@ -490,7 +490,7 @@ $(document).ready(function(){
             }
             console.log(form_data);
 
-            //update the child with new data in the form
+            // update the child with new data in the form
             $.ajax({
                 url: SAYApiUrl + '/child/update/childId=' + childId,
                 method: 'PATCH',
@@ -517,7 +517,7 @@ $(document).ready(function(){
                 }
             })  //end of Update ajax
 
-        })  //end of 'get the dhild's data to the form' ajax
+        })  //end of 'get the child's data to the form' function
         
     })
 

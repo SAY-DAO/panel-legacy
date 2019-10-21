@@ -30,3 +30,8 @@ function getVoiceFile(fileUrl){
     var show_file = '<audio src="' + baseUrl + fileUrl +'" controls></audio>';
     return show_file;
 }
+
+function getFile(fileUrl){
+    var show_file = '<a target="_blank" href="' + baseUrl + fileUrl +'">Click here to see the file</a>';
+    return show_file;
+}

@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     // Get Children Needs by child id
 
-    var keys = ['id' , 'child_id' , 'ChildName' , 'name' , 'cost' , 'paid' , 'progress' , 'imageUrl' , 'isUrgent' , 'category' , 'type' , 'affiliateLinkUrl' , 'description' , 'descriptionSummary' , 'receipts' , 'createdAt' , 'isConfirmed' , 'confirmDate']
+    var keys = ['id' , 'child_id' , 'ChildName' , 'name' , 'cost' , 'paid' , 'progress' , 'imageUrl' , 'isUrgent' , 'category' , 'description' , 'descriptionSummary' , 'doing_duration' , 'type' , 'affiliateLinkUrl' , 'receipts' , 'createdAt' , 'isConfirmed' , 'confirmDate' , 'lastUpdate']
 
     $('#child_need_select').change(function() {
         var selected_child = $(this).val();
@@ -22,9 +22,19 @@ $(document).ready(function(){
                     var query = '<tr><td id="' + needId + '"><button type="submit" class="btn btn-embossed btn-dark btn-block confirmBtn">Confirm</button><button class="btn btn-embossed btn-dark btn-block editBtn">Edit</button><button class="btn btn-embossed btn-dark btn-block" disabled>Delete</button></td>';
                     for(var i=2 ; i < keys.length ; i++){
                         
+                        if (value[keys[i]] == null) {
+                            value[keys[i]] = 'Not entered';
+                        }
+                        
                         if (keys[i] == 'imageUrl') {
                             value[keys[i]] = getImgFile(value[keys[i]]);
                         }
+
+                        // if (keys[i] == 'receipts') {
+                        //     if(value[keys[i]] != null){
+                        //         value[keys[i]] = getImgFile(value[keys[i]]);
+                        //     }
+                        // }
 
                         if (keys[i] == 'cost' || keys[i] == 'paid') {
                             value[keys[i]] = value[keys[i]] + ' Toman'
@@ -67,8 +77,8 @@ $(document).ready(function(){
                             }
                         }
 
-                        if (value[keys[i]] == null) {
-                            value[keys[i]] = 'Not entered';
+                        if(keys[i] == 'doing_duration') {
+                            value[keys[i]] = value[keys[i]] + " days";
                         }
 
                         if (keys[i] == 'isConfirmed') {
@@ -104,11 +114,13 @@ $(document).ready(function(){
         // recieving data from html form
         var childId = $('#child_id').val();
         var name = $('#need_name').val();
+        var imageUrl = $('#need_icon')[0].files[0];
         var category = $('#need_category').val();
         var cost = $('#need_cost').val();
         var description = $('#need_description').val();
         var descriptionSummary = $('#need_description_summary').val();
         var type = $('#need_type').val();
+        var doing_duration = $('#need_doing_duration').val();
         var isUrgent = '';
         if($('#is_urgent').is(":checked")){
             isUrgent = true;
@@ -116,15 +128,11 @@ $(document).ready(function(){
             isUrgent = false;
         }
 
-        var affiliateLinkUrl = $('#digikala_affiliate_link').val();
+        var affiliateLinkUrl = $('#affiliate_link').val();
+        var receipts = $('#need_receipts')[0].files[0];
 
         var form_data = new FormData();
-        form_data.append('imageUrl', $('#need_icon')[0].files[0]);
-        
-        if($('#need_receipts')[0].files[0]){
-            form_data.append('receipts', $('#need_receipts')[0].files[0]);
-        }
-
+        form_data.append('imageUrl', imageUrl);
         form_data.append('name', name);
         form_data.append('category', category);
         form_data.append('cost', cost);
@@ -136,9 +144,13 @@ $(document).ready(function(){
         if(affiliateLinkUrl){
             form_data.append('affiliateLinkUrl', affiliateLinkUrl);
         }
-
+        if(receipts){
+            form_data.append('receipts', receipts);
+        }
+        if(doing_duration){
+            form_data.append('doing_duration', doing_duration);
+        }
         console.log(form_data);
-
         
         $.ajax({
             url: SAYApiUrl + '/need/add/childId=' + childId,
@@ -150,14 +162,20 @@ $(document).ready(function(){
             processData: false,
             contentType: false,
             data: form_data,
+            beforeSend: function() {
+                return confirm("You are about to add new need.\nAre you sure?");                
+            },
             success: function(data)  {
                 console.log(data);
-                alert("Success\n" + JSON.stringify(data));
+                // alert("Success\n" + JSON.stringify(data));
+                alert("Success\nNeed added successfully!");
                 location.reload();
             },
             error: function(data) {
-                console.log(data);
-                alert('Error!\n' + data.responseJSON.message);
+                bootbox.alert({
+                    title: "Error!",
+                    message: data.responseJSON.message,
+                });
             }
         })
     })
@@ -180,7 +198,7 @@ $(document).ready(function(){
             processData: false,
             contentType: false,
             beforeSend: function(){
-                return confirm("Are you sure?");
+                return confirm("You are about to edit the need.\nAre you sure?");
             },
             success: function(data) {
                 bootbox.alert("Success\n" + JSON.stringify(data.message));
@@ -203,8 +221,125 @@ $(document).ready(function(){
         e.preventDefault();
 
         $('#sendNeedData').attr("disabled" , true);
+        $('#child_id').attr("disabled" , true);
         var needId = $(this).parent().attr('id');
         console.log(needId);
+
+        // get the need's data to the form
+        $.ajax({
+            url: SAYApiUrl + '/need/needId=' + needId,
+            method: 'GET',
+            dataType: 'json',
+            headers: {
+                'Access-Control-Allow-Origin'  : baseUrl
+            },
+            success: function(data) {
+                console.log(data);
+                $('#child_id').val(data['child_id']);
+                $('#need_name').val(data['name']);
+                $('#need_category').val(data['category']);
+                $('#need_cost').val(data['cost']);
+                $('#need_description').val(data['description']);
+                $('#need_description_summary').val(data['descriptionSummary']);
+                $('#need_type').val(data['type']);
+                $('#affiliate_link').val(data['affiliateLinkUrl']);
+                $('#is_urgent').val(data['isUrgent']);
+                $('#need_doing_duration').val(data['doing_duration']);
+
+            },
+            error: function() {
+                console.log(data.responseJSON.message);
+            }
+        })
+
+        $('#editNeedData').on('click' , function(e) {
+            e.preventDefault();
+
+            // getting data from html form
+
+            var name = $('#need_name').val();
+            var imageUrl = $('#need_icon')[0].files[0];
+            var category = $('#need_category').val();
+            var cost = $('#need_cost').val();
+            var description = $('#need_description').val();
+            var descriptionSummary = $('#need_description_summary').val();
+            var type = $('#need_type').val();
+            var doing_duration = $('#need_doing_duration').val();
+            var isUrgent = '';
+            if($('#is_urgent').is(":checked")){
+                isUrgent = true;
+            }else{
+                isUrgent = false;
+            }
+            var affiliateLinkUrl = $('#affiliate_link').val();
+            var receipts = $('#need_receipts')[0].files[0];
+
+            // append datas to a Form Data
+            var form_data = new FormData();
+            if(imageUrl) {
+                form_data.append('imageUrl', imageUrl);
+            }
+            if(name) {
+                form_data.append('name', name);
+            }
+            if(category) {
+                form_data.append('category', category);
+            }
+            if(cost) {
+                form_data.append('cost', cost);
+            }
+            if(description) {
+                form_data.append('description', description);
+            }
+            if(descriptionSummary) {
+                form_data.append('descriptionSummary', descriptionSummary);
+            }
+            if(type) {
+                form_data.append('type', type);
+            }
+            if(isUrgent) {
+                form_data.append('isUrgent', isUrgent);
+            }
+            if(affiliateLinkUrl){
+                form_data.append('affiliateLinkUrl', affiliateLinkUrl);
+            }
+            if(receipts){
+                form_data.append('receipts', receipts);
+            }
+            if(doing_duration){
+                form_data.append('doing_duration', doing_duration);
+            }
+            console.log(form_data);
+
+            // update the need with new data in the form
+            $.ajax({
+                url: SAYApiUrl + '/need/update/needId=' + needId,
+                method: 'PATCH',
+                headers : {
+                    'Access-Control-Allow-Origin'  : baseUrl
+                },
+                cache: false,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                data: form_data,
+                beforeSend: function(){
+                    return confirm("You are about to edit the need.\nAre you sure?");
+                },
+                success: function(data) {
+                    alert("Success\nNeed updated successfully\n" + JSON.stringify(data.message));
+                    location.reload();
+                },
+                error: function(data) {
+                    bootbox.alert({
+                        title: "Error!",
+                        message: data.responseJSON.message,
+                    });
+                }
+
+            })  //end of Update ajax
+
+        })  //end of 'get the need's data to the form' function
 
     })
 
