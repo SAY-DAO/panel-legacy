@@ -2,11 +2,11 @@ $(document).ready(function(){
     var keys = ['privilege' , 'name']
 
     $.ajax({
-        url: 'http://api.sayapp.company/api/v2/privilege/all',
+        url: SAYApiUrl + '/privilege/all',
         method: 'GET',
         dataType: 'json',
         headers : {
-            'Access-Control-Allow-Origin'  : '*'
+            'Access-Control-Allow-Origin'  : baseUrl
         },
         success: function(data) {
             console.log(data);
