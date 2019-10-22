@@ -4,10 +4,10 @@ $(document).ready(function(){
         e.preventDefault();
         
         $.ajax({
-            url: 'http://api.sayapp.company/api/v2/panel/auth/login',
+            url: SAYApiUrl + '/panel/auth/login',
             method: 'POST',
             headers : {
-                'Access-Control-Allow-Origin'  : '*'
+                'Access-Control-Allow-Origin'  : baseUrl
             },
             data: {
                 username: $('#username').val(),

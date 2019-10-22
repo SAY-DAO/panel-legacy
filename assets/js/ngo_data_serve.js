@@ -7,11 +7,11 @@ $(document).ready(function(){
     // getting all NGO data from DB
 
     $.ajax({
-        url: 'http://api.sayapp.company/api/v2/ngo/all',
+        url: SAYApiUrl + '/ngo/all',
         method: 'GET',
         dataType: 'json',
         headers : {
-            'Access-Control-Allow-Origin'  : '*'
+            'Access-Control-Allow-Origin'  : baseUrl
         },
         success: function(data) {
 
@@ -40,7 +40,7 @@ $(document).ready(function(){
                     }
 
                     if (keys[i] == 'logoUrl'){
-                        value[keys[i]] = '<a target="_blank" href="http://sayapp.company/'+ value[keys[i]]+'"><img class="tableImg" src="http://sayapp.company/'+ value[keys[i]]+'" /></a>';
+                        value[keys[i]] = getImgFile(value[keys[i]]);
                     }
 
                     if (keys[i] == 'coordinatorId') {
@@ -52,11 +52,11 @@ $(document).ready(function(){
                     //         var keys = ['id' , 'firstName' , 'lastName']
 
                     //         $.ajax({
-                    //             url: 'http://api.sayapp.company/api/v2/socialWorker/all',
+                    //             url: SAYApiUrl + '/socialWorker/all',
                     //             method: 'GET',
                     //             dataType: 'json',
                     //             headers: {
-                    //                 'Access-Control-Allow-Origin'  : '*'
+                    //                 'Access-Control-Allow-Origin'  : baseUrl
                     //             },
                     //             success: function(data) {
                     //                 console.log(data);
@@ -131,10 +131,10 @@ $(document).ready(function(){
 
         
         $.ajax({
-            url: 'http://api.sayapp.company/api/v2/ngo/add',
+            url: SAYApiUrl + '/ngo/add',
             method: 'POST',
             headers : {
-                'Access-Control-Allow-Origin'  : '*'
+                'Access-Control-Allow-Origin'  : baseUrl
             },
             cache: false,
             processData: false,
@@ -163,11 +163,11 @@ $(document).ready(function(){
     // getting NGO's id and name from DB
     
     $.ajax({
-        url: 'http://api.sayapp.company/api/v2/ngo/all',
+        url: SAYApiUrl + '/ngo/all',
         method: 'GET',
         dataType: 'json',
         headers : {
-            'Access-Control-Allow-Origin'  : '*'
+            'Access-Control-Allow-Origin'  : baseUrl
         },
         success: function(data) {
             console.log(data);

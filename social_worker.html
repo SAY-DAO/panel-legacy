@@ -596,7 +596,17 @@
                                 </div>
                               </div>
 
-                              <div class="col-sm-6">
+                              <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="form-group">
+                                  <label for="social_worker_current_username" class="control-label">نام کاربری مددکار</label>
+                                  <div class="append-icon">
+                                    <input type="text" id="social_worker_current_username" name="social_worker_current_username" class="form-control" value="" disabled>
+                                    <i class=""></i>
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group">
                                   <label for="social_worker_current_child_count" class="control-label">تعداد کودکان</label>
                                   <div class="append-icon">
@@ -606,7 +616,7 @@
                                 </div>
                               </div>
 
-                              <div class="col-sm-6">
+                              <div class="col-xs-12 col-sm-6 col-md-4">
                                 <div class="form-group">
                                   <label for="social_worker_current_need_count" class="control-label">تعداد نیازهای وارد شده توسط مددکار</label>
                                   <div class="append-icon">
@@ -631,8 +641,9 @@
                             </div>
   
                             <div class="text-center  m-t-20">
-                              <button type="submit" class="btn btn-embossed btn-primary" id="sendSocialWorkerData">ارسال</button>
-                              <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">پاک کردن</button>
+                              <button type="submit" class="btn btn-embossed btn-primary" id="editSocialWorkerData">ویرایش مددکار</button>
+                              <button type="submit" class="btn btn-embossed btn-primary" id="sendSocialWorkerData">افزودن مددکار</button>
+                              <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">پاک کردن فرم</button>
                             </div>
                           </form>
                         </div>
@@ -645,14 +656,15 @@
                 <div class="panel-header bg-dark panel-controls">
                   <h3 class="panel-title">لیست<strong> مددکاران</strong></h3>
                 </div>
-                
+                <div class="btn-group col-md-6 col-sm-8 col-xs-12 center-block">
+                    <button id="socialWorkerTableNew" class="btn btn-sm btn-dark btn-block"><i class="fa fa-plus"></i> اضافه کردن مددکار جدید</button>
+                </div>
                 <div class="panel-content bg-white">
-                    <div class="btn-group">
-                        <button id="socialWorkerTableNew" class="btn btn-sm btn-dark"><i class="fa fa-plus"></i> اضافه کردن مددکار جدید</button>
-                    </div>
+                    
                   <table class="table table-hover dataTable" id="table-editable">
                       <thead>
                         <tr>
+                          <th class="text-right">عملیات</th>
                           <th>کد مددکار</th>
                           <th>نام</th>
                           <th>نام خانوادگی</th>
@@ -682,7 +694,6 @@
                           <th class="medium_th">زمان ثبت نام</th>
                           <th class="medium_th">آخرین ورود</th>
                           <th class="medium_th">آخرین آپدیت</th>
-                          <th class="text-right">عملیات</th>
                         </tr>
                       </thead>
                       <tbody id="socialWorkerList">

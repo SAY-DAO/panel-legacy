@@ -641,7 +641,6 @@ function handlePanelAction() {
         e.preventDefault();
         $('#childForm').slideToggle();
     });
-
     // Say toggle for edit child form
     $('#childForm').css('display', 'none');
     $('#childList').on('click' , '.editBtn' , function(e){
@@ -655,7 +654,6 @@ function handlePanelAction() {
         e.preventDefault();
         $('#needForm').slideToggle();
     });
-
     // Say toggle for edit need form
     $('#needForm').css('display', 'none');
     $('#needList').on('click' , '.editBtn' , function(e){
@@ -666,6 +664,11 @@ function handlePanelAction() {
     // Say toggle for add social worker form
     $('#socialWorkerForm').css('display', 'none');
     $('#socialWorkerTableNew').click(function (e) {
+        e.preventDefault();
+        $('#socialWorkerForm').slideToggle();
+    });
+    // Say toggle for edit social worker form
+    $('#socialWorkerList').on('click' , '.editBtn' , function(e){
         e.preventDefault();
         $('#socialWorkerForm').slideToggle();
     });
@@ -1187,6 +1190,17 @@ function scrollTop() {
         }, 1000);
         return false;
     });
+}
+
+// Scroll to edit form div  *SAY*
+function editScroll() {
+    // console.log("scroll edit");
+    $("html, body").animate({
+        scrollTop: $('#needForm')
+    }, 2000);   // Not working properly
+    $("html, body").animate({
+        scrollTop: $('#children_form')
+    }, 2000);   // Not working properly
 }
 
 function sidebarBehaviour() {

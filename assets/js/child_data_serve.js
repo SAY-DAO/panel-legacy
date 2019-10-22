@@ -20,7 +20,7 @@ $(document).ready(function(){
 
                 var childId = value[keys[0]];
 
-                var query = '<tr><td id="'+childId+'"><button type="submit" class="btn btn-embossed btn-dark btn-block confirmBtn">Confirm</button><button class="btn btn-embossed btn-dark btn-block editBtn">Edit</button><button class="btn btn-embossed btn-dark btn-block" disabled>Delete</button></td>';
+                var query = '<tr><td id="'+childId+'"><button type="submit" class="btn btn-embossed btn-dark btn-block btn-sm confirmBtn">Confirm</button><button class="btn btn-embossed btn-dark btn-block btn-sm editBtn" onclick="editScroll()">Edit</button><button class="btn btn-embossed btn-dark btn-block btn-sm" disabled>Delete</button></td>';
 
                 for(var i = 1 ; i < keys.length ; i++){
                     

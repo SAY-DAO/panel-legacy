@@ -1,18 +1,20 @@
 $(document).ready(function(){
-    var keys = ['generatedCode' , 'firstName' , 'lastName' , 'userName' , 'id_type' , 'id_ngo' , 'birthCertificateNumber' , 'city' , 'country' , 'idNumber', 'idCardUrl' , 'passportNumber' , 'passportUrl' , 'gender' , 'birthDate' , 'phoneNumber' , 'emergencyPhoneNumber' , 'emailAddress' , 'telegramId' , 'postalAddress' , 'avatarUrl' , 'currentChildCount', 'currentNeedCount' , 'bankAccountNumber' , 'bankAccountShebaNumber' , 'bankAccountCardNumber' , 'registerDate' , 'lastLoginDate' , 'lastUpdateDate']
+    var keys = ['id' , 'generatedCode' , 'firstName' , 'lastName' , 'userName' , 'id_type' , 'id_ngo' , 'birthCertificateNumber' , 'city' , 'country' , 'idNumber', 'idCardUrl' , 'passportNumber' , 'passportUrl' , 'gender' , 'birthDate' , 'phoneNumber' , 'emergencyPhoneNumber' , 'emailAddress' , 'telegramId' , 'postalAddress' , 'avatarUrl' , 'currentChildCount', 'currentNeedCount' , 'bankAccountNumber' , 'bankAccountShebaNumber' , 'bankAccountCardNumber' , 'registerDate' , 'lastLoginDate' , 'lastUpdateDate']
     $.ajax({
-        url: 'http://api.sayapp.company/api/v2/socialWorker/all',
+        url: SAYApiUrl + '/socialWorker/all',
         method: 'GET',
         dataType: 'json',
         headers : {
-            'Access-Control-Allow-Origin'  : '*'
+            'Access-Control-Allow-Origin'  : baseUrl
         },
         success: function(data) {
             console.log(data);
 
             $.each(data , function(key , value){
-                var query = '<tr>';
-                for(var i = 0 ; i < keys.length ; i++){
+                var socialworkerId = value[keys[0]];
+
+                var query = '<tr><td id="' + socialworkerId + '"><button type="submit" class="btn btn-embossed btn-dark btn-block btn-sm confirmBtn">Confirm</button><button class="btn btn-embossed btn-dark btn-block btn-sm editBtn" onclick="editScroll()">Edit</button><button class="btn btn-embossed btn-dark btn-block btn-sm" disabled>Delete</button></td>';
+                for(var i = 1 ; i < keys.length ; i++){
 
                     if (value[keys[i]] == null) {
                         value[keys[i]] = 'Not entered';
@@ -90,6 +92,8 @@ $(document).ready(function(){
             console.log(data);
         }
 })
+
+
 
     // Adding new Social worker
 
@@ -184,10 +188,10 @@ $(document).ready(function(){
         console.log(form_data);
 
         $.ajax({
-            url: 'http://api.sayapp.company/api/v2/socialWorker/add',
+            url: SAYApiUrl + '/socialWorker/add',
             method: 'POST',
             headers : {
-                'Access-Control-Allow-Origin'  : '*'
+                'Access-Control-Allow-Origin'  : baseUrl
             },
             cache: false,
             processData: false,
@@ -205,6 +209,148 @@ $(document).ready(function(){
         })
         
     })
+
+
+
+    // Edit a social worker
+
+    $('#socialWorkerList').on('click' , '.editBtn' , function(e){
+        e.preventDefault();
+
+        $('#sendSocialWorkerData').attr("disabled" , true);
+        var socialworkerId = $(this).parent().attr('id');
+        console.log(socialworkerId);
+
+        // get the need's data to the form
+        $.ajax({
+            url: SAYApiUrl + '/socialWorker/socialWorkerId=' + socialworkerId,
+            method: 'GET',
+            dataType: 'json',
+            headers: {
+                'Access-Control-Allow-Origin'  : baseUrl
+            },
+            success: function(data) {
+                console.log(data);
+                $('#social_worker_first_name').val(data['firstName']);
+                $('#social_worker_last_name').val(data['lastName']);
+                $('#social_worker_type').val(data['id_type']);
+                $('#social_worker_ngo').val(data['id_ngo']);
+                $('#social_worker_certificate_number').val(data['birthCertificateNumber']);
+                $('#social_worker_country').val(data['country']);
+                $('#social_worker_city').val(data['city']);
+                $('#social_worker_id_number').val(data['idNumber']);
+                $('#social_worker_passport_number').val(data['passportNumber']);
+                $('#social_worker_gender').val(data['gender']);
+                $('#social_worker_birth_date').val(data['birthDate']);
+                $('#social_worker_phone_number').val(data['phoneNumber']);
+                $('#social_worker_emergency_phone_number').val(data['emergencyPhoneNumber']);
+                $('#social_worker_email_address').val(data['emailAddress']);
+                $('#social_worker_telegram_id').val(data['telegramId']);
+                $('#social_worker_bank_account_number').val(data['bankAccountNumber']);
+                $('#social_worker_bank_account_sheba_number').val(data['bankAccountShebaNumber']);
+                $('#social_worker_bank_account_card_number').val(data['bankAccountCardNumber']);
+                $('#social_worker_current_username').val(data['userName']);
+                $('#social_worker_current_child_count').val(data['currentChildCount']);
+                $('#social_worker_current_need_count').val(data['currentNeedCount']);
+
+            },
+            error: function() {
+                console.log(data.responseJSON.message);
+            }
+        })
+
+        // $('#editNeedData').on('click' , function(e) {
+        //     e.preventDefault();
+
+        //     // getting data from html form
+
+        //     var name = $('#need_name').val();
+        //     var imageUrl = $('#need_icon')[0].files[0];
+        //     var category = $('#need_category').val();
+        //     var cost = $('#need_cost').val();
+        //     var description = $('#need_description').val();
+        //     var descriptionSummary = $('#need_description_summary').val();
+        //     var type = $('#need_type').val();
+        //     var doing_duration = $('#need_doing_duration').val();
+        //     var isUrgent = '';
+        //     if($('#is_urgent').is(":checked")){
+        //         isUrgent = true;
+        //     }else{
+        //         isUrgent = false;
+        //     }
+        //     var affiliateLinkUrl = $('#affiliate_link').val();
+        //     var receipts = $('#need_receipts')[0].files[0];
+
+        //     // append datas to a Form Data
+        //     var form_data = new FormData();
+        //     if(imageUrl) {
+        //         form_data.append('imageUrl', imageUrl);
+        //     }
+        //     if(name) {
+        //         form_data.append('name', name);
+        //     }
+        //     if(category) {
+        //         form_data.append('category', category);
+        //     }
+        //     if(cost) {
+        //         form_data.append('cost', cost);
+        //     }
+        //     if(description) {
+        //         form_data.append('description', description);
+        //     }
+        //     if(descriptionSummary) {
+        //         form_data.append('descriptionSummary', descriptionSummary);
+        //     }
+        //     if(type) {
+        //         form_data.append('type', type);
+        //     }
+        //     if(isUrgent) {
+        //         form_data.append('isUrgent', isUrgent);
+        //     }
+        //     if(affiliateLinkUrl){
+        //         form_data.append('affiliateLinkUrl', affiliateLinkUrl);
+        //     }
+        //     if(receipts){
+        //         form_data.append('receipts', receipts);
+        //     }
+        //     if(doing_duration){
+        //         form_data.append('doing_duration', doing_duration);
+        //     }
+        //     console.log(form_data);
+
+        //     // update the need with new data in the form
+        //     $.ajax({
+        //         url: SAYApiUrl + '/update/socialWorkerId=' + socialworkerId,
+        //         method: 'PATCH',
+        //         headers : {
+        //             'Access-Control-Allow-Origin'  : baseUrl
+        //         },
+        //         cache: false,
+        //         processData: false,
+        //         contentType: false,
+        //         dataType: 'json',
+        //         data: form_data,
+        //         beforeSend: function(){
+        //             return confirm("You are about to edit the need.\nAre you sure?");
+        //         },
+        //         success: function(data) {
+        //             alert("Success\nNeed updated successfully\n" + JSON.stringify(data.message));
+        //             location.reload();
+        //         },
+        //         error: function(data) {
+        //             bootbox.alert({
+        //                 title: "Error!",
+        //                 message: data.responseJSON.message,
+        //             });
+        //         }
+
+        //     })  //end of Update ajax
+
+        // })  //end of 'get the need's data to the form' function
+
+    })
+
+
 })
 
 
@@ -216,11 +362,11 @@ $(document).ready(function(){
     // getting Social workesr's id and name from DB
     
     $.ajax({
-        url: 'http://api.sayapp.company/api/v2/socialWorker/all',
+        url: SAYApiUrl + '/socialWorker/all',
         method: 'GET',
         dataType: 'json',
         headers : {
-            'Access-Control-Allow-Origin'  : '*'
+            'Access-Control-Allow-Origin'  : baseUrl
         },
         success: function(data) {
             console.log(data);
