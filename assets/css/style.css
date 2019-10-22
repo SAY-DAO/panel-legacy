@@ -104,7 +104,9 @@ textarea {
   color: #636e7b;
   /* font-family: 'Lato', 'Open Sans', Helvetica, sans-serif !important; */
 	font-family: iranyekan !important; /*say*/
-
+}
+.btn-sm {
+  margin-left: 0px !important;
 }
 ol,
 ul {
