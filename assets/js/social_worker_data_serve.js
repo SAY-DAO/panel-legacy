@@ -211,6 +211,7 @@ $(document).ready(function(){
         e.preventDefault();
 
         $('#sendSocialWorkerData').attr("disabled" , true);
+        // $('#social_worker_current_password').attr("disabled", false);
         var socialworkerId = $(this).parent().attr('id');
         console.log(socialworkerId);
 
@@ -243,7 +244,6 @@ $(document).ready(function(){
                 $('#social_worker_bank_account_sheba_number').val(data['bankAccountShebaNumber']);
                 $('#social_worker_bank_account_card_number').val(data['bankAccountCardNumber']);
                 $('#social_worker_current_username').val(data['userName']);
-                $('#social_worker_current_password').val(data['password']);
                 $('#social_worker_current_child_count').val(data['currentChildCount']);
                 $('#social_worker_current_need_count').val(data['currentNeedCount']);
 
