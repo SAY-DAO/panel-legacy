@@ -522,14 +522,18 @@
                 <div class="panel-header bg-dark panel-controls">
                   <h3 class="panel-title">لیست<strong> انجمن ها</strong></h3>
                 </div>
-                
+
+                <div class="btn-group col-md-6 col-sm-8 col-xs-12 center-block">
+                  <button id="ngoTableNew" class="btn btn-sm btn-dark btn-block"><i class="fa fa-plus"></i> اضافه کردن انجمن جدید</button>
+                </div>
+
                 <div class="panel-content bg-white">
-                    <div class="btn-group">
-                        <button id="ngoTableNew" class="btn btn-sm btn-dark"><i class="fa fa-plus"></i> اضافه کردن انجمن جدید</button>
-                    </div>
+
                   <table class="table table-hover dataTable" id="table-editable">
                       <thead>
                         <tr>
+                          <th>ردیف</th>
+                          <th class="text-right">عملیات</th>
                           <th class="medium_th">نام انجمن</th>
                           <th>کشور</th>
                           <th>شهر</th>
@@ -544,7 +548,6 @@
                           <th class="medium_th">زمان ثبت نام</th>
                           <th class="medium_th">آخرین آپدیت</th>
                           <!-- <th>فعال/غیر فعال</th> -->
-                          <th class="text-right">عملیات</th>
                         </tr>
                       </thead>
                       <tbody id="ngoList">

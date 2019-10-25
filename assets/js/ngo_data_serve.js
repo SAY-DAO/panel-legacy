@@ -2,7 +2,7 @@
 // serving data on NGO page
 
 $(document).ready(function(){
-    var keys = ['name' , 'country' , 'city' , 'coordinatorId' , 'postalAddress' , 'phoneNumber' , 'emailAddress' , 'website' , 'logoUrl' , 'currentSocialWorkerCount' , 'currentChildrenCount' , 'registerDate' , 'lastUpdateDate']
+    var keys = ['id' , 'name' , 'country' , 'city' , 'coordinatorId' , 'postalAddress' , 'phoneNumber' , 'emailAddress' , 'website' , 'logoUrl' , 'currentSocialWorkerCount' , 'currentChildrenCount' , 'registerDate' , 'lastUpdateDate']
 
     // getting all NGO data from DB
 
@@ -16,8 +16,17 @@ $(document).ready(function(){
         success: function(data) {
 
             $.each(data , function(key ,value){
-                var query = '<tr>';
-                for(var i = 0 ; i < keys.length ; i++){
+                var ngoId = value[keys[0]];
+
+                // first td for row count numbers, second td for operational buttons
+                var query = '<tr>\
+                <td>' + $('tr').length + '</td>\
+                <td id="' + ngoId + '">\
+                <button class="btn btn-embossed btn-dark btn-block btn-sm editBtn" onclick="editScroll()">Edit</button>\
+                <button class="btn btn-embossed btn-dark btn-block btn-sm" disabled>Delete</button>\
+                </td>';
+
+                for(var i = 1 ; i < keys.length ; i++){
                     
                     // console.log("ngoSeccess:" + keys[i]);
                     if (keys[i] == 'country'){

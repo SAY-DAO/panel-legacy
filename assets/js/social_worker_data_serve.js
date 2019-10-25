@@ -13,7 +13,9 @@ $(document).ready(function(){
             $.each(data , function(key , value){
                 var socialworkerId = value[keys[0]];
 
-                var query = '<tr><td id="' + socialworkerId + '"><button type="submit" class="btn btn-embossed btn-dark btn-block btn-sm confirmBtn">Confirm</button><button class="btn btn-embossed btn-dark btn-block btn-sm editBtn" onclick="editScroll()">Edit</button><button class="btn btn-embossed btn-dark btn-block btn-sm" disabled>Delete</button></td>';
+                // first td for row count numbers, second td for operational buttons
+                var query = '<tr><td>' + $('tr').length + '</td><td id="' + socialworkerId + '"><button type="submit" class="btn btn-embossed btn-dark btn-block btn-sm confirmBtn">Confirm</button><button class="btn btn-embossed btn-dark btn-block btn-sm editBtn" onclick="editScroll()">Edit</button><button class="btn btn-embossed btn-dark btn-block btn-sm" disabled>Delete</button></td>';
+                
                 for(var i = 1 ; i < keys.length ; i++){
 
                     if (value[keys[i]] == null) {
