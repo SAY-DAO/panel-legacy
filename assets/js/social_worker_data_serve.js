@@ -232,6 +232,7 @@ $(document).ready(function(){
 
         $('#sendSocialWorkerData').attr("disabled" , true);
         $('#social_worker_current_password').attr("disabled", false);
+        $('#social_worker_current_username').attr("disabled", false);
         var socialworkerId = $(this).parent().attr('id');
         console.log(socialworkerId);
 
@@ -381,7 +382,7 @@ $(document).ready(function(){
 
             // update the need with new data in the form
             $.ajax({
-                url: SAYApiUrl + '/update/socialWorkerId=' + socialworkerId,
+                url: SAYApiUrl + '/socialWorker/update/socialWorkerId=' + socialworkerId,
                 method: 'PATCH',
                 headers : {
                     'Access-Control-Allow-Origin'  : baseUrl
