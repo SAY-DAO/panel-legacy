@@ -24,6 +24,14 @@ function getAge(DOB){
 }
 
 
+// null values in tables
+
+function nullValues(){
+    var value = '<span class="null">Not entered</span>';
+    return value;
+}
+
+
 // get the file url and return the tag to show it on html
 
 function getImgFile(fileUrl){
@@ -41,3 +49,18 @@ function getFile(fileUrl){
     return show_file;
 }
 
+// link values
+function phoneTo(value){
+    var phone_to = '<a href="tel:' + value + '">' + value + '</a>';
+    return phone_to;
+}
+
+function mailTo(value){
+    var mail_to = '<a href="mailto:' + value + '" target="_top">' + value + '</a>';
+    return mail_to;
+}
+
+function linkTo(value){
+    var link_to = '<a href="' + value + '" target="_blank">' + value + '</a>';
+    return link_to;
+}

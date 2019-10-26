@@ -170,9 +170,17 @@ h1,
 	font-family: iranyekan; /*say*/
 
 }
-.cursor{  /*say added*/
+.cursor{  /*SAY added*/
   cursor: pointer;  
 }
+
+.null{  /*SAY*/
+  color: red !important;
+  font-size: 12px;
+  font-style: italic;
+  text-decoration: none !important;
+}
+
 .select2-container .select2-choice{ /*say added*/
   height: 37px  !important;
   border-radius: 2px !important;

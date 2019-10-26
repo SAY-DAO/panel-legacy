@@ -29,6 +29,10 @@ $(document).ready(function(){
                 for(var i = 1 ; i < keys.length ; i++){
                     
                     // console.log("ngoSeccess:" + keys[i]);
+                    if (value[keys[i]] == null) {
+                        value[keys[i]] = nullValues();
+                    }
+                    
                     if (keys[i] == 'country'){
                         if(value[keys[i]] == '98'){
                             value[keys[i]] = 'Iran';
@@ -42,10 +46,6 @@ $(document).ready(function(){
                         if(value[keys[i]] == '2'){
                             value[keys[i]] = 'Karaj';
                         }
-                    }
-
-                    if (value[keys[i]] == null) {
-                        value[keys[i]] = 'No entered';
                     }
 
                     if (keys[i] == 'logoUrl'){
@@ -96,6 +96,18 @@ $(document).ready(function(){
 
                     }
 
+                    if (keys[i] == 'phoneNumber') {
+                        value[keys[i]] = phoneTo(value[keys[i]]);                       
+                    }
+
+                    if (keys[i] == 'emailAddress') {
+                        value[keys[i]] = mailTo(value[keys[i]]);                       
+                    }
+
+                    // if (keys[i] == 'website') {
+                    //     value[keys[i]] = linkTo(value[keys[i]]);                       
+                    // }
+
                     query += '<td>' + value[keys[i]] + '</td>';
                 }
                 query+= '</tr>';
@@ -122,9 +134,10 @@ $(document).ready(function(){
         var phoneNumber = $('#ngo_phone_number').val();
         var emailAddress = $('#ngo_email').val();
         var website = $('#ngo_website').val();
+        var logoUrl = $('#ngo_logo')[0].files[0];
 
         var form_data = new FormData();
-        form_data.append('logoUrl', $('#ngo_logo')[0].files[0]);
+        form_data.append('logoUrl', logoUrl);
         form_data.append('name', name);
         form_data.append('country', country);
         form_data.append('city', city);
@@ -149,6 +162,9 @@ $(document).ready(function(){
             processData: false,
             contentType: false,
             data: form_data,
+            beforeSend: function(){
+                return confirm("You are about to add new NGO.\nAre you sure?");
+            },
             success: function(data)  {
                 console.log(data);
                 alert('Success');
@@ -159,6 +175,112 @@ $(document).ready(function(){
                 alert('Error!');
             }
         })
+    })
+
+
+    // Edit a NGO
+
+    $('#ngoList').on('click' , '.editBtn' , function(e){
+        e.preventDefault();
+
+        $('#sendNgoData').attr("disabled" , true);
+
+        var ngoId = $(this).parent().attr('id');
+        console.log(ngoId);
+
+        // get the need's data to the form
+        $.ajax({
+            url: SAYApiUrl + '/ngo/ngoId=' + ngoId,
+            method: 'GET',
+            dataType: 'json',
+            headers: {
+                'Access-Control-Allow-Origin'  : baseUrl
+            },
+            success: function(data) {
+                console.log(data);
+                $('#ngo_name').val(data['name']);
+                $('#ngo_country').val(data['country']);
+                $('#ngo_city').val(data['city']);
+                $('#ngo_address').val(data['postalAddress']);
+                $('#ngo_phone_number').val(data['phoneNumber']);
+                $('#ngo_email').val(data['emailAddress']);
+                $('#ngo_website').val(data['website']);
+                $('#ngo_current_social_worker_count').val(data['currentSocialWorkerCount']);
+                $('#ngo_current_child_count').val(data['currentChildrenCount']);
+            },
+            error: function(data) {
+                console.log(data.responseJSON.message);
+            }
+        })
+
+        $('#editNgoData').on('click' , function(e) {
+            e.preventDefault();
+
+            // getting data from html form
+            var name = $('#ngo_name').val();
+            var country = $('#ngo_country').val();
+            var city = $('#ngo_city').val();
+            var postalAddress = $('#ngo_address').val();
+            var phoneNumber = $('#ngo_phone_number').val();
+            var emailAddress = $('#ngo_email').val();
+            var website = $('#ngo_website').val();
+            var logoUrl = $('#ngo_logo')[0].files[0];
+            
+            // append datas to a Form Data
+            var form_data = new FormData();
+            if(name){
+                form_data.append('name', name);
+            }
+            if(country){
+                form_data.append('country', country);
+            }
+            if(city){
+                form_data.append('city', city);
+            }
+            if(postalAddress){
+                form_data.append('postalAddress', postalAddress);
+            }
+            if(phoneNumber){
+                form_data.append('phoneNumber', phoneNumber);
+            }
+            if(emailAddress){
+                form_data.append('emailAddress', emailAddress);
+            }
+            if(website){
+                form_data.append('website', website);
+            }
+            if(logoUrl){
+                form_data.append('logoUrl', logoUrl);
+            }
+
+            console.log(form_data);
+
+            $.ajax({
+                url: SAYApiUrl + '/ngo/update/ngoId=' + ngoId,
+                method: 'PATCH',
+                headers: {
+                    'Access-Control-Allow-Origin' : baseUrl
+                },
+                cache: false,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                data: form_data,
+                beforeSend: function(){
+                    return confirm("You are about to edit the NGO.\nAre you sure?");
+                },
+                success: function(data){
+                    alert("Success\nThe NGO updated successfully\n" + JSON.stringify(data.message));
+                    location.reload();
+                },
+                error: function(data){
+                    bootbox.alert({
+                        title: "Error!",
+                        message: data.responseJSON.message,
+                    });
+                }
+            })  //end of Update ajax
+        })  //end of 'get the NGO's data to the form' function
     })
 })
 

@@ -14,12 +14,18 @@ $(document).ready(function(){
                 var socialworkerId = value[keys[0]];
 
                 // first td for row count numbers, second td for operational buttons
-                var query = '<tr><td>' + $('tr').length + '</td><td id="' + socialworkerId + '"><button type="submit" class="btn btn-embossed btn-dark btn-block btn-sm confirmBtn">Confirm</button><button class="btn btn-embossed btn-dark btn-block btn-sm editBtn" onclick="editScroll()">Edit</button><button class="btn btn-embossed btn-dark btn-block btn-sm" disabled>Delete</button></td>';
+                var query = '<tr>\
+                <td>' + $('tr').length + '</td>\
+                <td id="' + socialworkerId + '">\
+                <button type="submit" class="btn btn-embossed btn-dark btn-block btn-sm confirmBtn">Confirm</button>\
+                <button class="btn btn-embossed btn-dark btn-block btn-sm editBtn" onclick="editScroll()">Edit</button>\
+                <button class="btn btn-embossed btn-dark btn-block btn-sm" disabled>Delete</button>\
+                </td>';
                 
                 for(var i = 1 ; i < keys.length ; i++){
 
                     if (value[keys[i]] == null) {
-                        value[keys[i]] = 'Not entered';
+                        value[keys[i]] = nullValues();
                     }
 
                     if (keys[i] == 'country'){
@@ -81,6 +87,18 @@ $(document).ready(function(){
                         if(value[keys[i]] == 3){
                             value[keys[i]] = 'SAY';
                         }
+                    }
+
+                    if (keys[i] == 'phoneNumber') {
+                        value[keys[i]] = phoneTo(value[keys[i]]);
+                    }
+
+                    if (keys[i] == 'emergencyPhoneNumber') {
+                        value[keys[i]] = phoneTo(value[keys[i]]);
+                    }
+
+                    if (keys[i] == 'emailAddress') {
+                        value[keys[i]] = mailTo(value[keys[i]]);
                     }
 
                     query += '<td>' + value[keys[i]] + '</td>';
@@ -191,8 +209,8 @@ $(document).ready(function(){
             },
             success: function(data) {
                 console.log(data);
-                // alert("Success\n" + JSON.stringify(data['message']));
-                alert("Success\n" + data.responseJSON.message);                
+                alert("Success\n" + JSON.stringify(data['message']));
+                // alert("Success\n" + data.responseJSON.message);                
                 location.reload();
             },
             error: function(data) {
@@ -213,7 +231,7 @@ $(document).ready(function(){
         e.preventDefault();
 
         $('#sendSocialWorkerData').attr("disabled" , true);
-        // $('#social_worker_current_password').attr("disabled", false);
+        $('#social_worker_current_password').attr("disabled", false);
         var socialworkerId = $(this).parent().attr('id');
         console.log(socialworkerId);
 

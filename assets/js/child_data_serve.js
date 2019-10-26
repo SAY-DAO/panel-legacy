@@ -21,12 +21,18 @@ $(document).ready(function(){
                 var childId = value[keys[0]];
 
                 // first td for row count numbers, second td for operational buttons
-                var query = '<tr><td>' + $('tr').length + '</td><td id="' + childId + '"><button type="submit" class="btn btn-embossed btn-dark btn-block btn-sm confirmBtn">Confirm</button><button class="btn btn-embossed btn-dark btn-block btn-sm editBtn" onclick="editScroll()">Edit</button><button class="btn btn-embossed btn-dark btn-block btn-sm" disabled>Delete</button></td>';
+                var query = '<tr>\
+                <td>' + $('tr').length + '</td>\
+                <td id="' + childId + '">\
+                <button type="submit" class="btn btn-embossed btn-dark btn-block btn-sm confirmBtn">Confirm</button>\
+                <button class="btn btn-embossed btn-dark btn-block btn-sm editBtn" onclick="editScroll()">Edit</button>\
+                <button class="btn btn-embossed btn-dark btn-block btn-sm" disabled>Delete</button>\
+                </td>';
 
                 for(var i = 1 ; i < keys.length ; i++){
                     
                     if(value[keys[i]] == null){
-                        value[keys[i]] = 'Not entered';
+                        value[keys[i]] = nullValues();
                     }
                     
                     if(keys[i] == 'birthDate'){
@@ -146,6 +152,10 @@ $(document).ready(function(){
                         if(value[keys[i]] == '13'){
                             value[keys[i]] = 'University';
                         }
+                    }
+
+                    if (keys[i] == 'phoneNumber'){
+                        value[keys[i]] = phoneTo(value[keys[i]]);
                     }
 
                     if(keys[i] == 'housingStatus'){

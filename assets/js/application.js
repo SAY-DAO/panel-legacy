@@ -686,6 +686,11 @@ function handlePanelAction() {
         e.preventDefault();
         $('#ngoForm').slideToggle();
     });
+    // Say toggle for edit NGO form
+    $('#ngoList').on('click' , '.editBtn' , function(e){
+        e.preventDefault();
+        $('#ngoForm').slideToggle();
+    });
 
     // Say toggle for  change password form
     $('#editPass').css('display', 'none');
@@ -1194,13 +1199,17 @@ function scrollTop() {
 
 // Scroll to edit form div  *SAY*
 function editScroll() {
-    // console.log("scroll edit");
     $("html, body").animate({
         scrollTop: $('#needForm')
-    }, 2000);   // Not working properly
+    });
+
     $("html, body").animate({
         scrollTop: $('#children_form')
-    }, 2000);   // Not working properly
+    });
+
+    $("html, body").animate({
+        scrollTop: $('#ngoForm')
+    });
 }
 
 function sidebarBehaviour() {

@@ -20,16 +20,26 @@ $(document).ready(function(){
                     var needId = value[keys[0]];
     
                     // first td for row count numbers, second td for operational buttons
-                    var query = '<tr><td>' + $('tr').length + '</td><td id="' + needId + '"><button type="submit" class="btn btn-embossed btn-dark btn-block btn-sm confirmBtn">Confirm</button><button class="btn btn-embossed btn-dark btn-block btn-sm editBtn" onclick="editScroll()">Edit</button><button class="btn btn-embossed btn-dark btn-block btn-sm" disabled>Delete</button></td>';
+                    var query = '<tr>\
+                    <td>' + $('tr').length + '</td>\
+                    <td id="' + needId + '">\
+                    <button type="submit" class="btn btn-embossed btn-dark btn-block btn-sm confirmBtn">Confirm</button>\
+                    <button class="btn btn-embossed btn-dark btn-block btn-sm editBtn" onclick="editScroll()">Edit</button>\
+                    <button class="btn btn-embossed btn-dark btn-block btn-sm" disabled>Delete</button>\
+                    </td>';
                     for(var i=2 ; i < keys.length ; i++){
                         
-                        if (value[keys[i]] == null) {
-                            value[keys[i]] = 'Not entered';
+                        if(value[keys[i]] == null){
+                            value[keys[i]] = nullValues();
                         }
                         
                         if (keys[i] == 'imageUrl') {
                             value[keys[i]] = getImgFile(value[keys[i]]);
                         }
+
+                        // if (keys[i] == 'affiliateLinkUrl') {
+                        //     value[keys[i]] = linkTo(value[keys[i]]);
+                        // }
 
                         // if (keys[i] == 'receipts') {
                         //     if(value[keys[i]] != null){
@@ -199,7 +209,7 @@ $(document).ready(function(){
             processData: false,
             contentType: false,
             beforeSend: function(){
-                return confirm("You are about to edit the need.\nAre you sure?");
+                return confirm("You are about to confirm the need.\nAre you sure?");
             },
             success: function(data) {
                 bootbox.alert("Success\n" + JSON.stringify(data.message));
