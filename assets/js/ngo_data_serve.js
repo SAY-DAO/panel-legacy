@@ -2,16 +2,19 @@
 // serving data on NGO page
 
 $(document).ready(function(){
+    isAthorized();
+
     var keys = ['id' , 'name' , 'country' , 'city' , 'coordinatorId' , 'postalAddress' , 'phoneNumber' , 'emailAddress' , 'website' , 'logoUrl' , 'currentSocialWorkerCount' , 'currentChildrenCount' , 'registerDate' , 'lastUpdateDate']
 
-    // getting all NGO data from DB
+    // Get all NGO
 
     $.ajax({
         url: SAYApiUrl + '/ngo/all',
         method: 'GET',
         dataType: 'json',
         headers : {
-            'Access-Control-Allow-Origin'  : baseUrl
+            'Access-Control-Allow-Origin'  : baseUrl,
+            'Athorization': $.cookie('access_token')    // check if authorize for this action
         },
         success: function(data) {
 
@@ -156,7 +159,8 @@ $(document).ready(function(){
             url: SAYApiUrl + '/ngo/add',
             method: 'POST',
             headers : {
-                'Access-Control-Allow-Origin'  : baseUrl
+                'Access-Control-Allow-Origin'  : baseUrl,
+                'Athorization': $.cookie('access_token')    // check if authorize for this action
             },
             cache: false,
             processData: false,
@@ -194,7 +198,8 @@ $(document).ready(function(){
             method: 'GET',
             dataType: 'json',
             headers: {
-                'Access-Control-Allow-Origin'  : baseUrl
+                'Access-Control-Allow-Origin'  : baseUrl,
+                'Athorization': $.cookie('access_token')    // check if authorize for this action
             },
             success: function(data) {
                 console.log(data);
@@ -289,6 +294,8 @@ $(document).ready(function(){
 //NGO drop down field in forms
 
 $(document).ready(function(){
+    isAthorized();
+    
     var keys = ['id', 'name']
 
     // getting NGO's id and name from DB
@@ -298,7 +305,8 @@ $(document).ready(function(){
         method: 'GET',
         dataType: 'json',
         headers : {
-            'Access-Control-Allow-Origin'  : baseUrl
+            'Access-Control-Allow-Origin'  : baseUrl,
+            'Athorization': $.cookie('access_token')    // check if authorize for this action
         },
         success: function(data) {
             console.log(data);

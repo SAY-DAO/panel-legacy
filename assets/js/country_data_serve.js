@@ -1,6 +1,8 @@
 //Country field in forms
 
 $(document).ready(function(){
+    isAthorized();
+
     var keys = ['alpha2Code', 'translations']
 
     // getting Country's calling id and name
@@ -9,9 +11,10 @@ $(document).ready(function(){
         url: 'https://restcountries.eu/rest/v2/all',
         method: 'GET',
         dataType: 'json',
-        // headers : {
-        //     'Access-Control-Allow-Origin'  : '*'
-        // },
+        headers : {
+            'Access-Control-Allow-Origin'  : '*',
+            'Athorization': $.cookie('access_token')    // check if authorize for this action
+        },
         success: function(data) {
             console.log(data);
             $.each(data , function(key ,value){

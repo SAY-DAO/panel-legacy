@@ -1,12 +1,15 @@
 $(document).ready(function(){
+    isAthorized();
+
     var keys = ['socialworker_id' , 'activityCode']
 
     $.ajax({
-        url: 'http://localhost:5000/api/v1/activity',
+        url: '',
         method: 'GET',
         dataType: 'json',
         headers : {
-            'Access-Control-Allow-Origin'  : '*'
+            'Access-Control-Allow-Origin'  : baseUrl,
+            'Athorization': $.cookie('access_token')    // check if authorize for this action
         },
         success: function(data) {
             console.log(data);

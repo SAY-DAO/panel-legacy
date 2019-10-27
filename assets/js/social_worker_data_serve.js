@@ -1,11 +1,17 @@
 $(document).ready(function(){
+    isAthorized();
+
     var keys = ['id' , 'generatedCode' , 'firstName' , 'lastName' , 'userName' , 'avatarUrl' , 'id_type' , 'id_ngo' , 'birthCertificateNumber' , 'city' , 'country' , 'idNumber', 'idCardUrl' , 'passportNumber' , 'passportUrl' , 'gender' , 'birthDate' , 'phoneNumber' , 'emergencyPhoneNumber' , 'emailAddress' , 'telegramId' , 'postalAddress' , 'currentChildCount', 'currentNeedCount' , 'bankAccountNumber' , 'bankAccountShebaNumber' , 'bankAccountCardNumber' , 'registerDate' , 'lastLoginDate' , 'lastUpdateDate']
+
+    // Get all Social workers
+
     $.ajax({
         url: SAYApiUrl + '/socialWorker/all',
         method: 'GET',
         dataType: 'json',
         headers : {
-            'Access-Control-Allow-Origin'  : baseUrl
+            'Access-Control-Allow-Origin'  : baseUrl,
+            'Athorization': $.cookie('access_token')    // check if authorize for this action
         },
         success: function(data) {
             console.log(data);
@@ -198,7 +204,8 @@ $(document).ready(function(){
             url: SAYApiUrl + '/socialWorker/add',
             method: 'POST',
             headers : {
-                'Access-Control-Allow-Origin'  : baseUrl
+                'Access-Control-Allow-Origin'  : baseUrl,
+                'Athorization': $.cookie('access_token')    // check if authorize for this action
             },
             cache: false,
             processData: false,
@@ -242,7 +249,8 @@ $(document).ready(function(){
             method: 'GET',
             dataType: 'json',
             headers: {
-                'Access-Control-Allow-Origin'  : baseUrl
+                'Access-Control-Allow-Origin'  : baseUrl,
+                'Athorization': $.cookie('access_token')    // check if authorize for this action
             },
             success: function(data) {
                 console.log(data);
@@ -385,7 +393,8 @@ $(document).ready(function(){
                 url: SAYApiUrl + '/socialWorker/update/socialWorkerId=' + socialworkerId,
                 method: 'PATCH',
                 headers : {
-                    'Access-Control-Allow-Origin'  : baseUrl
+                    'Access-Control-Allow-Origin'  : baseUrl,
+                    'Athorization': $.cookie('access_token')    // check if authorize for this action
                 },
                 cache: false,
                 processData: false,
@@ -419,6 +428,8 @@ $(document).ready(function(){
 //Social worker drop down field in forms
 
 $(document).ready(function(){
+    isAthorized();
+    
     var keys = ['id' , 'userName' , 'firstName' , 'lastName']
 
     // getting Social workesr's id and name from DB
@@ -428,7 +439,8 @@ $(document).ready(function(){
         method: 'GET',
         dataType: 'json',
         headers : {
-            'Access-Control-Allow-Origin'  : baseUrl
+            'Access-Control-Allow-Origin'  : baseUrl,
+            'Athorization': $.cookie('access_token')    // check if authorize for this action
         },
         success: function(data) {
             console.log(data);

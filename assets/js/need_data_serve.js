@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    isAthorized();
 
     // Get Children Needs by child id
 
@@ -11,7 +12,8 @@ $(document).ready(function(){
             method: 'GET',
             dataType: 'json',
             headers: {
-                'Access-Control-Allow-Origin' : baseUrl
+                'Access-Control-Allow-Origin' : baseUrl,
+                'Athorization': $.cookie('access_token')    // check if authorize for this action
             },
             success: function(data) {
                 console.log('option:' + selected_child);
@@ -167,7 +169,8 @@ $(document).ready(function(){
             url: SAYApiUrl + '/need/add/childId=' + childId,
             method: 'POST',
             headers : {
-                'Access-Control-Allow-Origin'  : baseUrl
+                'Access-Control-Allow-Origin'  : baseUrl,
+                'Athorization': $.cookie('access_token')    // check if authorize for this action
             },
             cache: false,
             processData: false,
@@ -203,7 +206,8 @@ $(document).ready(function(){
             url: SAYApiUrl + '/need/confirm/needId=' + needId + '&socialWorkerId=10&childId=' + childId,
             method: 'PATCH',
             headers : {
-                'Access-Control-Allow-Origin'  : baseUrl
+                'Access-Control-Allow-Origin'  : baseUrl,
+                'Athorization': $.cookie('access_token')    // check if authorize for this action
             },
             cache: false,
             processData: false,
@@ -242,7 +246,8 @@ $(document).ready(function(){
             method: 'GET',
             dataType: 'json',
             headers: {
-                'Access-Control-Allow-Origin'  : baseUrl
+                'Access-Control-Allow-Origin'  : baseUrl,
+                'Athorization': $.cookie('access_token')    // check if authorize for this action
             },
             success: function(data) {
                 console.log(data);

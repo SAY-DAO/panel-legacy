@@ -1,5 +1,4 @@
 //****************** YOUR CUSTOMIZED JAVASCRIPT **********************//
-
 // calculate age from birth date
 
 function getAge(DOB){

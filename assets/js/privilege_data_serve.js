@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    isAthorized();
+    
     var keys = ['privilege' , 'name']
 
     $.ajax({
@@ -6,7 +8,8 @@ $(document).ready(function(){
         method: 'GET',
         dataType: 'json',
         headers : {
-            'Access-Control-Allow-Origin'  : baseUrl
+            'Access-Control-Allow-Origin'  : baseUrl,
+            'Athorization': $.cookie('access_token')    // check if authorize for this action
         },
         success: function(data) {
             console.log(data);

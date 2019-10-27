@@ -1,16 +1,18 @@
 $(document).ready(function(){
-
+    isAthorized();
+    
     var keys = ['id' , 'generatedCode' , 'avatarUrl' , 'sleptAvatarUrl' , 'voiceUrl' , 'firstName' , 'lastName' , 'birthDate' , 'sayName' , 'country' , 'city' , 'gender' , 'bio' , 'bioSummary' , 'birthPlace' , 'nationality' , 'familyCount' , 'sayFamilyCount' , 'education' , 'housingStatus' , 'id_ngo' , 'id_social_worker' , 'phoneNumber' , 'address' , 'doneNeedCount' , 'spentCredit' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'createdAt' , 'lastUpdate']
     
 
-       // getting all Child data from DB
+    // Get all Child
 
-       $.ajax({
+    $.ajax({
         url: SAYApiUrl + '/child/all/confirm=2',
         method: 'GET',
         dataType: 'json',
         headers : {
-            'Access-Control-Allow-Origin'  : baseUrl
+            'Access-Control-Allow-Origin'  : baseUrl,
+            'Athorization': $.cookie('access_token')    // check if authorize for this action
         },
         success: function(data) {
             console.log(data);
@@ -313,7 +315,8 @@ $(document).ready(function(){
             url: SAYApiUrl + '/child/add/socialWorkerId=' + id_social_worker + '&ngoId=' + id_ngo,
             method: 'POST',
             headers : {
-                'Access-Control-Allow-Origin'  : baseUrl
+                'Access-Control-Allow-Origin'  : baseUrl,
+                'Athorization': $.cookie('access_token')    // check if authorize for this action            
             },
             cache: false,
             processData: false,
@@ -347,7 +350,8 @@ $(document).ready(function(){
             url: SAYApiUrl + '/child/confirm/childId='+childId+'&socialWorkerId=10',
             method: 'PATCH',
             headers : {
-                'Access-Control-Allow-Origin'  : baseUrl
+                'Access-Control-Allow-Origin'  : baseUrl,
+                'Athorization': $.cookie('access_token')    // check if authorize for this action
             },
             cache: false,
             processData: false,
@@ -384,7 +388,8 @@ $(document).ready(function(){
             method: 'GET',
             dataType: 'json',
             headers: {
-                'Access-Control-Allow-Origin'  : baseUrl
+                'Access-Control-Allow-Origin'  : baseUrl,
+                'Athorization': $.cookie('access_token')    // check if authorize for this action
             },
             success: function (data) {
                 console.log(data);
@@ -506,7 +511,8 @@ $(document).ready(function(){
                 url: SAYApiUrl + '/child/update/childId=' + childId,
                 method: 'PATCH',
                 headers : {
-                    'Access-Control-Allow-Origin'  : baseUrl
+                    'Access-Control-Allow-Origin'  : baseUrl,
+                    'Athorization': $.cookie('access_token')    // check if authorize for this action
                 },
                 cache: false,
                 processData: false,
@@ -538,6 +544,8 @@ $(document).ready(function(){
 //Child drop down field in needs form
 
 $(document).ready(function(){
+    isAthorized();
+    
     var keys = ['id', 'generatedCode' , 'firstName' , 'lastName']
 
     $.ajax({
@@ -545,7 +553,8 @@ $(document).ready(function(){
         method: 'GET',
         dataType: 'json',
         headers : {
-            'Access-Control-Allow-Origin'  : baseUrl
+            'Access-Control-Allow-Origin'  : baseUrl,
+            'Athorization': $.cookie('access_token')    // check if authorize for this action
         },
         success: function(data) {
             console.log(data);

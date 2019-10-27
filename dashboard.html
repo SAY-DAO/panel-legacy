@@ -62,7 +62,7 @@
           <div class="sidebar-footer clearfix" style="">
             <!-- <a class="pull-left" href="#" data-rel="tooltip" data-placement="top" data-original-title="قفل کردن صفحه">
             <i class="icon-lock"></i></a> -->
-            <a class="pull-left btn-effect" href="user-login.html" data-modal="modal-1" data-rel="tooltip" data-placement="top" data-original-title="خروج از حساب">
+            <a class="pull-left btn-effect logout" href="#" data-modal="modal-1" data-rel="tooltip" data-placement="top" data-original-title="خروج از حساب">
             <i class="icon-power"></i></a>
           </div>
         </div>
@@ -285,7 +285,7 @@
                     <a href="#"><i class="icon-settings"></i><span>Account Settings</span></a>
                   </li>
                   <li>
-                    <a href="#"><i class="icon-logout"></i><span>Logout</span></a>
+                    <a href="#" class="logout"><i class="icon-logout"></i><span>Logout</span></a>
                   </li>
                 </ul>
               </li>
@@ -467,19 +467,23 @@
           </div>
             <div class="panel panel-default no-bd recet-pay">
               <div class="panel-header bg-dark panel-controls">
-                <h3 class="panel-title"><strong>آخرین پرداخت ها</strong></h3>
+                <h3 class="panel-title"><strong>آخرین پرداخت‌ها</strong></h3>
               </div>
 
               <div class="panel-content bg-white">
                 <table class="table table-hover dataTable" id="recent-paymant">
                     <thead>
                       <tr>
-                        <th>کد کودک</th>
-                        <th>نام</th>
-                        <th>نام خانوادگی</th>
-                        <th>سن</th>
-                        <th>انجمن</th>
-                        <th>کد نیاز</th>
+                        <th>ردیف</th>
+                        <!-- <th>کاربر</th> -->
+                        <th>Order Id</th>
+                        <!-- <th>کد کودک</th>
+                        <th>انجمن</th> -->
+                        <th>نام نیاز</th>
+                        <th>مبلغ پرداخت شده</th>
+                        <th>مبلغ Donate شده</th>
+                        <th>شناسه پرداخت</th>
+                        <th>تاریخ پرداخت</th>
                       </tr>
                     </thead>
                     <tbody id="recentPaymantList">
@@ -1034,8 +1038,12 @@
 <!-- <script src="assets/js/pages/table_dynamic.js"></script> -->
 <!-- <script src="assets/js/pages/table_editable.js"></script> -->
 
+<!-- <script src="assets/js/dashboard.js"></script>  dashboard data feed -->
+
 <script src="assets/js/config.js"></script>  <!--url configurations-->
 <script src="assets/js/custom.js"></script>  <!--custom functions-->
+<script src="assets/js/authorize.js"></script>  <!--Athorization-->
+
 
 <!-- END PAGE SCRIPTS -->
 </body>
