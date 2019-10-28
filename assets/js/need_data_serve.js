@@ -218,7 +218,7 @@ $(document).ready(function(){
             },
             success: function(data) {
                 alert("Success\n" + JSON.stringify(data.message));
-                location.reload();
+                // location.reload();
             },
             error: function(data) {
                 bootbox.alert({
