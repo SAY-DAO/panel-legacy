@@ -25,9 +25,9 @@ $(document).ready(function(){
                     var query = '<tr>\
                     <td>' + $('tr').length + '</td>\
                     <td id="' + needId + '">\
-                    <button type="submit" class="btn btn-embossed btn-dark btn-block btn-sm confirmBtn">Confirm</button>\
-                    <button class="btn btn-embossed btn-dark btn-block btn-sm editBtn" onclick="editScroll()">Edit</button>\
-                    <button class="btn btn-embossed btn-dark btn-block btn-sm" disabled>Delete</button>\
+                    <button type="submit" class="btn btn-embossed btn-success btn-block btn-sm confirmBtn">Confirm</button>\
+                    <button class="btn btn-embossed btn-primary btn-block btn-sm editBtn" onclick="editScroll()">Edit</button>\
+                    <button class="btn btn-embossed btn-danger btn-block btn-sm deleteBtn">Delete</button>\
                     </td>';
                     for(var i=2 ; i < keys.length ; i++){
                         
@@ -186,6 +186,7 @@ $(document).ready(function(){
                 location.reload();
             },
             error: function(data) {
+                console.log(data);
                 bootbox.alert({
                     title: "Error!",
                     message: data.responseJSON.message,
@@ -216,7 +217,7 @@ $(document).ready(function(){
                 return confirm("You are about to confirm the need.\nAre you sure?");
             },
             success: function(data) {
-                bootbox.alert("Success\n" + JSON.stringify(data.message));
+                alert("Success\n" + JSON.stringify(data.message));
                 location.reload();
             },
             error: function(data) {
@@ -357,6 +358,40 @@ $(document).ready(function(){
 
         })  //end of 'get the need's data to the form' function
 
+    })
+
+
+    // Delete a need
+
+    $('#needList').on('click', '.deleteBtn' , function(e){
+        e.preventDefault();
+        var needId = $(this).parent().attr('id');
+        console.log(needId);
+
+        $.ajax({
+            url: SAYApiUrl + '/need/delete/needId=' + needId,
+            method: 'PATCH',
+            headers : {
+                'Access-Control-Allow-Origin'  : baseUrl,
+                'Athorization': $.cookie('access_token')    // check if authorize for this action
+            },
+            cache: false,
+            processData: false,
+            contentType: false,
+            beforeSend: function(){
+                return confirm("You are about to DELETE the need.\nAre you sure?");
+            },
+            success: function(data) {
+                alert("Success\n" + JSON.stringify(data.message));
+                location.reload();
+            },
+            error: function(data) {
+                bootbox.alert({
+                    title: "Error!",
+                    message: data.responseJSON.message,
+                });
+            }
+        })
     })
 
 })

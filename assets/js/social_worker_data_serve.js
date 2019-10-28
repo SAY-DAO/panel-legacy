@@ -23,9 +23,9 @@ $(document).ready(function(){
                 var query = '<tr>\
                 <td>' + $('tr').length + '</td>\
                 <td id="' + socialworkerId + '">\
-                <button type="submit" class="btn btn-embossed btn-dark btn-block btn-sm confirmBtn">Confirm</button>\
-                <button class="btn btn-embossed btn-dark btn-block btn-sm editBtn" onclick="editScroll()">Edit</button>\
-                <button class="btn btn-embossed btn-dark btn-block btn-sm" disabled>Delete</button>\
+                <button type="submit" class="btn btn-embossed btn-success btn-block btn-sm confirmBtn" disabled>Confirm</button>\
+                <button class="btn btn-embossed btn-primary btn-block btn-sm editBtn" onclick="editScroll()">Edit</button>\
+                <button class="btn btn-embossed btn-danger btn-block btn-sm" disabled>Delete</button>\
                 </td>';
                 
                 for(var i = 1 ; i < keys.length ; i++){
