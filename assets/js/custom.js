@@ -29,7 +29,7 @@ function getImgFile(fileUrl){
 }
 
 function getVoiceFile(fileUrl){
-    var show_file = '<audio src="' + baseUrl + fileUrl +'" controls></audio>';
+    var show_file = '<audio src="' + baseUrl + fileUrl +'" controls preload="none"></audio>';
     return show_file;
 }
 
