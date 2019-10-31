@@ -17,8 +17,9 @@ $(document).ready(function(){
         success: function(data) {
             console.log(data);
             var confirmStatus = '';
+            var childData = data['children']
 
-            $.each(data , function(key ,value){
+            $.each(childData , function(key ,value){
 
                 var childId = value[keys[0]];
 
@@ -592,7 +593,8 @@ $(document).ready(function(){
         },
         success: function(data) {
             console.log(data);
-            $.each(data , function(key ,value){
+            var childData = data['children']
+            $.each(childData , function(key ,value){
                 var query = '';
                     query += '<option value="' + value[keys[0]] + '">' + value[keys[1]] + ' - ' + value[keys[2]] + ' ' + value[keys[3]] + '</option>';
                 $('#child_id').append(query);
