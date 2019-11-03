@@ -1,5 +1,6 @@
 $(document).ready(function(){
     isAthorized();
+    console.log("user id: ", global_user_id);
     
     var keys = ['id' , 'generatedCode' , 'avatarUrl' , 'sleptAvatarUrl' , 'voiceUrl' , 'firstName' , 'lastName' , 'birthDate' , 'sayName' , 'country' , 'city' , 'gender' , 'bio' , 'bioSummary' , 'birthPlace' , 'nationality' , 'familyCount' , 'sayFamilyCount' , 'education' , 'housingStatus' , 'id_ngo' , 'id_social_worker' , 'phoneNumber' , 'address' , 'doneNeedCount' , 'spentCredit' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'createdAt' , 'lastUpdate']
     
@@ -345,10 +346,10 @@ $(document).ready(function(){
     $('#childList').on('click' , '.confirmBtn' , function(e){
         e.preventDefault();
         var childId = $(this).parent().attr('id');
-        console.log(childId);
+        console.log("confirm child: ", childId);
 
         $.ajax({
-            url: SAYApiUrl + '/child/confirm/childId='+childId+'&socialWorkerId=10',
+            url: SAYApiUrl + '/child/confirm/childId=' + childId + '&socialWorkerId=' + global_user_id,
             method: 'PATCH',
             headers : {
                 'Access-Control-Allow-Origin'  : baseUrl,
@@ -379,9 +380,10 @@ $(document).ready(function(){
 
     $('#childList').on('click' , '.editBtn' , function(e){
         e.preventDefault();
+
         $('#sendChildData').attr("disabled", true);
         var childId = $(this).parent().attr('id');
-        console.log(childId);
+        console.log("child id get value: " + childId);
 
         // get the dhild's data to the form
         $.ajax({
@@ -417,6 +419,7 @@ $(document).ready(function(){
                 console.log(data.responseJSON.message);
             }
         })
+
         $('#editChildData').on('click' , function(e){
             e.preventDefault();
 
@@ -500,7 +503,7 @@ $(document).ready(function(){
                 form_data.append('familyCount', familyCount);
             }
             if(education || school_type){
-                form_data.append('education', education == "-2" ? "-" + school_type + "2" : school_type + education);   //because "int-2" cannot be stored. temporarily solution!
+                form_data.append('education', education == "-2" ? "-" + school_type + "2" : school_type + education);   //because "int(-2)" cannot be stored. temporarily solution!
             }
             if(housingStatus){
                 form_data.append('housingStatus', housingStatus);
@@ -524,8 +527,8 @@ $(document).ready(function(){
                     return confirm("You are about to edit the child.\nAre you sure?");
                 },
                 success: function(data) {
-                    alert("Success\nChild updated successfully\n" + JSON.stringify(data.message));
-                    location.reload();
+                    alert("Success\nChild " + childId + " updated successfully\n" + JSON.stringify(data.message));
+                    // location.reload();
                 },
                 error: function(data) {
                     bootbox.alert({
@@ -534,9 +537,11 @@ $(document).ready(function(){
                     });
                 }
             })  //end of Update ajax
+            console.log("after end of update ajax: " + childId);
 
-        })  //end of 'get the child's data to the form' function
-        
+        })  //end of 'get the child's data to the data form' function
+        console.log("after end of function edit: " + childId);
+
     })
 
 
