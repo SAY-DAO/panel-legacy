@@ -1,6 +1,8 @@
 $(document).ready(function(){
     isAthorized();
 
+    var edit_socialworkerId = -1;
+
     var keys = ['id' , 'generatedCode' , 'firstName' , 'lastName' , 'userName' , 'avatarUrl' , 'id_type' , 'id_ngo' , 'birthCertificateNumber' , 'city' , 'country' , 'idNumber', 'idCardUrl' , 'passportNumber' , 'passportUrl' , 'gender' , 'birthDate' , 'phoneNumber' , 'emergencyPhoneNumber' , 'emailAddress' , 'telegramId' , 'postalAddress' , 'currentChildCount', 'currentNeedCount' , 'bankAccountNumber' , 'bankAccountShebaNumber' , 'bankAccountCardNumber' , 'registerDate' , 'lastLoginDate' , 'lastUpdateDate']
 
     // Get all Social workers
@@ -240,12 +242,12 @@ $(document).ready(function(){
         $('#sendSocialWorkerData').attr("disabled" , true);
         $('#social_worker_current_password').attr("disabled", false);
         $('#social_worker_current_username').attr("disabled", false);
-        var socialworkerId = $(this).parent().attr('id');
-        console.log(socialworkerId);
+        edit_socialworkerId = $(this).parent().attr('id');
+        console.log(edit_socialworkerId);
 
         // get the need's data to the form
         $.ajax({
-            url: SAYApiUrl + '/socialWorker/socialWorkerId=' + socialworkerId,
+            url: SAYApiUrl + '/socialWorker/socialWorkerId=' + edit_socialworkerId,
             method: 'GET',
             dataType: 'json',
             headers: {
@@ -281,145 +283,148 @@ $(document).ready(function(){
                 console.log(data.responseJSON.message);
             }
         })
-
-        $('#editSocialWorkerData').on('click' , function(e) {
-            e.preventDefault();
-
-            // getting data from html form
-
-            var firstName = $('#social_worker_first_name').val();
-            var lastName = $('#social_worker_last_name').val();
-            var id_type = $('#social_worker_type').val();
-            var id_ngo = $('#social_worker_ngo').val();
-            var birthCertificateNumber = $('#social_worker_certificate_number').val();
-            var country = $('#social_worker_country').val();
-            var city = $('#social_worker_city').val();
-            var idNumber = $('#social_worker_id_number').val();
-            var passportNumber = $('#social_worker_passport_number').val();
-            var gender = $('#social_worker_gender').val();
-            var birthDate = $('#social_worker_birth_date').val();
-            var phoneNumber = $('#social_worker_phone_number').val();
-            var emergencyPhoneNumber = $('#social_worker_emergency_phone_number').val();
-            var emailAddress = $('#social_worker_email_address').val();
-            var telegramId = $('#social_worker_telegram_id').val();
-            var postalAddress = $('#social_worker_postal_address').val();
-            var userName = $('#social_worker_current_username').val();
-            var password = $('#social_worker_current_password').val();
-            var bankAccountNumber = $('#social_worker_bank_account_number').val();
-            var bankAccountShebaNumber = $('#social_worker_bank_account_sheba_number').val();
-            var bankAccountCardNumber = $('#social_worker_bank_account_card_number').val();
-            var idCardUrl = $('#social_worker_id_card')[0].files[0];
-            var passportUrl = $('#social_worker_passport')[0].files[0];
-            var avatarUrl = $('#social_worker_avatar')[0].files[0];
-
-            // append datas to a Form Data
-            var form_data = new FormData();
-            if(firstName) {
-                form_data.append('firstName', firstName);
-            }
-            if(lastName) {
-                form_data.append('lastName', lastName);
-            }
-            if(id_type) {
-                form_data.append('id_type', id_type);
-            }
-            if(id_ngo) {
-                form_data.append('id_ngo', id_ngo);
-            }
-            if(birthCertificateNumber) {
-                form_data.append('birthCertificateNumber', birthCertificateNumber);
-            }
-            if(country) {
-                form_data.append('country', country);
-            }
-            if(city) {
-                form_data.append('city', city);
-            }
-            if(idNumber) {
-                form_data.append('idNumber', idNumber);
-            }
-            if(passportNumber){
-                form_data.append('passportNumber', passportNumber);
-            }
-            if(gender){
-                form_data.append('gender', gender);
-            }
-            if(birthDate){
-                form_data.append('birthDate', birthDate);
-            }
-            if(phoneNumber){
-                form_data.append('phoneNumber', phoneNumber);
-            }
-            if(emergencyPhoneNumber){
-                form_data.append('emergencyPhoneNumber', emergencyPhoneNumber);
-            }
-            if(emailAddress){
-                form_data.append('emailAddress', emailAddress);
-            }
-            if(telegramId){
-                form_data.append('telegramId', telegramId);
-            }
-            if(postalAddress){
-                form_data.append('postalAddress', postalAddress);
-            }
-            if(userName){
-                form_data.append('userName', userName);
-            }
-            if(password){
-                form_data.append('password', password);
-            }
-            if(bankAccountNumber){
-                form_data.append('bankAccountNumber', bankAccountNumber);
-            }
-            if(bankAccountShebaNumber){
-                form_data.append('bankAccountShebaNumber', bankAccountShebaNumber);
-            }
-            if(bankAccountCardNumber){
-                form_data.append('bankAccountCardNumber', bankAccountCardNumber);
-            }
-            if(idCardUrl){
-                form_data.append('idCardUrl', idCardUrl);
-            }
-            if(passportUrl){
-                form_data.append('passportUrl', passportUrl);
-            }
-            if(avatarUrl){
-                form_data.append('avatarUrl', avatarUrl);
-            }
-            console.log(form_data);
-
-            // update the need with new data in the form
-            $.ajax({
-                url: SAYApiUrl + '/socialWorker/update/socialWorkerId=' + socialworkerId,
-                method: 'PATCH',
-                headers : {
-                    'Access-Control-Allow-Origin'  : baseUrl,
-                    'Athorization': $.cookie('access_token')    // check if authorize for this action
-                },
-                cache: false,
-                processData: false,
-                contentType: false,
-                dataType: 'json',
-                data: form_data,
-                beforeSend: function(){
-                    return confirm("You are about to edit the user.\nAre you sure?");
-                },
-                success: function(data) {
-                    alert("Success\nThe user updated successfully\n" + JSON.stringify(data.message));
-                    location.reload();
-                },
-                error: function(data) {
-                    bootbox.alert({
-                        title: "Error!",
-                        message: data.responseJSON.message,
-                    });
-                }
-
-            })  //end of Update ajax
-
-        })  //end of 'get the need's data to the form' function
-
     })
+
+    // confirm edit social worker
+    $('#editSocialWorkerData').on('click' , function(e) {
+        e.preventDefault();
+        
+        console.log("edit user " + edit_socialworkerId);
+
+        // getting data from html form
+
+        var firstName = $('#social_worker_first_name').val();
+        var lastName = $('#social_worker_last_name').val();
+        var id_type = $('#social_worker_type').val();
+        var id_ngo = $('#social_worker_ngo').val();
+        var birthCertificateNumber = $('#social_worker_certificate_number').val();
+        var country = $('#social_worker_country').val();
+        var city = $('#social_worker_city').val();
+        var idNumber = $('#social_worker_id_number').val();
+        var passportNumber = $('#social_worker_passport_number').val();
+        var gender = $('#social_worker_gender').val();
+        var birthDate = $('#social_worker_birth_date').val();
+        var phoneNumber = $('#social_worker_phone_number').val();
+        var emergencyPhoneNumber = $('#social_worker_emergency_phone_number').val();
+        var emailAddress = $('#social_worker_email_address').val();
+        var telegramId = $('#social_worker_telegram_id').val();
+        var postalAddress = $('#social_worker_postal_address').val();
+        var userName = $('#social_worker_current_username').val();
+        var password = $('#social_worker_current_password').val();
+        var bankAccountNumber = $('#social_worker_bank_account_number').val();
+        var bankAccountShebaNumber = $('#social_worker_bank_account_sheba_number').val();
+        var bankAccountCardNumber = $('#social_worker_bank_account_card_number').val();
+        var idCardUrl = $('#social_worker_id_card')[0].files[0];
+        var passportUrl = $('#social_worker_passport')[0].files[0];
+        var avatarUrl = $('#social_worker_avatar')[0].files[0];
+
+        // append datas to a Form Data
+        var form_data = new FormData();
+        if(firstName) {
+            form_data.append('firstName', firstName);
+        }
+        if(lastName) {
+            form_data.append('lastName', lastName);
+        }
+        if(id_type) {
+            form_data.append('id_type', id_type);
+        }
+        if(id_ngo) {
+            form_data.append('id_ngo', id_ngo);
+        }
+        if(birthCertificateNumber) {
+            form_data.append('birthCertificateNumber', birthCertificateNumber);
+        }
+        if(country) {
+            form_data.append('country', country);
+        }
+        if(city) {
+            form_data.append('city', city);
+        }
+        if(idNumber) {
+            form_data.append('idNumber', idNumber);
+        }
+        if(passportNumber){
+            form_data.append('passportNumber', passportNumber);
+        }
+        if(gender){
+            form_data.append('gender', gender);
+        }
+        if(birthDate){
+            form_data.append('birthDate', birthDate);
+        }
+        if(phoneNumber){
+            form_data.append('phoneNumber', phoneNumber);
+        }
+        if(emergencyPhoneNumber){
+            form_data.append('emergencyPhoneNumber', emergencyPhoneNumber);
+        }
+        if(emailAddress){
+            form_data.append('emailAddress', emailAddress);
+        }
+        if(telegramId){
+            form_data.append('telegramId', telegramId);
+        }
+        if(postalAddress){
+            form_data.append('postalAddress', postalAddress);
+        }
+        if(userName){
+            form_data.append('userName', userName);
+        }
+        if(password){
+            form_data.append('password', password);
+        }
+        if(bankAccountNumber){
+            form_data.append('bankAccountNumber', bankAccountNumber);
+        }
+        if(bankAccountShebaNumber){
+            form_data.append('bankAccountShebaNumber', bankAccountShebaNumber);
+        }
+        if(bankAccountCardNumber){
+            form_data.append('bankAccountCardNumber', bankAccountCardNumber);
+        }
+        if(idCardUrl){
+            form_data.append('idCardUrl', idCardUrl);
+        }
+        if(passportUrl){
+            form_data.append('passportUrl', passportUrl);
+        }
+        if(avatarUrl){
+            form_data.append('avatarUrl', avatarUrl);
+        }
+        console.log(form_data);
+
+        // update the need with new data in the form
+        $.ajax({
+            url: SAYApiUrl + '/socialWorker/update/socialWorkerId=' + edit_socialworkerId,
+            method: 'PATCH',
+            headers : {
+                'Access-Control-Allow-Origin'  : baseUrl,
+                'Athorization': $.cookie('access_token')    // check if authorize for this action
+            },
+            cache: false,
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            data: form_data,
+            beforeSend: function(){
+                return confirm("You are about to edit the user.\nAre you sure?");
+            },
+            success: function(data) {
+                alert("Success\nThe user " + edit_socialworkerId + " updated successfully\n" + JSON.stringify(data.message));
+                location.reload();
+            },
+            error: function(data) {
+                bootbox.alert({
+                    title: "Error!",
+                    message: data.responseJSON.message,
+                });
+            }
+
+        })  //end of Update ajax
+
+    })  //end of 'confirm edit' function
+
 
 
 })

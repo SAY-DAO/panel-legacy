@@ -1,6 +1,8 @@
 $(document).ready(function(){
     isAthorized();
 
+    var edit_needId = -1;    
+
     // Get Children Needs by child id
 
     var keys = ['id' , 'child_id' , 'ChildName' , 'name' , 'cost' , 'paid' , 'progress' , 'imageUrl' , 'isUrgent' , 'category' , 'description' , 'descriptionSummary' , 'doing_duration' , 'type' , 'affiliateLinkUrl' , 'receipts' , 'createdAt' , 'isConfirmed' , 'confirmDate' , 'lastUpdate']
@@ -238,12 +240,12 @@ $(document).ready(function(){
 
         $('#sendNeedData').attr("disabled" , true);
         $('#child_id').attr("disabled" , true);
-        var needId = $(this).parent().attr('id');
-        console.log(needId);
+        edit_needId = $(this).parent().attr('id');
+        console.log(edit_needId);
 
         // get the need's data to the form
         $.ajax({
-            url: SAYApiUrl + '/need/needId=' + needId,
+            url: SAYApiUrl + '/need/needId=' + edit_needId,
             method: 'GET',
             dataType: 'json',
             headers: {
@@ -268,97 +270,99 @@ $(document).ready(function(){
                 console.log(data.responseJSON.message);
             }
         })
-
-        $('#editNeedData').on('click' , function(e) {
-            e.preventDefault();
-
-            // getting data from html form
-
-            var name = $('#need_name').val();
-            var imageUrl = $('#need_icon')[0].files[0];
-            var category = $('#need_category').val();
-            var cost = $('#need_cost').val();
-            var description = $('#need_description').val();
-            var descriptionSummary = $('#need_description_summary').val();
-            var type = $('#need_type').val();
-            var doing_duration = $('#need_doing_duration').val();
-            var isUrgent = '';
-            if($('#is_urgent').is(":checked")){
-                isUrgent = true;
-            }else{
-                isUrgent = false;
-            }
-            var affiliateLinkUrl = $('#affiliate_link').val();
-            var receipts = $('#need_receipts')[0].files[0];
-
-            // append datas to a Form Data
-            var form_data = new FormData();
-            if(imageUrl) {
-                form_data.append('imageUrl', imageUrl);
-            }
-            if(name) {
-                form_data.append('name', name);
-            }
-            if(category) {
-                form_data.append('category', category);
-            }
-            if(cost) {
-                form_data.append('cost', cost);
-            }
-            if(description) {
-                form_data.append('description', description);
-            }
-            if(descriptionSummary) {
-                form_data.append('descriptionSummary', descriptionSummary);
-            }
-            if(type) {
-                form_data.append('type', type);
-            }
-            if(isUrgent) {
-                form_data.append('isUrgent', isUrgent);
-            }
-            if(affiliateLinkUrl){
-                form_data.append('affiliateLinkUrl', affiliateLinkUrl);
-            }
-            if(receipts){
-                form_data.append('receipts', receipts);
-            }
-            if(doing_duration){
-                form_data.append('doing_duration', doing_duration);
-            }
-            console.log(form_data);
-
-            // update the need with new data in the form
-            $.ajax({
-                url: SAYApiUrl + '/need/update/needId=' + needId,
-                method: 'PATCH',
-                headers : {
-                    'Access-Control-Allow-Origin'  : baseUrl
-                },
-                cache: false,
-                processData: false,
-                contentType: false,
-                dataType: 'json',
-                data: form_data,
-                beforeSend: function(){
-                    return confirm("You are about to edit the need.\nAre you sure?");
-                },
-                success: function(data) {
-                    alert("Success\nNeed updated successfully\n" + JSON.stringify(data.message));
-                    location.reload();
-                },
-                error: function(data) {
-                    bootbox.alert({
-                        title: "Error!",
-                        message: data.responseJSON.message,
-                    });
-                }
-
-            })  //end of Update ajax
-
-        })  //end of 'get the need's data to the form' function
-
     })
+
+    // confirm edit need
+    $('#editNeedData').on('click' , function(e) {
+        e.preventDefault();
+
+        console.log("edit need " + edit_needId);
+
+        // getting data from html form
+
+        var name = $('#need_name').val();
+        var imageUrl = $('#need_icon')[0].files[0];
+        var category = $('#need_category').val();
+        var cost = $('#need_cost').val();
+        var description = $('#need_description').val();
+        var descriptionSummary = $('#need_description_summary').val();
+        var type = $('#need_type').val();
+        var doing_duration = $('#need_doing_duration').val();
+        var isUrgent = '';
+        if($('#is_urgent').is(":checked")){
+            isUrgent = true;
+        }else{
+            isUrgent = false;
+        }
+        var affiliateLinkUrl = $('#affiliate_link').val();
+        var receipts = $('#need_receipts')[0].files[0];
+
+        // append datas to a Form Data
+        var form_data = new FormData();
+        if(imageUrl) {
+            form_data.append('imageUrl', imageUrl);
+        }
+        if(name) {
+            form_data.append('name', name);
+        }
+        if(category) {
+            form_data.append('category', category);
+        }
+        if(cost) {
+            form_data.append('cost', cost);
+        }
+        if(description) {
+            form_data.append('description', description);
+        }
+        if(descriptionSummary) {
+            form_data.append('descriptionSummary', descriptionSummary);
+        }
+        if(type) {
+            form_data.append('type', type);
+        }
+        if(isUrgent) {
+            form_data.append('isUrgent', isUrgent);
+        }
+        if(affiliateLinkUrl){
+            form_data.append('affiliateLinkUrl', affiliateLinkUrl);
+        }
+        if(receipts){
+            form_data.append('receipts', receipts);
+        }
+        if(doing_duration){
+            form_data.append('doing_duration', doing_duration);
+        }
+        console.log(form_data);
+
+        // update the need with new data in the form
+        $.ajax({
+            url: SAYApiUrl + '/need/update/needId=' + edit_needId,
+            method: 'PATCH',
+            headers : {
+                'Access-Control-Allow-Origin'  : baseUrl
+            },
+            cache: false,
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            data: form_data,
+            beforeSend: function(){
+                return confirm("You are about to edit the need.\nAre you sure?");
+            },
+            success: function(data) {
+                alert("Success\nNeed " + edit_needId + " updated successfully\n" + JSON.stringify(data.message));
+                location.reload();
+            },
+            error: function(data) {
+                bootbox.alert({
+                    title: "Error!",
+                    message: data.responseJSON.message,
+                });
+            }
+
+        })  //end of Update ajax
+
+    })  //end of 'confirm edit' function
 
 
     // Delete a need

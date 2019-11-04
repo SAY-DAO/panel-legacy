@@ -1,6 +1,7 @@
 $(document).ready(function(){
     isAthorized();
-    console.log("user id: ", global_user_id);
+    
+    var edit_childId = -1;
     
     var keys = ['id' , 'generatedCode' , 'avatarUrl' , 'sleptAvatarUrl' , 'voiceUrl' , 'firstName' , 'lastName' , 'birthDate' , 'sayName' , 'country' , 'city' , 'gender' , 'bio' , 'bioSummary' , 'birthPlace' , 'nationality' , 'familyCount' , 'sayFamilyCount' , 'education' , 'housingStatus' , 'id_ngo' , 'id_social_worker' , 'phoneNumber' , 'address' , 'doneNeedCount' , 'spentCredit' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'createdAt' , 'lastUpdate']
     
@@ -376,18 +377,18 @@ $(document).ready(function(){
     })
 
 
-    //Edit a child
+    // Edit a child
 
     $('#childList').on('click' , '.editBtn' , function(e){
         e.preventDefault();
 
         $('#sendChildData').attr("disabled", true);
-        var childId = $(this).parent().attr('id');
-        console.log("child id get value: " + childId);
+        edit_childId = $(this).parent().attr('id');
+        console.log("child id get value: " + edit_childId);
 
         // get the dhild's data to the form
         $.ajax({
-            url: SAYApiUrl + '/child/childId=' + childId + '&confirm=2',
+            url: SAYApiUrl + '/child/childId=' + edit_childId + '&confirm=2',
             method: 'GET',
             dataType: 'json',
             headers: {
@@ -419,130 +420,128 @@ $(document).ready(function(){
                 console.log(data.responseJSON.message);
             }
         })
-
-        $('#editChildData').on('click' , function(e){
-            e.preventDefault();
-
-            console.log("edit child " + childId);
-
-            // getting data from html form
-
-            var sayName = $('#SAY_name').val();
-            var gender = $('#child_gender').val();
-            var country = $('#child_country').val();
-            var city = $('#child_city').val();
-            var phoneNumber = $('#child_phone_number').val();
-            var bio = $('#child_story').val();
-            var bioSummary = $('#child_story_summary').val();
-            var avatarUrl = $('#child_avatar')[0].files[0];
-            var sleptAvatarUrl = $('#child_slept_avatar')[0].files[0];
-            var voiceUrl = $('#child_voice')[0].files[0];
-
-            var firstName = $('#child_first_name').val();
-            var lastName = $('#child_last_name').val();
-            var nationality = $('#child_nationality').val();
-            var address = $('#child_address').val();
-            var birthDate = $('#child_birthdate').val();
-            var birthPlace = $('#child_birthplace').val();
-            var familyCount = $('#family_count').val();
-            var education = $('#education').val();
-            var school_type = $('#school_type').val();
-            var housingStatus = $('#housing_status').val();
-
-            // append datas to a Form Data
-            var form_data = new FormData();
-            if(avatarUrl){
-                form_data.append('avatarUrl', avatarUrl);
-            }
-            if(sleptAvatarUrl){
-                form_data.append('sleptAvatarUrl', sleptAvatarUrl);
-            }
-            if(voiceUrl){
-                form_data.append('voiceUrl', voiceUrl);
-            }
-            if(sayName){
-                form_data.append('sayName', sayName);
-            }
-            if(gender){
-                form_data.append('gender', gender);
-            }
-            if(country){
-                form_data.append('country', country);
-            }
-            if(city){
-                form_data.append('city', city);
-            }
-            if(phoneNumber){
-                form_data.append('phoneNumber', phoneNumber);
-            }
-            if(bio){
-                form_data.append('bio', bio);
-            }
-            if(bioSummary){
-                form_data.append('bioSummary', bioSummary);
-            }
-            if(firstName){
-                form_data.append('firstName', firstName);
-            }
-            if(lastName){
-                form_data.append('lastName', lastName);
-            }
-            if(nationality){
-                form_data.append('nationality', nationality);
-            }
-            if(address){
-                form_data.append('address', address);
-            }
-            if(birthDate){
-                form_data.append('birthDate', birthDate);
-            }
-            if(birthPlace){
-                form_data.append('birthPlace', birthPlace);
-            }
-            if(familyCount){
-                form_data.append('familyCount', familyCount);
-            }
-            if(education || school_type){
-                form_data.append('education', education == "-2" ? "-" + school_type + "2" : school_type + education);   //because "int(-2)" cannot be stored. temporarily solution!
-            }
-            if(housingStatus){
-                form_data.append('housingStatus', housingStatus);
-            }
-            console.log(form_data);
-
-            // update the child with new data in the form
-            $.ajax({
-                url: SAYApiUrl + '/child/update/childId=' + childId,
-                method: 'PATCH',
-                headers : {
-                    'Access-Control-Allow-Origin'  : baseUrl,
-                    'Athorization': $.cookie('access_token')    // check if authorize for this action
-                },
-                cache: false,
-                processData: false,
-                contentType: false,
-                dataType: 'json',
-                data: form_data,
-                beforeSend: function(){
-                    return confirm("You are about to edit the child.\nAre you sure?");
-                },
-                success: function(data) {
-                    alert("Success\nChild " + childId + " updated successfully\n" + JSON.stringify(data.message));
-                    // location.reload();
-                },
-                error: function(data) {
-                    bootbox.alert({
-                        title: "Error!",
-                        message: data.responseJSON.message,
-                    });
-                }
-            })  //end of Update ajax
-            console.log("after end of update ajax: " + childId);
-
-        })  //end of 'get the child's data to the data form' function
-        console.log("after end of function edit: " + childId);
-
     })
+
+    // confirm edit child
+    $('#editChildData').on('click' , function(e){
+        e.preventDefault();
+
+        console.log("edit child " + edit_childId);
+
+        // getting data from html form
+
+        var sayName = $('#SAY_name').val();
+        var gender = $('#child_gender').val();
+        var country = $('#child_country').val();
+        var city = $('#child_city').val();
+        var phoneNumber = $('#child_phone_number').val();
+        var bio = $('#child_story').val();
+        var bioSummary = $('#child_story_summary').val();
+        var avatarUrl = $('#child_avatar')[0].files[0];
+        var sleptAvatarUrl = $('#child_slept_avatar')[0].files[0];
+        var voiceUrl = $('#child_voice')[0].files[0];
+
+        var firstName = $('#child_first_name').val();
+        var lastName = $('#child_last_name').val();
+        var nationality = $('#child_nationality').val();
+        var address = $('#child_address').val();
+        var birthDate = $('#child_birthdate').val();
+        var birthPlace = $('#child_birthplace').val();
+        var familyCount = $('#family_count').val();
+        var education = $('#education').val();
+        var school_type = $('#school_type').val();
+        var housingStatus = $('#housing_status').val();
+
+        // append datas to a Form Data
+        var form_data = new FormData();
+        if(avatarUrl){
+            form_data.append('avatarUrl', avatarUrl);
+        }
+        if(sleptAvatarUrl){
+            form_data.append('sleptAvatarUrl', sleptAvatarUrl);
+        }
+        if(voiceUrl){
+            form_data.append('voiceUrl', voiceUrl);
+        }
+        if(sayName){
+            form_data.append('sayName', sayName);
+        }
+        if(gender){
+            form_data.append('gender', gender);
+        }
+        if(country){
+            form_data.append('country', country);
+        }
+        if(city){
+            form_data.append('city', city);
+        }
+        if(phoneNumber){
+            form_data.append('phoneNumber', phoneNumber);
+        }
+        if(bio){
+            form_data.append('bio', bio);
+        }
+        if(bioSummary){
+            form_data.append('bioSummary', bioSummary);
+        }
+        if(firstName){
+            form_data.append('firstName', firstName);
+        }
+        if(lastName){
+            form_data.append('lastName', lastName);
+        }
+        if(nationality){
+            form_data.append('nationality', nationality);
+        }
+        if(address){
+            form_data.append('address', address);
+        }
+        if(birthDate){
+            form_data.append('birthDate', birthDate);
+        }
+        if(birthPlace){
+            form_data.append('birthPlace', birthPlace);
+        }
+        if(familyCount){
+            form_data.append('familyCount', familyCount);
+        }
+        if(education || school_type){
+            form_data.append('education', education == "-2" ? "-" + school_type + "2" : school_type + education);   //because "int(-2)" cannot be stored. temporarily solution!
+        }
+        if(housingStatus){
+            form_data.append('housingStatus', housingStatus);
+        }
+        console.log(form_data);
+
+        // update the child with new data in the form
+        $.ajax({
+            url: SAYApiUrl + '/child/update/childId=' + edit_childId,
+            method: 'PATCH',
+            headers : {
+                'Access-Control-Allow-Origin'  : baseUrl,
+                'Athorization': $.cookie('access_token')    // check if authorize for this action
+            },
+            cache: false,
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            data: form_data,
+            beforeSend: function(){
+                return confirm("You are about to edit the child.\nAre you sure?");
+            },
+            success: function(data) {
+                alert("Success\nChild " + edit_childId + " updated successfully\n" + JSON.stringify(data.message));
+                location.reload();
+            },
+            error: function(data) {
+                bootbox.alert({
+                    title: "Error!",
+                    message: data.responseJSON.message,
+                });
+            }
+        })  //end of Update ajax
+
+    })  //end of 'confirm edit' function
 
 
     // Delete a child
