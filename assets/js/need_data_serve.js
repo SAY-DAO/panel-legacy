@@ -117,13 +117,73 @@ $(document).ready(function(){
                 })
             },
             error: function(data) {
-                console.log(data);
+                console.log(data.responseJSON.message);
             }
         })
         $('#needList').empty();
     })
 
 
+    // get pre defined needs of children in need forms
+
+    $.ajax({
+        url: SAYApiUrl + '/child/need/childId=104&confirm=2',
+        method: 'GET',
+        dataType: 'json',
+        headers : {
+            'Access-Control-Allow-Origin'  : baseUrl,
+            'Athorization': $.cookie('access_token')    // check if authorize for this action
+        },
+        success: function(data) {
+            console.log("predefined needs", data);
+
+            $.each(data, function(key, value){
+                var query = '';
+                    query += '<option value="' + value[keys[0]] + '">' + value[keys[3]] + '</option>';
+                $('#pre_need_id').append(query);
+            })
+        },
+        error: function(data) {
+            console.log(data.responseJSON.message);
+        }
+    })
+
+    
+    // need form fill out with pre defined need data
+    
+    $('#pre_need_id').change(function() {
+        $('#need_name').prop("disabled", true);
+        $('#need_description').prop("disabled", true);
+        $('#need_description_summary').prop("disabled", true);
+        
+        var selected_need = $(this).val();
+        $.ajax({
+            url: SAYApiUrl + '/need/needId=' + selected_need,
+            method: 'GET',
+            dataType: 'json',
+            headers : {
+                'Access-Control-Allow-Origin'  : baseUrl,
+                'Athorization': $.cookie('access_token')    // check if authorize for this action
+            },
+            success: function(data) {
+                console.log(data);
+
+                $('#need_name').val(data['name']);
+                $('#need_category').val(data['category']);
+                $('#need_type').val(data['type']);
+                $('#need_cost').val(data['cost']);
+                $('#need_description').val(data['description']);
+                $('#need_description_summary').val(data['descriptionSummary']);
+
+                $('#need_icon').val(data['imageUrl']);
+
+                // $('#need_type').find('option[value = "' + data['type'] + '"]').attr("selected", "selected");
+            },
+            error: function(data) {
+                console.log(data.responseJSON.message);
+            }
+        })
+    })
 
 
     // Add new Need
@@ -190,7 +250,7 @@ $(document).ready(function(){
                 console.log(data);
                 // alert("Success\n" + JSON.stringify(data));
                 alert("Success\nNeed added successfully!");
-                location.reload();
+                location.reload(true);
             },
             error: function(data) {
                 console.log(data);
@@ -245,6 +305,8 @@ $(document).ready(function(){
 
         $('#sendNeedData').attr("disabled" , true);
         $('#child_id').attr("disabled" , true);
+        $('#pre_need').hide();
+
         edit_needId = $(this).parent().attr('id');
         console.log(edit_needId);
 
@@ -356,7 +418,7 @@ $(document).ready(function(){
             },
             success: function(data) {
                 alert("Success\nNeed " + edit_needId + " updated successfully\n" + JSON.stringify(data.message));
-                location.reload();
+                location.reload(true);
             },
             error: function(data) {
                 bootbox.alert({
