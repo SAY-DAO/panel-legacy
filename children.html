@@ -334,6 +334,11 @@
                 </div>
             <h2 class="m-b-20">کودکان<!--<strong>Builder</strong>--></h2><!--<a href="#" id="no-page-builder" class="btn btn-dark btn-lg btn-square">No, thanks</a><a href="#" id="import-page-builder" class="btn btn-primary btn-lg btn-square">Import Page Builder</a>-->
 
+            <div class="row">
+              <div class="btn-group col-md-6 col-sm-8 col-xs-12 center-block">
+                <button id="childTableNew" class="btn btn-sm btn-dark btn-block"><i class="fa fa-plus"></i> اضافه کردن کودک جدید</button>
+              </div>
+            </div>
 
               <div class="panel panel-default no-bd" id="childForm">
                   <div class="panel-header bg-dark panel-controls">
@@ -659,14 +664,10 @@
                 <div class="panel-header bg-dark panel-controls">
                   <h3 class="panel-title">لیست<strong> کودکان</strong></h3>
                 </div>
-                
-                <div class="btn-group col-md-6 col-sm-8 col-xs-12 center-block">
-                  <button id="childTableNew" class="btn btn-sm btn-dark btn-block"><i class="fa fa-plus"></i> اضافه کردن کودک جدید</button>
-                </div>
 
                 <div class="panel-content bg-white">
                   
-                  <table class="table table-hover dataTable" id="table-editable">
+                  <table class="table table-hover dataTable">
                       <thead>
                         <tr>
                           <th>ردیف</th>                          
@@ -1269,32 +1270,7 @@
 <!-- <script src="assets/js/pages/table_dynamic.js"></script> -->
 <!-- <script src="assets/js/pages/table_editable.js"></script> -->
 
-<!-- <script>
-    $(document).ready(function(){
-      $.getJSON("child_list.json", function(data){
-        var table_data = '';
-        $.each(data, function(key, value){
-          table_data += '<tr>';
-          table_data += '<td>'+value.code+'</td>';
-          table_data += '<td>'+value.fname+'</td>';
-          table_data += '<td>'+value.lname+'</td>';
-          table_data += '<td>'+value.birthdate+'</td>';
-          table_data += '<td>'+value.birthPlace+'</td>';
-          table_data += '<td>'+value.nationality+'</td>';
-          table_data += '<td>'+value.familyCount+'</td>';
-          table_data += '<td>'+value.degree+'</td>';
-          table_data += '<td>'+value.housing+'</td>';
-          table_data += '<td>'+value.ngo+'</td>';
-          table_data += '<td>'+value.phone+'</td>';
-          table_data += '<td>'+value.addr+'</td>';
-          table_data += '<td>'+value.invoice+'</td>';
-          table_data += '<td>'+value.action+'</td>';
-          table_data += '</tr>';
-        });
-        $('#childList').append(table_data);
-      });
-    });
-  </script> -->
+
 <!-- END PAGE SCRIPTS -->
 </body>
 </html>

@@ -632,7 +632,7 @@ function handlePanelAction() {
     // Toggle Panel Content
     $(document).on("click", ".panel-header .panel-toggle", function(event) {
         event.preventDefault();
-        $(this).toggleClass("closed").parents(".panel:first").find(".panel-content").slideToggle();
+        $(this).parents(".panel:first").find(".panel-content").slideToggle();
     });
     
     // Say toggle for add child form

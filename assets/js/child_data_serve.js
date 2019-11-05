@@ -3,15 +3,24 @@ $(document).ready(function(){
     hasPrivilege();
 
     var edit_childId = -1;
+    var child_url = '';
+    var child_id_url = '';
+
+    if(global_user_role != 1){
+        child_url = '/child/all/confirm=2?ngo_id=' + global_user_ngo;
+        child_id_url = '/child/all/confirm=1?ngo_id=' + global_user_ngo;
+    }else{
+        child_url = '/child/all/confirm=2';
+        child_id_url = '/child/all/confirm=1';
+    }
     
     var keys = ['id' , 'generatedCode' , 'avatarUrl' , 'sleptAvatarUrl' , 'voiceUrl' , 'firstName' , 'lastName' , 'birthDate' , 'sayName' , 'country' , 'city' , 'gender' , 'bio' , 'bioSummary' , 'birthPlace' , 'nationality' , 'familyCount' , 'sayFamilyCount' , 'education' , 'housingStatus' , 'id_ngo' , 'id_social_worker' , 'phoneNumber' , 'address' , 'doneNeedCount' , 'spentCredit' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'createdAt' , 'lastUpdate']
     
 
-    // Get all Child
+    // Get all Children
 
     $.ajax({
-        // url: SAYApiUrl + '/child/all/confirm=2',
-        url: SAYApiUrl + '/child/all/confirm=2?ngo_id=' + global_user_ngo,
+        url: SAYApiUrl + child_url,
         method: 'GET',
         dataType: 'json',
         headers : {
@@ -232,6 +241,33 @@ $(document).ready(function(){
     })
 
 
+    //Child drop down field in needs form
+
+    $.ajax({
+        url: SAYApiUrl + child_id_url,
+        method: 'GET',
+        dataType: 'json',
+        headers : {
+            'Access-Control-Allow-Origin'  : baseUrl,
+            'Athorization': $.cookie('access_token')    // check if authorize for this action
+        },
+        success: function(data) {
+            console.log(data);
+            var childData = data['children']
+            $.each(childData , function(key ,value){
+                var query = '';
+                    query += '<option value="' + value[keys[0]] + '">' + value[keys[1]] + ' - ' + value[keys[5]] + ' ' + value[keys[6]] + '</option>';
+                $('#child_id').append(query);
+                $('#child_need_select').append(query);
+                // console.log("Child field query:" + query);
+            })
+        },
+        error: function(data) {
+            console.log(data.responseJSON.message);
+        }
+    })
+
+
     // Add new child
 
     $('#sendChildData').on('click' , function(e){
@@ -424,7 +460,7 @@ $(document).ready(function(){
         })
     })
 
-    // confirm edit child
+    // confirm Edit child
     $('#editChildData').on('click' , function(e){
         e.preventDefault();
 
@@ -577,40 +613,6 @@ $(document).ready(function(){
                 });
             }
         })
-    })
-
-})
-
-
-//Child drop down field in needs form
-
-$(document).ready(function(){
-    isAthorized();
-    
-    var keys = ['id', 'generatedCode' , 'firstName' , 'lastName']
-
-    $.ajax({
-        url: SAYApiUrl + '/child/all/confirm=1?ngo_id=' + global_user_ngo,
-        method: 'GET',
-        dataType: 'json',
-        headers : {
-            'Access-Control-Allow-Origin'  : baseUrl,
-            'Athorization': $.cookie('access_token')    // check if authorize for this action
-        },
-        success: function(data) {
-            console.log(data);
-            var childData = data['children']
-            $.each(childData , function(key ,value){
-                var query = '';
-                    query += '<option value="' + value[keys[0]] + '">' + value[keys[1]] + ' - ' + value[keys[2]] + ' ' + value[keys[3]] + '</option>';
-                $('#child_id').append(query);
-                $('#child_need_select').append(query);
-                // console.log("Child field query:" + query);
-            })
-        },
-        error: function(data) {
-            console.log(data.responseJSON.message);
-        }
     })
 
 })
