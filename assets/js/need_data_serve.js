@@ -1,5 +1,6 @@
 $(document).ready(function(){
     isAthorized();
+    hasPrivilege();
 
     var edit_needId = -1;    
 
@@ -99,9 +100,12 @@ $(document).ready(function(){
                         if (keys[i] == 'isConfirmed') {
                             if(value[keys[i]] == false){
                                 value[keys[i]] = 'Not confirmed';
+                                
                             }
                             if(value[keys[i]] == true){
                                 value[keys[i]] = 'Confirmed';
+                                // $('.confirmBtn').attr("disabled", true);
+
                             }
                         }
 
@@ -109,6 +113,7 @@ $(document).ready(function(){
                     }
                     query += '</tr>';
                     $('#needList').append(query);
+                    hasPrivilege();
                 })
             },
             error: function(data) {

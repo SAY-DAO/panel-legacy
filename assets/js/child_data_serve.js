@@ -1,6 +1,7 @@
 $(document).ready(function(){
     isAthorized();
-    
+    hasPrivilege();
+
     var edit_childId = -1;
     
     var keys = ['id' , 'generatedCode' , 'avatarUrl' , 'sleptAvatarUrl' , 'voiceUrl' , 'firstName' , 'lastName' , 'birthDate' , 'sayName' , 'country' , 'city' , 'gender' , 'bio' , 'bioSummary' , 'birthPlace' , 'nationality' , 'familyCount' , 'sayFamilyCount' , 'education' , 'housingStatus' , 'id_ngo' , 'id_social_worker' , 'phoneNumber' , 'address' , 'doneNeedCount' , 'spentCredit' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'createdAt' , 'lastUpdate']
@@ -17,18 +18,17 @@ $(document).ready(function(){
             'Athorization': $.cookie('access_token')    // check if authorize for this action
         },
         success: function(data) {
+
             console.log(data);
-            var confirmStatus = '';
             var childData = data['children']
 
             $.each(childData , function(key ,value){
-
                 var childId = value[keys[0]];
 
                 // first td for row count numbers, second td for operational buttons
                 var query = '<tr>\
                 <td>' + $('tr').length + '</td>\
-                <td id="' + childId + '">\
+                <td class="operation" id="' + childId + '">\
                 <button type="submit" class="btn btn-embossed btn-success btn-block btn-sm confirmBtn">Confirm</button>\
                 <button class="btn btn-embossed btn-primary btn-block btn-sm editBtn" onclick="editScroll()">Edit</button>\
                 <button class="btn btn-embossed btn-danger btn-block btn-sm deleteBtn">Delete</button>\
@@ -178,11 +178,10 @@ $(document).ready(function(){
                     if(keys[i] == 'isConfirmed'){
                         if(value[keys[i]] == true){
                             value[keys[i]] = 'Confirmed';
-                            confirmStatus = 1;
+                            // $('#' + childId).find('.confirmBtn').attr("disabled", true);
                         }
                         if(value[keys[i]] == false){
                             value[keys[i]] = 'Not confirmed';
-                            confirmStatus = 0;
                         }
                     }
 
@@ -211,6 +210,8 @@ $(document).ready(function(){
                 
                 query+= '</tr>';
                 $('#childList').append(query);
+                hasPrivilege();
+
                 
             })
 

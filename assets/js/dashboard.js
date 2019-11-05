@@ -1,6 +1,7 @@
 // get users id and user name for payment
 $(document).ready(function(){
     isAthorized();
+    hasPrivilege();
 
     // var user_keys = ['id' , 'userName']
     // var payment_keys = ['id' , 'orderId' , 'desc' , 'id_user' , 'amount' , 'donate' , 'track_id' , 'createdAt']

@@ -70,10 +70,10 @@
             <li class="tm"><a href="dashboard.html"><i class="icon-home"></i><span>داشبورد</span></a></li>
             <li class="tm"><a href="children.html"><i class="fa fa-child"></i><span>کودکان من</span></a></li>
             <li class="tm"><a href="needs.html"><i class="fa fa-heart-o"></i><span>نیازها</span></a></li>
-            <li class="tm"><a href="reports.html"><i class="fa icon-bar-chart"></i><span>گزارش</span></a></li>
-            <li class="tm"><a href="social_worker.html"><i class="fa icon-users"></i><span>مددکاران</span></a></li>
+            <li class="tm privilege1"><a href="reports.html"><i class="fa icon-bar-chart"></i><span>گزارش</span></a></li>
+            <li class="tm privilege1"><a href="social_worker.html"><i class="fa icon-users"></i><span>مددکاران</span></a></li>
             
-            <li class="tm nav-parent">
+            <li class="tm nav-parent privilege1">
               <a href=""><i class="fa fa-edit"></i><span>تنظیمات</span> <span class="fa arrow"></span></a>
               <ul class="children collapse">
                 <li><a href="needcat.html">دسته بندی</a></li>
@@ -346,15 +346,15 @@
                         <div class="col-lg-10 col-xs-9">
                             <div class="row m-t-20">
                             <h3 class="m-t-0 member-name col-sm-6"><strong class="user_fullName"></strong></h3>
-                            <span class="member-code col-sm-6 c-gray p-r-30">0017250</span>
+                            <span class="member-code col-sm-6 c-gray p-r-30"></span>
                             </div>
                             <div class="row m-t-20">
                             
                             <div class="col-sm-6 ">
-                                <p><i class="fa fa-phone c-gray-light p-r-10"></i> 02188342063</p>
+                                <p><i class="fa fa-phone c-gray-light p-r-10"></i> </p>
                             </div>
                             <div class="col-sm-6">
-                                <p><i class="fa fa-envelope c-gray-light p-r-10"></i> info@say.company</p>
+                                <p><i class="fa fa-envelope c-gray-light p-r-10"></i> </p>
                             </div>
                             </div>
                             
@@ -366,10 +366,10 @@
                     <div class="col-xs-12">
                         <div class="row">
                             <div class="col-sm-4">
-                                <button id="editProfileBtn" type="button" class="btn btn-embossed btn-primary btn-block"><i class="icon-pencil c-gray-light p-r-10"></i> ویرایش پروفایل</button>
+                                <button id="editProfileBtn" type="button" class="btn btn-embossed btn-primary btn-block" disabled><i class="icon-pencil c-gray-light p-r-10"></i> ویرایش پروفایل</button>
                             </div>
                             <div class="col-sm-4">
-                                <button id="changePassBtn" type="button" class="btn btn-embossed btn-primary btn-block"><i class="icon-lock-open c-gray-light p-r-10"></i> تغییر پسورد</button>
+                                <button id="changePassBtn" type="button" class="btn btn-embossed btn-primary btn-block" disabled><i class="icon-lock-open c-gray-light p-r-10"></i> تغییر پسورد</button>
                             </div>
                             <div class="col-sm-4">
                                 <a href="#"><button type="button" class="btn btn-embossed btn-primary btn-block logout"><i class="icon-logout c-gray-light p-r-10"></i> خروج از حساب</button></a>
@@ -419,8 +419,8 @@
                                         </div>
 
                                         <div class="text-center  m-t-20">
-                                            <button type="submit" class="btn btn-embossed btn-primary">ذخیره</button>
-                                            <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">پاک کردن</button>
+                                            <button type="submit" class="btn btn-embossed btn-primary" disabled>ذخیره</button>
+                                            <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0" disabled>پاک کردن</button>
                                         </div>
 
                                     </div>
@@ -445,7 +445,7 @@
                                     <div class="form-group">
                                         <label for="swcode" class="control-label">کد مددکار</label>
                                         <div class="append-icon">
-                                            <input type="text" class="form-control" id="swcode" name="swcode" placeholder="کد مددکار را وارد نمایید" value="00170250" required>
+                                            <input type="text" class="form-control" id="swcode" name="swcode" placeholder="کد مددکار را وارد نمایید" value="" required>
                                             <i class="icon-key"></i>
                                         </div>
                                     </div>
@@ -455,7 +455,7 @@
                                 <div class="form-group">
                                     <label for="swfname" class="control-label">نام مددکار</label>
                                     <div class="append-icon">
-                                    <input type="text" id="swfname" name="swfname" class="form-control" minlength="3" oninvalid="this.setCustomValidity('لطفا این فیلد را پر کنید')" placeholder="نام مددکار را وارد نمایید" value="User" required>
+                                    <input type="text" id="swfname" name="swfname" class="form-control" minlength="3" oninvalid="this.setCustomValidity('لطفا این فیلد را پر کنید')" placeholder="نام مددکار را وارد نمایید" value="" required>
                                     <i class="icon-user"></i>
                                     </div>
                                 </div>
@@ -465,7 +465,7 @@
                                 <div class="form-group">
                                     <label for="swlname" class="control-label">نام خانوادگی مددکار</label>
                                     <div class="append-icon">
-                                    <input type="text" id="swlname" name="swlname" class="form-control" minlength="3" placeholder="نام خانوادگی مددکار را وارد نمایید" value="Name" required>
+                                    <input type="text" id="swlname" name="swlname" class="form-control" minlength="3" placeholder="نام خانوادگی مددکار را وارد نمایید" value="" required>
                                     <i class="icon-user"></i>
                                     </div>
                                 </div>
@@ -475,7 +475,7 @@
                                     <div class="form-group">
                                         <label for="swidnum" class="control-label">شماره شناسنامه</label>
                                         <div class="append-icon">
-                                            <input type="text" id="swidnum" name="swidnum" class="form-control" placeholder="شماره شناسنامه را وارد نمایید" value="0017025028" required>
+                                            <input type="text" id="swidnum" name="swidnum" class="form-control" placeholder="شماره شناسنامه را وارد نمایید" value="" required>
                                             <i class="icon-credit-card"></i>
                                         </div>
                                     </div>
@@ -485,7 +485,7 @@
                                     <div class="form-group">
                                         <label for="swnatcode" class="control-label">کد ملی</label>
                                         <div class="append-icon">
-                                            <input type="text" id="swnatcode" name="swnatcode" class="form-control" placeholder="کد ملی را وارد نمایید" value="0017025028" required>
+                                            <input type="text" id="swnatcode" name="swnatcode" class="form-control" placeholder="کد ملی را وارد نمایید" value="" required>
                                             <i class="icon-credit-card"></i>
                                         </div>
                                     </div>
@@ -495,7 +495,7 @@
                                     <div class="form-group">
                                         <label for="swbirth" class="control-label">تاریخ تولد</label>
                                         <div class="append-icon">
-                                        <input type="date" id="swbirth" name="swbirth" class="form-control" value="14/03/1373" required>
+                                        <input type="date" id="swbirth" name="swbirth" class="form-control" value="" required>
                                         <i class="icon-calendar"></i>
                                         </div>
                                     </div>
@@ -505,7 +505,7 @@
                                     <div class="form-group">
                                         <label for="swphone" class="control-label">شماره تماس</label>
                                         <div class="append-icon">
-                                            <input type="text" id="swphone" name="swphone" class="form-control" placeholder="شماره تماس را وارد نمایید" value="02188342063" required>
+                                            <input type="text" id="swphone" name="swphone" class="form-control" placeholder="شماره تماس را وارد نمایید" value="" required>
                                             <i class="icon-screen-smartphone"></i>
                                         </div>
                                     </div>
@@ -515,7 +515,7 @@
                                     <div class="form-group">
                                         <label for="swuphone" class="control-label">شماره تماس ضروری</label>
                                         <div class="append-icon">
-                                            <input type="text" id="swuphone" name="swuphone" class="form-control" placeholder="شماره تماس ضروری را وارد نمایید" value="09370000000" required>
+                                            <input type="text" id="swuphone" name="swuphone" class="form-control" placeholder="شماره تماس ضروری را وارد نمایید" value="" required>
                                             <i class="icon-screen-smartphone"></i>
                                         </div>
                                     </div>
@@ -525,7 +525,7 @@
                                     <div class="form-group">
                                         <label for="swemail" class="control-label">ایمیل</label>
                                         <div class="append-icon">
-                                            <input type="text" id="swemail" name="swemail" class="form-control" placeholder="آدرس ایمیل را وارد نمایید" value="info@say.company" required>
+                                            <input type="text" id="swemail" name="swemail" class="form-control" placeholder="آدرس ایمیل را وارد نمایید" value="" required>
                                             <i class="fa fa-envelope"></i>
                                         </div>
                                     </div>
@@ -535,7 +535,7 @@
                                     <div class="form-group">
                                         <label for="swtelegram" class="control-label">ID تلگرام</label>
                                         <div class="append-icon">
-                                            <input type="text" id="swtelegram" name="swtelegram" class="form-control" placeholder="ID تلگرام را وارد نمایید" value="SAY_company" required>
+                                            <input type="text" id="swtelegram" name="swtelegram" class="form-control" placeholder="ID تلگرام را وارد نمایید" value="" required>
                                             <i class="fa fa-send"></i>
                                         </div>
                                     </div>
@@ -544,7 +544,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="swaddr" class="control-label">آدرس</label>
-                                        <textarea name="swaddr" id="swaddr" rows="2" class="form-control" placeholder="آدرس را وارد نمایید..." value="ایران، تهران، کریمخان، ایرانشهر، آذرشهر، پلاک 22" minlength="5" required="" aria-required="true"></textarea>
+                                        <textarea name="swaddr" id="swaddr" rows="2" class="form-control" placeholder="آدرس را وارد نمایید..." value="" minlength="5" required="" aria-required="true"></textarea>
                                     </div>
                                 </div>
     
@@ -577,8 +577,8 @@
                             </div>
     
                             <div class="text-center  m-t-20">
-                                <button type="submit" class="btn btn-embossed btn-primary">ذخیره</button>
-                                <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">پاک کردن</button>
+                                <button type="submit" class="btn btn-embossed btn-primary" disabled>ذخیره</button>
+                                <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0" disabled>پاک کردن</button>
                             </div>
                             </form>
                         </div>
@@ -598,35 +598,35 @@
                                                 <p>
                                                     <i class="icon-user c-gray-light p-r-10 col-sm-2"></i>
                                                     <span class="col-sm-10 c-gray-light"><strong>نام</strong></span>
-                                                    <span class="col-sm-10 pull-right">Sara Mousavi</span>
+                                                    <span class="col-sm-10 pull-right"></span>
                                                 </p>
                                             </div>
                                             <div class="col-sm-6">
                                                 <p>
                                                     <i class="icon-key c-gray-light p-r-10 col-sm-2"></i>
                                                     <span class="col-sm-10 c-gray-light"><strong>کد</strong></span>
-                                                    <span class="col-sm-10 pull-right">00170250</span>
+                                                    <span class="col-sm-10 pull-right"></span>
                                                 </p>
                                             </div>
                                             <div class="col-sm-6">
                                                 <p>
                                                     <i class="icon-credit-card c-gray-light p-r-10 col-sm-2"></i>
                                                     <span class="col-sm-10 c-gray-light"><strong>شماره شناسنامه</strong></span>
-                                                    <span class="col-sm-10 pull-right">0017025028</span>
+                                                    <span class="col-sm-10 pull-right"></span>
                                                 </p>
                                             </div>
                                             <div class="col-sm-6">
                                                 <p>
                                                     <i class="icon-credit-card c-gray-light p-r-10 col-sm-2"></i>
                                                     <span class="col-sm-10 c-gray-light"><strong>کد ملی</strong></span>
-                                                    <span class="col-sm-10 pull-right">0017025028</span>
+                                                    <span class="col-sm-10 pull-right"></span>
                                                 </p>
                                             </div>
                                             <div class="col-sm-6">
                                                 <p>
                                                     <i class="fa fa-calendar c-gray-light p-r-10 col-sm-2"></i>
                                                     <span class="col-sm-10 c-gray-light"><strong>تاریخ تولد</strong></span>
-                                                    <span class="col-sm-10 pull-right">14/03/1373</span>
+                                                    <span class="col-sm-10 pull-right"></span>
                                                 </p>
                                             </div>
                                             <div class="col-sm-6">
@@ -634,7 +634,7 @@
                                                     <i class="icon-credit-card c-gray-light p-r-10 col-sm-2"></i>
                                                     <span class="col-sm-10 c-gray-light"><strong>کارت ملی</strong></span>
                                                     <span class="col-sm-10 pull-right">
-                                                            <img src="assets/images/favicon-make.png">
+                                                            <!-- <img src="#"> -->
                                                     </span>
                                                 </p>
                                             </div>
@@ -654,35 +654,35 @@
                                                 <p>
                                                     <i class="fa fa-phone c-gray-light p-r-10 col-sm-2"></i>
                                                     <span class="col-sm-10 c-gray-light"><strong>شماره تماس</strong></span>
-                                                    <span class="col-sm-10 pull-right">02188342063</span>
+                                                    <span class="col-sm-10 pull-right"></span>
                                                 </p>
                                             </div>
                                             <div class="col-sm-6">
                                                 <p>
                                                     <i class="icon-screen-smartphone c-gray-light p-r-10 col-sm-2"></i>
                                                     <span class="col-sm-10 c-gray-light"><strong>شماره موبایل</strong></span>
-                                                    <span class="col-sm-10 pull-right">09370000000</span>
+                                                    <span class="col-sm-10 pull-right"></span>
                                                 </p>
                                             </div>
                                             <div class="col-sm-6">
                                                 <p>
                                                     <i class="fa fa-send c-gray-light p-r-10 col-sm-2"></i>
                                                     <span class="col-sm-10 c-gray-light"><strong>تلگرام</strong></span>
-                                                    <span class="col-sm-10 pull-right">SAY_company</span>
+                                                    <span class="col-sm-10 pull-right"></span>
                                                 </p>
                                             </div>
                                             <div class="col-sm-6">
                                                 <p>
                                                     <i class="fa fa-envelope c-gray-light p-r-10 col-sm-2"></i>
                                                     <span class="col-sm-10 c-gray-light"><strong>ایمیل</strong></span>
-                                                    <span class="col-sm-10 pull-right">info@say.company</span>
+                                                    <span class="col-sm-10 pull-right"></span>
                                                 </p>
                                             </div>
                                             <div class="col-sm-12">
                                                 <p>
                                                     <i class="fa fa-map-marker c-gray-light p-r-10 col-sm-1"></i>
                                                     <span class="col-sm-11 c-gray-light"><strong>آدرس</strong></span>
-                                                    <span class="col-sm-11 pull-right">ایران، تهران، کریمخان، ایرانشهر، آذرشهر، پلاک 22</span>
+                                                    <span class="col-sm-11 pull-right"></span>
                                                 </p>
                                             </div>
                                         </div>
@@ -1269,6 +1269,7 @@
 <script src="assets/plugins/isotope/isotope.pkgd.min.js"></script>  <!-- Filter & sort magical Gallery -->
 <script src="assets/js/activity_data_serve.js"></script>
 
+<script src="assets/js/profile.js"></script>  <!--profile data feed-->
 <script src="assets/js/config.js"></script>  <!--url configurations-->
 <script src="assets/js/custom.js"></script>  <!--custom functions-->
 <script src="assets/js/authorize.js"></script>  <!--Athorization-->
