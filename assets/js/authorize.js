@@ -10,6 +10,7 @@ document.body.appendChild(jwt);
 var global_user_id = '';
 var global_username = '';
 var global_user_role = '';
+var global_user_ngo = '';
 
 
 //  check loging status
@@ -30,6 +31,7 @@ function isAthorized(){
         global_user_id = user_id;
         global_username = username;
         global_user_role = user_role;
+        global_user_ngo = user_ngoId;
     }
 }
 

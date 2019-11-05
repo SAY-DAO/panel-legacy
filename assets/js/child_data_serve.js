@@ -10,7 +10,8 @@ $(document).ready(function(){
     // Get all Child
 
     $.ajax({
-        url: SAYApiUrl + '/child/all/confirm=2',
+        // url: SAYApiUrl + '/child/all/confirm=2',
+        url: SAYApiUrl + '/child/all/confirm=2?ngo_id=' + global_user_ngo,
         method: 'GET',
         dataType: 'json',
         headers : {
@@ -589,7 +590,7 @@ $(document).ready(function(){
     var keys = ['id', 'generatedCode' , 'firstName' , 'lastName']
 
     $.ajax({
-        url: SAYApiUrl + '/child/all/confirm=1',
+        url: SAYApiUrl + '/child/all/confirm=1?ngo_id=' + global_user_ngo,
         method: 'GET',
         dataType: 'json',
         headers : {
