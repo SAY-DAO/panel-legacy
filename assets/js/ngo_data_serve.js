@@ -120,7 +120,7 @@ $(document).ready(function(){
             })
         },
         error: function(data) {
-            console.log(data);
+            console.log(data.responseJSON.message);
         }
     })
 
@@ -172,9 +172,9 @@ $(document).ready(function(){
                 return confirm("You are about to add new NGO.\nAre you sure?");
             },
             success: function(data)  {
-                console.log(data);
+                // console.log(data);
                 alert('Success');
-                location.reload();
+                location.reload(true);
             },
             error: function(data) {
                 console.log(data);
@@ -204,7 +204,7 @@ $(document).ready(function(){
                 'Athorization': $.cookie('access_token')    // check if authorize for this action
             },
             success: function(data) {
-                console.log(data);
+                // console.log(data);
                 $('#ngo_name').val(data['name']);
                 $('#ngo_country').val(data['country']);
                 $('#ngo_city').val(data['city']);
@@ -221,7 +221,7 @@ $(document).ready(function(){
         })
     })
 
-    // confirm edit NGO
+    // confirm Edit NGO
     $('#editNgoData').on('click' , function(e) {
         e.preventDefault();
 
@@ -314,7 +314,7 @@ $(document).ready(function(){
             'Athorization': $.cookie('access_token')    // check if authorize for this action
         },
         success: function(data) {
-            console.log(data);
+            // console.log(data);
             $.each(data , function(key ,value){
                 var query = '';
                     query += '<option value="' + value[keys[0]] + '">' + value[keys[1]] + '</option>';
@@ -324,7 +324,7 @@ $(document).ready(function(){
             })
         },
         error: function(data) {
-            console.log(data);
+            console.log(data.responseJSON.message);
         }
     })
 

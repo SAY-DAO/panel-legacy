@@ -363,7 +363,7 @@
                               </div>
                             </div>
                             
-                            <div class="col-sm-6">
+                            <div class="col-md-4 col-sm-6">
                                 <div class="form-group">
                                     <label for="child_id" class="control-label">کودک <span class="required">*</span></label>
                                     <div class="option-group">
@@ -374,7 +374,7 @@
                                 </div>
                             </div>
                             
-                            <div class="col-sm-6">
+                            <div class="col-md-4 col-sm-6">
                               <div class="form-group">
                                 <label for="need_name" class="control-label">نام نیاز <span class="required">*</span></label>
                                 <div class="append-icon">
@@ -384,7 +384,7 @@
                               </div>
                             </div>
 
-                            <div class="col-sm-6">
+                            <div class="col-md-4 col-sm-6">
                                 <div class="form-group">
                                     <label for="need_category" class="control-label">دسته‌بندی <span class="required">*</span></label>
                                     <div class="option-group">
@@ -399,7 +399,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-6">
+                            <div class="col-md-4 col-sm-6">
                               <div class="form-group">
                                 <label for="need_cost" class="control-label">هزینه نیاز (تومان) <span class="required">*</span></label>
                                 <div class="append-icon">
@@ -409,21 +409,14 @@
                               </div>
                             </div>
 
-                            <div class="col-sm-6">
+                            <div class="col-md-8 col-sm-12">
                               <div class="form-group">
-                                <label for="need_description" class="control-label">توضیحات نیاز <span class="required">*</span></label>
-                                <textarea name="need_description" id="need_description" rows="2" class="form-control" placeholder="توضیحات نیاز را وارد نمایید" minlength="5" required="" aria-required="true"></textarea>
-                              </div>
-                            </div>
-                            
-                            <div class="col-sm-6">
-                              <div class="form-group">
-                                <label for="need_description_summary" class="control-label">خلاصه توضیحات نیاز <span class="required">*</span></label>
-                                <textarea name="need_description_summary" id="need_description_summary" rows="2" class="form-control" placeholder="خلاصه توضیحات نیاز را وارد نمایید" minlength="5" required="" aria-required="true"></textarea>
+                                <label for="need_details" class="control-label">جز‌ئیات نیاز</label>
+                                <textarea style="text-align: right !important;" name="need_details" id="need_details" rows="2" class="form-control" placeholder="جز‌ئیات نیاز را وارد نمایید" minlength="5"></textarea>
                               </div>
                             </div>
 
-                            <div class="col-sm-6">
+                            <div class="col-md-4 col-sm-6">
                                 <div class="form-group">
                                   <label class="control-label" for="need_icon">آیکون نیاز <span class="required">*</span></label>
                                   <div class="file">
@@ -436,7 +429,7 @@
                                 </div>
                               </div>
 
-                              <div class="col-sm-6">
+                              <div class="col-md-4 col-sm-6">
                                 <div class="form-group">
                                   <label class="control-label" for="need_receipts">رسید پرداخت</label>
                                   <div class="file">
@@ -449,7 +442,7 @@
                                 </div>
                               </div>
 
-                              <div class="col-sm-6">
+                              <div class="col-md-4 col-sm-6">
                                 <div class="form-group">
                                     <label for="need_type" class="control-label"> نوع نیاز <span class="required">*</span></label>
                                     <div class="option-group">
@@ -462,7 +455,7 @@
                                 </div>
                               </div>
                             
-                              <div class="col-sm-6">
+                              <div class="col-md-4 col-sm-6">
                                 <div class="form-group">
                                     <label for="affiliate_link" class="control-label">لینک دیجیکالا</label>
                                     <div class="append-icon">
@@ -472,25 +465,57 @@
                                 </div>
                             </div>
 
-                            
-                            <div class="col-sm-6">
-                              <div class="form-group">
-                                <div class="option-group">
-                                  <label  for="is_urgent" class="m-t-10">
-                                  <input type="checkbox" name="is_urgent" id="is_urgent" data-checkbox="icheckbox_flat-blue" />
-                                  نیاز ضروری می‌باشد؟
-                                  </label>    
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="col-sm-6">
+                            <div class="col-md-4 col-sm-6">
                               <div class="form-group">
                                 <label for="need_doing_duration" class="control-label">مدت زمان انجام</label>
                                 <div class="append-icon">
                                   <input type="text" id="need_doing_duration" name="need_doing_duration" class="form-control" placeholder="مدت زمان انجام نیاز را وارد نمایید - روز">
                                   <i class="icon-clock"></i>
                                 </div>
+                              </div>
+                            </div>
+
+
+                            <!-- Checkbox input -->
+
+                            <!-- <div class="col-md-4 col-sm-6">
+                              <div class="form-group">
+                                <div class="option-group">
+                                  <label  for="is_urgent" class="m-t-10">
+                                    نیاز ضروری می‌باشد؟
+                                    <input type="checkbox" name="is_urgent" id="is_urgent" data-checkbox="icheckbox_flat-blue" />
+                                  </label>    
+                                </div>
+                              </div>
+                            </div> -->
+
+
+                            <!-- Option input -->
+
+                            <div class="col-md-4 col-sm-6">
+                              <div class="form-group">
+                                  <label for="is_urgent" class="control-label"> نیاز ضروری می‌باشد؟</label>
+                                  <div class="option-group">
+                                      <select id="is_urgent" name="is_urgent" class="form-control">
+                                          <option value="">---</option>
+                                          <option value="false">خیر</option>
+                                          <option value="true">بله</option>
+                                      </select>
+                                  </div>
+                              </div>
+                            </div>
+
+                            <div class="col-sm-8">
+                              <div class="form-group">
+                                <label for="need_description" class="control-label">توضیحات نیاز <span class="required">*</span></label>
+                                <textarea name="need_description" id="need_description" rows="2" class="form-control" placeholder="توضیحات نیاز را وارد نمایید" minlength="5" required="" aria-required="true"></textarea>
+                              </div>
+                            </div>
+                            
+                            <div class="col-sm-4">
+                              <div class="form-group">
+                                <label for="need_description_summary" class="control-label">خلاصه توضیحات نیاز <span class="required">*</span></label>
+                                <textarea name="need_description_summary" id="need_description_summary" rows="2" class="form-control" placeholder="خلاصه توضیحات نیاز را وارد نمایید" minlength="5" required="" aria-required="true"></textarea>
                               </div>
                             </div>
 
@@ -551,6 +576,7 @@
                           <th>میزان پرداخت شده</th>
                           <th>میزان پیشرفت</th>
                           <th class="medium_th">آیکون نیاز</th>
+                          <th class="medium_th">جز‌ئیات نیاز</th>
                           <th>ضروری</th>
                           <th>دسته‌بندی</th>
                           <th class="wide_th">توضیحات نیاز</th>

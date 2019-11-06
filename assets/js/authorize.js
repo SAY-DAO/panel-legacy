@@ -44,7 +44,7 @@ function hasPrivilege(){
         $('#childTableNew').hide();
         $('.operation').hide();
         $('#needList').find('.confirmBtn').hide();
-        $('#needList').find('.deleteBtn').hide();
+        // $('#needList').find('.deleteBtn').hide();
         $('.privilege1').hide();
     }
 }

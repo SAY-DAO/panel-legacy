@@ -29,8 +29,10 @@ $(document).ready(function(){
         },
         success: function(data) {
 
-            console.log(data);
+            // console.log(data);
             var childData = data['children']
+            
+            // console.log("child data: ", childData[0]['id_social_worker']);
 
             $.each(childData , function(key ,value){
                 var childId = value[keys[0]];
@@ -99,7 +101,7 @@ $(document).ready(function(){
                     if (keys[i] == 'education'){
                         // console.log("first element of string: " + value[keys[i]].charAt(0));
                         // console.log("count string length: " + value[keys[i]] + '-' + value[keys[i]].length);
-                        console.log("remove first element: " + value[keys[i]].substring(1));
+                        // console.log("remove first element: " + value[keys[i]].substring(1));
 
                         if(value[keys[i]].length >= 2){
                             if(value[keys[i]].charAt(0) == 6 ){
@@ -252,7 +254,6 @@ $(document).ready(function(){
             'Athorization': $.cookie('access_token')    // check if authorize for this action
         },
         success: function(data) {
-            console.log(data);
             var childData = data['children']
             $.each(childData , function(key ,value){
                 var query = '';
@@ -420,7 +421,9 @@ $(document).ready(function(){
     $('#childList').on('click' , '.editBtn' , function(e){
         e.preventDefault();
 
-        $('#sendChildData').attr("disabled", true);
+        $('#sendChildData').prop("disabled", true);
+        $('#ngo_id').prop("disabled", true);
+        $('#social_worker_id').prop("disabled", true);
         edit_childId = $(this).parent().attr('id');
         console.log("child id get value: " + edit_childId);
 
@@ -434,22 +437,24 @@ $(document).ready(function(){
                 'Athorization': $.cookie('access_token')    // check if authorize for this action
             },
             success: function (data) {
-                console.log(data);
+                // console.log(data);
 
+                $('#ngo_id').val(data['id_ngo']).change();
+                $('#social_worker_id').val(data['id_social_worker']).change();
                 $('#SAY_name').val(data['sayName']);
                 $('#child_first_name').val(data['firstName']);
                 $('#child_last_name').val(data['lastName']);
-                $('#child_gender').val(data['gender']);
-                $('#child_nationality').val(data['nationality']);
-                $('#child_country').val(data['country']);
-                $('#child_city').val(data['city']);
+                $('#child_gender').val(data['gender']).change();
+                $('#child_nationality').val(data['nationality']).change();
+                $('#child_country').val(data['country']).change();
+                $('#child_city').val(data['city']).change();
                 $('#child_address').val(data['address']);
                 $('#child_birthdate').val(data['birthDate']);
                 $('#child_birthplace').val(data['birthPlace']);
                 $('#family_count').val(data['familyCount']);
                 //education??
                 $('#child_phone_number').val(data['phoneNumber']);
-                $('#housing_status').val(data['housingStatus']);
+                $('#housing_status').val(data['housingStatus']).change();
                 $('#child_story').val(data['bio']);
                 $('#child_story_summary').val(data['bioSummary']);
 

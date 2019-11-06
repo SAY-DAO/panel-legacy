@@ -6,7 +6,7 @@ $(document).ready(function(){
 
     // Get Children Needs by child id
 
-    var keys = ['id' , 'child_id' , 'ChildName' , 'name' , 'cost' , 'paid' , 'progress' , 'imageUrl' , 'isUrgent' , 'category' , 'description' , 'descriptionSummary' , 'doing_duration' , 'type' , 'affiliateLinkUrl' , 'receipts' , 'createdAt' , 'isConfirmed' , 'confirmDate' , 'lastUpdate']
+    var keys = ['id' , 'child_id' , 'ChildName' , 'name' , 'cost' , 'paid' , 'progress' , 'imageUrl' , 'details' , 'isUrgent' , 'category' , 'description' , 'descriptionSummary' , 'doing_duration' , 'type' , 'affiliateLinkUrl' , 'receipts' , 'createdAt' , 'isConfirmed' , 'confirmDate' , 'lastUpdate']
 
     $('#child_need_select').change(function() {
         var selected_child = $(this).val();
@@ -20,7 +20,7 @@ $(document).ready(function(){
             },
             success: function(data) {
                 console.log('option:' + selected_child);
-                console.log(data);
+                // console.log(data);
                 $.each(data, function(key, value){
                     var needId = value[keys[0]];
     
@@ -124,7 +124,7 @@ $(document).ready(function(){
     })
 
 
-    // get pre defined needs of children in need forms
+    // get Pre-defined needs of children in need forms drop down
 
     $.ajax({
         url: SAYApiUrl + '/child/need/childId=104&confirm=2',
@@ -135,7 +135,7 @@ $(document).ready(function(){
             'Athorization': $.cookie('access_token')    // check if authorize for this action
         },
         success: function(data) {
-            console.log("predefined needs", data);
+            // console.log("predefined needs", data);
 
             $.each(data, function(key, value){
                 var query = '';
@@ -149,12 +149,14 @@ $(document).ready(function(){
     })
 
     
-    // need form fill out with pre defined need data
+    // need form fill out with Pre-defined need data
     
     $('#pre_need_id').change(function() {
         $('#need_name').prop("disabled", true);
         $('#need_description').prop("disabled", true);
         $('#need_description_summary').prop("disabled", true);
+        $('#need_category').prop("disabled", true);
+        $('#need_type').prop("disabled", true);
         
         var selected_need = $(this).val();
         $.ajax({
@@ -166,18 +168,25 @@ $(document).ready(function(){
                 'Athorization': $.cookie('access_token')    // check if authorize for this action
             },
             success: function(data) {
-                console.log(data);
+                // console.log(data);
+
+                var need_icon = baseUrl + data['imageUrl'];
 
                 $('#need_name').val(data['name']);
-                $('#need_category').val(data['category']);
-                $('#need_type').val(data['type']);
+                $('#need_category').val(data['category']).change();
+                $('#need_type').val(data['type']).change();
+                $('#is_urgent').val(data['isUrgent']).change();
                 $('#need_cost').val(data['cost']);
                 $('#need_description').val(data['description']);
                 $('#need_description_summary').val(data['descriptionSummary']);
+                $('#need_details').val(data['details']);
 
-                $('#need_icon').val(data['imageUrl']);
+                // need_icon.addEventListener('loadImage', function() {
+                //     $('#need_icon').val(need_icon);
+                // }, false)
+                
+                // console.log("icon: ", $('#need_icon').val());
 
-                // $('#need_type').find('option[value = "' + data['type'] + '"]').attr("selected", "selected");
             },
             error: function(data) {
                 console.log(data.responseJSON.message);
@@ -197,16 +206,17 @@ $(document).ready(function(){
         var imageUrl = $('#need_icon')[0].files[0];
         var category = $('#need_category').val();
         var cost = $('#need_cost').val();
+        var details = $('#need_details').val();
         var description = $('#need_description').val();
         var descriptionSummary = $('#need_description_summary').val();
         var type = $('#need_type').val();
         var doing_duration = $('#need_doing_duration').val();
-        var isUrgent = '';
-        if($('#is_urgent').is(":checked")){
-            isUrgent = true;
-        }else{
-            isUrgent = false;
-        }
+        var isUrgent = $('#is_urgent').val();        
+        // if($('#is_urgent').is(":checked")){
+        //     isUrgent = true;
+        // }else{
+        //     isUrgent = false;
+        // }
 
         var affiliateLinkUrl = $('#affiliate_link').val();
         var receipts = $('#need_receipts')[0].files[0];
@@ -216,6 +226,7 @@ $(document).ready(function(){
         form_data.append('name', name);
         form_data.append('category', category);
         form_data.append('cost', cost);
+        form_data.append('details', details);
         form_data.append('description', description);
         form_data.append('descriptionSummary', descriptionSummary);
         form_data.append('type', type);
@@ -247,7 +258,7 @@ $(document).ready(function(){
                 return confirm("You are about to add new need.\nAre you sure?");                
             },
             success: function(data)  {
-                console.log(data);
+                // console.log(data);
                 // alert("Success\n" + JSON.stringify(data));
                 alert("Success\nNeed added successfully!");
                 location.reload(true);
@@ -320,17 +331,19 @@ $(document).ready(function(){
                 'Athorization': $.cookie('access_token')    // check if authorize for this action
             },
             success: function(data) {
-                console.log(data);
-                $('#child_id').val(data['child_id']);
+                // console.log(data);
+
+                $('#child_id').val(data['child_id']).change();
                 $('#need_name').val(data['name']);
-                $('#need_category').val(data['category']);
+                $('#need_category').val(data['category']).change();
                 $('#need_cost').val(data['cost']);
+                $('#need_details').val(data['details']);
                 $('#need_description').val(data['description']);
                 $('#need_description_summary').val(data['descriptionSummary']);
-                $('#need_type').val(data['type']);
+                $('#need_type').val(data['type']).change();
                 $('#affiliate_link').val(data['affiliateLinkUrl']);
-                $('#is_urgent').val(data['isUrgent']);
                 $('#need_doing_duration').val(data['doing_duration']);
+                $('#is_urgent').val(data['isUrgent']).change();
 
             },
             error: function() {
@@ -351,16 +364,17 @@ $(document).ready(function(){
         var imageUrl = $('#need_icon')[0].files[0];
         var category = $('#need_category').val();
         var cost = $('#need_cost').val();
+        var details = $('#need_details').val();
         var description = $('#need_description').val();
         var descriptionSummary = $('#need_description_summary').val();
         var type = $('#need_type').val();
         var doing_duration = $('#need_doing_duration').val();
-        var isUrgent = '';
-        if($('#is_urgent').is(":checked")){
-            isUrgent = true;
-        }else{
-            isUrgent = false;
-        }
+        var isUrgent = $('#is_urgent').val();
+        // if($('#is_urgent').is(":checked")){
+        //     isUrgent = true;
+        // }else{
+        //     isUrgent = false;
+        // }
         var affiliateLinkUrl = $('#affiliate_link').val();
         var receipts = $('#need_receipts')[0].files[0];
 
@@ -377,6 +391,9 @@ $(document).ready(function(){
         }
         if(cost) {
             form_data.append('cost', cost);
+        }
+        if(details) {
+            form_data.append('details', details);
         }
         if(description) {
             form_data.append('description', description);

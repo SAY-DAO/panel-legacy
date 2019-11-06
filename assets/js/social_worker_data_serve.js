@@ -16,7 +16,7 @@ $(document).ready(function(){
             'Athorization': $.cookie('access_token')    // check if authorize for this action
         },
         success: function(data) {
-            console.log(data);
+            // console.log(data);
 
             $.each(data , function(key , value){
                 var socialworkerId = value[keys[0]];
@@ -117,7 +117,7 @@ $(document).ready(function(){
             
         },
         error: function(data) {
-            console.log(data);
+            console.log(data.responseJSON.message);
         }
 })
 
@@ -220,7 +220,7 @@ $(document).ready(function(){
                 console.log(data);
                 alert("Success\n" + JSON.stringify(data['message']));
                 // alert("Success\n" + data.responseJSON.message);                
-                location.reload();
+                location.reload(true);
             },
             error: function(data) {
                 bootbox.alert({
@@ -255,17 +255,17 @@ $(document).ready(function(){
                 'Athorization': $.cookie('access_token')    // check if authorize for this action
             },
             success: function(data) {
-                console.log(data);
+                // console.log(data);
                 $('#social_worker_first_name').val(data['firstName']);
                 $('#social_worker_last_name').val(data['lastName']);
-                $('#social_worker_type').val(data['id_type']);
-                $('#social_worker_ngo').val(data['id_ngo']);
+                $('#social_worker_type').val(data['id_type']).change();
+                $('#social_worker_ngo').val(data['id_ngo']).change();
                 $('#social_worker_certificate_number').val(data['birthCertificateNumber']);
-                $('#social_worker_country').val(data['country']);
-                $('#social_worker_city').val(data['city']);
+                $('#social_worker_country').val(data['country']).change();
+                $('#social_worker_city').val(data['city']).change();
                 $('#social_worker_id_number').val(data['idNumber']);
                 $('#social_worker_passport_number').val(data['passportNumber']);
-                $('#social_worker_gender').val(data['gender']);
+                $('#social_worker_gender').val(data['gender']).change();
                 $('#social_worker_birth_date').val(data['birthDate']);
                 $('#social_worker_phone_number').val(data['phoneNumber']);
                 $('#social_worker_emergency_phone_number').val(data['emergencyPhoneNumber']);
@@ -412,7 +412,7 @@ $(document).ready(function(){
             },
             success: function(data) {
                 alert("Success\nThe user " + edit_socialworkerId + " updated successfully\n" + JSON.stringify(data.message));
-                location.reload();
+                location.reload(true);
             },
             error: function(data) {
                 bootbox.alert({
@@ -448,7 +448,7 @@ $(document).ready(function(){
             'Athorization': $.cookie('access_token')    // check if authorize for this action
         },
         success: function(data) {
-            console.log(data);
+            // console.log(data);
             $.each(data , function(key ,value){
                 var query = '';
                     query += '<option value="' + value[keys[0]] + '">' + value[keys[1]] + ' | ' + value[keys[2]] + ' ' + value[keys[3]] + '</option>';
@@ -457,7 +457,7 @@ $(document).ready(function(){
             })
         },
         error: function(data) {
-            console.log(data);
+            console.log(data.responseJSON.message);
         }
     })
 
