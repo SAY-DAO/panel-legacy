@@ -27,7 +27,7 @@ $(document).ready(function(){
                 <td id="' + socialworkerId + '">\
                 <button type="submit" class="btn btn-embossed btn-success btn-block btn-sm confirmBtn" disabled>Confirm</button>\
                 <button class="btn btn-embossed btn-primary btn-block btn-sm editBtn" onclick="editScroll()">Edit</button>\
-                <button class="btn btn-embossed btn-danger btn-block btn-sm" disabled>Delete</button>\
+                <button class="btn btn-embossed btn-danger btn-block btn-sm deleteBtn">Delete</button>\
                 </td>';
                 
                 for(var i = 1 ; i < keys.length ; i++){
@@ -119,8 +119,33 @@ $(document).ready(function(){
         error: function(data) {
             console.log(data.responseJSON.message);
         }
-})
+    })
 
+
+    // Get social workers list for drop down menue in forms
+
+    $.ajax({
+        url: SAYApiUrl + '/socialWorker/all',
+        method: 'GET',
+        dataType: 'json',
+        headers : {
+            'Access-Control-Allow-Origin'  : baseUrl,
+            'Athorization': $.cookie('access_token')    // check if authorize for this action
+        },
+        success: function(data) {
+            // console.log(data);
+            $.each(data , function(key ,value){
+                var query = '';
+                    query += '<option value="' + value[keys[0]] + '">' + value[keys[4]] + ' | ' + value[keys[2]] + ' ' + value[keys[3]] + '</option>';
+                $('#social_worker_id').append(query);
+                $('#coordinator_id').append(query);
+                // console.log("Social worker field query:" + query);
+            })
+        },
+        error: function(data) {
+            console.log(data.responseJSON.message);
+        }
+    })
 
 
     // Adding new Social worker
@@ -233,7 +258,6 @@ $(document).ready(function(){
     })
 
 
-
     // Edit a social worker
 
     $('#socialWorkerList').on('click' , '.editBtn' , function(e){
@@ -285,7 +309,7 @@ $(document).ready(function(){
         })
     })
 
-    // confirm edit social worker
+    // confirm Edit social worker
     $('#editSocialWorkerData').on('click' , function(e) {
         e.preventDefault();
         
@@ -426,39 +450,37 @@ $(document).ready(function(){
     })  //end of 'confirm edit' function
 
 
+    // Delete a social worker
 
-})
+    $('#socialWorkerList').on('click' , '.deleteBtn' , function(e) {
+        e.preventDefault();
 
+        var socialworkerId = $(this).parent().attr('id');
+        console.log(socialworkerId);
 
-//Social worker drop down field in forms
-
-$(document).ready(function(){
-    isAthorized();
-    
-    var keys = ['id' , 'userName' , 'firstName' , 'lastName']
-
-    // getting Social workesr's id and name from DB
-    
-    $.ajax({
-        url: SAYApiUrl + '/socialWorker/all',
-        method: 'GET',
-        dataType: 'json',
-        headers : {
-            'Access-Control-Allow-Origin'  : baseUrl,
-            'Athorization': $.cookie('access_token')    // check if authorize for this action
-        },
-        success: function(data) {
-            // console.log(data);
-            $.each(data , function(key ,value){
-                var query = '';
-                    query += '<option value="' + value[keys[0]] + '">' + value[keys[1]] + ' | ' + value[keys[2]] + ' ' + value[keys[3]] + '</option>';
-                $('#social_worker_id').append(query);
-                // console.log("Social worker field query:" + query);
-            })
-        },
-        error: function(data) {
-            console.log(data.responseJSON.message);
-        }
+        $.ajax({
+            url: SAYApiUrl + '/socialWorker/delete/socialWorkerId=' + socialworkerId,
+            method: 'PATCH',
+            headers : {
+                'Access-Control-Allow-Origin'  : baseUrl,
+                'Athorization': $.cookie('access_token')    // check if authorize for this action
+            },
+            cache: false,
+            processData: false,
+            contentType: false,
+            beforeSend: function(){
+                return confirm("You are about to DELETE the penel user.\nAre you sure?");
+            },
+            success: function(data) {
+                alert("Success\n" + JSON.stringify(data.message));
+                location.reload();
+            },
+            error: function(data) {
+                bootbox.alert({
+                    title: "Error!",
+                    message: data.responseJSON.message,
+                });
+            }
+        })
     })
-
 })

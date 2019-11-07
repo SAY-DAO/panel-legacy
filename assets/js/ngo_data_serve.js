@@ -134,7 +134,7 @@ $(document).ready(function(){
         var name = $('#ngo_name').val();
         var country = $('#ngo_country').val();
         var city = $('#ngo_city').val();
-        var coordinatorId = '10';
+        var coordinatorId = $('#coordinator_id').val();
         var postalAddress = $('#ngo_address').val();
         var phoneNumber = $('#ngo_phone_number').val();
         var emailAddress = $('#ngo_email').val();
@@ -206,12 +206,13 @@ $(document).ready(function(){
             success: function(data) {
                 // console.log(data);
                 $('#ngo_name').val(data['name']);
-                $('#ngo_country').val(data['country']);
-                $('#ngo_city').val(data['city']);
+                $('#ngo_country').val(data['country']).change();
+                $('#ngo_city').val(data['city']).change();
                 $('#ngo_address').val(data['postalAddress']);
                 $('#ngo_phone_number').val(data['phoneNumber']);
                 $('#ngo_email').val(data['emailAddress']);
                 $('#ngo_website').val(data['website']);
+                $('#coordinator_id').val(data['coordinatorId']).change();
                 $('#ngo_current_social_worker_count').val(data['currentSocialWorkerCount']);
                 $('#ngo_current_child_count').val(data['currentChildrenCount']);
             },
@@ -236,6 +237,7 @@ $(document).ready(function(){
         var emailAddress = $('#ngo_email').val();
         var website = $('#ngo_website').val();
         var logoUrl = $('#ngo_logo')[0].files[0];
+        var coordinatorId = $('#coordinator_id').val();
         
         // append datas to a Form Data
         var form_data = new FormData();
@@ -262,6 +264,9 @@ $(document).ready(function(){
         }
         if(logoUrl){
             form_data.append('logoUrl', logoUrl);
+        }
+        if(coordinatorId){
+            form_data.append('coordinatorId', coordinatorId);
         }
 
         console.log(form_data);

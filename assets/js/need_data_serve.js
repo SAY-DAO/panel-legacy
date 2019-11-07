@@ -180,6 +180,8 @@ $(document).ready(function(){
                 $('#need_description').val(data['description']);
                 $('#need_description_summary').val(data['descriptionSummary']);
                 $('#need_details').val(data['details']);
+                $('#need_doing_duration').val(data['doing_duration']);
+                // $('#need_icon').val(need_icon);
 
                 // need_icon.addEventListener('loadImage', function() {
                 //     $('#need_icon').val(need_icon);

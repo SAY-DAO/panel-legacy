@@ -59,7 +59,7 @@
               <div class="user-details">
                 <h4 class="user_fullName"></h4>
                 <div class="user-login">
-                    <a href="profile.html"><button class="btn btn-xs btn-rounded" type="button">
+                    <a href="profile.html" class="profile_page"><button class="btn btn-xs btn-rounded" type="button">
                         <span>پروفایل کاربری</span>
                     </button></a>
                 </div>
@@ -67,17 +67,17 @@
             </div>
 </div>
           <ul class="nav nav-sidebar">
-            <li class="tm"><a href="dashboard.html"><i class="icon-home"></i><span>داشبورد</span></a></li>
-            <li class="tm"><a href="children.html"><i class="fa fa-child"></i><span>کودکان من</span></a></li>
-            <li class="tm"><a href="needs.html"><i class="fa fa-heart-o"></i><span>نیازها</span></a></li>
-            <li class="tm privilege1"><a href="reports.html"><i class="fa icon-bar-chart"></i><span>گزارش</span></a></li>
-            <li class="tm privilege1"><a href="social_worker.html"><i class="fa icon-users"></i><span>مددکاران</span></a></li>
+            <li class="tm"><a href="dashboard.html" class="dashboard_page"><i class="icon-home"></i><span>داشبورد</span></a></li>
+            <li class="tm"><a href="children.html" class="children_page"><i class="fa fa-child"></i><span>کودکان من</span></a></li>
+            <li class="tm"><a href="needs.html" class="needs_page"><i class="fa fa-heart-o"></i><span>نیازها</span></a></li>
+            <li class="tm privilege1"><a href="reports.html" class="reports_page"><i class="fa icon-bar-chart"></i><span>گزارش</span></a></li>
+            <li class="tm privilege1"><a href="social_worker.html" class="social_worker_page"><i class="fa icon-users"></i><span>مددکاران</span></a></li>
             
             <li class="tm nav-active active nav-parent privilege1">
               <a href=""><i class="fa fa-edit"></i><span>تنظیمات</span> <span class="fa arrow"></span></a>
               <ul class="children collapse">
-                <li><a href="needcat.html">دسته بندی</a></li>
-                <li class="active"><a href="ngo.html">انجمن</a></li>
+                <li><a href="needcat.html" class="needcat_page">دسته بندی</a></li>
+                <li class="active"><a href="ngo.html" class="ngo_page">انجمن</a></li>
               </ul>
             </li>
             
@@ -327,7 +327,7 @@
                 <div class="header">
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
-                            <li><a href="dashboard.html">صفحه اصلی</a></li>
+                            <li><a href="dashboard.html" class="dashboard_page">صفحه اصلی</a></li>
                             <li><a href="">تنظیمات</a></li>
                             <li class="active">انجمن</li>
                         </ol>
@@ -383,15 +383,7 @@
                                 </div>
                               </div>
 
-                              <!-- <div class="col-sm-4">
-                                <div class="form-group">
-                                  <label for="ngo_cordinator" class="control-label">هماهنگ کننده انجمن</label>
-                                  <div class="append-icon">
-                                    <input type="number" class="form-control" id="ngo_cordinator" name="ngo_cordinator" placeholder="نام هماهنگ کننده انجمن را وارد نمایید" required>
-                                    <i class="fa fa-user"></i>
-                                  </div>
-                                </div>
-                              </div> -->
+                              
 
                               <div class="col-md-4 col-sm-6">
                                 <div class="form-group">
@@ -440,6 +432,17 @@
 
                                       <input type="text" class="form-control" id="ngo_logo_url" placeholder="هیج فایلی انتخاب نشده است" readonly="">
                                     </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="col-md-4 col-sm-6">
+                                <div class="form-group">
+                                  <label for="coordinator_id" class="control-label">هماهنگ کننده‌ی انجمن <span class="required">*</span></label>
+                                  <div class="option-group">
+                                    <select id="coordinator_id" name="coordinator_id" class="form-control" required>
+                                      <option value="">هماهنگ کننده‌ی انجمن را انتخاب نمایید</option>
+                                    </select>
                                   </div>
                                 </div>
                               </div>
@@ -1101,7 +1104,9 @@
 <script src="../builder/page-builder/plugins/slider-pips/jquery-ui-slider-pips.min.js"></script>
 <script src="../builder/page-builder/plugins/saveas/saveAs.js"></script>
 <script src="../builder/page-builder/js/builder_page.js"></script>
+
 <script src="assets/js/ngo_data_serve.js"></script>  <!--NGO data feed-->
+<script src="assets/js/social_worker_data_serve.js"></script>  <!--drop down field feed in NGO form-->
 <!-- <script src="assets/js/country_data_serve.js"></script>  Country data feed -->
 
 <script src="assets/js/config.js"></script>  <!--url configurations-->
