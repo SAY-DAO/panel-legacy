@@ -30,12 +30,13 @@ $(document).ready(function(){
         success: function(data) {
 
             // console.log(data);
-            var childData = data['children']
+            var childData = data['children'];
             
             // console.log("child data: ", childData[0]['id_social_worker']);
 
             $.each(childData , function(key ,value){
                 var childId = value[keys[0]];
+                var confirmStatus = -1;
 
                 // first td for row count numbers, second td for operational buttons
                 var query = '<tr>\
@@ -190,7 +191,7 @@ $(document).ready(function(){
                     if(keys[i] == 'isConfirmed'){
                         if(value[keys[i]] == true){
                             value[keys[i]] = 'Confirmed';
-                            // $('#' + childId).find('.confirmBtn').attr("disabled", true);
+                            confirmStatus = 1;
                         }
                         if(value[keys[i]] == false){
                             value[keys[i]] = 'Not confirmed';
@@ -224,18 +225,13 @@ $(document).ready(function(){
                 $('#childList').append(query);
                 hasPrivilege();
 
+                // disable confirm button if the child has confirmed already!
+                if(confirmStatus == 1){
+                        $('#' + childId).find('.confirmBtn').prop("disabled", true);
+                }
                 
             })
 
-            // trying to disable confirm button if the child has confirmed already!
-
-            // if(confirmStatus == 1){
-            //     // $('#' + childId).attr("disabled" , "disabled");
-            //     $('#' + childId).on('click' , function(e){
-            //         e.preventDefault();
-            //         console.log("confirmStatus:" + confirmStatus);
-            //     })
-            // }
         },
         error: function(data) {
             console.log(data.responseJSON.message);

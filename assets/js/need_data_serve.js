@@ -23,6 +23,7 @@ $(document).ready(function(){
                 // console.log(data);
                 $.each(data, function(key, value){
                     var needId = value[keys[0]];
+                    var confirmStatus = -1;
     
                     // first td for row count numbers, second td for operational buttons
                     var query = '<tr>\
@@ -100,12 +101,10 @@ $(document).ready(function(){
                         if (keys[i] == 'isConfirmed') {
                             if(value[keys[i]] == false){
                                 value[keys[i]] = 'Not confirmed';
-                                
                             }
                             if(value[keys[i]] == true){
                                 value[keys[i]] = 'Confirmed';
-                                // $('.confirmBtn').attr("disabled", true);
-
+                                confirmStatus = 1;
                             }
                         }
 
@@ -114,6 +113,11 @@ $(document).ready(function(){
                     query += '</tr>';
                     $('#needList').append(query);
                     hasPrivilege();
+
+                    // disable confirm button if the need has confirmed already!
+                    if(confirmStatus == 1){
+                        $('#' + needId).find('.confirmBtn').prop("disabled", true);
+                    }
                 })
             },
             error: function(data) {
