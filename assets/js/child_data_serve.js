@@ -14,7 +14,7 @@ $(document).ready(function(){
         child_id_url = '/child/all/confirm=1';
     }
     
-    var keys = ['id' , 'generatedCode' , 'avatarUrl' , 'sleptAvatarUrl' , 'voiceUrl' , 'firstName' , 'lastName' , 'birthDate' , 'sayName' , 'country' , 'city' , 'gender' , 'bio' , 'bioSummary' , 'birthPlace' , 'nationality' , 'familyCount' , 'sayFamilyCount' , 'education' , 'housingStatus' , 'id_ngo' , 'id_social_worker' , 'phoneNumber' , 'address' , 'doneNeedCount' , 'spentCredit' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'createdAt' , 'lastUpdate']
+    var keys = ['id' , 'generatedCode' , 'avatarUrl' , 'sleptAvatarUrl' , 'voiceUrl' , 'firstName' , 'lastName' , 'doneNeedCount' , 'spentCredit' , 'birthDate' , 'sayName' , 'country' , 'city' , 'gender' , 'bio' , 'bioSummary' , 'birthPlace' , 'nationality' , 'familyCount' , 'sayFamilyCount' , 'education' , 'housingStatus' , 'id_ngo' , 'id_social_worker' , 'phoneNumber' , 'address' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'createdAt' , 'lastUpdate']
     
 
     // Get all Children
@@ -53,6 +53,10 @@ $(document).ready(function(){
                         value[keys[i]] = nullValues();
                     }
                     
+                    if(keys[i] == 'doneNeedCount'){
+                        value[keys[i]] = value[keys[i]] + " Done";
+                    }
+
                     if(keys[i] == 'birthDate'){
                         value[keys[i]] = getAge(value[keys[i]]) + " Years old";
                     }
