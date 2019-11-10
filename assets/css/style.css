@@ -184,6 +184,12 @@ tbody td{
   text-decoration: none !important;
 }
 
+.doneNeed{  /*SAY*/
+  color: green !important;
+  /* font-size: 12px; */
+  /* text-decoration: none !important; */
+}
+
 .select2-container .select2-choice{ /*say added*/
   height: 37px  !important;
   border-radius: 2px !important;
