@@ -35,14 +35,18 @@ $(document).ready(function(){
                         value[keys[i]] = value[keys[i]] + " days";
                     }
 
-                    if (keys[i] == 'progress') {
-                        // if (value[keys[i]] == '100') {
-                            // value[keys[i]] = doneNeed(value[keys[i]]);
-                            // $(this).addClass('doneNeed');
-                        // }
-                        value[keys[i]] = value[keys[i]] + '%';
+                    if(keys[i] == 'affiliateLinkUrl') {
+                        if(value[keys[i]] != null) {
+                            value[keys[i]] = linkTo(value[keys[i]]);
+                        }
                     }
-                    
+
+                    if(keys[i] == 'receipts') {
+                        if(value[keys[i]] != null) {
+                            value[keys[i]] = getFile(value[keys[i]]);
+                        }
+                    }
+
                     query += '<td>' + value[keys[i]] + '</td>';
                 }
                 query += '</tr>';
