@@ -2,7 +2,7 @@ $(document).ready(function(){
     isAthorized();
     hasPrivilege();
 
-    var keys = ['id' , 'name' , 'imageUrl' , 'childGeneratedCode' , 'cost' , 'details' , 'doing_duration' , 'affiliateLinkUrl' , 'ngoName' , 'ngoAddress' , 'receipts' , 'doneAt'];
+    var keys = ['id' , 'name' , 'imageUrl' , 'childGeneratedCode' , 'childFirstName' , 'childLastName' , 'cost' , 'details' , 'doing_duration' , 'affiliateLinkUrl' , 'ngoName' , 'ngoAddress' , 'receipts' , 'doneAt'];
 
     $.ajax({
         url: SAYApiUrl + '/need/all/confirm=2?done=1',
