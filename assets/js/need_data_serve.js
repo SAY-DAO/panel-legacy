@@ -6,7 +6,7 @@ $(document).ready(function(){
 
     // Get Children Needs by child id
 
-    var keys = ['id' , 'child_id' , 'ChildName' , 'name' , 'cost' , 'paid' , 'progress' , 'status' , 'imageUrl' , 'details' , 'isUrgent' , 'category' , 'description' , 'descriptionSummary' , 'doing_duration' , 'type' , 'affiliateLinkUrl' , 'receipts' , 'createdAt' , 'isConfirmed' , 'confirmDate' , 'lastUpdate']
+    var keys = ['id' , 'child_id' , 'ChildName' , 'name' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'details' , 'isUrgent' , 'category' , 'description' , 'descriptionSummary' , 'doing_duration' , 'type' , 'affiliateLinkUrl' , 'receipts' , 'createdAt' , 'isConfirmed' , 'confirmDate' , 'lastUpdate']
 
     $('#child_need_select').change(function() {
         var selected_child = $(this).val();
