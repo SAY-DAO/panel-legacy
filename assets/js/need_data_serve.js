@@ -6,7 +6,7 @@ $(document).ready(function(){
 
     // Get Children Needs by child id
 
-    var keys = ['id' , 'child_id' , 'ChildName' , 'name' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'details' , 'isUrgent' , 'category' , 'description' , 'descriptionSummary' , 'doing_duration' , 'type' , 'affiliateLinkUrl' , 'link' , 'receipts' , 'createdAt' , 'isConfirmed' , 'confirmDate' , 'lastUpdate']
+    var keys = ['id' , 'child_id' , 'ChildName' , 'name' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'type' , 'details' , 'isUrgent' , 'category' , 'description' , 'descriptionSummary' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'receipts' , 'createdAt' , 'isConfirmed' , 'confirmDate' , 'lastUpdate']
 
     $('#child_need_select').change(function() {
         var selected_child = $(this).val();
@@ -24,6 +24,7 @@ $(document).ready(function(){
                 $.each(data, function(key, value){
                     var needId = value[keys[0]];
                     var confirmStatus = -1;
+                    var needType = -1;
     
                     // first td for row count numbers, second td for operational buttons
                     var query = '<tr>\
@@ -67,6 +68,62 @@ $(document).ready(function(){
                             value[keys[i]] = value[keys[i]] + '%'
                         }
 
+                        if (keys[i] == 'type') {
+                            needType = value[keys[i]];
+                            console.log("needType: ", needType);
+                            if(value[keys[i]] == 0){
+                                value[keys[i]] = 'Service';
+                            }
+                            if(value[keys[i]] == 1){
+                                value[keys[i]] = 'Product';
+                            }
+                        }
+
+                        if (keys[i] == 'status') {
+                            if(value[keys[i]] == 0){
+                                value[keys[i]] = 'Not paid';
+                            }
+                            if(value[keys[i]] == 1){
+                                value[keys[i]] = needInProgress('Almost there');
+                            }
+                            if(value[keys[i]] == 2){
+                                value[keys[i]] = doneNeed('One more Done!');
+                            }
+                            // }else if(value[keys[i]] == 3 && needType == 0){
+                            //     console.log(value[keys[i]]);
+                            //     value[keys[i]] = 'NGO received the money.';
+                            // }else if(value[keys[i]] == 4 && needType == 0){
+                            //     value[keys[i]] = 'Service avalable for the child.';
+                            // }else if(value[keys[i]] == 3 && needType == 1){
+                            //     value[keys[i]] = 'Need purchased.';
+                            // }else if(value[keys[i]] == 4 && needType == 1){
+                            //     value[keys[i]] = 'NGO received the Need.';
+                            // }else if(value[keys[i]] == 5 && needType == 1){
+                            //     value[keys[i]] = 'Delivered to the child.';
+                            // }
+
+
+                            // if(needType == 0){
+                            //     if(value[keys[i]] == 3){
+                            //         value[keys[i]] = 'NGO received the money.';
+                            //     }
+                            //     if(value[keys[i]] == 4){
+                            //         value[keys[i]] = 'Service avalable for the child.';
+                            //     }
+                            // }
+                            // if(needType == 1){
+                            //     if(value[keys[i]] == 3){
+                            //         value[keys[i]] = 'Need purchased.';
+                            //     }
+                            //     if(value[keys[i]] == 4){
+                            //         value[keys[i]] = 'NGO received the Need.';
+                            //     }
+                            //     if(value[keys[i]] == 5){
+                            //         value[keys[i]] = 'Delivered to the child.';
+                            //     }
+                            // }
+                        }
+
                         if (keys[i] == 'isUrgent') {
                             if(value[keys[i]] == false){
                                 value[keys[i]] = 'Not urgent';
@@ -88,15 +145,6 @@ $(document).ready(function(){
                             }
                             if(value[keys[i]] == 3){
                                 value[keys[i]] = 'Surroundings';
-                            }
-                        }
-
-                        if (keys[i] == 'type') {
-                            if(value[keys[i]] == 0){
-                                value[keys[i]] = 'Service';
-                            }
-                            if(value[keys[i]] == 1){
-                                value[keys[i]] = 'Product';
                             }
                         }
 

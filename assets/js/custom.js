@@ -20,11 +20,15 @@ function nullValues(){
     return value;
 }
 
-function doneNeed(progress) {
-    var value = '<span class="doneNeed">' + progress + '</span>';
+function doneNeed(status) {
+    var value = '<span class="doneNeed">' + status + '</span>';
     return value;
 }
 
+function needInProgress(status) {
+    var value = '<span class="needInProgress">' + status + '</span>';
+    return value;
+}
 
 // get the file url and return the tag to show it on html
 

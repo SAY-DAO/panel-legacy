@@ -185,7 +185,11 @@ tbody td{
 }
 
 .doneNeed{  /*SAY*/
-  color: green !important;
+  color: #00c213 !important;
+}
+
+.needInProgress{
+  color: #ffcc00 !important;
 }
 
 .select2-container .select2-choice{ /*say added*/
