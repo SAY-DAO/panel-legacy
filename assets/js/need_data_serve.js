@@ -6,7 +6,7 @@ $(document).ready(function(){
 
     // Get Children Needs by child id
 
-    var keys = ['id' , 'child_id' , 'ChildName' , 'name' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'details' , 'isUrgent' , 'category' , 'description' , 'descriptionSummary' , 'doing_duration' , 'type' , 'affiliateLinkUrl' , 'receipts' , 'createdAt' , 'isConfirmed' , 'confirmDate' , 'lastUpdate']
+    var keys = ['id' , 'child_id' , 'ChildName' , 'name' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'details' , 'isUrgent' , 'category' , 'description' , 'descriptionSummary' , 'doing_duration' , 'type' , 'affiliateLinkUrl' , 'link' , 'receipts' , 'createdAt' , 'isConfirmed' , 'confirmDate' , 'lastUpdate']
 
     $('#child_need_select').change(function() {
         var selected_child = $(this).val();
@@ -57,6 +57,12 @@ $(document).ready(function(){
                             value[keys[i]] = value[keys[i]] + ' Toman'
                         }
 
+                        if (keys[i] == 'affiliateLinkUrl' || keys[i] == 'link') {
+                            if(value[keys[i]] != null) {
+                                value[keys[i]] = linkTo(value[keys[i]]);
+                            }
+                        }
+
                         if (keys[i] == 'progress') {
                             value[keys[i]] = value[keys[i]] + '%'
                         }
@@ -87,10 +93,10 @@ $(document).ready(function(){
 
                         if (keys[i] == 'type') {
                             if(value[keys[i]] == 0){
-                                value[keys[i]] = 'Donate';
+                                value[keys[i]] = 'Service';
                             }
                             if(value[keys[i]] == 1){
-                                value[keys[i]] = 'Affiliate';
+                                value[keys[i]] = 'Product';
                             }
                         }
 
@@ -185,6 +191,8 @@ $(document).ready(function(){
                 $('#need_description_summary').val(data['descriptionSummary']);
                 $('#need_details').val(data['details']);
                 $('#need_doing_duration').val(data['doing_duration']);
+                $('#affiliate_link').val(data['affiliateLinkUrl']);
+                $('#direct_link').val(data['link']);
                 // $('#need_icon').val(need_icon);
 
                 // need_icon.addEventListener('loadImage', function() {
@@ -225,6 +233,7 @@ $(document).ready(function(){
         // }
 
         var affiliateLinkUrl = $('#affiliate_link').val();
+        var link = $('#link').val();
         var receipts = $('#need_receipts')[0].files[0];
 
         var form_data = new FormData();
@@ -240,6 +249,9 @@ $(document).ready(function(){
 
         if(affiliateLinkUrl){
             form_data.append('affiliateLinkUrl', affiliateLinkUrl);
+        }
+        if(link){
+            form_data.append('link', link);
         }
         if(receipts){
             form_data.append('receipts', receipts);
@@ -348,6 +360,7 @@ $(document).ready(function(){
                 $('#need_description_summary').val(data['descriptionSummary']);
                 $('#need_type').val(data['type']).change();
                 $('#affiliate_link').val(data['affiliateLinkUrl']);
+                $('#direct_link').val(data['link']);
                 $('#need_doing_duration').val(data['doing_duration']);
                 $('#is_urgent').val(data['isUrgent']).change();
 
@@ -382,6 +395,7 @@ $(document).ready(function(){
         //     isUrgent = false;
         // }
         var affiliateLinkUrl = $('#affiliate_link').val();
+        var link = $('#link').val();
         var receipts = $('#need_receipts')[0].files[0];
 
         // append datas to a Form Data
@@ -415,6 +429,9 @@ $(document).ready(function(){
         }
         if(affiliateLinkUrl){
             form_data.append('affiliateLinkUrl', affiliateLinkUrl);
+        }
+        if(link){
+            form_data.append('link', link);
         }
         if(receipts){
             form_data.append('receipts', receipts);

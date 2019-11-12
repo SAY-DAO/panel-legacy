@@ -2,7 +2,7 @@ $(document).ready(function(){
     isAthorized();
     hasPrivilege();
 
-    var keys = ['id' , 'name' , 'imageUrl' , 'childGeneratedCode' , 'childFirstName' , 'childLastName' , 'cost' , 'details' , 'doing_duration' , 'affiliateLinkUrl' , 'ngoName' , 'ngoAddress' , 'receipts' , 'doneAt'];
+    var keys = ['id' , 'name' , 'imageUrl' , 'childGeneratedCode' , 'childFirstName' , 'childLastName' , 'cost' , 'details' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'ngoName' , 'ngoAddress' , 'receipts' , 'doneAt'];
 
     $.ajax({
         url: SAYApiUrl + '/need/all/confirm=2?done=1',
@@ -35,7 +35,7 @@ $(document).ready(function(){
                         value[keys[i]] = value[keys[i]] + " days";
                     }
 
-                    if(keys[i] == 'affiliateLinkUrl') {
+                    if(keys[i] == 'affiliateLinkUrl' || keys[i] == 'link') {
                         if(value[keys[i]] != null) {
                             value[keys[i]] = linkTo(value[keys[i]]);
                         }
