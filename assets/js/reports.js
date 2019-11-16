@@ -14,7 +14,8 @@ $(document).ready(function(){
         },
         success: function(data) {
             console.log(data);
-            $.each(data, function(key, value){
+            needData = data['needs'];
+            $.each(needData, function(key, value){
                 var query = '<tr>\
                 <td>' + $('tr').length + '</td>';
 
