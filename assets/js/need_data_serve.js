@@ -281,7 +281,7 @@ $(document).ready(function(){
         // }
 
         var affiliateLinkUrl = $('#affiliate_link').val();
-        var link = $('#link').val();
+        var link = $('#direct_link').val();
         var receipts = $('#need_receipts')[0].files[0];
 
         var form_data = new FormData();
@@ -397,7 +397,7 @@ $(document).ready(function(){
                 'Athorization': $.cookie('access_token')    // check if authorize for this action
             },
             success: function(data) {
-                // console.log(data);
+                console.log(data);
 
                 $('#child_id').val(data['child_id']).change();
                 $('#need_name').val(data['name']);
@@ -443,7 +443,7 @@ $(document).ready(function(){
         //     isUrgent = false;
         // }
         var affiliateLinkUrl = $('#affiliate_link').val();
-        var link = $('#link').val();
+        var link = $('#direct_link').val();
         var receipts = $('#need_receipts')[0].files[0];
 
         // append datas to a Form Data
