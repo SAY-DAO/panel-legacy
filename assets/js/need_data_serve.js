@@ -19,9 +19,10 @@ $(document).ready(function(){
                 'Athorization': $.cookie('access_token')    // check if authorize for this action
             },
             success: function(data) {
+                var needData = data['needs']
                 console.log('option:' + selected_child);
                 // console.log(data);
-                $.each(data, function(key, value){
+                $.each(needData, function(key, value){
                     var needId = value[keys[0]];
                     var confirmStatus = -1;
                     var needType = -1;
