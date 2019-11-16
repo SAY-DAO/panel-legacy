@@ -25,7 +25,8 @@ $(document).ready(function(){
         dataType: 'json',
         headers : {
             'Access-Control-Allow-Origin'  : baseUrl,
-            'Athorization': $.cookie('access_token')    // check if authorize for this action
+            'Athorization': $.cookie('access_token'),    // check if authorize for this action
+            'Cache-Control': 'no-cache'
         },
         success: function(data) {
 
@@ -251,7 +252,9 @@ $(document).ready(function(){
         dataType: 'json',
         headers : {
             'Access-Control-Allow-Origin'  : baseUrl,
-            'Athorization': $.cookie('access_token')    // check if authorize for this action
+            'Athorization': $.cookie('access_token'),    // check if authorize for this action
+            'Cache-Control': 'no-cache'
+
         },
         success: function(data) {
             var childData = data['children']
@@ -358,7 +361,9 @@ $(document).ready(function(){
             method: 'POST',
             headers : {
                 'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token')    // check if authorize for this action            
+                'Athorization': $.cookie('access_token'),    // check if authorize for this action
+                'Cache-Control': 'no-cache'
+                
             },
             cache: false,
             processData: false,
@@ -393,7 +398,9 @@ $(document).ready(function(){
             method: 'PATCH',
             headers : {
                 'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token')    // check if authorize for this action
+                'Athorization': $.cookie('access_token'),    // check if authorize for this action
+                'Cache-Control': 'no-cache'
+
             },
             cache: false,
             processData: false,
@@ -434,7 +441,9 @@ $(document).ready(function(){
             dataType: 'json',
             headers: {
                 'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token')    // check if authorize for this action
+                'Athorization': $.cookie('access_token'),    // check if authorize for this action
+                'Cache-Control': 'no-cache'
+
             },
             success: function (data) {
                 // console.log(data);
@@ -562,7 +571,9 @@ $(document).ready(function(){
             method: 'PATCH',
             headers : {
                 'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token')    // check if authorize for this action
+                'Athorization': $.cookie('access_token'),    // check if authorize for this action
+                'Cache-Control': 'no-cache'
+
             },
             cache: false,
             processData: false,
@@ -599,7 +610,9 @@ $(document).ready(function(){
             method: 'PATCH',
             headers : {
                 'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token')    // check if authorize for this action
+                'Athorization': $.cookie('access_token'),    // check if authorize for this action
+                'Cache-Control': 'no-cache'
+
             },
             cache: false,
             processData: false,

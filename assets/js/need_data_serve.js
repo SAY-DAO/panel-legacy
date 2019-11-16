@@ -16,7 +16,8 @@ $(document).ready(function(){
             dataType: 'json',
             headers: {
                 'Access-Control-Allow-Origin' : baseUrl,
-                'Athorization': $.cookie('access_token')    // check if authorize for this action
+                'Athorization': $.cookie('access_token'),    // check if authorize for this action
+                'Cache-Control': 'no-cache'
             },
             success: function(data) {
                 console.log('option:' + selected_child);
@@ -190,14 +191,15 @@ $(document).ready(function(){
         dataType: 'json',
         headers : {
             'Access-Control-Allow-Origin'  : baseUrl,
-            'Athorization': $.cookie('access_token')    // check if authorize for this action
+            'Athorization': $.cookie('access_token'),    // check if authorize for this action
+            'Cache-Control': 'no-cache'
         },
         success: function(data) {
             // console.log("predefined needs", data);
 
             $.each(data, function(key, value){
                 var query = '';
-                    query += '<option value="' + value[keys[0]] + '">' + value[keys[3]] + '</option>';
+                    query += '<option value="' + value[keys[0]] + '">' + value[keys[3]] + ' | ' + value[keys[5]] + ' | ' + value[keys[10]] + '</option>';
                 $('#pre_need_id').append(query);
             })
         },
@@ -223,7 +225,8 @@ $(document).ready(function(){
             dataType: 'json',
             headers : {
                 'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token')    // check if authorize for this action
+                'Athorization': $.cookie('access_token'),    // check if authorize for this action
+                'Cache-Control': 'no-cache'
             },
             success: function(data) {
                 // console.log(data);
@@ -314,7 +317,8 @@ $(document).ready(function(){
             method: 'POST',
             headers : {
                 'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token')    // check if authorize for this action
+                'Athorization': $.cookie('access_token'),    // check if authorize for this action
+                'Cache-Control': 'no-cache'
             },
             cache: false,
             processData: false,
@@ -352,7 +356,9 @@ $(document).ready(function(){
             method: 'PATCH',
             headers : {
                 'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token')    // check if authorize for this action
+                'Athorization': $.cookie('access_token'),    // check if authorize for this action
+                'Cache-Control': 'no-cache'
+
             },
             cache: false,
             processData: false,
@@ -394,7 +400,8 @@ $(document).ready(function(){
             dataType: 'json',
             headers: {
                 'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token')    // check if authorize for this action
+                'Athorization': $.cookie('access_token'),    // check if authorize for this action
+                'Cache-Control': 'no-cache'
             },
             success: function(data) {
                 console.log(data);
@@ -494,7 +501,10 @@ $(document).ready(function(){
             url: SAYApiUrl + '/need/update/needId=' + edit_needId,
             method: 'PATCH',
             headers : {
-                'Access-Control-Allow-Origin'  : baseUrl
+                'Access-Control-Allow-Origin'  : baseUrl,
+                'Athorization': $.cookie('access_token'),    // check if authorize for this action
+                'Cache-Control': 'no-cache'
+
             },
             cache: false,
             processData: false,
@@ -532,7 +542,9 @@ $(document).ready(function(){
             method: 'PATCH',
             headers : {
                 'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token')    // check if authorize for this action
+                'Athorization': $.cookie('access_token'),    // check if authorize for this action
+                'Cache-Control': 'no-cache'
+
             },
             cache: false,
             processData: false,

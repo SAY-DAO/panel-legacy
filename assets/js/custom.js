@@ -59,6 +59,6 @@ function mailTo(value){
 }
 
 function linkTo(value){
-    var link_to = '<a href="' + value + '" target="_blank">' + value + '</a>';
+    var link_to = '<a href="' + value + '" target="_blank">Click here!</a>';
     return link_to;
 }

@@ -2,7 +2,7 @@ $(document).ready(function(){
     isAthorized();
     hasPrivilege();
 
-    var keys = ['id' , 'name' , 'imageUrl' , 'childGeneratedCode' , 'childFirstName' , 'childLastName' , 'cost' , 'details' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'ngoName' , 'ngoAddress' , 'receipts' , 'doneAt'];
+    var keys = ['id' , 'name' , 'imageUrl' , 'childGeneratedCode' , 'childFirstName' , 'childLastName' , 'cost', 'donated' , 'details' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'ngoName' , 'ngoAddress' , 'receipts' , 'doneAt'];
 
     $.ajax({
         url: SAYApiUrl + '/need/all/confirm=2?done=1',
@@ -10,7 +10,8 @@ $(document).ready(function(){
         dataType: 'json',
         headers: {
             'Access-Control-Allow-Origin' : baseUrl,
-            'Athorization': $.cookie('access_token')    // check if authorize for this action
+            'Athorization': $.cookie('access_token'),    // check if authorize for this action
+            'Cache-Control': 'no-cache'
         },
         success: function(data) {
             console.log(data);
@@ -28,7 +29,7 @@ $(document).ready(function(){
                         value[keys[i]] = getImgFile(value[keys[i]]);
                     }
 
-                    if (keys[i] == 'cost') {
+                    if (keys[i] == 'cost' || keys[i] == 'donated') {
                         value[keys[i]] = value[keys[i]] + ' Toman'
                     }
 
