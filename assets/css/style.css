@@ -188,8 +188,12 @@ tbody td{
   color: #00c213 !important;
 }
 
-.needInProgress{
+.needInProgress{  /*SAY*/
   color: #ffcc00 !important;
+}
+
+.doneStatus{  /*SAY*/
+  color: #ffbd66 !important;
 }
 
 .select2-container .select2-choice{ /*say added*/

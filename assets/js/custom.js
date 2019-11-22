@@ -20,6 +20,29 @@ function nullValues(){
     return value;
 }
 
+
+//needs status
+
+function fullPayment() {
+    var value = '<img src="assets/images/icons/1.svg" alt="Fully paid" title="Fully paid" />';
+    return value;
+}
+
+function purchased() {
+    var value = '<img src="assets/images/icons/2.svg" alt="Purchased" title="Purchased" />';
+    return value;
+}
+
+function ngoDelivery() {
+    var value = '<img src="assets/images/icons/3.svg" alt="Delivered to the NGO" title="Delivered to the NGO" />';
+    return value;
+}
+
+function childDelivery() {
+    var value = '<img src="assets/images/icons/4.svg" alt="Delivered to the child" title="Delivered to the child" />';
+    return value;
+}
+
 function doneNeed(status) {
     var value = '<span class="doneNeed">' + status + '</span>';
     return value;

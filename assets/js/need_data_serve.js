@@ -25,7 +25,7 @@ $(document).ready(function(){
                 $.each(data, function(key, value){
                     var needId = value[keys[0]];
                     var confirmStatus = -1;
-                    var needType = -1;
+                    var needType = value[keys[9]];
     
                     // first td for row count numbers, second td for operational buttons
                     var query = '<tr>\
@@ -70,8 +70,7 @@ $(document).ready(function(){
                         }
 
                         if (keys[i] == 'type') {
-                            needType = value[keys[i]];
-                            console.log("needType: ", needType);
+                            // needType = value[keys[i]];
                             if(value[keys[i]] == 0){
                                 value[keys[i]] = 'Service';
                             }
@@ -90,39 +89,27 @@ $(document).ready(function(){
                             if(value[keys[i]] == 2){
                                 value[keys[i]] = doneNeed('One more Done!');
                             }
-                            // }else if(value[keys[i]] == 3 && needType == 0){
-                            //     console.log(value[keys[i]]);
-                            //     value[keys[i]] = 'NGO received the money.';
-                            // }else if(value[keys[i]] == 4 && needType == 0){
-                            //     value[keys[i]] = 'Service avalable for the child.';
-                            // }else if(value[keys[i]] == 3 && needType == 1){
-                            //     value[keys[i]] = 'Need purchased.';
-                            // }else if(value[keys[i]] == 4 && needType == 1){
-                            //     value[keys[i]] = 'NGO received the Need.';
-                            // }else if(value[keys[i]] == 5 && needType == 1){
-                            //     value[keys[i]] = 'Delivered to the child.';
-                            // }
-
-
-                            // if(needType == 0){
-                            //     if(value[keys[i]] == 3){
-                            //         value[keys[i]] = 'NGO received the money.';
-                            //     }
-                            //     if(value[keys[i]] == 4){
-                            //         value[keys[i]] = 'Service avalable for the child.';
-                            //     }
-                            // }
-                            // if(needType == 1){
-                            //     if(value[keys[i]] == 3){
-                            //         value[keys[i]] = 'Need purchased.';
-                            //     }
-                            //     if(value[keys[i]] == 4){
-                            //         value[keys[i]] = 'NGO received the Need.';
-                            //     }
-                            //     if(value[keys[i]] == 5){
-                            //         value[keys[i]] = 'Delivered to the child.';
-                            //     }
-                            // }
+                            
+                            if(needType == 0){
+                                if(value[keys[i]] == 3) {
+                                    value[keys[i]] = ngoDelivery();
+                                }
+                                if(value[keys[i]] == 4) {
+                                    value[keys[i]] = childDelivery();
+                                }
+                            }
+    
+                            if(needType == 1){
+                                if(value[keys[i]] == 3) {
+                                    value[keys[i]] = purchased();
+                                }
+                                if(value[keys[i]] == 4) {
+                                    value[keys[i]] = ngoDelivery();
+                                }
+                                if(value[keys[i]] == 5) {
+                                    value[keys[i]] = childDelivery();
+                                }
+                            }
                         }
 
                         if (keys[i] == 'isUrgent') {
