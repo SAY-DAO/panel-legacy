@@ -104,78 +104,78 @@ $(document).ready(function(){
                         }
                     }
 
-                    if (keys[i] == 'education'){
-                        // console.log("first element of string: " + value[keys[i]].charAt(0));
-                        // console.log("count string length: " + value[keys[i]] + '-' + value[keys[i]].length);
-                        // console.log("remove first element: " + value[keys[i]].substring(1));
+                    // if (keys[i] == 'education'){
+                    //     // console.log("first element of string: " + value[keys[i]].charAt(0));
+                    //     // console.log("count string length: " + value[keys[i]] + '-' + value[keys[i]].length);
+                    //     // console.log("remove first element: " + value[keys[i]].substring(1));
 
-                        if(value[keys[i]].length >= 2){
-                            if(value[keys[i]].charAt(0) == 6 ){
-                                value[keys[i]] += " - School for the deaf";
-                            }
-                            if(value[keys[i]].charAt(0) == 7 ){
-                                value[keys[i]] += " - School for the blind";
-                            }
-                            if(value[keys[i]].charAt(0) == 8 ){
-                                value[keys[i]] += " - Intellectual disabilities school";
-                            }
-                            if(value[keys[i]].charAt(0) == 9 ){
-                                value[keys[i]] += " - School";
-                            }
-                        }
+                    //     if(value[keys[i]].length >= 2){
+                    //         if(value[keys[i]].charAt(0) == 6 ){
+                    //             value[keys[i]] += " - School for the deaf";
+                    //         }
+                    //         if(value[keys[i]].charAt(0) == 7 ){
+                    //             value[keys[i]] += " - School for the blind";
+                    //         }
+                    //         if(value[keys[i]].charAt(0) == 8 ){
+                    //             value[keys[i]] += " - Intellectual disabilities school";
+                    //         }
+                    //         if(value[keys[i]].charAt(0) == 9 ){
+                    //             value[keys[i]] += " - School";
+                    //         }
+                    //     }
 
-                        if(value[keys[i]] == '-3'){
-                            value[keys[i]] = 'Deprived of education';
-                        }
-                        if(value[keys[i]] == '-2'){
-                            value[keys[i]] = 'Kinder garden';
-                        }
-                        if(value[keys[i]] == '-1'){
-                            value[keys[i]] = 'Not attending';
-                        }
-                        if(value[keys[i]] == '0'){
-                            value[keys[i]] = 'Pre-school';
-                        }
-                        if(value[keys[i]] == '1'){
-                            value[keys[i]] = '1<sup>th</sup> grade';
-                        }
-                        if(value[keys[i]] == '2'){
-                            value[keys[i]] = '2<sup>th</sup> grade';
-                        }
-                        if(value[keys[i]] == '3'){
-                            value[keys[i]] = '3<sup>th</sup> grade';
-                        }
-                        if(value[keys[i]] == '4'){
-                            value[keys[i]] = '4<sup>th</sup> grade';
-                        }
-                        if(value[keys[i]] == '5'){
-                            value[keys[i]] = '5<sup>th</sup> grade';
-                        }
-                        if(value[keys[i]] == '6'){
-                            value[keys[i]] = '6<sup>th</sup> grade';
-                        }
-                        if(value[keys[i]] == '7'){
-                            value[keys[i]] = '7<sup>th</sup> grade';
-                        }
-                        if(value[keys[i]] == '8'){
-                            value[keys[i]] = '8<sup>th</sup> grade';
-                        }
-                        if(value[keys[i]] == '9'){
-                            value[keys[i]] = '9<sup>th</sup> grade';
-                        }
-                        if(value[keys[i]] == '10'){
-                            value[keys[i]] = '10<sup>th</sup> grade';
-                        }
-                        if(value[keys[i]] == '11'){
-                            value[keys[i]] = '11<sup>th</sup> grade';
-                        }
-                        if(value[keys[i]] == '12'){
-                            value[keys[i]] = '12<sup>th</sup> grade';
-                        }
-                        if(value[keys[i]] == '13'){
-                            value[keys[i]] = 'University';
-                        }
-                    }
+                    //     if(value[keys[i]] == '-3'){
+                    //         value[keys[i]] = 'Deprived of education';
+                    //     }
+                    //     if(value[keys[i]] == '-2'){
+                    //         value[keys[i]] = 'Kinder garden';
+                    //     }
+                    //     if(value[keys[i]] == '-1'){
+                    //         value[keys[i]] = 'Not attending';
+                    //     }
+                    //     if(value[keys[i]] == '0'){
+                    //         value[keys[i]] = 'Pre-school';
+                    //     }
+                    //     if(value[keys[i]] == '1'){
+                    //         value[keys[i]] = '1<sup>th</sup> grade';
+                    //     }
+                    //     if(value[keys[i]] == '2'){
+                    //         value[keys[i]] = '2<sup>th</sup> grade';
+                    //     }
+                    //     if(value[keys[i]] == '3'){
+                    //         value[keys[i]] = '3<sup>th</sup> grade';
+                    //     }
+                    //     if(value[keys[i]] == '4'){
+                    //         value[keys[i]] = '4<sup>th</sup> grade';
+                    //     }
+                    //     if(value[keys[i]] == '5'){
+                    //         value[keys[i]] = '5<sup>th</sup> grade';
+                    //     }
+                    //     if(value[keys[i]] == '6'){
+                    //         value[keys[i]] = '6<sup>th</sup> grade';
+                    //     }
+                    //     if(value[keys[i]] == '7'){
+                    //         value[keys[i]] = '7<sup>th</sup> grade';
+                    //     }
+                    //     if(value[keys[i]] == '8'){
+                    //         value[keys[i]] = '8<sup>th</sup> grade';
+                    //     }
+                    //     if(value[keys[i]] == '9'){
+                    //         value[keys[i]] = '9<sup>th</sup> grade';
+                    //     }
+                    //     if(value[keys[i]] == '10'){
+                    //         value[keys[i]] = '10<sup>th</sup> grade';
+                    //     }
+                    //     if(value[keys[i]] == '11'){
+                    //         value[keys[i]] = '11<sup>th</sup> grade';
+                    //     }
+                    //     if(value[keys[i]] == '12'){
+                    //         value[keys[i]] = '12<sup>th</sup> grade';
+                    //     }
+                    //     if(value[keys[i]] == '13'){
+                    //         value[keys[i]] = 'University';
+                    //     }
+                    // }
 
                     if (keys[i] == 'phoneNumber'){
                         value[keys[i]] = phoneTo(value[keys[i]]);
