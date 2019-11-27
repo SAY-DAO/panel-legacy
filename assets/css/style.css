@@ -193,7 +193,19 @@ tbody td{
 }
 
 .doneStatus{  /*SAY*/
-  color: #ffbd66 !important;
+  color: #ff9b14 !important;
+  border: 1px solid #ff9b14 !important;
+  background-color: #e3e3e3 !important;
+}
+
+.activeStatus{
+  background: linear-gradient(90deg, #F59E39 0%, #F05A31 100%);
+  color: #ffffff !important;
+}
+
+.deactiveStatus{
+  background-color: #dcdcdc !important;
+  color: #ffffff !important;
 }
 
 .select2-container .select2-choice{ /*say added*/
