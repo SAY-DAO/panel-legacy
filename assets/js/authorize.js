@@ -15,10 +15,10 @@ var global_user_ngo = '';
 
 //  check loging status
 
-function isAthorized(){
+function isAthorized() {
     if(!$.cookie('access_token')) {
         window.location.href = "user-login.html";
-    }else{
+    } else {
         var jsonPayload = jwt_decode($.cookie('access_token'));
         var user_id = jsonPayload.identity;
         var username = jsonPayload.user_claims.username;
@@ -35,8 +35,8 @@ function isAthorized(){
     }
 }
 
-function hasPrivilege(){
-    if(global_user_role != 1){
+function hasPrivilege() {
+    if(global_user_role != 1) {
         // console.log("You don't have privilege.")
         // alert("You don't have appropriate privilege to access this page.");
         // window.location.href = "dashboard.html";

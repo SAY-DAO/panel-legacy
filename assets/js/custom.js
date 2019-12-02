@@ -1,12 +1,12 @@
 //****************** YOUR CUSTOMIZED JAVASCRIPT **********************//
 // calculate age from birth date
 
-function getAge(DOB){
+function getAge(DOB) {
     var today = new Date();
     var birthDate = new Date(DOB);
     var age = today.getFullYear() - birthDate.getFullYear();
     var m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m == 0 && today.getDate() < birthDate.getDate())){
+    if (m < 0 || (m == 0 && today.getDate() < birthDate.getDate())) {
         age = age - 1;
     }
     return age;
@@ -15,7 +15,7 @@ function getAge(DOB){
 
 // null values in tables
 
-function nullValues(){
+function nullValues() {
     var value = '<span class="null">Not entered</span>';
     return value;
 }
@@ -55,33 +55,40 @@ function needInProgress(status) {
 
 // get the file url and return the tag to show it on html
 
-function getImgFile(fileUrl){
+function getImgFile(fileUrl) {
     var show_file = '<a target="_blank" href="' + baseUrl + fileUrl +'"><img class="tableImg" src="' + baseUrl + fileUrl +'" /></a>';
     return show_file;
 }
 
-function getVoiceFile(fileUrl){
+function getVoiceFile(fileUrl) {
     var show_file = '<audio src="' + baseUrl + fileUrl +'" controls preload="none"></audio>';
     return show_file;
 }
 
-function getFile(fileUrl){
+function getFile(fileUrl) {
     var show_file = '<a target="_blank" href="' + baseUrl + fileUrl +'">Click here to see the file</a>';
     return show_file;
 }
 
 // link values
-function phoneTo(value){
+function phoneTo(value) {
     var phone_to = '<a href="tel:' + value + '">' + value + '</a>';
     return phone_to;
 }
 
-function mailTo(value){
+function mailTo(value) {
     var mail_to = '<a href="mailto:' + value + '" target="_top">' + value + '</a>';
     return mail_to;
 }
 
-function linkTo(value){
+function linkTo(value) {
     var link_to = '<a href="' + value + '" target="_blank">Click here!</a>';
     return link_to;
+}
+
+// Date Time values
+function localDate(value) {
+    that_date = new Date(value);
+    local_date = that_date.toLocaleString();
+    return local_date;
 }

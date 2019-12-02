@@ -76,7 +76,7 @@
                 </div>
               </div>
             </div>
-</div>
+         </div>
           <ul class="nav nav-sidebar">
             <li class="tm"><a href="dashboard.html"><i class="icon-home"></i><span>داشبورد</span></a></li>
             <li class="tm"><a href="children.html"><i class="fa fa-child"></i><span>کودکان من</span></a></li>
@@ -346,13 +346,92 @@
                 </div>
             <h2 class="m-b-20">گزارش<!--<strong>Builder</strong>--></h2><!--<a href="#" id="no-page-builder" class="btn btn-dark btn-lg btn-square">No, thanks</a><a href="#" id="import-page-builder" class="btn btn-primary btn-lg btn-square">Import Page Builder</a>-->
 
+              <div class="panel panel-default no-bd" id="changeStatusForm">
+                <div class="panel-header bg-dark panel-controls">
+                  <h3 class="panel-title">فرم<strong> تغییر وضعیت نیاز</strong><img class="preloader" src="assets/images/preloader/25.gif"/></h3>
+                  
+                </div>
+
+                <div class="panel-content bg-white">
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <form role="form" class="form-validation" id="need_form" method="POST" enctype="multipart/form-data">
+                        <div class="row">
+
+                          <div class="col-md-4 col-sm-4">
+                              <div class="form-group">
+                                  <label for="need_name" class="control-label">نام نیاز</label>
+                                  <input type="text" id="need_name" name="need_name" class="form-control" readonly>
+                              </div>
+                          </div>
+                          
+                          <div class="col-md-4 col-sm-4" id="product_status" hidden>
+                              <div class="form-group">
+                                  <label for="need_status_product" class="control-label">وضعیت نیاز <span class="required">*</span></label>
+                                  <div class="option-group">
+                                      <select id="need_status_product" name="need_status_product" class="form-control" required>
+                                        <option value="">وضعیت مورد نظر را انتخاب کنید</option>
+                                        <option value="2">Paid</option>
+                                        <option value="3">Purchased</option>
+                                        <option value="4">NGO received the need</option>
+                                        <option value="5">Need delivered to the child</option>
+                                        
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="col-md-4 col-sm-4" id="service_status" hidden>
+                              <div class="form-group">
+                                  <label for="need_status_service" class="control-label">وضعیت نیاز <span class="required">*</span></label>
+                                  <div class="option-group">
+                                      <select id="need_status_service" name="need_status_service" class="form-control" required>
+                                        <option value="">وضعیت مورد نظر را انتخاب کنید</option>
+                                        <option value="2">Paid</option>
+                                        <option value="3">NGO received the money</option>
+                                        <option value="4">Need is available for the child</option>
+                                        
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="col-md-4 col-sm-4" id="delivery" hidden>
+                            <div class="form-group">
+                              <label for="delivery_date" class="control-label">تاریخ تحویل کالا <span class="required">*</span></label>
+                              <div class="append-icon">
+                                <input type="date" id="delivery_date" name="delivery_date" class="form-control">
+                                <i class="icon-calendar"></i>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-4 col-sm-4" hidden>
+                            <div class="form-group">
+                              <label for="receipt" class="control-label">رسید</label>
+                                <input type="date" id="receipt" name="receipt" class="form-control">
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="text-center  m-t-20">
+                          <button type="submit" class="btn btn-embossed btn-primary" id="editNeedStatus">ثبت وضعیت</button>
+                          <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">پاک کردن فرم</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
                 
               <div class="panel panel-default no-bd">
                 <div class="panel-header bg-dark panel-controls">
                   <h3 class="panel-title">گزارش <strong>نیازهای Done شده</strong></h3>
                 </div>
                 
-                <div class="panel-content bg-white">
+                <div class="panel-content report-content bg-white">
                     
                   <table class="table table-hover table-striped dataTable" id="table-editable">
                       <thead>
@@ -386,6 +465,33 @@
                   </table>
                 </div>
               </div>
+
+              <!-- <div class="panel panel-default no-bd"  id="reportList">
+                <div class="panel-header bg-dark panel-controls">
+                  <h3 class="panel-title">ارسال گزارش <strong>نیازهای پرداخت شده/ارسال شده</strong> به انجمن</h3>
+                </div>
+                
+                <div class="panel-content bg-white">
+                    
+                  <table class="table table-hover table-striped dataTable" id="table-editable">
+                      <thead>
+                        <tr>
+                          <th>ردیف</th>
+                          <th>کد کودک</th>
+                          <th>نام کودک</th>
+                          <th>نام خانوادگی کودک</th>
+                          <th>نام نیاز</th>
+                          <th class="small_th">آیکون نیاز</th>
+                          <th>هزینه نیاز</th>
+                        </tr>
+                      </thead>
+                      <tbody id="reportNGONeedList">
+
+                      </tbody>
+                      
+                  </table>
+                </div>
+              </div> -->
             
           </div>
         <div class="footer">

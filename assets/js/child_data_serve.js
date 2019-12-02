@@ -223,6 +223,10 @@ $(document).ready(function(){
                         value[keys[i]] = value[keys[i]] + " Members";
                     }
 
+                    if(keys[i] == 'confirmDate' || keys[i] == 'createdAt' || keys[i] == 'lastUpdate') {
+                        value[keys[i]] = localDate(value[keys[i]]);
+                    }
+
                     query += '<td>' + value[keys[i]] + '</td>';
                 }
                 

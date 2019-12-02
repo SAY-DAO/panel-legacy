@@ -630,6 +630,7 @@ function handlePanelAction() {
         });
     });
     // Toggle Panel Content
+    // $('.report-content').slideToggle();  // SAY
     $(document).on("click", ".panel-header .panel-toggle", function(event) {
         event.preventDefault();
         $(this).parents(".panel:first").find(".panel-content").slideToggle();
@@ -639,71 +640,80 @@ function handlePanelAction() {
     $('#childForm').css('display', 'none');
     $('#childTableNew').click(function (e) {
         e.preventDefault();
-        $('#childForm').slideToggle();
+        $('#childForm').slideDown();
     });
     // Say toggle for edit child form
     $('#childForm').css('display', 'none');
-    $('#childList').on('click' , '.editBtn' , function(e){
+    $('#childList').on('click' , '.editBtn' , function(e) {
         e.preventDefault();
-        $('#childForm').slideToggle();
+        $('#childForm').slideDown();
     });
 
     // Say toggle for add need form
     $('#needForm').css('display', 'none');
     $('#needTableNew').click(function (e) {
         e.preventDefault();
-        $('#needForm').slideToggle();
+        $('#needForm').slideDown();
     });
     // Say toggle for edit need form
     $('#needForm').css('display', 'none');
-    $('#needList').on('click' , '.editBtn' , function(e){
+    $('#needList').on('click' , '.editBtn' , function(e) {
         e.preventDefault();
-        $('#needForm').slideToggle();
+        $('#needForm').slideDown();
     });
+
+    // Say toggle for change need status form
+    $('#changeStatusForm').css('display', 'none');
+    $('#reportDoneNeedList').on('click' , '.changeStatus' , function(e) {
+        e.preventDefault();
+        $('#changeStatusForm').slideDown();
+    });
+    // $('#reportList').css('display', 'none');
+    
 
     // Say toggle for add social worker form
     $('#socialWorkerForm').css('display', 'none');
     $('#socialWorkerTableNew').click(function (e) {
         e.preventDefault();
-        $('#socialWorkerForm').slideToggle();
+        $('#socialWorkerForm').slideDown();
     });
     // Say toggle for edit social worker form
-    $('#socialWorkerList').on('click' , '.editBtn' , function(e){
+    $('#socialWorkerList').on('click' , '.editBtn' , function(e) {
         e.preventDefault();
-        $('#socialWorkerForm').slideToggle();
+        $('#socialWorkerForm').slideDown();
     });
     
     // Say toggle for add need category form
     $('#needCategoryForm').css('display', 'none');
     $('#needCategoryTableNew').click(function (e) {
         e.preventDefault();
-        $('#needCategoryForm').slideToggle();
+        $('#needCategoryForm').slideDown();
     });
 
     // Say toggle for  add ngo form
     $('#ngoForm').css('display', 'none');
     $('#ngoTableNew').click(function (e) {
         e.preventDefault();
-        $('#ngoForm').slideToggle();
+        $('#ngoForm').slideDown();
     });
     // Say toggle for edit NGO form
     $('#ngoList').on('click' , '.editBtn' , function(e){
         e.preventDefault();
-        $('#ngoForm').slideToggle();
+        $('#ngoForm').slideDown();
     });
 
     // Say toggle for  change password form
     $('#editPass').css('display', 'none');
     $('#changePassBtn').click(function (e) {
         e.preventDefault();
-        $('#editPass').slideToggle();
+        $('#editPass').slideDown();
     });
 
     // Say toggle for  edit profile form
     $('#editProfile').css('display', 'none');
     $('#editProfileBtn').click(function (e) {
         e.preventDefault();
-        $('#editProfile').slideToggle();
+        $('#editProfile').slideDown();
     });
 
     
@@ -1209,6 +1219,10 @@ function editScroll() {
 
     $("html, body").animate({
         scrollTop: $('#ngoForm')
+    });
+
+    $("html, body").animate({
+        scrollTop: $('#changeStatusForm')
     });
 }
 

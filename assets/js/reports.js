@@ -3,8 +3,13 @@ $(document).ready(function(){
     hasPrivilege();
 
     var status_needId = -1;
+    var type_id = -1;
     var keys = ['id' , 'type' , 'name' , 'status' , 'imageUrl' , 'childGeneratedCode' , 'childFirstName' , 'childLastName' , 'cost', 'donated' , 'details' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'ngoName' , 'ngoAddress' , 'receipts' , 'doneAt'];
+    
+    // for the report to ngo ajax
+    var reportNGO_keys = ['id' , 'ngoName' , 'childGeneratedCode' , 'childFirstName' , 'childLastName' , 'name' , 'imageUrl' , 'cost'];
 
+    // get Done needs
     $.ajax({
         url: SAYApiUrl + '/need/all/confirm=2?done=1',
         method: 'GET',
@@ -21,21 +26,8 @@ $(document).ready(function(){
                 var needId = value[keys[0]];
                 var need_type = value[keys[1]];
                 var need_status = -1;
-                var status_option = '';
-                
-                   // // Dropdown solution
-                // var status_option = '<select name="need_status" class="btn btn-block btn-sm btn-dark need_status">\
-                // <option value="2">Full payment</option>';
-                // if(need_type == 0){
-                //     status_option += '<option value="3">NGO receive money</option>\
-                //                     <option value="4">Available for child</option>';
-                // }else if(need_type == 1){
-                //     status_option += '<option value="3">Purchased</option>\
-                //                     <option value="4">NGO receive need</option>\
-                //                     <option value="5">Delivered to child</option>';
-                // }
-                // status_option += '</select>';
 
+                // need status show design -> must be review
                 if (need_type == 0) {
                     status_option = '\
                     <button type="submit" class="btn btn-block btn-embossed btn-default btn-sm statusS3 activeStatus">NGO receive money</button>\
@@ -47,10 +39,11 @@ $(document).ready(function(){
                 }
 
                 var query = '<tr>\
-                <td>' + $('tr').length + '</td>\
+                <td>' + $('#reportDoneNeedList').find('tr').length + '</td>\
                 <td id="' + needId + '">\
-                ' + status_option + '\
-                </td>';
+                <button type="submit" class="btn btn-block btn-embossed btn-default btn-sm changeStatus" onclick="editScroll()">Change status</button>\
+                </td>\
+                ';
 
                 for (var i=2 ; i < keys.length ; i++) {
                     if (value[keys[i]] == null) {
@@ -119,6 +112,10 @@ $(document).ready(function(){
                         }
                     }
 
+                    if(keys[i] == 'doneAt') {
+                        value[keys[i]] = localDate(value[keys[i]]);
+                    }
+
                     query += '<td>' + value[keys[i]] + '</td>';
                 }
 
@@ -152,22 +149,86 @@ $(document).ready(function(){
         }
     })
 
-    // change service need status from 2 to 3
-    $('#reportDoneNeedList').on('click' , '.statusS3' , function(e){
+    // change needs status
+    $('#reportDoneNeedList').on('click' , '.changeStatus' , function(e) {
         e.preventDefault();
-        changeStatus_needId = $(this).parent().attr('id');
-        console.log(changeStatus_needId + ' S 2 to 3 clicked!');
 
-        var form_data = new FormData();
-        form_data.append('status', 3);
+        status_needId = $(this).parent().attr('id');
+        console.log(status_needId);
+
         $.ajax({
-            url: SAYApiUrl + '/need/update/needId=' + changeStatus_needId,
+            url: SAYApiUrl + '/need/needId=' + status_needId,
+            method: 'GET',
+            dataType: 'json',
+            headers: {
+                'Access-Control-Allow-Origin'  : baseUrl,
+                'Athorization': $.cookie('access_token'),    // check if authorize for this action
+                'Cache-Control': 'no-cache'
+            },
+            beforeSend: function() {
+                $('.preloader').show();
+            },
+            success: function(data) {
+                $('#delivery').hide();
+                
+                $('#need_name').val(data['name']);
+                // $('#delivery_date').val(data['?']);
+
+                type_id = data['type'];     // to use in confirm change status
+                if (type_id == 0) {
+                    $('#product_status').hide();
+                    $('#service_status').show();
+                    $('#need_status_service').val(data['status']).change();  // need status feild in get need by id
+
+                } else if (type_id == 1) {
+                    $('#service_status').hide();
+                    $('#product_status').show();
+                    $('#need_status_product').val(data['status']).change();  // need status feild in get need by id
+
+                }
+
+                $('#need_status_product').change(function() {
+                    if ($(this).val() == 3) {
+                        $('#delivery').show();
+                    } else {
+                        $('#delivery').hide();
+                    }
+                })
+                $('.preloader').hide();
+                
+            },
+            error: function() {
+                console.log(data.responseJSON.message);
+            }
+        })
+    })
+
+    // confirm change the need status
+    $('#editNeedStatus').on('click' , function(e) {
+        e.preventDefault();
+        console.log("change status for need " + status_needId);
+        var status = -1;
+
+        var need_name = $('#need_name').val();
+        if (type_id == 0) {
+            status = $('#need_status_service').val();
+        } else if (type_id == 1) {
+            status = $('#need_status_product').val();
+        }
+        var delivery_date = $('#delivery_date').val();
+
+        // append datas to a Form Data
+        var form_data = new FormData();
+        form_data.append('status', status);
+        form_data.append('delivery_date', delivery_date);
+
+        $.ajax({
+            url: SAYApiUrl + '/need/update/needId=' + status_needId,
             method: 'PATCH',
             headers : {
                 'Access-Control-Allow-Origin'  : baseUrl,
                 'Athorization': $.cookie('access_token'),    // check if authorize for this action
                 'Cache-Control': 'no-cache'
-
             },
             cache: false,
             processData: false,
@@ -175,10 +236,10 @@ $(document).ready(function(){
             dataType: 'json',
             data: form_data,
             beforeSend: function(){
-                return confirm('You are about to change the status of the need to "NGO received the money".\nAre you sure?');
+                return confirm('You are about to change status of the need {' + status_needId + ': ' + need_name + '}.\nAre you sure?');
             },
             success: function(data) {
-                alert("Success\nNeed " + changeStatus_needId + " status changed successfully\n" + JSON.stringify(data.message));
+                alert("Success\nNeed {" + status_needId + ': ' + need_name + "}'s status changed successfully\n" + JSON.stringify(data.message));
                 location.reload();
             },
             error: function(data) {
@@ -187,165 +248,49 @@ $(document).ready(function(){
                     message: data.responseJSON.message,
                 });
             }
-
-        })  
+        })
     })
 
-    // change service need status from 3 to 4
-    $('#reportDoneNeedList').on('click' , '.statusS4' , function(e){
-        e.preventDefault();
-        changeStatus_needId = $(this).parent().attr('id');
-        console.log(changeStatus_needId + ' S 3 to 4 clicked!');
+    
 
-        var form_data = new FormData();
-        form_data.append('status', 4);
-        $.ajax({
-            url: SAYApiUrl + '/need/update/needId=' + changeStatus_needId,
-            method: 'PATCH',
-            headers : {
-                'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token'),    // check if authorize for this action
-                'Cache-Control': 'no-cache'
+    // status 3 needs to report to NGO
+    // $.ajax({
+    //     url: SAYApiUrl + '/need/all/confirm=2?done=1',
+    //     method: 'GET',
+    //     dataType: 'json',
+    //     headers: {
+    //         'Access-Control-Allow-Origin' : baseUrl,
+    //         'Athorization': $.cookie('access_token'),    // check if authorize for this action
+    //         'Cache-Control': 'no-cache'
+    //     },
+    //     success: function(data) {
+    //         console.log(data);
+    //         needData = data['needs'];
+    //         $.each(needData, function(key, value){
 
-            },
-            cache: false,
-            processData: false,
-            contentType: false,
-            dataType: 'json',
-            data: form_data,
-            beforeSend: function(){
-                return confirm('You are about to change the status of the need to "Service is available for the child".\nAre you sure?');
-            },
-            success: function(data) {
-                alert("Success\nNeed " + changeStatus_needId + " status changed successfully\n" + JSON.stringify(data.message));
-                location.reload();
-            },
-            error: function(data) {
-                bootbox.alert({
-                    title: "Error!",
-                    message: data.responseJSON.message,
-                });
-            }
+    //             var query = '<tr>\
+    //                         <td>' + $('#reportNGONeedList').find('tr').length + '</td>';
 
-        })  
-    })
+    //             for (var i=2 ; i < reportNGO_keys.length ; i++) {
+                    
+    //                 if (reportNGO_keys[i] == 'imageUrl') {
+    //                     value[reportNGO_keys[i]] = getImgFile(value[reportNGO_keys[i]]);
+    //                 }
 
-    // change product need status from 2 to 3
-    $('#reportDoneNeedList').on('click' , '.statusP3' , function(e){
-        e.preventDefault();
-        changeStatus_needId = $(this).parent().attr('id');
-        console.log(changeStatus_needId + ' P 2 to 3 clicked!');
+    //                 if (reportNGO_keys[i] == 'cost') {
+    //                     value[reportNGO_keys[i]] = value[reportNGO_keys[i]] + ' Toman'
+    //                 }
 
-        var form_data = new FormData();
-        form_data.append('status', 3);
-        $.ajax({
-            url: SAYApiUrl + '/need/update/needId=' + changeStatus_needId,
-            method: 'PATCH',
-            headers : {
-                'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token'),    // check if authorize for this action
-                'Cache-Control': 'no-cache'
+    //                 query += '<td>' + value[reportNGO_keys[i]] + '</td>';
+    //             }
 
-            },
-            cache: false,
-            processData: false,
-            contentType: false,
-            dataType: 'json',
-            data: form_data,
-            beforeSend: function(){
-                return confirm('You are about to change the status of the need to "Purchased".\nAre you sure?');
-            },
-            success: function(data) {
-                alert("Success\nNeed " + changeStatus_needId + " status changed successfully\n" + JSON.stringify(data.message));
-                location.reload();
-            },
-            error: function(data) {
-                bootbox.alert({
-                    title: "Error!",
-                    message: data.responseJSON.message,
-                });
-            }
-
-        })  
-    })
-
-    // change product need status from 3 to 4
-    $('#reportDoneNeedList').on('click' , '.statusP4' , function(e){
-        e.preventDefault();
-        changeStatus_needId = $(this).parent().attr('id');
-        console.log(changeStatus_needId + ' P 3 to 4 clicked!');
-
-        var form_data = new FormData();
-        form_data.append('status', 4);
-        $.ajax({
-            url: SAYApiUrl + '/need/update/needId=' + changeStatus_needId,
-            method: 'PATCH',
-            headers : {
-                'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token'),    // check if authorize for this action
-                'Cache-Control': 'no-cache'
-
-            },
-            cache: false,
-            processData: false,
-            contentType: false,
-            dataType: 'json',
-            data: form_data,
-            beforeSend: function(){
-                return confirm('You are about to change the status of the need to "Product delivered to the NGO".\nAre you sure?');
-            },
-            success: function(data) {
-                alert("Success\nNeed " + changeStatus_needId + " status changed successfully\n" + JSON.stringify(data.message));
-                location.reload();
-            },
-            error: function(data) {
-                bootbox.alert({
-                    title: "Error!",
-                    message: data.responseJSON.message,
-                });
-            }
-
-        })  
-    })
-
-    // change product need status from 4 to 5
-    // ************NOTE: this must be remove after change status performed automatically!**************
-    $('#reportDoneNeedList').on('click' , '.statusP5' , function(e){
-        e.preventDefault();
-        changeStatus_needId = $(this).parent().attr('id');
-        console.log(changeStatus_needId + ' P 4 to 5 clicked!');
-
-        var form_data = new FormData();
-        form_data.append('status', 5);
-        $.ajax({
-            url: SAYApiUrl + '/need/update/needId=' + changeStatus_needId,
-            method: 'PATCH',
-            headers : {
-                'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token'),    // check if authorize for this action
-                'Cache-Control': 'no-cache'
-
-            },
-            cache: false,
-            processData: false,
-            contentType: false,
-            dataType: 'json',
-            data: form_data,
-            beforeSend: function(){
-                return confirm('You are about to change the status of the need to "Product delivered to the child".\nAre you sure?');
-            },
-            success: function(data) {
-                alert("Success\nNeed " + changeStatus_needId + " status changed successfully\n" + JSON.stringify(data.message));
-                location.reload();
-            },
-            error: function(data) {
-                bootbox.alert({
-                    title: "Error!",
-                    message: data.responseJSON.message,
-                });
-            }
-
-        })  
-    })
+    //             query += '</tr>';
+    //             $('#reportNGONeedList').append(query);
+    //         })
+    //     },
+    //     error: function(data) {
+    //         console.log(data.responseJSON.message);
+    //     }
+    // })
 
 })
