@@ -58,8 +58,8 @@ $(document).ready(function(){
                         value[keys[i]] = getImgFile(value[keys[i]]);
                     }
 
-                    if (keys[i] == 'coordinatorId') {
-                        value[keys[i]] = 'Sara Mousavi';
+                    // if (keys[i] == 'coordinatorId') {
+                    //     value[keys[i]] = 'Sara Mousavi';
                     //     var coordinatorId = value[keys[i]];
                     //     var newValue = [];
 
@@ -100,7 +100,7 @@ $(document).ready(function(){
                     //     value[keys[i]] = newValue;
                     //     console.log("new value:" + newValue);
 
-                    }
+                    // }
 
                     if (keys[i] == 'phoneNumber') {
                         value[keys[i]] = phoneTo(value[keys[i]]);                       
@@ -326,6 +326,7 @@ $(document).ready(function(){
                     query += '<option value="' + value[keys[0]] + '">' + value[keys[1]] + '</option>';
                 $('#ngo_id').append(query);
                 $('#social_worker_ngo').append(query);
+                $('#need_ngo').append(query);
                 // console.log("NGO field query:" + query);
             })
         },

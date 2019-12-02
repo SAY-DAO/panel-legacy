@@ -19,6 +19,9 @@ $(document).ready(function(){
             'Athorization': $.cookie('access_token'),    // check if authorize for this action
             'Cache-Control': 'no-cache'
         },
+        beforeSend: function() {
+            $('.preloader').show();
+        },
         success: function(data) {
             console.log(data);
             needData = data['needs'];
@@ -143,6 +146,8 @@ $(document).ready(function(){
                 }
 
             })
+            $('.preloader').hide();
+
         },
         error: function(data) {
             console.log(data.responseJSON.message);
@@ -172,7 +177,7 @@ $(document).ready(function(){
                 $('#delivery').hide();
                 
                 $('#need_name').val(data['name']);
-                // $('#delivery_date').val(data['?']);
+                $('#delivery_date').val(data['delivery_date']);
 
                 type_id = data['type'];     // to use in confirm change status
                 if (type_id == 0) {
@@ -240,7 +245,7 @@ $(document).ready(function(){
             },
             success: function(data) {
                 alert("Success\nNeed {" + status_needId + ': ' + need_name + "}'s status changed successfully\n" + JSON.stringify(data.message));
-                location.reload();
+                location.reload(true);
             },
             error: function(data) {
                 bootbox.alert({
@@ -254,43 +259,49 @@ $(document).ready(function(){
     
 
     // status 3 needs to report to NGO
-    // $.ajax({
-    //     url: SAYApiUrl + '/need/all/confirm=2?done=1',
-    //     method: 'GET',
-    //     dataType: 'json',
-    //     headers: {
-    //         'Access-Control-Allow-Origin' : baseUrl,
-    //         'Athorization': $.cookie('access_token'),    // check if authorize for this action
-    //         'Cache-Control': 'no-cache'
-    //     },
-    //     success: function(data) {
-    //         console.log(data);
-    //         needData = data['needs'];
-    //         $.each(needData, function(key, value){
+    $('#need_ngo').change(function() {
+        var selected_ngo = $(this).val();
+        console.log(selected_ngo);
+        $.ajax({
+            url: SAYApiUrl + '/need/all/confirm=2?status=3&isReported=false&ngoId=' + selected_ngo,
+            method: 'GET',
+            dataType: 'json',
+            headers: {
+                'Access-Control-Allow-Origin' : baseUrl,
+                'Athorization': $.cookie('access_token'),    // check if authorize for this action
+                'Cache-Control': 'no-cache'
+            },
+            success: function(data) {
+                console.log(data);
+                needData = data['needs'];
+                $.each(needData, function(key, value){
+                    // console.log(type($('#reportNGONeedList').find('tr').length));
+                    var query = '<tr>\
+                                <td>' + $('#reportNGONeedList').find('tr').length + '</td>';
 
-    //             var query = '<tr>\
-    //                         <td>' + $('#reportNGONeedList').find('tr').length + '</td>';
+                    for (var i=2 ; i < reportNGO_keys.length ; i++) {
+                        
+                        if (reportNGO_keys[i] == 'imageUrl') {
+                            value[reportNGO_keys[i]] = getImgFile(value[reportNGO_keys[i]]);
+                        }
 
-    //             for (var i=2 ; i < reportNGO_keys.length ; i++) {
-                    
-    //                 if (reportNGO_keys[i] == 'imageUrl') {
-    //                     value[reportNGO_keys[i]] = getImgFile(value[reportNGO_keys[i]]);
-    //                 }
+                        if (reportNGO_keys[i] == 'cost') {
+                            value[reportNGO_keys[i]] = value[reportNGO_keys[i]] + ' Toman'
+                        }
 
-    //                 if (reportNGO_keys[i] == 'cost') {
-    //                     value[reportNGO_keys[i]] = value[reportNGO_keys[i]] + ' Toman'
-    //                 }
+                        query += '<td>' + value[reportNGO_keys[i]] + '</td>';
+                    }
 
-    //                 query += '<td>' + value[reportNGO_keys[i]] + '</td>';
-    //             }
+                    query += '</tr>';
+                    $('#reportNGONeedList').append(query);
+                })
+            },
+            error: function(data) {
+                console.log(data.responseJSON.message);
+            }
+        })
+        $('#reportNGONeedList').empty();
 
-    //             query += '</tr>';
-    //             $('#reportNGONeedList').append(query);
-    //         })
-    //     },
-    //     error: function(data) {
-    //         console.log(data.responseJSON.message);
-    //     }
-    // })
+    })
 
 })
