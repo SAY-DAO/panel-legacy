@@ -468,13 +468,14 @@
 
               <div class="panel panel-default no-bd"  id="reportList">
                 <div class="panel-header bg-dark panel-controls">
-                  <h3 class="panel-title">ارسال گزارش <strong>نیازهای پرداخت شده/ارسال شده</strong> به انجمن</h3>
+                  <h3 class="panel-title"> گزارش <strong>نیازهای پرداخت شده/ارسال شده</strong> به انجمن</h3>
+                  <span>لیست این نیازها ساعت ۱۱ شب به ایمیل هماهنگ کننده‌ی انجمن ارسال می‌شود.</span>
                 </div>
                 <div class="option-group btn-group center-block col-lg-6 col-md-8 col-sm-8  col-xs-12">
-                    <select id="need_ngo" name="need_ngo" class="btn btn-sm btn-dark btn-block col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <select id="need_ngo" name="need_ngo" class="btn btn-sm btn-dark btn-block col-lg-6 col-md-6 col-sm-6 col-xs-12 report_filter">
                         <option value="">انجمن مورد نظر را انتخاب کنید</option>
                     </select>
-                    <select id="need_type" name="need_type" class="btn btn-sm btn-dark btn-block col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <select id="need_type" name="need_type" class="btn btn-sm btn-dark btn-block col-lg-6 col-md-6 col-sm-6 col-xs-12 report_filter">
                         <option value="">نوع نیاز را انتخاب کنید</option>
                         <option value="0">Sevice</option>
                         <option value="1">Product</option>
@@ -491,7 +492,8 @@
                           <th>نام خانوادگی کودک</th>
                           <th>نام نیاز</th>
                           <th class="small_th">آیکون نیاز</th>
-                          <th>هزینه نیاز</th>
+                          <th class="medium_th">هزینه نیاز</th>
+                          <th>زمان تحویل</th>
                         </tr>
                       </thead>
                       <tbody id="reportNGONeedList">

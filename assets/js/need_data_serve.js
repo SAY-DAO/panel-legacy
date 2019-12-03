@@ -56,7 +56,7 @@ $(document).ready(function(){
                         // }
 
                         if (keys[i] == 'cost' || keys[i] == 'paid') {
-                            value[keys[i]] = value[keys[i]] + ' Toman'
+                            value[keys[i]] = cost(value[keys[i]]);
                         }
 
                         if (keys[i] == 'affiliateLinkUrl' || keys[i] == 'link') {
@@ -334,6 +334,7 @@ $(document).ready(function(){
         })
     })
 
+
     // Confirm a need
 
     $('#needList').on('click' , '.confirmBtn' , function(e){
@@ -520,6 +521,11 @@ $(document).ready(function(){
 
     })  //end of 'confirm edit' function
 
+    // Force user to fill with number and seprate with comma
+    $('#need_cost').on('keyup', function() {
+        var n = parseInt($(this).val().replace(/\D/g,''),10);
+        $(this).val(n.toLocaleString());
+    })
 
     // Delete a need
 

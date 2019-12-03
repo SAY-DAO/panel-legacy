@@ -7,7 +7,7 @@ $(document).ready(function(){
     var keys = ['id' , 'type' , 'name' , 'status' , 'imageUrl' , 'childGeneratedCode' , 'childFirstName' , 'childLastName' , 'cost', 'donated' , 'details' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'ngoName' , 'ngoAddress' , 'receipts' , 'doneAt'];
     
     // for the report to ngo ajax
-    var reportNGO_keys = ['id' , 'ngoName' , 'childGeneratedCode' , 'childFirstName' , 'childLastName' , 'name' , 'imageUrl' , 'cost'];
+    var reportNGO_keys = ['id' , 'ngoName' , 'childGeneratedCode' , 'childFirstName' , 'childLastName' , 'name' , 'imageUrl' , 'cost' , 'delivery_date'];
 
     // get Done needs
     $.ajax({
@@ -96,7 +96,7 @@ $(document).ready(function(){
                     }
 
                     if (keys[i] == 'cost' || keys[i] == 'donated') {
-                        value[keys[i]] = value[keys[i]] + ' Toman'
+                        value[keys[i]] = cost(value[keys[i]]);
                     }
 
                     if(keys[i] == 'doing_duration') {
@@ -213,19 +213,26 @@ $(document).ready(function(){
         e.preventDefault();
         console.log("change status for need " + status_needId);
         var status = -1;
+        var delivery = false;
 
         var need_name = $('#need_name').val();
         if (type_id == 0) {
             status = $('#need_status_service').val();
         } else if (type_id == 1) {
             status = $('#need_status_product').val();
+            if (status == 3) {
+                delivery = true;
+            }
         }
         var delivery_date = $('#delivery_date').val();
 
         // append datas to a Form Data
         var form_data = new FormData();
         form_data.append('status', status);
-        form_data.append('delivery_date', delivery_date);
+        if(delivery == true) {
+            form_data.append('delivery_date', delivery_date);
+            console.log('delivery true');
+        }
 
         $.ajax({
             url: SAYApiUrl + '/need/update/needId=' + status_needId,
@@ -256,14 +263,14 @@ $(document).ready(function(){
         })
     })
 
-    
 
     // status 3 needs to report to NGO
-    $('#need_ngo').change(function() {
-        var selected_ngo = $(this).val();
+    $('.report_filter').change(function() {
+        var selected_ngo = $('#need_ngo').val();
+        var selected_type_id = $('#need_type').val();
         console.log(selected_ngo);
         $.ajax({
-            url: SAYApiUrl + '/need/all/confirm=2?status=3&isReported=false&ngoId=' + selected_ngo,
+            url: SAYApiUrl + '/need/all/confirm=2?status=3&isReported=0&ngoId=' + selected_ngo + '&type=' + selected_type_id,
             method: 'GET',
             dataType: 'json',
             headers: {
@@ -275,7 +282,6 @@ $(document).ready(function(){
                 console.log(data);
                 needData = data['needs'];
                 $.each(needData, function(key, value){
-                    // console.log(type($('#reportNGONeedList').find('tr').length));
                     var query = '<tr>\
                                 <td>' + $('#reportNGONeedList').find('tr').length + '</td>';
 
@@ -286,7 +292,11 @@ $(document).ready(function(){
                         }
 
                         if (reportNGO_keys[i] == 'cost') {
-                            value[reportNGO_keys[i]] = value[reportNGO_keys[i]] + ' Toman'
+                            value[reportNGO_keys[i]] = cost(value[reportNGO_keys[i]]);
+                        }
+
+                        if (reportNGO_keys[i] == 'delivery_date') {
+                            value[reportNGO_keys[i]] = localDate(value[reportNGO_keys[i]]);
                         }
 
                         query += '<td>' + value[reportNGO_keys[i]] + '</td>';

@@ -1,20 +1,19 @@
 //****************** YOUR CUSTOMIZED JAVASCRIPT **********************//
-// calculate age from birth date
 
+// calculate age from birth date
 function getAge(DOB) {
     var today = new Date();
     var birthDate = new Date(DOB);
     var age = today.getFullYear() - birthDate.getFullYear();
     var m = today.getMonth() - birthDate.getMonth();
     if (m < 0 || (m == 0 && today.getDate() < birthDate.getDate())) {
-        age = age - 1;
+        age = age - 1 + " Years old";
     }
     return age;
 }
 
 
 // null values in tables
-
 function nullValues() {
     var value = '<span class="null">Not entered</span>';
     return value;
@@ -22,7 +21,6 @@ function nullValues() {
 
 
 //needs status
-
 function fullPayment() {
     var value = '<img src="assets/images/icons/1.svg" alt="Fully paid" title="Fully paid" />';
     return value;
@@ -54,7 +52,6 @@ function needInProgress(status) {
 }
 
 // get the file url and return the tag to show it on html
-
 function getImgFile(fileUrl) {
     var show_file = '<a target="_blank" href="' + baseUrl + fileUrl +'"><img class="tableImg" src="' + baseUrl + fileUrl +'" /></a>';
     return show_file;
@@ -91,4 +88,10 @@ function localDate(value) {
     that_date = new Date(value);
     local_date = that_date.toLocaleString();
     return local_date;
+}
+
+// Cost values
+function cost(value) {
+    beauty_cost = value.toLocaleString() + ' Toman';
+    return beauty_cost;
 }

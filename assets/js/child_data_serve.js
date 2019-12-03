@@ -59,7 +59,7 @@ $(document).ready(function(){
                     }
 
                     if(keys[i] == 'birthDate'){
-                        value[keys[i]] = getAge(value[keys[i]]) + " Years old";
+                        value[keys[i]] = getAge(value[keys[i]]);
                     }
 
                     if(keys[i] == 'country'){
@@ -216,7 +216,7 @@ $(document).ready(function(){
                     }
 
                     if(keys[i] == 'spentCredit'){
-                        value[keys[i]] = value[keys[i]] + " Toman";
+                        value[keys[i]] = cost(value[keys[i]]);
                     }
 
                     if(keys[i] == 'familyCount' || keys[i] == 'sayFamilyCount'){
@@ -601,6 +601,9 @@ $(document).ready(function(){
 
     })  //end of 'confirm edit' function
 
+    $('#child_birthdate').change(function() {
+        $('#child_age').val(getAge($(this).val()));
+    })
 
     // Delete a child
 
