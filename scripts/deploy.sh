@@ -23,7 +23,6 @@ tar -xvf $CI_PROJECT_NAME.tar.gz &&
 cd $CI_PROJECT_NAME &&
 docker build -t $REPO_UPLOAD_ADD . &&
 cd /home/server/say-installer &&
-docker-compose up -d &&
-docker image prune -af
+docker-compose up -d
 "
 echo 'DONE'
