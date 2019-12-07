@@ -371,10 +371,10 @@
                                   <div class="option-group">
                                       <select id="need_status_product" name="need_status_product" class="form-control" required>
                                         <option value="">وضعیت مورد نظر را انتخاب کنید</option>
-                                        <option value="2">Paid</option>
-                                        <option value="3">Purchased</option>
-                                        <option value="4">NGO received the need</option>
-                                        <option value="5">Need delivered to the child</option>
+                                        <option value="2">Money transfer</option>
+                                        <option value="3">Product purchase</option>
+                                        <option value="4">Product delivery to the NGO</option>
+                                        <option value="5">Product delivery</option>
                                         
                                       </select>
                                   </div>
@@ -387,9 +387,9 @@
                                   <div class="option-group">
                                       <select id="need_status_service" name="need_status_service" class="form-control" required>
                                         <option value="">وضعیت مورد نظر را انتخاب کنید</option>
-                                        <option value="2">Paid</option>
-                                        <option value="3">NGO received the money</option>
-                                        <option value="4">Need is available for the child</option>
+                                        <option value="2">Money transfer</option>
+                                        <option value="3">Money transfer to the NGO</option>
+                                        <option value="4">Service delivery</option>
                                         
                                       </select>
                                   </div>
@@ -406,10 +406,29 @@
                             </div>
                           </div>
 
-                          <div class="col-md-4 col-sm-4" hidden>
+                          <div class="col-md-4 col-sm-6" id="p_receipts" hidden>
                             <div class="form-group">
-                              <label for="receipt" class="control-label">رسید</label>
-                                <input type="date" id="receipt" name="receipt" class="form-control">
+                              <label class="control-label" for="product_receipts">رسید کالا</label>
+                              <div class="file">
+                                <div class="option-group">
+                                  <span class="file-button btn-primary">انتخاب فایل</span>
+                                  <input type="file" class="custom-file" name="product_receipts[]" id="product_receipts" title="حجم فایل انتخابی می‌بایست کمتر از 3 مگابایت باشد" multiple="multiple" onchange="document.getElementById('product_receipts_uploader').value = this.value;">
+                                  <input type="text" class="form-control" id="product_receipts_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-4 col-sm-6" id="s_receipts" hidden>
+                            <div class="form-group">
+                              <label class="control-label" for="service_receipts">رسید سرویس</label>
+                              <div class="file">
+                                <div class="option-group">
+                                  <span class="file-button btn-primary">انتخاب فایل</span>
+                                  <input type="file" class="custom-file" name="service_receipts[]" id="service_receipts" title="حجم فایل انتخابی می‌بایست کمتر از 3 مگابایت باشد" multiple="multiple" onchange="document.getElementById('service_receipts_uploader').value = this.value;">
+                                  <input type="text" class="form-control" id="service_receipts_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="">
+                                </div>
+                              </div>
                             </div>
                           </div>
 
@@ -440,6 +459,7 @@
                           <th class="medium_th">عملیات</th>
                           <th>نام نیاز</th>
                           <th>وضعیت نیاز</th>
+                          <th>تاریخ تحویل نیاز</th>
                           <th>آیکون نیاز</th>
                           <th>کد کودک</th>
                           <th>نام کودک</th>

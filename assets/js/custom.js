@@ -85,8 +85,14 @@ function linkTo(value) {
 
 // Date Time values
 function localDate(value) {
-    that_date = new Date(value);
-    local_date = that_date.toLocaleString();
+    var local_date = -1;
+    if (value != null) {
+        var that_date = new Date(value);
+        local_date = that_date.toLocaleString();
+    } else {
+        local_date = '-';
+    }
+    
     return local_date;
 }
 

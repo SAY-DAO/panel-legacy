@@ -4,7 +4,7 @@ $(document).ready(function(){
 
     var status_needId = -1;
     var type_id = -1;
-    var keys = ['id' , 'type' , 'name' , 'status' , 'imageUrl' , 'childGeneratedCode' , 'childFirstName' , 'childLastName' , 'cost', 'donated' , 'details' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'ngoName' , 'ngoAddress' , 'receipts' , 'doneAt'];
+    var keys = ['id' , 'type' , 'name' , 'status' , 'delivery_date' , 'imageUrl' , 'childGeneratedCode' , 'childFirstName' , 'childLastName' , 'cost', 'donated' , 'details' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'ngoName' , 'ngoAddress' , 'receipts' , 'doneAt'];
     
     // for the report to ngo ajax
     var reportNGO_keys = ['id' , 'ngoName' , 'childGeneratedCode' , 'childFirstName' , 'childLastName' , 'name' , 'imageUrl' , 'cost' , 'delivery_date'];
@@ -115,6 +115,12 @@ $(document).ready(function(){
                         }
                     }
 
+                    if (keys[i] == 'delivery_date') {
+                        if (value[keys[i]] != null) {
+                            value[keys[i]] = localDate(value[keys[i]]).split(', ')[0];
+                        }
+                    }                    
+
                     if(keys[i] == 'doneAt') {
                         value[keys[i]] = localDate(value[keys[i]]);
                     }
@@ -177,19 +183,21 @@ $(document).ready(function(){
                 $('#delivery').hide();
                 
                 $('#need_name').val(data['name']);
-                $('#delivery_date').val(data['delivery_date']);
+                $('#delivery_date').val(localDate(data['delivery_date']).split(', ')[0]);
 
                 type_id = data['type'];     // to use in confirm change status
                 if (type_id == 0) {
                     $('#product_status').hide();
                     $('#service_status').show();
                     $('#need_status_service').val(data['status']).change();  // need status feild in get need by id
-
+                    $('#p_receipts').hide();
+                    $('#s_receipts').show();
                 } else if (type_id == 1) {
                     $('#service_status').hide();
                     $('#product_status').show();
                     $('#need_status_product').val(data['status']).change();  // need status feild in get need by id
-
+                    $('#s_receipts').hide();
+                    $('#p_receipts').show();
                 }
 
                 $('#need_status_product').change(function() {
@@ -213,13 +221,16 @@ $(document).ready(function(){
         e.preventDefault();
         console.log("change status for need " + status_needId);
         var status = -1;
+        var receipts = -1;
         var delivery = false;
 
         var need_name = $('#need_name').val();
         if (type_id == 0) {
             status = $('#need_status_service').val();
+            receipts = $('#service_receipts')[0].files[0];
         } else if (type_id == 1) {
             status = $('#need_status_product').val();
+            receipts = $('#product_receipts')[0].files[0];
             if (status == 3) {
                 delivery = true;
             }
@@ -228,10 +239,14 @@ $(document).ready(function(){
 
         // append datas to a Form Data
         var form_data = new FormData();
-        form_data.append('status', status);
+        if (status) {
+            form_data.append('status', status);
+        }
+        if (receipts) {
+            form_data.append('receipts', receipts);
+        }
         if(delivery == true) {
             form_data.append('delivery_date', delivery_date);
-            console.log('delivery true');
         }
 
         $.ajax({
@@ -296,7 +311,9 @@ $(document).ready(function(){
                         }
 
                         if (reportNGO_keys[i] == 'delivery_date') {
-                            value[reportNGO_keys[i]] = localDate(value[reportNGO_keys[i]]);
+                            if (value[reportNGO_keys[i]] != null) {
+                                value[reportNGO_keys[i]] = localDate(value[reportNGO_keys[i]]).split(', ')[0];
+                            }
                         }
 
                         query += '<td>' + value[reportNGO_keys[i]] + '</td>';
