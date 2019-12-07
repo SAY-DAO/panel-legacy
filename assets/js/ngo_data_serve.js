@@ -23,10 +23,11 @@ $(document).ready(function(){
 
             $.each(data , function(key ,value){
                 var ngoId = value[keys[0]];
+                var row_index = 1;
 
                 // first td for row count numbers, second td for operational buttons
                 var query = '<tr>\
-                <td>' + $('tr').length + '</td>\
+                <td>' + row_index + '</td>\
                 <td id="' + ngoId + '">\
                 <button class="btn btn-embossed btn-primary btn-block btn-sm editBtn" onclick="editScroll()">Edit</button>\
                 <button class="btn btn-embossed btn-danger btn-block btn-sm" disabled>Delete</button>\
@@ -118,6 +119,8 @@ $(document).ready(function(){
                 }
                 query+= '</tr>';
                 $('#ngoList').append(query);
+                row_index += 1;
+                
             })
         },
         error: function(data) {

@@ -29,11 +29,9 @@ $(document).ready(function(){
             'Cache-Control': 'no-cache'
         },
         success: function(data) {
-
-            // console.log(data);
             var childData = data['children'];
-            
             // console.log("child data: ", childData[0]['id_social_worker']);
+            var row_index = 1;
 
             $.each(childData , function(key ,value){
                 var childId = value[keys[0]];
@@ -41,7 +39,7 @@ $(document).ready(function(){
 
                 // first td for row count numbers, second td for operational buttons
                 var query = '<tr>\
-                <td>' + $('tr').length + '</td>\
+                <td>' + row_index + '</td>\
                 <td class="operation" id="' + childId + '">\
                 <button type="submit" class="btn btn-embossed btn-success btn-block btn-sm confirmBtn">Confirm</button>\
                 <button class="btn btn-embossed btn-primary btn-block btn-sm editBtn" onclick="editScroll()">Edit</button>\
@@ -238,6 +236,7 @@ $(document).ready(function(){
                 if(confirmStatus == 1){
                         $('#' + childId).find('.confirmBtn').prop("disabled", true);
                 }
+                row_index += 1;
                 
             })
 

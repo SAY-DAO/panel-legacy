@@ -20,14 +20,14 @@ function nullValues() {
 }
 
 
-//needs status
+//needs status in report and need page
 function fullPayment() {
-    var value = '<img src="assets/images/icons/1.svg" alt="Fully paid" title="Fully paid" />';
+    var value = '<img src="assets/images/icons/1.svg" alt="Money transfered" title="Money transfered" />';
     return value;
 }
 
 function purchased() {
-    var value = '<img src="assets/images/icons/2.svg" alt="Purchased" title="Purchased" />';
+    var value = '<img src="assets/images/icons/2.svg" alt="Product purchased" title="Product purchased" />';
     return value;
 }
 

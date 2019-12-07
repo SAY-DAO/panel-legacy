@@ -20,10 +20,11 @@ $(document).ready(function(){
 
             $.each(data , function(key , value){
                 var socialworkerId = value[keys[0]];
+                var row_index = 1;
 
                 // first td for row count numbers, second td for operational buttons
                 var query = '<tr>\
-                <td>' + $('tr').length + '</td>\
+                <td>' + row_index + '</td>\
                 <td id="' + socialworkerId + '">\
                 <button type="submit" class="btn btn-embossed btn-success btn-block btn-sm confirmBtn" disabled>Confirm</button>\
                 <button class="btn btn-embossed btn-primary btn-block btn-sm editBtn" onclick="editScroll()">Edit</button>\
@@ -113,6 +114,8 @@ $(document).ready(function(){
                 }
                 query+= '</tr>';
                 $('#socialWorkerList').append(query);
+                row_index += 1;
+                
             })
             
         },

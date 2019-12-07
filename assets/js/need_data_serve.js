@@ -21,7 +21,8 @@ $(document).ready(function(){
             },
             success: function(data) {
                 console.log('option:' + selected_child);
-                // console.log(data);
+                var row_index = 1;
+
                 $.each(data, function(key, value){
                     var needId = value[keys[0]];
                     var confirmStatus = -1;
@@ -29,7 +30,7 @@ $(document).ready(function(){
     
                     // first td for row count numbers, second td for operational buttons
                     var query = '<tr>\
-                    <td>' + $('tr').length + '</td>\
+                    <td>' + row_index + '</td>\
                     <td id="' + needId + '">\
                     <button type="submit" class="btn btn-embossed btn-success btn-block btn-sm confirmBtn">Confirm</button>\
                     <button class="btn btn-embossed btn-primary btn-block btn-sm editBtn" onclick="editScroll()">Edit</button>\
@@ -164,6 +165,8 @@ $(document).ready(function(){
                     if(confirmStatus == 1){
                         $('#' + needId).find('.confirmBtn').prop("disabled", true);
                     }
+                    row_index += 1;
+                    
                 })
             },
             error: function(data) {

@@ -25,24 +25,15 @@ $(document).ready(function(){
         success: function(data) {
             console.log(data);
             needData = data['needs'];
+            var row_index = 1;
+
             $.each(needData, function(key, value){
                 var needId = value[keys[0]];
                 var need_type = value[keys[1]];
                 var need_status = -1;
-
-                // need status show design -> must be review
-                if (need_type == 0) {
-                    status_option = '\
-                    <button type="submit" class="btn btn-block btn-embossed btn-default btn-sm statusS3 activeStatus">NGO receive money</button>\
-                    <button type="submit" class="btn btn-block btn-embossed btn-default btn-sm statusS4 deactiveStatus" disabled>Available for child</button>';
-                } else if (need_type == 1) {
-                    status_option = '<button type="submit" class="btn btn-block btn-embossed btn-default btn-sm statusP3 activeStatus">Purchased</button>\
-                    <button type="submit" class="btn btn-block btn-embossed btn-default btn-sm statusP4 deactiveStatus" disabled>Delivered to NGO</button>\
-                    <button type="submit" class="btn btn-block btn-embossed btn-default btn-sm statusP5 deactiveStatus" disabled>Delivered to child</button>';
-                }
-
+                
                 var query = '<tr>\
-                <td>' + $('#reportDoneNeedList').find('tr').length + '</td>\
+                <td>' + row_index + '</td>\
                 <td id="' + needId + '">\
                 <button type="submit" class="btn btn-block btn-embossed btn-default btn-sm changeStatus" onclick="editScroll()">Change status</button>\
                 </td>\
@@ -131,26 +122,7 @@ $(document).ready(function(){
                 query += '</tr>';
                 $('#reportDoneNeedList').append(query);
 
-                if(need_status == 03){
-                    $('#' + needId).find('.statusS3').prop("disabled", true).addClass('doneStatus').removeClass('activeStatus');
-                    $('#' + needId).find('.statusS4').prop("disabled", false).addClass('activeStatus').removeClass('deactiveStatus');
-                }else if(need_status == 04){
-                    $('#' + needId).find('.statusS3').prop("disabled", true).addClass('doneStatus').removeClass('activeStatus');
-                    $('#' + needId).find('.statusS4').prop("disabled", true).addClass('doneStatus').removeClass('activeStatus deactiveStatus');
-                }else if(need_status == 13){
-                    $('#' + needId).find('.statusP3').prop("disabled", true).addClass('doneStatus').removeClass('activeStatus');
-                    $('#' + needId).find('.statusP4').prop("disabled", false).addClass('activeStatus').removeClass('deactiveStatus');
-
-                }else if(need_status == 14){
-                    $('#' + needId).find('.statusP3').prop("disabled", true).addClass('doneStatus').removeClass('activeStatus');
-                    $('#' + needId).find('.statusP4').prop("disabled", true).addClass('doneStatus').removeClass('activeStatus deactiveStatus');
-                    $('#' + needId).find('.statusP5').prop("disabled", false).addClass('activeStatus').removeClass('deactiveStatus');
-                }else if(need_status == 15){
-                    $('#' + needId).find('.statusP3').prop("disabled", true).addClass('doneStatus').removeClass('activeStatus');
-                    $('#' + needId).find('.statusP4').prop("disabled", true).addClass('doneStatus').removeClass('activeStatus deactiveStatus');
-                    $('#' + needId).find('.statusP5').prop("disabled", true).addClass('doneStatus').removeClass('activeStatus deactiveStatus');
-                }
-
+                row_index += 1;
             })
             $('.preloader').hide();
 
@@ -296,9 +268,11 @@ $(document).ready(function(){
             success: function(data) {
                 console.log(data);
                 needData = data['needs'];
+                var row_index = 1;
+
                 $.each(needData, function(key, value){
                     var query = '<tr>\
-                                <td>' + $('#reportNGONeedList').find('tr').length + '</td>';
+                                <td>' + row_index + '</td>';
 
                     for (var i=2 ; i < reportNGO_keys.length ; i++) {
                         
@@ -321,6 +295,8 @@ $(document).ready(function(){
 
                     query += '</tr>';
                     $('#reportNGONeedList').append(query);
+                    
+                    row_index += 1;
                 })
             },
             error: function(data) {
