@@ -63,8 +63,14 @@ function getVoiceFile(fileUrl) {
 }
 
 function getFile(fileUrl) {
-    var show_file = '<a target="_blank" href="' + baseUrl + fileUrl +'">Click here to see the file</a>';
-    return show_file;
+    var files = fileUrl.split(',');
+    var result = [];
+    var index = 1;
+    $.each(files, function(key, value) {
+        result.push('<a target="_blank" href="' + baseUrl + value +'">Receipt' + index + '</a>');
+        index += 1;
+    })    
+    return result.join("<br /><br />");
 }
 
 // link values

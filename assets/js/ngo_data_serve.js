@@ -36,10 +36,7 @@ $(document).ready(function(){
                 for(var i = 1 ; i < keys.length ; i++){
                     
                     // console.log("ngoSeccess:" + keys[i]);
-                    if (value[keys[i]] == null) {
-                        value[keys[i]] = nullValues();
-                    }
-                    
+                   
                     if (keys[i] == 'country'){
                         if(value[keys[i]] == '98'){
                             value[keys[i]] = 'Iran';
@@ -115,6 +112,10 @@ $(document).ready(function(){
                     //     value[keys[i]] = linkTo(value[keys[i]]);                       
                     // }
 
+                    if (value[keys[i]] == null) {
+                        value[keys[i]] = nullValues();
+                    }
+                    
                     query += '<td>' + value[keys[i]] + '</td>';
                 }
                 query+= '</tr>';

@@ -33,10 +33,6 @@ $(document).ready(function(){
                 
                 for(var i = 1 ; i < keys.length ; i++){
 
-                    if (value[keys[i]] == null) {
-                        value[keys[i]] = nullValues();
-                    }
-
                     if (keys[i] == 'country'){
                         if(value[keys[i]] == '98'){
                             value[keys[i]] = 'Iran';
@@ -108,6 +104,10 @@ $(document).ready(function(){
 
                     if (keys[i] == 'emailAddress') {
                         value[keys[i]] = mailTo(value[keys[i]]);
+                    }
+                    
+                    if (value[keys[i]] == null) {
+                        value[keys[i]] = nullValues();
                     }
 
                     query += '<td>' + value[keys[i]] + '</td>';

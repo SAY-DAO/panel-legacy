@@ -40,9 +40,6 @@ $(document).ready(function(){
                 ';
 
                 for (var i=2 ; i < keys.length ; i++) {
-                    if (value[keys[i]] == null) {
-                        value[keys[i]] = nullValues();
-                    }
                     
                     if (keys[i] == 'status') {
                         if(value[keys[i]] == 0){
@@ -101,7 +98,7 @@ $(document).ready(function(){
                     }
 
                     if(keys[i] == 'receipts') {
-                        if(value[keys[i]] != null) {
+                        if(value[keys[i]]) {
                             value[keys[i]] = getFile(value[keys[i]]);
                         }
                     }
@@ -116,6 +113,9 @@ $(document).ready(function(){
                         value[keys[i]] = localDate(value[keys[i]]);
                     }
 
+                    if (value[keys[i]] == null) {
+                        value[keys[i]] = nullValues();
+                    }
                     query += '<td>' + value[keys[i]] + '</td>';
                 }
 
@@ -295,7 +295,7 @@ $(document).ready(function(){
 
                     query += '</tr>';
                     $('#reportNGONeedList').append(query);
-                    
+
                     row_index += 1;
                 })
             },

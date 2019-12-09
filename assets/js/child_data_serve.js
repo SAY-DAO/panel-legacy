@@ -48,10 +48,6 @@ $(document).ready(function(){
 
                 for(var i = 1 ; i < keys.length ; i++){
                     
-                    if(value[keys[i]] == null){
-                        value[keys[i]] = nullValues();
-                    }
-                    
                     if(keys[i] == 'doneNeedCount'){
                         value[keys[i]] = value[keys[i]] + " Done";
                     }
@@ -223,6 +219,10 @@ $(document).ready(function(){
 
                     if(keys[i] == 'confirmDate' || keys[i] == 'createdAt' || keys[i] == 'lastUpdate') {
                         value[keys[i]] = localDate(value[keys[i]]);
+                    }
+                    
+                    if(value[keys[i]] == null){
+                        value[keys[i]] = nullValues();
                     }
 
                     query += '<td>' + value[keys[i]] + '</td>';

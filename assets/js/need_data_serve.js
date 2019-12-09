@@ -38,10 +38,6 @@ $(document).ready(function(){
                     </td>';
                     for(var i=2 ; i < keys.length ; i++){
                         
-                        if(value[keys[i]] == null){
-                            value[keys[i]] = nullValues();
-                        }
-                        
                         if (keys[i] == 'imageUrl') {
                             value[keys[i]] = getImgFile(value[keys[i]]);
                         }
@@ -153,6 +149,10 @@ $(document).ready(function(){
 
                         if(keys[i] == 'confirmDate' || keys[i] == 'createdAt' || keys[i] == 'lastUpdate') {
                             value[keys[i]] = localDate(value[keys[i]]);
+                        }
+ 
+                        if(value[keys[i]] == null){
+                            value[keys[i]] = nullValues();
                         }
 
                         query += '<td>' + value[keys[i]] + '</td>';
