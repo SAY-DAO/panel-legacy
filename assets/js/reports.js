@@ -20,7 +20,7 @@ $(document).ready(function(){
             'Cache-Control': 'no-cache'
         },
         beforeSend: function() {
-            $('.preloader').show();
+            $('#done_need_preloader').show();
         },
         success: function(data) {
             console.log(data);
@@ -124,7 +124,7 @@ $(document).ready(function(){
 
                 row_index += 1;
             })
-            $('.preloader').hide();
+            $('#done_need_preloader').hide();
 
         },
         error: function(data) {
@@ -149,7 +149,7 @@ $(document).ready(function(){
                 'Cache-Control': 'no-cache'
             },
             beforeSend: function() {
-                $('.preloader').show();
+                $('#change_need_preloader').show();
             },
             success: function(data) {
                 $('#delivery').hide();
@@ -179,7 +179,7 @@ $(document).ready(function(){
                         $('#delivery').hide();
                     }
                 })
-                $('.preloader').hide();
+                $('#change_need_preloader').hide();
                 
             },
             error: function() {
@@ -265,6 +265,9 @@ $(document).ready(function(){
                 'Athorization': $.cookie('access_token'),    // check if authorize for this action
                 'Cache-Control': 'no-cache'
             },
+            beforeSend: function() {
+                $('#report_ngo_preloader').show();
+            },
             success: function(data) {
                 console.log(data);
                 needData = data['needs'];
@@ -298,6 +301,7 @@ $(document).ready(function(){
 
                     row_index += 1;
                 })
+                $('#report_ngo_preloader').hide();
             },
             error: function(data) {
                 console.log(data.responseJSON.message);

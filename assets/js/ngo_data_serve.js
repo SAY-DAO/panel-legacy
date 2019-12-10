@@ -19,6 +19,9 @@ $(document).ready(function(){
             'Athorization': $.cookie('access_token'),    // check if authorize for this action
             'Cache-Control': 'no-cache'
         },
+        beforeSend: function() {
+            $('#ngo_preloader').show();
+        },
         success: function(data) {
 
             $.each(data , function(key ,value){
@@ -121,8 +124,8 @@ $(document).ready(function(){
                 query+= '</tr>';
                 $('#ngoList').append(query);
                 row_index += 1;
-                
             })
+            $('#ngo_preloader').hide();
         },
         error: function(data) {
             console.log(data.responseJSON.message);
@@ -208,6 +211,9 @@ $(document).ready(function(){
                 'Access-Control-Allow-Origin'  : baseUrl,
                 'Athorization': $.cookie('access_token')    // check if authorize for this action
             },
+            beforeSend: function() {
+                $('#ngo_form_preloader').show();
+            },
             success: function(data) {
                 // console.log(data);
                 $('#ngo_name').val(data['name']);
@@ -220,6 +226,8 @@ $(document).ready(function(){
                 $('#coordinator_id').val(data['coordinatorId']).change();
                 $('#ngo_current_social_worker_count').val(data['currentSocialWorkerCount']);
                 $('#ngo_current_child_count').val(data['currentChildrenCount']);
+
+                $('#ngo_form_preloader').hide();
             },
             error: function(data) {
                 console.log(data.responseJSON.message);

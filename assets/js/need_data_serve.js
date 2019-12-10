@@ -19,6 +19,9 @@ $(document).ready(function(){
                 'Athorization': $.cookie('access_token'),    // check if authorize for this action
                 'Cache-Control': 'no-cache'
             },
+            beforeSend: function() {
+                $('#needs_preloader').show();
+            },
             success: function(data) {
                 console.log('option:' + selected_child);
                 var row_index = 1;
@@ -166,8 +169,9 @@ $(document).ready(function(){
                         $('#' + needId).find('.confirmBtn').prop("disabled", true);
                     }
                     row_index += 1;
-                    
                 })
+                $('#needs_preloader').hide();
+
             },
             error: function(data) {
                 console.log(data.responseJSON.message);
@@ -222,6 +226,9 @@ $(document).ready(function(){
                 'Athorization': $.cookie('access_token'),    // check if authorize for this action
                 'Cache-Control': 'no-cache'
             },
+            beforeSend: function() {
+                $('#need_form_preloader').show();
+            },
             success: function(data) {
                 // console.log(data);
 
@@ -245,7 +252,8 @@ $(document).ready(function(){
                 // }, false)
                 
                 // console.log("icon: ", $('#need_icon').val());
-
+                
+                $('#need_form_preloader').hide();
             },
             error: function(data) {
                 console.log(data.responseJSON.message);
@@ -398,6 +406,9 @@ $(document).ready(function(){
                 'Athorization': $.cookie('access_token'),    // check if authorize for this action
                 'Cache-Control': 'no-cache'
             },
+            beforeSend: function() {
+                $('#need_form_preloader').show();
+            },
             success: function(data) {
                 console.log(data);
 
@@ -414,6 +425,7 @@ $(document).ready(function(){
                 $('#need_doing_duration').val(data['doing_duration']);
                 $('#is_urgent').val(data['isUrgent']).change();
 
+                $('#need_form_preloader').hide();
             },
             error: function() {
                 console.log(data.responseJSON.message);

@@ -15,6 +15,9 @@ $(document).ready(function(){
             'Access-Control-Allow-Origin'  : baseUrl,
             'Athorization': $.cookie('access_token')    // check if authorize for this action
         },
+        beforeSend: function() {
+            $('#socialworker_preloader').show();
+        },
         success: function(data) {
             // console.log(data);
 
@@ -117,7 +120,8 @@ $(document).ready(function(){
                 row_index += 1;
                 
             })
-            
+
+            $('#socialworker_preloader').hide();
         },
         error: function(data) {
             console.log(data.responseJSON.message);
@@ -281,6 +285,9 @@ $(document).ready(function(){
                 'Access-Control-Allow-Origin'  : baseUrl,
                 'Athorization': $.cookie('access_token')    // check if authorize for this action
             },
+            beforeSend: function() {
+              $('#socialworker_form_preloader').show();  
+            },
             success: function(data) {
                 // console.log(data);
                 $('#social_worker_first_name').val(data['firstName']);
@@ -305,6 +312,7 @@ $(document).ready(function(){
                 $('#social_worker_current_child_count').val(data['currentChildCount']);
                 $('#social_worker_current_need_count').val(data['currentNeedCount']);
 
+                $('#socialworker_form_preloader').hide();
             },
             error: function() {
                 console.log(data.responseJSON.message);

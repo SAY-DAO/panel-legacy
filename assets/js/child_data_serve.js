@@ -28,6 +28,9 @@ $(document).ready(function(){
             'Athorization': $.cookie('access_token'),    // check if authorize for this action
             'Cache-Control': 'no-cache'
         },
+        beforeSend: function() {
+            $('#children_preloader').show();
+        },
         success: function(data) {
             var childData = data['children'];
             // console.log("child data: ", childData[0]['id_social_worker']);
@@ -237,8 +240,8 @@ $(document).ready(function(){
                         $('#' + childId).find('.confirmBtn').prop("disabled", true);
                 }
                 row_index += 1;
-                
             })
+            $('#children_preloader').hide();
 
         },
         error: function(data) {
@@ -246,9 +249,7 @@ $(document).ready(function(){
         }
     })
 
-
     //Child drop down field in needs form
-
     $.ajax({
         url: SAYApiUrl + child_id_url,
         method: 'GET',
@@ -274,9 +275,7 @@ $(document).ready(function(){
         }
     })
 
-
     // Add new child
-
     $('#sendChildData').on('click' , function(e){
         e.preventDefault();
 
@@ -448,6 +447,9 @@ $(document).ready(function(){
                 'Cache-Control': 'no-cache'
 
             },
+            beforeSend: function() {
+                $('#children_form_preloader').show();
+            },
             success: function (data) {
                 // console.log(data);
 
@@ -470,6 +472,7 @@ $(document).ready(function(){
                 $('#child_story').val(data['bio']);
                 $('#child_story_summary').val(data['bioSummary']);
 
+                $('#children_form_preloader').hide();
             },
             error: function (data) {
                 console.log(data.responseJSON.message);
