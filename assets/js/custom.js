@@ -7,9 +7,9 @@ function getAge(DOB) {
     var age = today.getFullYear() - birthDate.getFullYear();
     var m = today.getMonth() - birthDate.getMonth();
     if (m < 0 || (m == 0 && today.getDate() < birthDate.getDate())) {
-        age = age - 1 + " Years old";
+        age = age - 1;
     }
-    return age;
+    return age + " Years old";
 }
 
 
@@ -38,16 +38,6 @@ function ngoDelivery() {
 
 function childDelivery() {
     var value = '<img src="assets/images/icons/4.svg" alt="Delivered to the child" title="Delivered to the child" />';
-    return value;
-}
-
-function doneNeed(status) {
-    var value = '<span class="doneNeed">' + status + '</span>';
-    return value;
-}
-
-function needInProgress(status) {
-    var value = '<span class="needInProgress">' + status + '</span>';
     return value;
 }
 

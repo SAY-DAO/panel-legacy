@@ -190,14 +190,6 @@ tbody td{
   text-decoration: none !important;
 }
 
-.doneNeed{  /*SAY*/
-  color: #00c213 !important;
-}
-
-.needInProgress{  /*SAY*/
-  color: #ffcc00 !important;
-}
-
 .doneStatus{  /*SAY*/
   color: #ff9b14 !important;
   border: 1px solid #ff9b14 !important;
@@ -4513,6 +4505,7 @@ body:not(.fixed-sidebar):not(.fixed-topbar):not(.sidebar-top) .sidebar .logopane
   height: auto;
   padding: 6px 15px 6px 18px;
   border-bottom: 1px solid #ccc;
+  cursor: pointer;  /*SAY*/
 }
 #recent-pay{
   margin-top: 50px !important;
@@ -4521,7 +4514,7 @@ body:not(.fixed-sidebar):not(.fixed-topbar):not(.sidebar-top) .sidebar .logopane
   color: #5b5b5b;
   display: block;
   /* font-family: 'Lato'; */
-	font-family: iranyekan; /*say*/
+	font-family: iranyekan; /*SAY*/
   
   font-size: 24px;
   font-weight: 100;
@@ -4533,7 +4526,7 @@ body:not(.fixed-sidebar):not(.fixed-topbar):not(.sidebar-top) .sidebar .logopane
 .main-content .page-content .panel .panel-header h3 {
   display: block;
   /* font-family: 'Lato', 'Open Sans', sans-serif; */
-	font-family: iranyekan; /*say*/
+	font-family: iranyekan; /*SAY*/
 
   font-size: 15px;
   font-weight: 400;
@@ -5900,17 +5893,15 @@ body:not(.fixed-topbar) .main-content .page-content {
 }
 
 .wide_th { /*SAY*/
-  padding-right: 200px !important;
-  padding-left: 200px !important;
+  min-width: 400px;
 }
 
 .medium_th { /*SAY*/
-  padding-right: 50px !important;
-  padding-left: 50px !important;
+  min-width: 100px;
 }
 
 .small_th { /*SAY*/
-  width: 50px !important;
+ min-width: 50px;
 }
 
 tbody{ /* SAY */

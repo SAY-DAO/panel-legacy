@@ -389,7 +389,6 @@ $(document).ready(function(){
     })
 
     // Confirm a child
-
     $('#childList').on('click' , '.confirmBtn' , function(e){
         e.preventDefault();
         var childId = $(this).parent().attr('id');
@@ -426,7 +425,6 @@ $(document).ready(function(){
 
 
     // Edit a child
-
     $('#childList').on('click' , '.editBtn' , function(e){
         e.preventDefault();
 
@@ -463,7 +461,7 @@ $(document).ready(function(){
                 $('#child_country').val(data['country']).change();
                 $('#child_city').val(data['city']).change();
                 $('#child_address').val(data['address']);
-                $('#child_birthdate').val(data['birthDate']);
+                $('#child_age').val(getAge(data['birthDate']));
                 $('#child_birthplace').val(data['birthPlace']);
                 $('#family_count').val(data['familyCount']);
                 //education??
@@ -603,12 +601,12 @@ $(document).ready(function(){
 
     })  //end of 'confirm edit' function
 
+    // live age field in child form
     $('#child_birthdate').change(function() {
-        $('#child_age').val(getAge($(this).val()));
+        $('#child_age').val( getAge( $(this).val() ) );
     })
 
     // Delete a child
-
     $('#childList').on('click' , '.deleteBtn' , function(e){
         e.preventDefault();
         var childId = $(this).parent().attr('id');
