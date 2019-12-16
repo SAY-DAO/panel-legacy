@@ -46,7 +46,7 @@ $(document).ready(function(){
                             value[keys[i]] = 'Not paid';
                         }
                         if(value[keys[i]] == 1){
-                            value[keys[i]] = needInProgress('Almost there');
+                            value[keys[i]] = "Partially paid";
                         }
                         if(value[keys[i]] == 2){
                             value[keys[i]] = fullPayment();
