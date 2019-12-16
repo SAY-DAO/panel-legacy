@@ -2161,7 +2161,8 @@ body:not(.sidebar-collapsed) .topbar .header-left .topnav .menutoggle:hover .men
   pointer-events: none;
 }
 .sidebar .sidebar-inner .nav-sidebar > li.active > a {
-  background-color: #319db5;
+  background-color: #F59E39; /*SAY*/
+  /* background-color: #319db5; */
   color: #ffffff;
   opacity: 1;
 }
@@ -2169,7 +2170,8 @@ body:not(.sidebar-collapsed) .topbar .header-left .topnav .menutoggle:hover .men
   color: #ffffff;
 }
 .sidebar .sidebar-inner .nav-sidebar > li.nav-parent.active > a:hover {
-  background-color: #319db5;
+  background-color: #F59E39;  /*SAY*/
+  /* background-color: #319db5; */
   color: #ffffff !important;
 }
 .sidebar .sidebar-inner .nav-sidebar-placeholder {
@@ -2343,7 +2345,8 @@ body:not(.sidebar-collapsed) .topbar .header-left .topnav .menutoggle:hover .men
   text-decoration: none !important;
 }
 .sidebar .sidebar-inner .sidebar-footer i {
-  color: #5E646D;
+  color: #F7F7F7; /*SAY*/
+  /* color: #5E646D; */
   font-size: 14px;
 }
 .sidebar .sidebar-inner .sidebar-footer a:hover i {
@@ -2670,11 +2673,12 @@ body:not(.sidebar-collapsed) .sidebar .sidebar-inner .nav-sidebar > li.nav-paren
 .sidebar-condensed:not(.sidebar-collapsed) .sidebar .sidebar-top .user-login .btn {
   background-color: rgba(0, 0, 0, 0.2);
   border: 1px solid #343847;
-  color: #616574;
+  color: #f7f7f7; /*SAY*/
+  /* color: #616574; */
   padding: 4px 8px;
 }
-.sidebar-condensed:not(.sidebar-collapsed) .sidebar .sidebar-top .user-login .btn:hover { /*say added*/
-  color: #ffffff;
+.sidebar-condensed:not(.sidebar-collapsed) .sidebar .sidebar-top .user-login .btn:hover { /*SAY*/
+  color: #c7c7c7;
 }
 .sidebar-condensed:not(.sidebar-collapsed) .sidebar .sidebar-top .user-login .btn i {
   margin-top: 0 !important;

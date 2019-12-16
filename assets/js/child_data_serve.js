@@ -373,7 +373,7 @@ $(document).ready(function(){
             dataType: 'json',
             data: form_data,
             beforeSend: function(){
-                return confirm("You are about to add a new child.\nAre you sure?");
+                    return confirm("You are about to add a new child.\nAre you sure?");
             },
             success: function(data)  {
                 alert("Success\nChild added successfully\n" + JSON.stringify(data.message));

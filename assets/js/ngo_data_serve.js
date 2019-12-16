@@ -23,10 +23,10 @@ $(document).ready(function(){
             $('#ngo_preloader').show();
         },
         success: function(data) {
+            var row_index = 1;
 
             $.each(data , function(key ,value){
                 var ngoId = value[keys[0]];
-                var row_index = 1;
 
                 // first td for row count numbers, second td for operational buttons
                 var query = '<tr>\

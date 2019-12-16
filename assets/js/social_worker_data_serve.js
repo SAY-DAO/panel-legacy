@@ -20,10 +20,10 @@ $(document).ready(function(){
         },
         success: function(data) {
             // console.log(data);
+            var row_index = 1;
 
             $.each(data , function(key , value){
                 var socialworkerId = value[keys[0]];
-                var row_index = 1;
 
                 // first td for row count numbers, second td for operational buttons
                 var query = '<tr>\
