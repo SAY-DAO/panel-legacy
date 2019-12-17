@@ -354,6 +354,7 @@
               <div class="panel panel-default no-bd" id="childForm">
                   <div class="panel-header bg-dark panel-controls">
                     <h3 class="panel-title">فرم<strong> کودکان</strong><img class="preloader" id="children_form_preloader" src="assets/images/preloader/25.gif"/></h3>
+                    <span></span>
                     
                   </div>
                   <div class="panel-content bg-white">
@@ -362,11 +363,11 @@
                         <form role="form" class="form-validation" id="children_form">
                           <div class="row">
 
-                            <div class="col-md-4 col-sm-6">
+                            <div class="col-md-4 col-sm-6 h-100">
                                 <div class="form-group">
                                   <label for="ngo_id" class="control-label">انجمن <span class="required">*</span></label>
                                   <div class="option-group">
-                                    <select id="ngo_id" name="ngo_id" class="form-control" required>
+                                    <select id="ngo_id" name="ngo_id" class="form-control" title="انتخاب انجمن ضروری می‌باشد" required>
                                       <option value="">انجمن مورد نظر را انتخاب کنید</option>
                                       
                                     </select>
@@ -374,11 +375,11 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-4 col-sm-6">
+                            <div class="col-md-4 col-sm-6 h-100">
                                 <div class="form-group">
                                   <label for="social_worker_id" class="control-label">مددکار <span class="required">*</span></label>
                                   <div class="option-group">
-                                    <select id="social_worker_id" name="social_worker_id" class="form-control" required>
+                                    <select id="social_worker_id" name="social_worker_id" class="form-control" title="انتخاب مددکار ضروری می‌باشد" required>
                                       <option value="">مددکار مورد نظر را انتخاب کنید</option>
                                       
                                     </select>
@@ -386,41 +387,41 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-4 col-sm-6">
+                            <div class="col-md-4 col-sm-6 h-100">
                                 <div class="form-group">
                                     <label for="SAY_name" class="control-label">SAY Name <span class="required">*</span></label>
                                     <div class="append-icon">
-                                      <input type="text" class="form-control" id="SAY_name" name="SAY_name" placeholder="SAY Name کودک را وارد نمایید" required>
+                                      <input type="text" class="form-control" id="SAY_name" name="SAY_name" placeholder="SAY Name کودک را وارد نمایید" title="وارد کردن SAY name ضروری می‌باشد" required />
                                       <!-- <i class="icon-key"></i> -->
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-4 col-sm-6">
+                            <div class="col-md-4 col-sm-6 h-100">
                               <div class="form-group">
                                 <label for="child_first_name" class="control-label">نام</label>
                                 <div class="append-icon">
-                                  <input type="text" id="child_first_name" name="child_first_name" class="form-control" placeholder="نام کودک را وارد نمایید">
+                                  <input type="text" id="child_first_name" name="child_first_name" class="form-control" placeholder="نام کودک را وارد نمایید" />
                                   <i class="fa fa-child"></i>
                                 </div>
                               </div>
                             </div>
 
-                            <div class="col-md-4 col-sm-6">
+                            <div class="col-md-4 col-sm-6 h-100">
                               <div class="form-group">
                                 <label for="child_last_name" class="control-label">نام خانوادگی</label>
                                 <div class="append-icon">
-                                  <input type="text" id="child_last_name" name="child_last_name" class="form-control" minlength="4" placeholder="نام خانوادگی کودک را وارد نمایید">
+                                  <input type="text" id="child_last_name" name="child_last_name" class="form-control" placeholder="نام خانوادگی کودک را وارد نمایید" />
                                   <i class="fa fa-child"></i>
                                 </div>
                               </div>
                             </div>
 
-                            <div class="col-md-4 col-sm-6">
+                            <div class="col-md-4 col-sm-6 h-100">
                               <div class="form-group">
                                 <label for="child_gender" class="control-label">جنسیت <span class="required">*</span></label>
                                 <div class="option-group">
-                                  <select id="child_gender" name="child_gender" class="form-control" required>
+                                  <select id="child_gender" name="child_gender" class="form-control" title="انتخاب جنسیت ضروری می‌باشد" required>
                                     <option value="">جنسیت کودک را انتخاب نمایید</option>
                                     <option value="false">دختر</option>
                                     <option value="true">پسر</option>
@@ -430,7 +431,7 @@
                               </div>
                             </div>
 
-                            <div class="col-md-4 col-sm-6">
+                            <div class="col-md-4 col-sm-6 h-100">
                               <div class="form-group">
                                 <label for="child_nationality" class="control-label">ملیت</label>
                                 <div class="option-group">
@@ -443,11 +444,11 @@
                               </div>
                             </div>
 
-                            <div class="col-md-4 col-sm-6">
+                            <div class="col-md-4 col-sm-6 h-100">
                               <div class="form-group">
                                 <label for="child_country" class="control-label">کشور <span class="required">*</span></label>
                                 <div class="option-group">
-                                  <select id="child_country" name="child_country" class="form-control" required>
+                                  <select id="child_country" name="child_country" class="form-control" title="انتخاب کشور ضروری می‌باشد" required>
                                     <option value="">کشور محل زندگی کودک را انتخاب نمایید</option>
                                     <option value="98">ایران</option>
                                   </select>
@@ -455,11 +456,11 @@
                               </div>
                             </div>
 
-                            <div class="col-md-4 col-sm-6">
+                            <div class="col-md-4 col-sm-6 h-100">
                               <div class="form-group">
                                 <label for="child_city" class="control-label">شهر <span class="required">*</span></label>
                                 <div class="option-group">
-                                  <select id="child_city" name="child_city" class="form-control" required>
+                                  <select id="child_city" name="child_city" class="form-control" title="انتخاب شهر ضروری می‌باشد" required>
                                     <option value="">شهر محل زندگی کودک را انتخاب نمایید</option>
                                     <option value="1">تهران</option>
                                     <option value="2">کرج</option>
@@ -471,46 +472,41 @@
                             <div class="col-md-4 col-sm-6">
                               <div class="form-group">
                                 <label for="child_address" class="control-label">آدرس</label>
-                                <textarea name="child_address" id="child_address" rows="4" class="form-control" placeholder="Child's address" minlength="5" aria-required="true"></textarea>
+                                <textarea name="child_address" id="child_address" rows="4" class="form-control" placeholder="Child's address" aria-required="true"></textarea>
                               </div>
                             </div>
 
-                            <div class="col-md-4 col-sm-6">
+                            <div class="col-md-4 col-sm-6 h-100">
                               <div class="form-group">
                                 <label for="child_birthdate" class="control-label">تاریخ تولد</label>
                                 <div class="append-icon">
-                                  <input type="date" id="child_birthdate" name="child_birthdate" class="form-control col-md-6">
-                                  <input type="text" id="child_age" name="child_age" value="Age" class="form-control col-md-6" readonly>
+                                  <input type="date" id="child_birthdate" name="child_birthdate" class="form-control col-md-6 col-sm-6" />
+                                  <input type="text" id="child_age" name="child_age" value="Age" class="form-control col-md-6 col-sm-6" readonly />
                                   <i class="icon-calendar"></i>
                                 </div>
                               </div>
                             </div>
                             
-                            <div class="col-md-4 col-sm-6">
+                            <div class="col-md-4 col-sm-6 h-100">
                               <div class="form-group">
                                 <label for="child_birthplace" class="control-label">محل تولد</label>
                                 <div class="option-group">
-                                    <input type="text" id="child_birthplace" name="child_birthplace" class="form-control" minlength="4" placeholder="محل تولد کودک را وارد نمایید">
-                                  <!-- <select id="child_birthplace" name="child_birthplace" class="form-control">
-                                    <option value="">محل تولد کودک را انتخاب نمایید</option>
-                                    <option value="1">تهران</option>
-                                    <option value="2">کرج</option>
-                                  </select> -->
+                                    <input type="text" id="child_birthplace" name="child_birthplace" class="form-control" placeholder="محل تولد کودک را وارد نمایید" />
                                 </div>
                               </div>
                             </div>
 
-                            <div class="col-md-4 col-sm-6">
+                            <div class="col-md-4 col-sm-6 h-100">
                               <div class="form-group">
                                 <label for="family_count" class="control-label">تعداد خانوار</label>
                                 <div class="append-icon">
-                                  <input type="number" class="form-control" id="family_count" name="family_count" placeholder="تعداد خانوار را وارد نمایید">
+                                  <input type="number" class="form-control" id="family_count" name="family_count" placeholder="تعداد خانوار را وارد نمایید" />
                                   <i class="icon-users"></i>
                                 </div>
                               </div>
                             </div>
 
-                            <div class="col-md-4 col-sm-6">
+                            <div class="col-md-4 col-sm-6 h-100">
                               <div class="form-group">
                                 <label for="education" class="control-label">وضعیت تحصیل</label>
                                 <div class="option-group">
@@ -539,7 +535,7 @@
                               </div>
                             </div>
                             
-                            <div class="col-md-4 col-sm-6">
+                            <div class="col-md-4 col-sm-6 h-100">
                               <div class="form-group">
                                 <label for="school_type" class="control-label">نوع مدرسه</label>
                                 <div class="option-group">
@@ -554,17 +550,17 @@
                               </div>
                             </div>
                             
-                            <div class="col-md-4 col-sm-6">
+                            <div class="col-md-4 col-sm-6 h-100">
                               <div class="form-group">
                                 <label for="child_phone_number" class="control-label">شماره تماس <span class="required">*</span></label>
                                 <div class="append-icon">
-                                  <input type="number" id="child_phone_number" name="child_phone_number" class="form-control" placeholder="شماره تماس کودک را وارد نمایید" minlength="3" required>
+                                  <input type="number" id="child_phone_number" name="child_phone_number" class="form-control" placeholder="شماره تماس کودک را وارد نمایید" minlength="8" title="وارد کردن شماره تماس ضروری می‌باشد" required />
                                   <i class="icon-screen-smartphone"></i>
                                 </div>
                               </div>
                             </div>
 
-                            <div class="col-md-4 col-sm-6">
+                            <div class="col-md-4 col-sm-6 h-100">
                               <div class="form-group">
                                 <label for="housing_status" class="control-label">وضعیت مسکن</label>
                                 <div class="append-icon">
@@ -581,40 +577,40 @@
                               </div>
                             </div>
 
-                            <div class="col-sm-6 col-md-4">
+                            <div class="col-sm-6 col-md-4 h-100">
                               <div class="form-group">
                                 <label class="control-label" for="child_avatar">آواتار کودک را بارگزاری نمایید <span class="required">*</span></label>
                                 <div class="file">
                                   <div class="option-group">
                                     <span class="file-button btn-primary">انتخاب فایل</span>
-                                    <input type="file" class="custom-file" name="child_avatar[]" id="child_avatar" title="حجم فایل انتخابی می‌بایست کمتر از 3 مگابایت باشد" onchange="document.getElementById('child_avatar_uploader').value = this.value;" required>
-                                    <input type="text" class="form-control" id="child_avatar_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="">
+                                    <input type="file" class="custom-file" name="child_avatar[]" id="child_avatar" title="حجم فایل انتخابی می‌بایست کمتر از 3 مگابایت باشد" onchange="document.getElementById('child_avatar_uploader').value = this.value;" required />
+                                    <input type="text" class="form-control" id="child_avatar_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="" />
                                   </div>
                                 </div>
                               </div>
                             </div>
 
-                            <div class="col-sm-6 col-md-4">
+                            <div class="col-sm-6 col-md-4 h-100">
                               <div class="form-group">
                                 <label class="control-label" for="child_slept_avatar">آواتار خواب کودک را بارگزاری نمایید <span class="required">*</span></label>
                                 <div class="file">
                                   <div class="option-group">
                                     <span class="file-button btn-primary">انتخاب فایل</span>
-                                    <input type="file" class="custom-file" name="child_slept_avatar[]" id="child_slept_avatar" title="حجم فایل انتخابی می‌بایست کمتر از 3 مگابایت باشد" onchange="document.getElementById('child_slept_avatar_uploader').value = this.value;" required>
-                                    <input type="text" class="form-control" id="child_slept_avatar_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="">
+                                    <input type="file" class="custom-file" name="child_slept_avatar[]" id="child_slept_avatar" title="حجم فایل انتخابی می‌بایست کمتر از 3 مگابایت باشد" onchange="document.getElementById('child_slept_avatar_uploader').value = this.value;" required />
+                                    <input type="text" class="form-control" id="child_slept_avatar_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="" />
                                   </div>
                                 </div>
                               </div>
                             </div>
 
-                            <div class="col-sm-6 col-md-4">
+                            <div class="col-sm-6 col-md-4 h-100">
                               <div class="form-group">
                                 <label class="control-label" for="child_voice">صدای ویرایش شده‌ی کودک را بارگزاری نمایید <span class="required">*</span></label>
                                 <div class="file">
                                   <div class="option-group">
                                     <span class="file-button btn-primary">انتخاب فایل</span>
-                                    <input type="file" class="custom-file" name="child_voice[]" id="child_voice" title="حجم فایل انتخابی می‌بایست کمتر از 3 مگابایت باشد" onchange="document.getElementById('child_voice_uploader').value = this.value;" required>
-                                    <input type="text" class="form-control" id="child_voice_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="">
+                                    <input type="file" class="custom-file" name="child_voice[]" id="child_voice" title="حجم فایل انتخابی می‌بایست کمتر از 3 مگابایت باشد" onchange="document.getElementById('child_voice_uploader').value = this.value;" required />
+                                    <input type="text" class="form-control" id="child_voice_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="" />
                                   </div>
                                 </div>
                               </div>
@@ -623,41 +619,16 @@
                             <div class="col-sm-8">
                               <div class="form-group">
                                 <label for="child_story" class="control-label">داستان کودک <span class="required">*</span></label>
-                                <textarea name="child_story" id="child_story" rows="4" class="form-control" placeholder="Child's Story" minlength="5" required="" aria-required="true"></textarea>
+                                <textarea name="child_story" id="child_story" rows="4" class="form-control" placeholder="Child's Story" minlength="5" title="وارد کردن داستان ضروری می‌باشد" required="" aria-required="true"></textarea>
                               </div>
                             </div>
 
                             <div class="col-sm-4">
                               <div class="form-group">
                                 <label for="child_story_summary" class="control-label">خلاصه داستان کودک <span class="required">*</span></label>
-                                <textarea name="child_story_summary" id="child_story_summary" rows="4" class="form-control" placeholder="Child's story summary" minlength="5" required="" aria-required="true"></textarea>
+                                <textarea name="child_story_summary" id="child_story_summary" rows="4" class="form-control" placeholder="Child's story summary" minlength="5" title="وارد کردن خلاصه داستان ضروری می‌باشد" required="" aria-required="true"></textarea>
                               </div>
                             </div>
-
-                            
-
-
-
-
-<!--                             
-                            <div class="col-sm-6">
-                              <div class="form-group">
-                                <label class="control-label">What's the result of 4 + 8 ?</label>
-                                <input type="text" name="calcul" class="form-control" placeholder="Human verification!">
-                              </div>
-                            </div> -->
-
-                            <!-- <div class="col-sm-6">
-                              <div class="form-group">
-                                <label class="control-label">آیا شرایط و ضوابط ما را می پذیرید؟</label>
-                                <div class="option-group">
-                                  <label  for="terms" class="m-t-10">
-                                  <input type="checkbox" name="terms" id="terms" data-checkbox="icheckbox_flat-blue" required/>
-                                  با شرایط و ضوابط SAY موافق هستم
-                                  </label>    
-                                </div>
-                              </div>
-                            </div> -->
 
                           </div>
 

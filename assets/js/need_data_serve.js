@@ -45,15 +45,11 @@ $(document).ready(function(){
                             value[keys[i]] = getImgFile(value[keys[i]]);
                         }
 
-                        // if (keys[i] == 'affiliateLinkUrl') {
-                        //     value[keys[i]] = linkTo(value[keys[i]]);
-                        // }
-
-                        // if (keys[i] == 'receipts') {
-                        //     if(value[keys[i]] != null){
-                        //         value[keys[i]] = getImgFile(value[keys[i]]);
-                        //     }
-                        // }
+                        if (keys[i] == 'receipts') {
+                            if(value[keys[i]] != null){
+                                value[keys[i]] = getFile(value[keys[i]]);
+                            }
+                        }
 
                         if (keys[i] == 'cost' || keys[i] == 'paid') {
                             value[keys[i]] = cost(value[keys[i]]);
@@ -70,7 +66,6 @@ $(document).ready(function(){
                         }
 
                         if (keys[i] == 'type') {
-                            // needType = value[keys[i]];
                             if(value[keys[i]] == 0){
                                 value[keys[i]] = 'Service';
                             }
@@ -245,6 +240,8 @@ $(document).ready(function(){
                 $('#need_doing_duration').val(data['doing_duration']);
                 $('#affiliate_link').val(data['affiliateLinkUrl']);
                 $('#direct_link').val(data['link']);
+
+                // // Trying to show predefined icon
                 // $('#need_icon').val(need_icon);
 
                 // need_icon.addEventListener('loadImage', function() {

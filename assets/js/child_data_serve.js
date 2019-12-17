@@ -357,35 +357,56 @@ $(document).ready(function(){
 
         console.log(form_data);
 
-        
-        $.ajax({
-            url: SAYApiUrl + '/child/add/socialWorkerId=' + id_social_worker + '&ngoId=' + id_ngo,
-            method: 'POST',
-            headers : {
-                'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token'),    // check if authorize for this action
-                'Cache-Control': 'no-cache'
-                
+        var validator = $('#children_form').validate({
+            rules: {
+                child_phone_number: {
+                    required: true,
+                    digits: true,
+                    minlength: 8
+                }
             },
-            cache: false,
-            processData: false,
-            contentType: false,
-            dataType: 'json',
-            data: form_data,
-            beforeSend: function(){
-                    return confirm("You are about to add a new child.\nAre you sure?");
-            },
-            success: function(data)  {
-                alert("Success\nChild added successfully\n" + JSON.stringify(data.message));
-                location.reload();
-            },
-            error: function(data) {
-                bootbox.alert({
-                    title: "Error!",
-                    message: data.responseJSON.message,
-                });
+            message: {
+                child_phone_number: {
+                    required: "وارد کردن شماره تماس اجباری می‌باشد.",
+                    digits: "شماره تماس تنها می‌تواند شامل اعداد باشد.",
+                    minlength: "شماره تماس حداقل باید ۸ رقم باشد."
+                }
             }
-        })
+        });
+        var formStatus = validator.form();
+        if(true == formStatus) {
+            $.ajax({
+                url: SAYApiUrl + '/child/add/socialWorkerId=' + id_social_worker + '&ngoId=' + id_ngo,
+                method: 'POST',
+                headers : {
+                    'Access-Control-Allow-Origin'  : baseUrl,
+                    'Athorization': $.cookie('access_token'),    // check if authorize for this action
+                    'Cache-Control': 'no-cache'
+                },
+                cache: false,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                data: form_data,
+                beforeSend: function(){
+                        return confirm("You are about to add a new child.\nAre you sure?");
+                            
+                },
+                success: function(data)  {
+                    alert("Success\nChild added successfully\n" + JSON.stringify(data.message));
+                    location.reload();
+                },
+                error: function(data) {
+                    bootbox.alert({
+                        title: "Error!",
+                        message: data.responseJSON.message,
+                    });
+                }
+            })
+        }else{
+            console.log('form incorrect');
+        }
+
     })
 
     // Confirm a child
