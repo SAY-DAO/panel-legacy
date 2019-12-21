@@ -1,6 +1,84 @@
 $(document).ready(function(){
     isAthorized();
     hasPrivilege();
+    
+    $('#children_form').validate({
+        // debug: true,
+        rules: {
+            ngo_id: {
+                required: true
+            },
+            social_worker_id: {
+                required: true
+            },
+            SAY_name: {
+                required:true
+            },
+            child_gender: {
+                required: true
+            },
+            child_country: {
+                required: true
+            },
+            child_city: {
+                required: true
+            },
+            child_phone_number: {
+                required: true,
+                digits: true,
+                minlength: 8
+            },
+            // "child_avatar[]": {
+            //     required: true,
+            //     extension: "jpeg|jpg|png"
+            // } 
+
+        },
+        messages: {
+            ngo_id: {
+                required: "انتخاب انجمن ضروری می‌باشد."
+            },
+            social_worker_id: {
+                required: "انتخاب مددکار ضروری می‌باشد."
+            },
+            SAY_name: {
+              required: "وارد کردن SAY name ضروری می‌باشد."
+            },
+            child_gender: {
+                required: "انتخاب جنسیت ضروری می‌باشد."
+            },
+            child_country: {
+                required: "انتخاب کشور ضروری می‌باشد."
+            },
+            child_city: {
+                required: "انتخاب شهر ضروری می‌باشد."
+            },
+            child_phone_number: {
+                required: "وارد کردن شماره تماس اجباری می‌باشد.",
+                digits: "شماره تماس تنها می‌تواند شامل اعداد باشد.",
+                minlength: "شماره تماس حداقل باید {0} رقم باشد."
+            },
+            // "child_avatar[]": {
+            //     required: "انتخاب آواتار کودک ضروری می‌باشد.",
+            //     extension: "فرمت فایل انتخابی باید jpeg، JPG یا PNG باشد."
+            // }
+        },
+        submitHandler: function (form) { // for demo
+            alert('valid form submitted'); // for demo
+            return false; // for demo
+        },
+        invalidHandler: function(event, validator) {
+            // 'this' refers to the form
+            var errors = validator.numberOfInvalids();
+            if (errors) {
+                var message = errors + ' فیلد نادرست وجود دارد، لطفا بازبینی نمایید.';
+                $("div.alert").html(message);
+                $("div.alert").show();
+            } else {
+                $("div.alert").hide();
+            }
+        }
+    });
 
     var edit_childId = -1;
     var child_url = '';
@@ -277,11 +355,11 @@ $(document).ready(function(){
 
     // Add new child
     $('#sendChildData').on('click' , function(e){
-        e.preventDefault();
-
+        // e.preventDefault();
+        console.log("prevent default: " + e.isDefaultPrevented());
         // getting data from html form
 
-        //nullable
+        // nullable
         var id_ngo = $('#ngo_id').val();
         var id_social_worker = $('#social_worker_id').val();
         var sayName = $('#SAY_name').val();
@@ -355,26 +433,14 @@ $(document).ready(function(){
             form_data.append('housingStatus', housingStatus);
         }
 
-        console.log(form_data);
+        // for (var pair of form_data.entries()) {
+        //     console.log(pair[0]+ ', ' + pair[1]); 
+        // }
+        // console.log(form_data.entries());
 
-        var validator = $('#children_form').validate({
-            rules: {
-                child_phone_number: {
-                    required: true,
-                    digits: true,
-                    minlength: 8
-                }
-            },
-            message: {
-                child_phone_number: {
-                    required: "وارد کردن شماره تماس اجباری می‌باشد.",
-                    digits: "شماره تماس تنها می‌تواند شامل اعداد باشد.",
-                    minlength: "شماره تماس حداقل باید ۸ رقم باشد."
-                }
-            }
-        });
-        var formStatus = validator.form();
-        if(true == formStatus) {
+        // var formStatus = $('#children_form').valid();
+        // // var formStatus = validator.form();
+        // if(true == formStatus) {
             $.ajax({
                 url: SAYApiUrl + '/child/add/socialWorkerId=' + id_social_worker + '&ngoId=' + id_ngo,
                 method: 'POST',
@@ -403,9 +469,9 @@ $(document).ready(function(){
                     });
                 }
             })
-        }else{
-            console.log('form incorrect');
-        }
+        // }else{
+        //     console.log('form incorrect');
+        // }
 
     })
 

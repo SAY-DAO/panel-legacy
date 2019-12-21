@@ -3187,22 +3187,22 @@ body:not(.sidebar-collapsed) .sidebar .sidebar-inner .nav-sidebar > li.nav-paren
     background: #ffffff;
   }
   .sidebar-collapsed .sidebar .sidebar-inner .nav-sidebar > li.nav-hover.active > a {
-    background: #319db5;
+    background: #F59E39;  /*SAY changes*/
     color: #ffffff;
   }
   .sidebar-collapsed .sidebar .sidebar-inner .nav-sidebar > li.nav-hover.active > a i {
     color: #ffffff;
   }
   .sidebar-collapsed .sidebar .sidebar-inner .nav-sidebar > li.nav-hover.active > a span:not(.badge) {
-    background: #319db5 !important;
+    background: #F59E39 !important; /*SAY changes*/
     color: #ffffff;
   }
   .sidebar-collapsed .sidebar .sidebar-inner .nav-sidebar > li.nav-hover.active > a > span:last-child {
-    background: #319db5;
+    background: #F59E39;  /*SAY changes*/
     color: #ffffff;
   }
   .sidebar-collapsed .sidebar .sidebar-inner .nav-sidebar > li.nav-hover.nav-active.active > a {
-    background: #319db5;
+    background: #F59E39;  /*SAY changes*/
   }
   .sidebar-collapsed .sidebar .sidebar-inner .nav-sidebar > li.nav-hover.nav-active > a i {
     color: #ffffff !important;
@@ -5905,7 +5905,7 @@ body:not(.fixed-topbar) .main-content .page-content {
 }
 
 .small_th { /*SAY*/
- min-width: 50px;
+ width: 100px;
 }
 
 tbody{ /* SAY */

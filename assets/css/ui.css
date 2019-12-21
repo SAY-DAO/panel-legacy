@@ -2009,10 +2009,10 @@ fieldset[disabled].btn-inverse.active {
   width: 11px;
 }
 .alert {
-  font-family: 'Open Sans';
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
+  /* font-family: 'Open Sans'; */ /*SAY commented*/
+  -webkit-border-radius: 2px; /*SAY changes from 0 to 2px*/
+  -moz-border-radius: 2px;  /*SAY changes from 0 to 2px*/
+  border-radius: 2px; /*SAY changes from 0 to 2px*/
 }
 .alert .icon-circle {
   background-color: rgba(0, 0, 0, 0.05);
@@ -3258,6 +3258,7 @@ textarea.form-error.form-control:focus {
   color: #994F4F;
   font-style: italic;
   margin-top: 10px;
+  font-size: 12px;  /*SAY*/
 }
 .form-success {
   color: #313131;
