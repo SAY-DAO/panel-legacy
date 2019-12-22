@@ -4,6 +4,7 @@ $(document).ready(function(){
     
     $('#children_form').validate({
         debug: true,
+        ignore: [],
         rules: {
             ngo_id: {
                 required: true
@@ -95,6 +96,9 @@ $(document).ready(function(){
             child_story_summary: {
                 required: "وارد کردن خلاصه داستان ضروری می‌باشد."
             }
+        },
+        errorPlacement: function(error, element) {
+            error.insertAfter(element);
         },
         submitHandler: function (form) { // for demo
             alert('valid form submitted'); // for demo
