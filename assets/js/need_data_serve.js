@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    isAthorized();
+    isAuthorized();
     hasPrivilege();
 
     // Cost field comma and number
@@ -123,10 +123,6 @@ $(document).ready(function(){
             url: SAYApiUrl + '/child/childId=' + selected_child + '&confirm=2',
             method: 'GET',
             dataType: 'json',
-            headers: {
-                'Access-Control-Allow-Origin' : baseUrl,
-                'Cache-Control': 'no-cache'
-            },
             beforeSend: function() {
                 $('#needs_preloader').show();
             },
@@ -289,10 +285,6 @@ $(document).ready(function(){
         url: SAYApiUrl + '/child/childId=104&confirm=2',  // TODO: Pri Defined needs
         method: 'GET',
         dataType: 'json',
-        headers : {
-            'Access-Control-Allow-Origin'  : baseUrl,
-            'Cache-Control': 'no-cache'
-        },
         success: function(data) {
             // console.log("predefined needs", data);
             data = data['needs']
@@ -321,10 +313,6 @@ $(document).ready(function(){
             url: SAYApiUrl + '/need/needId=' + selected_need,
             method: 'GET',
             dataType: 'json',
-            headers : {
-                'Access-Control-Allow-Origin'  : baseUrl,
-                'Cache-Control': 'no-cache'
-            },
             beforeSend: function() {
                 $('#need_form_preloader').show();
             },
@@ -466,11 +454,7 @@ $(document).ready(function(){
         $.ajax({
             url: SAYApiUrl + '/need/confirm/needId=' + needId,
             method: 'PATCH',
-            headers : {
-                'Access-Control-Allow-Origin'  : baseUrl,
-                'Cache-Control': 'no-cache'
 
-            },
             cache: false,
             processData: false,
             contentType: false,
@@ -508,10 +492,6 @@ $(document).ready(function(){
             url: SAYApiUrl + '/need/needId=' + edit_needId,
             method: 'GET',
             dataType: 'json',
-            headers: {
-                'Access-Control-Allow-Origin'  : baseUrl,
-                'Cache-Control': 'no-cache'
-            },
             beforeSend: function() {
                 $('#need_form_preloader').show();
             },
@@ -671,11 +651,7 @@ $(document).ready(function(){
         $.ajax({
             url: SAYApiUrl + '/need/delete/needId=' + needId,
             method: 'PATCH',
-            headers : {
-                'Access-Control-Allow-Origin'  : baseUrl,
-                'Cache-Control': 'no-cache'
 
-            },
             cache: false,
             processData: false,
             contentType: false,

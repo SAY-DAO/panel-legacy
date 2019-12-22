@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    isAthorized();
+    isAuthorized();
     hasPrivilege();
      // live age field
      $('#child_birthdate').change(function() {
@@ -137,10 +137,6 @@ $(document).ready(function(){
         url: SAYApiUrl + child_url,
         method: 'GET',
         dataType: 'json',
-        headers : {
-            'Access-Control-Allow-Origin'  : baseUrl,
-            'Cache-Control': 'no-cache'
-        },
         beforeSend: function() {
             $('#children_preloader').show();
         },
@@ -367,11 +363,6 @@ $(document).ready(function(){
         url: SAYApiUrl + child_id_url,
         method: 'GET',
         dataType: 'json',
-        headers : {
-            'Access-Control-Allow-Origin'  : baseUrl,
-            'Cache-Control': 'no-cache'
-
-        },
         success: function(data) {
             var childData = data['children']
             $.each(childData , function(key ,value){
@@ -473,10 +464,6 @@ $(document).ready(function(){
             $.ajax({
                 url: SAYApiUrl + '/child/add/socialWorkerId=' + id_social_worker + '&ngoId=' + id_ngo,
                 method: 'POST',
-                headers : {
-                    'Access-Control-Allow-Origin'  : baseUrl,
-                    'Cache-Control': 'no-cache'
-                },
                 cache: false,
                 processData: false,
                 contentType: false,
@@ -509,11 +496,6 @@ $(document).ready(function(){
         $.ajax({
             url: SAYApiUrl + '/child/confirm/childId=' + childId + '&socialWorkerId=' + global_user_id,
             method: 'PATCH',
-            headers : {
-                'Access-Control-Allow-Origin'  : baseUrl,
-                'Cache-Control': 'no-cache'
-
-            },
             cache: false,
             processData: false,
             contentType: false,
@@ -551,11 +533,6 @@ $(document).ready(function(){
             url: SAYApiUrl + '/child/childId=' + edit_childId + '&confirm=2',
             method: 'GET',
             dataType: 'json',
-            headers: {
-                'Access-Control-Allow-Origin'  : baseUrl,
-                'Cache-Control': 'no-cache'
-
-            },
             beforeSend: function() {
                 $('#children_form_preloader').show();
             },
@@ -745,11 +722,6 @@ $(document).ready(function(){
         $.ajax({
             url: SAYApiUrl + '/child/delete/childId=' + childId,
             method: 'PATCH',
-            headers : {
-                'Access-Control-Allow-Origin'  : baseUrl,
-                'Cache-Control': 'no-cache'
-
-            },
             cache: false,
             processData: false,
             contentType: false,

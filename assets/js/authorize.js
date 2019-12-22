@@ -25,7 +25,7 @@ var global_user_ngo = '';
 
 //  check loging status
 
-function isAthorized() {
+function isAuthorized() {
     if(!$.cookie('access_token')) {
         window.location.href = "login.html";
     } else {

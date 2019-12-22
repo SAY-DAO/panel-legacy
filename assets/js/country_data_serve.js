@@ -1,7 +1,7 @@
 //Country field in forms
 
 $(document).ready(function(){
-    isAthorized();
+    isAuthorized();
 
     var keys = ['alpha2Code', 'translations']
 
@@ -11,9 +11,6 @@ $(document).ready(function(){
         url: 'https://restcountries.eu/rest/v2/all',
         method: 'GET',
         dataType: 'json',
-        headers : {
-            'Access-Control-Allow-Origin'  : '*',
-        },
         success: function(data) {
             console.log(data);
             $.each(data , function(key ,value){

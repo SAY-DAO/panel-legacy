@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    isAthorized();
+    isAuthorized();
     hasPrivilege();
 
     // change need form validation
@@ -65,10 +65,6 @@ $(document).ready(function(){
         url: SAYApiUrl + '/need/all/confirm=2?done=1',
         method: 'GET',
         dataType: 'json',
-        headers: {
-            'Access-Control-Allow-Origin' : baseUrl,
-            'Cache-Control': 'no-cache'
-        },
         beforeSend: function() {
             $('#done_need_preloader').show();
         },
@@ -193,10 +189,7 @@ $(document).ready(function(){
             url: SAYApiUrl + '/need/needId=' + status_needId,
             method: 'GET',
             dataType: 'json',
-            headers: {
-                'Access-Control-Allow-Origin'  : baseUrl,
-                'Cache-Control': 'no-cache'
-            },
+
             beforeSend: function() {
                 $('#change_need_preloader').show();
             },
@@ -318,10 +311,6 @@ $(document).ready(function(){
             url: SAYApiUrl + '/need/all/confirm=2?status=3&isReported=0&ngoId=' + selected_ngo + '&type=' + selected_type_id,
             method: 'GET',
             dataType: 'json',
-            headers: {
-                'Access-Control-Allow-Origin' : baseUrl,
-                'Cache-Control': 'no-cache'
-            },
             beforeSend: function() {
                 $('#report_ngo_preloader').show();
             },

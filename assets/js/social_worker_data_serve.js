@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    isAthorized();
+    isAuthorized();
 
     // social worker form validation
     $('#socialworker_form').validate({
@@ -117,9 +117,7 @@ $(document).ready(function(){
         url: SAYApiUrl + '/socialWorker/all',
         method: 'GET',
         dataType: 'json',
-        headers : {
-            'Access-Control-Allow-Origin'  : baseUrl,
-        },
+
         beforeSend: function() {
             $('#socialworker_preloader').show();
         },
@@ -238,9 +236,7 @@ $(document).ready(function(){
         url: SAYApiUrl + '/socialWorker/all',
         method: 'GET',
         dataType: 'json',
-        headers : {
-            'Access-Control-Allow-Origin'  : baseUrl,
-        },
+
         success: function(data) {
             // console.log(data);
             $.each(data , function(key ,value){
@@ -379,10 +375,7 @@ $(document).ready(function(){
             url: SAYApiUrl + '/socialWorker/socialWorkerId=' + edit_socialworkerId,
             method: 'GET',
             dataType: 'json',
-            headers: {
-                'Access-Control-Allow-Origin'  : baseUrl,
-
-            },
+ 
             beforeSend: function() {
               $('#socialworker_form_preloader').show();  
             },
@@ -576,10 +569,7 @@ $(document).ready(function(){
         $.ajax({
             url: SAYApiUrl + '/socialWorker/delete/socialWorkerId=' + socialworkerId,
             method: 'PATCH',
-            headers : {
-                'Access-Control-Allow-Origin'  : baseUrl,
 
-            },
             cache: false,
             processData: false,
             contentType: false,
