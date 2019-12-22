@@ -3,7 +3,7 @@ $(document).ready(function(){
     hasPrivilege();
     
     $('#children_form').validate({
-        // debug: true,
+        debug: true,
         rules: {
             ngo_id: {
                 required: true
@@ -28,11 +28,27 @@ $(document).ready(function(){
                 digits: true,
                 minlength: 8
             },
-            // "child_avatar[]": {
-            //     required: true,
-            //     extension: "jpeg|jpg|png"
-            // } 
-
+            "child_avatar[]": {
+                required: true,
+                extension: "jpg|png|jpeg",
+                filesize: 524288    // 512 KB
+            },
+            "child_slept_avatar[]": {
+                required: true,
+                extension: "jpg|png|jpeg",
+                filesize: 524288    // 512 KB
+            },
+            "child_voice[]": {
+                required: true,
+                extension: "mp3|wav|m4a|wma|aac|ogg",
+                filesize: 3145728   // 3 MB
+            },
+            child_story: {
+                required: true,
+            },
+            child_story_summary: {
+                required: true,
+            }
         },
         messages: {
             ngo_id: {
@@ -58,10 +74,27 @@ $(document).ready(function(){
                 digits: "شماره تماس تنها می‌تواند شامل اعداد باشد.",
                 minlength: "شماره تماس حداقل باید {0} رقم باشد."
             },
-            // "child_avatar[]": {
-            //     required: "انتخاب آواتار کودک ضروری می‌باشد.",
-            //     extension: "فرمت فایل انتخابی باید jpeg، JPG یا PNG باشد."
-            // }
+            "child_avatar[]": {
+                required: "انتخاب آواتار کودک ضروری می‌باشد.",
+                extension: "فرمت فایل انتخابی باید {0} باشد.",
+                filesize: "حجم فایل انتخابی می‌بایست کمتر از {0} باشد"
+            },
+            "child_slept_avatar[]": {
+                required: "انتخاب آواتار خواب کودک ضروری می‌باشد.",
+                extension: "فرمت فایل انتخابی باید {0} باشد.",
+                filesize: "حجم فایل انتخابی می‌بایست کمتر از {0} باشد"
+            },
+            "child_voice[]": {
+                required: "انتخاب صدای کودک ضروری می‌باشد.",
+                extension: "فرمت فایل انتخابی باید {0} باشد.",
+                filesize: "حجم فایل انتخابی می‌بایست کمتر از {0} باشد"
+            },
+            child_story: {
+                required: "وارد کردن داستان ضروری می‌باشد."
+            },
+            child_story_summary: {
+                required: "وارد کردن خلاصه داستان ضروری می‌باشد."
+            }
         },
         submitHandler: function (form) { // for demo
             alert('valid form submitted'); // for demo
@@ -354,7 +387,7 @@ $(document).ready(function(){
 
     // Add new child
     $('#sendChildData').on('click' , function(e){
-        e.preventDefault();
+        // e.preventDefault();
         console.log("prevent default: " + e.isDefaultPrevented());
         // getting data from html form
 
@@ -447,42 +480,37 @@ $(document).ready(function(){
         //     form_data.append('', ); // TODO: child_story_summary_fa
         // }
 
-        // for (var pair of form_data.entries()) {
-        //     console.log(pair[0]+ ', ' + pair[1]); 
-        // }
-        // console.log(form_data.entries());
-
         // var formStatus = $('#children_form').valid();
         // // var formStatus = validator.form();
         // if(true == formStatus) {
-            $.ajax({
-                url: SAYApiUrl + '/child/add/socialWorkerId=' + id_social_worker + '&ngoId=' + id_ngo,
-                method: 'POST',
-                headers : {
-                    'Access-Control-Allow-Origin'  : baseUrl,
-                    'Athorization': $.cookie('access_token'),    // check if authorize for this action
-                    'Cache-Control': 'no-cache'
-                },
-                cache: false,
-                processData: false,
-                contentType: false,
-                dataType: 'json',
-                data: form_data,
-                beforeSend: function(){
-                        return confirm("You are about to add a new child.\nAre you sure?");
+            // $.ajax({
+            //     url: SAYApiUrl + '/child/add/socialWorkerId=' + id_social_worker + '&ngoId=' + id_ngo,
+            //     method: 'POST',
+            //     headers : {
+            //         'Access-Control-Allow-Origin'  : baseUrl,
+            //         'Athorization': $.cookie('access_token'),    // check if authorize for this action
+            //         'Cache-Control': 'no-cache'
+            //     },
+            //     cache: false,
+            //     processData: false,
+            //     contentType: false,
+            //     dataType: 'json',
+            //     data: form_data,
+            //     beforeSend: function(){
+            //             return confirm("You are about to add a new child.\nAre you sure?");
                             
-                },
-                success: function(data)  {
-                    alert("Success\nChild added successfully\n" + JSON.stringify(data.message));
-                    location.reload(true);
-                },
-                error: function(data) {
-                    bootbox.alert({
-                        title: "Error!",
-                        message: data.responseJSON.message,
-                    });
-                }
-            })
+            //     },
+            //     success: function(data)  {
+            //         alert("Success\nChild added successfully\n" + JSON.stringify(data.message));
+            //         location.reload(true);
+            //     },
+            //     error: function(data) {
+            //         bootbox.alert({
+            //             title: "Error!",
+            //             message: data.responseJSON.message,
+            //         });
+            //     }
+            // })
         // }else{
         //     console.log('form incorrect');
         // }

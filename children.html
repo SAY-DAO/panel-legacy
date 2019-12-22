@@ -360,7 +360,7 @@
                   <div class="panel-content bg-white">
                     <div class="row">
                       <div class="col-md-12 col-sm-12 col-xs-12">
-                        <form role="form" id="children_form" name="children_form">
+                        <form role="form" id="children_form" name="children_form" method="POST" enctype="multipart/form-data">
                           <div class="row">
 
                             <div class="col-md-6 col-sm-6 h-100">
@@ -605,7 +605,7 @@
                                 <div class="file">
                                   <div class="option-group">
                                     <span class="file-button btn-primary">انتخاب فایل</span>
-                                    <input type="file" class="custom-file" name="child_slept_avatar[]" id="child_slept_avatar" title="حجم فایل انتخابی می‌بایست کمتر از 3 مگابایت باشد" onchange="document.getElementById('child_slept_avatar_uploader').value = this.value;" required />
+                                    <input type="file" class="custom-file" name="child_slept_avatar[]" id="child_slept_avatar" onchange="document.getElementById('child_slept_avatar_uploader').value = this.value;" />
                                     <input type="text" class="form-control" id="child_slept_avatar_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="" />
                                   </div>
                                 </div>
@@ -618,7 +618,7 @@
                                 <div class="file">
                                   <div class="option-group">
                                     <span class="file-button btn-primary">انتخاب فایل</span>
-                                    <input type="file" class="custom-file" name="child_voice[]" id="child_voice" title="حجم فایل انتخابی می‌بایست کمتر از 3 مگابایت باشد" onchange="document.getElementById('child_voice_uploader').value = this.value;" required />
+                                    <input type="file" class="custom-file" name="child_voice[]" id="child_voice" onchange="document.getElementById('child_voice_uploader').value = this.value;" />
                                     <input type="text" class="form-control" id="child_voice_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="" />
                                   </div>
                                 </div>
@@ -644,14 +644,14 @@
                             <div class="col-sm-8">
                               <div class="form-group">
                                 <label for="child_story" class="control-label">داستان کودک <span class="required">*</span></label>
-                                <textarea name="child_story" id="child_story" rows="4" class="form-control textarea_en" placeholder="Child's Story" minlength="5" title="وارد کردن داستان ضروری می‌باشد" required="" aria-required="true"></textarea>
+                                <textarea name="child_story" id="child_story" rows="4" class="form-control textarea_en" placeholder="Child's Story"></textarea>
                               </div>
                             </div>
 
                             <div class="col-sm-4">
                               <div class="form-group">
                                 <label for="child_story_summary" class="control-label">خلاصه داستان کودک <span class="required">*</span></label>
-                                <textarea name="child_story_summary" id="child_story_summary" rows="4" class="form-control textarea_en" placeholder="Child's story summary" minlength="5" title="وارد کردن خلاصه داستان ضروری می‌باشد" required="" aria-required="true"></textarea>
+                                <textarea name="child_story_summary" id="child_story_summary" rows="4" class="form-control textarea_en" placeholder="Child's story summary"></textarea>
                               </div>
                             </div>
 
@@ -749,6 +749,7 @@
 <script src="assets/plugins/jquery/jquery-1.11.1.min.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
 <script src="assets/plugins/jquery-validation/jquery.validate.min.js"></script> <!-- Form validation -->
+<script src="assets/plugins/jquery-validation/additional-methods.min.js"></script> <!-- Additional methods -->
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script> Form validation -->
 <script src="assets/plugins/jquery/jquery-migrate-1.2.1.min.js"></script>
 <script src="assets/plugins/gsap/main-gsap.min.js"></script> <!-- HTML Animations -->
