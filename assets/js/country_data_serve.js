@@ -13,7 +13,6 @@ $(document).ready(function(){
         dataType: 'json',
         headers : {
             'Access-Control-Allow-Origin'  : '*',
-            'Athorization': $.cookie('access_token')    // check if authorize for this action
         },
         success: function(data) {
             console.log(data);

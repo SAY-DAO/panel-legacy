@@ -105,7 +105,6 @@ $(document).ready(function(){
         dataType: 'json',
         headers : {
             'Access-Control-Allow-Origin'  : baseUrl,
-            'Athorization': $.cookie('access_token'),    // check if authorize for this action
             'Cache-Control': 'no-cache'
         },
         beforeSend: function() {
@@ -257,7 +256,6 @@ $(document).ready(function(){
                 method: 'POST',
                 headers : {
                     'Access-Control-Allow-Origin'  : baseUrl,
-                    'Athorization': $.cookie('access_token')    // check if authorize for this action
                 },
                 cache: false,
                 processData: false,
@@ -296,7 +294,7 @@ $(document).ready(function(){
             dataType: 'json',
             headers: {
                 'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token')    // check if authorize for this action
+
             },
             beforeSend: function() {
                 $('#ngo_form_preloader').show();
@@ -370,6 +368,7 @@ $(document).ready(function(){
         }
         console.log(form_data);
 
+<<<<<<< HEAD
          //remove required rules of all fields
          $('#ngo_form select').each(function() {
             $(this).rules('remove', 'required');
@@ -405,6 +404,33 @@ $(document).ready(function(){
                 }
             })  //end of Update ajax
         }
+=======
+        $.ajax({
+            url: SAYApiUrl + '/ngo/update/ngoId=' + edit_ngoId,
+            method: 'PATCH',
+            headers: {
+                'Access-Control-Allow-Origin' : baseUrl,
+            },
+            cache: false,
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            data: form_data,
+            beforeSend: function(){
+                return confirm("You are about to edit the NGO.\nAre you sure?");
+            },
+            success: function(data){
+                alert("Success\nThe NGO " + edit_ngoId + " updated successfully\n" + JSON.stringify(data.message));
+                location.reload();
+            },
+            error: function(data){
+                bootbox.alert({
+                    title: "Error!",
+                    message: data.responseJSON.message,
+                });
+            }
+        })  //end of Update ajax
+>>>>>>> Added authorization
     })  //end of 'confirm edit' function
 })
 
@@ -424,7 +450,6 @@ $(document).ready(function(){
         dataType: 'json',
         headers : {
             'Access-Control-Allow-Origin'  : baseUrl,
-            'Athorization': $.cookie('access_token')    // check if authorize for this action
         },
         success: function(data) {
             // console.log(data);

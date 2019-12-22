@@ -120,12 +120,11 @@ $(document).ready(function(){
     $('#child_need_select').change(function() {
         var selected_child = $(this).val();
         $.ajax({
-            url: SAYApiUrl + '/child/need/childId=' + selected_child + '&confirm=2',
+            url: SAYApiUrl + '/child/childId=' + selected_child + '&confirm=2',
             method: 'GET',
             dataType: 'json',
             headers: {
                 'Access-Control-Allow-Origin' : baseUrl,
-                'Athorization': $.cookie('access_token'),    // check if authorize for this action
                 'Cache-Control': 'no-cache'
             },
             beforeSend: function() {
@@ -134,7 +133,7 @@ $(document).ready(function(){
             success: function(data) {
                 console.log('option:' + selected_child);
                 var row_index = 1;
-
+                data = data['needs'];
                 $.each(data, function(key, value){
                     var needId = value[keys[0]];
                     var confirmStatus = -1;
@@ -287,16 +286,16 @@ $(document).ready(function(){
 
     // get Pre-defined needs of children in need forms drop down
     $.ajax({
-        url: SAYApiUrl + '/child/need/childId=104&confirm=2',
+        url: SAYApiUrl + '/child/childId=104&confirm=2',  // TODO: Pri Defined needs
         method: 'GET',
         dataType: 'json',
         headers : {
             'Access-Control-Allow-Origin'  : baseUrl,
-            'Athorization': $.cookie('access_token'),    // check if authorize for this action
             'Cache-Control': 'no-cache'
         },
         success: function(data) {
-
+            // console.log("predefined needs", data);
+            data = data['needs']
             $.each(data, function(key, value){
                 var query = '';
                     query += '<option value="' + value[keys[0]] + '">' + value[keys[3]] + ' | ' + value[keys[5]] + ' | ' + value[keys[10]] + '</option>';
@@ -324,7 +323,6 @@ $(document).ready(function(){
             dataType: 'json',
             headers : {
                 'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token'),    // check if authorize for this action
                 'Cache-Control': 'no-cache'
             },
             beforeSend: function() {
@@ -392,6 +390,7 @@ $(document).ready(function(){
         // var  = $('#need_description_summary_fa').val();  // TODO: waiting for backend to add this feild
 
         var form_data = new FormData();
+        form_data.append('child_id', childId);
         form_data.append('imageUrl', imageUrl);
         form_data.append('name', name);
         form_data.append('category', category);
@@ -427,11 +426,10 @@ $(document).ready(function(){
         
         if($('#need_form').valid()) {
             $.ajax({
-                url: SAYApiUrl + '/need/add/childId=' + childId,
+                url: SAYApiUrl + '/need/',
                 method: 'POST',
                 headers : {
                     'Access-Control-Allow-Origin'  : baseUrl,
-                    'Athorization': $.cookie('access_token'),    // check if authorize for this action
                     'Cache-Control': 'no-cache'
                 },
                 cache: false,
@@ -466,11 +464,10 @@ $(document).ready(function(){
         console.log(needId);
 
         $.ajax({
-            url: SAYApiUrl + '/need/confirm/needId=' + needId + '&socialWorkerId=10&childId=' + childId,
+            url: SAYApiUrl + '/need/confirm/needId=' + needId,
             method: 'PATCH',
             headers : {
                 'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token'),    // check if authorize for this action
                 'Cache-Control': 'no-cache'
 
             },
@@ -513,7 +510,6 @@ $(document).ready(function(){
             dataType: 'json',
             headers: {
                 'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token'),    // check if authorize for this action
                 'Cache-Control': 'no-cache'
             },
             beforeSend: function() {
@@ -639,7 +635,6 @@ $(document).ready(function(){
                 method: 'PATCH',
                 headers : {
                     'Access-Control-Allow-Origin'  : baseUrl,
-                    'Athorization': $.cookie('access_token'),    // check if authorize for this action
                     'Cache-Control': 'no-cache'
 
                 },
@@ -678,7 +673,6 @@ $(document).ready(function(){
             method: 'PATCH',
             headers : {
                 'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token'),    // check if authorize for this action
                 'Cache-Control': 'no-cache'
 
             },

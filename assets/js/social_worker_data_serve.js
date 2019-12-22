@@ -119,7 +119,6 @@ $(document).ready(function(){
         dataType: 'json',
         headers : {
             'Access-Control-Allow-Origin'  : baseUrl,
-            'Athorization': $.cookie('access_token')    // check if authorize for this action
         },
         beforeSend: function() {
             $('#socialworker_preloader').show();
@@ -241,7 +240,6 @@ $(document).ready(function(){
         dataType: 'json',
         headers : {
             'Access-Control-Allow-Origin'  : baseUrl,
-            'Athorization': $.cookie('access_token')    // check if authorize for this action
         },
         success: function(data) {
             // console.log(data);
@@ -342,7 +340,6 @@ $(document).ready(function(){
                 method: 'POST',
                 headers : {
                     'Access-Control-Allow-Origin'  : baseUrl,
-                    'Athorization': $.cookie('access_token')    // check if authorize for this action
                 },
                 cache: false,
                 processData: false,
@@ -384,7 +381,7 @@ $(document).ready(function(){
             dataType: 'json',
             headers: {
                 'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token')    // check if authorize for this action
+
             },
             beforeSend: function() {
               $('#socialworker_form_preloader').show();  
@@ -545,7 +542,6 @@ $(document).ready(function(){
                 method: 'PATCH',
                 headers : {
                     'Access-Control-Allow-Origin'  : baseUrl,
-                    'Athorization': $.cookie('access_token')    // check if authorize for this action
                 },
                 cache: false,
                 processData: false,
@@ -582,7 +578,7 @@ $(document).ready(function(){
             method: 'PATCH',
             headers : {
                 'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token')    // check if authorize for this action
+
             },
             cache: false,
             processData: false,

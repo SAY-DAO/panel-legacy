@@ -124,14 +124,10 @@ $(document).ready(function(){
     var child_url = '';
     var child_id_url = '';
 
-    if(global_user_role != 1){
-        child_url = '/child/all/confirm=2?ngo_id=' + global_user_ngo;
-        child_id_url = '/child/all/confirm=1?ngo_id=' + global_user_ngo;
-    }else{
-        child_url = '/child/all/confirm=2';
-        child_id_url = '/child/all/confirm=1';
-    }
+    child_url = '/child/all/confirm=2';
+    child_id_url = '/child/all/confirm=1';
     // TODO: adding farsi fields
+
     var keys = ['id' , 'generatedCode' , 'avatarUrl' , 'sleptAvatarUrl' , 'voiceUrl' , 'firstName' , 'lastName' , 'doneNeedCount' , 'spentCredit' , 'birthDate' , 'sayName' , 'country' , 'city' , 'gender' , 'bio' , 'bioSummary' , 'birthPlace' , 'nationality' , 'familyCount' , 'sayFamilyCount' , 'education' , 'housingStatus' , 'id_ngo' , 'id_social_worker' , 'phoneNumber' , 'address' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'createdAt' , 'lastUpdate']
     
 
@@ -143,7 +139,6 @@ $(document).ready(function(){
         dataType: 'json',
         headers : {
             'Access-Control-Allow-Origin'  : baseUrl,
-            'Athorization': $.cookie('access_token'),    // check if authorize for this action
             'Cache-Control': 'no-cache'
         },
         beforeSend: function() {
@@ -374,7 +369,6 @@ $(document).ready(function(){
         dataType: 'json',
         headers : {
             'Access-Control-Allow-Origin'  : baseUrl,
-            'Athorization': $.cookie('access_token'),    // check if authorize for this action
             'Cache-Control': 'no-cache'
 
         },
@@ -481,7 +475,6 @@ $(document).ready(function(){
                 method: 'POST',
                 headers : {
                     'Access-Control-Allow-Origin'  : baseUrl,
-                    'Athorization': $.cookie('access_token'),    // check if authorize for this action
                     'Cache-Control': 'no-cache'
                 },
                 cache: false,
@@ -518,7 +511,6 @@ $(document).ready(function(){
             method: 'PATCH',
             headers : {
                 'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token'),    // check if authorize for this action
                 'Cache-Control': 'no-cache'
 
             },
@@ -561,7 +553,6 @@ $(document).ready(function(){
             dataType: 'json',
             headers: {
                 'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token'),    // check if authorize for this action
                 'Cache-Control': 'no-cache'
 
             },
@@ -715,12 +706,11 @@ $(document).ready(function(){
         // update the child with new data in the form
         if($('#children_form').valid()) {
             $.ajax({
-                url: SAYApiUrl + '/child/update/childId=' + edit_childId,
-                method: 'PATCH',
-                headers : {
-                    'Access-Control-Allow-Origin'  : baseUrl,
-                    'Athorization': $.cookie('access_token'),    // check if authorize for this action
-                    'Cache-Control': 'no-cache'
+            url: SAYApiUrl + '/child/update/childId=' + edit_childId,
+            method: 'PATCH',
+            headers : {
+                'Access-Control-Allow-Origin'  : baseUrl,
+                'Cache-Control': 'no-cache'
 
                 },
                 cache: false,
@@ -757,7 +747,6 @@ $(document).ready(function(){
             method: 'PATCH',
             headers : {
                 'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token'),    // check if authorize for this action
                 'Cache-Control': 'no-cache'
 
             },

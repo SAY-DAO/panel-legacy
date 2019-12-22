@@ -67,7 +67,6 @@ $(document).ready(function(){
         dataType: 'json',
         headers: {
             'Access-Control-Allow-Origin' : baseUrl,
-            'Athorization': $.cookie('access_token'),    // check if authorize for this action
             'Cache-Control': 'no-cache'
         },
         beforeSend: function() {
@@ -196,7 +195,6 @@ $(document).ready(function(){
             dataType: 'json',
             headers: {
                 'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token'),    // check if authorize for this action
                 'Cache-Control': 'no-cache'
             },
             beforeSend: function() {
@@ -286,7 +284,6 @@ $(document).ready(function(){
                 method: 'PATCH',
                 headers : {
                     'Access-Control-Allow-Origin'  : baseUrl,
-                    'Athorization': $.cookie('access_token'),    // check if authorize for this action
                     'Cache-Control': 'no-cache'
                 },
                 cache: false,
@@ -323,7 +320,6 @@ $(document).ready(function(){
             dataType: 'json',
             headers: {
                 'Access-Control-Allow-Origin' : baseUrl,
-                'Athorization': $.cookie('access_token'),    // check if authorize for this action
                 'Cache-Control': 'no-cache'
             },
             beforeSend: function() {
