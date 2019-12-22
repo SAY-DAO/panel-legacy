@@ -363,7 +363,7 @@
                         <form role="form" id="children_form" name="children_form">
                           <div class="row">
 
-                            <div class="col-md-4 col-sm-6 h-100">
+                            <div class="col-md-6 col-sm-6 h-100">
                               <div class="form-group">
                                 <label for="ngo_id" class="control-label">انجمن <span class="required">*</span></label>
                                 <div class="option-group">
@@ -375,7 +375,7 @@
                               </div>
                             </div>
 
-                            <div class="col-md-4 col-sm-6 h-100">
+                            <div class="col-md-6 col-sm-6 h-100">
                               <div class="form-group">
                                 <label for="social_worker_id" class="control-label">مددکار <span class="required">*</span></label>
                                 <div class="option-group">
@@ -388,7 +388,16 @@
                             </div>
 
                             <!-- Farsi -->
-                            <div class="col-md-4 col-sm-6 h-100">
+                            <div class="col-md-6 col-sm-6 col-xs-6 h-100">
+                              <div class="form-group">
+                                <label for="SAY_name_fa" class="control-label">SAY Name فارسی</label>
+                                <div class="append-icon">
+                                  <input type="text" class="form-control" id="SAY_name_fa" name="SAY_name_fa" placeholder="SAY Name فارسی کودک را وارد نمایید" disabled />
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div class="col-md-6 col-sm-6 col-xs-6 h-100">
                               <div class="form-group">
                                 <label for="SAY_name" class="control-label">SAY Name <span class="required">*</span></label>
                                 <div class="append-icon">
@@ -448,7 +457,7 @@
                               <div class="form-group">
                                 <label for="child_country" class="control-label">کشور <span class="required">*</span></label>
                                 <div class="option-group">
-                                  <select id="child_country" name="child_country" class="form-control">
+                                  <select id="child_country" name="child_country" class="form-control" required>
                                     <option value="">کشور محل زندگی کودک را انتخاب نمایید</option>
                                     <option value="98">ایران</option>
                                   </select>
@@ -472,7 +481,7 @@
                             <div class="col-md-4 col-sm-6">
                               <div class="form-group">
                                 <label for="child_address" class="control-label">آدرس</label>
-                                <textarea name="child_address" id="child_address" rows="4" class="form-control" placeholder="Child's address" aria-required="true"></textarea>
+                                <textarea name="child_address" id="child_address" rows="4" class="form-control textarea_en" placeholder="Child's address" aria-required="true"></textarea>
                               </div>
                             </div>
 
@@ -579,7 +588,7 @@
 
                             <div class="col-sm-6 col-md-4 h-100">
                               <div class="form-group">
-                                <label class="control-label" for="child_avatar">آواتار کودک را بارگزاری نمایید <span class="required">*</span></label>
+                                <label class="control-label" for="child_avatar">آواتار کودک <span class="required">*</span></label>
                                 <div class="file">
                                   <div class="option-group">
                                     <span class="file-button btn-primary">انتخاب فایل</span>
@@ -592,7 +601,7 @@
 
                             <div class="col-sm-6 col-md-4 h-100">
                               <div class="form-group">
-                                <label class="control-label" for="child_slept_avatar">آواتار خواب کودک را بارگزاری نمایید <span class="required">*</span></label>
+                                <label class="control-label" for="child_slept_avatar">آواتار خواب کودک <span class="required">*</span></label>
                                 <div class="file">
                                   <div class="option-group">
                                     <span class="file-button btn-primary">انتخاب فایل</span>
@@ -605,7 +614,7 @@
 
                             <div class="col-sm-6 col-md-4 h-100">
                               <div class="form-group">
-                                <label class="control-label" for="child_voice">صدای ویرایش شده‌ی کودک را بارگزاری نمایید <span class="required">*</span></label>
+                                <label class="control-label" for="child_voice">صدای ویرایش شده‌ی کودک <span class="required">*</span></label>
                                 <div class="file">
                                   <div class="option-group">
                                     <span class="file-button btn-primary">انتخاب فایل</span>
@@ -619,23 +628,37 @@
                             <!-- Farsi -->
                             <div class="col-sm-8">
                               <div class="form-group">
-                                <label for="child_story" class="control-label">داستان کودک <span class="required">*</span></label>
-                                <textarea name="child_story" id="child_story" rows="4" class="form-control" placeholder="Child's Story" minlength="5" title="وارد کردن داستان ضروری می‌باشد" required="" aria-required="true"></textarea>
+                                <label for="child_story_fa" class="control-label">داستان فارسی کودک</label>
+                                <textarea name="child_story_fa" id="child_story_fa" rows="4" class="form-control" placeholder="داستان فارسی کودک" minlength="5" disabled></textarea>
                               </div>
                             </div>
 
                             <!-- Farsi -->
                             <div class="col-sm-4">
                               <div class="form-group">
+                                <label for="child_story_summary_fa" class="control-label">خلاصه داستان فارسی کودک</label>
+                                <textarea name="child_story_summary_fa" id="child_story_summary_fa" rows="4" class="form-control" placeholder="خلاصه داستان فارسی کودک" minlength="5" disabled></textarea>
+                              </div>
+                            </div>
+
+                            <div class="col-sm-8">
+                              <div class="form-group">
+                                <label for="child_story" class="control-label">داستان کودک <span class="required">*</span></label>
+                                <textarea name="child_story" id="child_story" rows="4" class="form-control textarea_en" placeholder="Child's Story" minlength="5" title="وارد کردن داستان ضروری می‌باشد" required="" aria-required="true"></textarea>
+                              </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                              <div class="form-group">
                                 <label for="child_story_summary" class="control-label">خلاصه داستان کودک <span class="required">*</span></label>
-                                <textarea name="child_story_summary" id="child_story_summary" rows="4" class="form-control" placeholder="Child's story summary" minlength="5" title="وارد کردن خلاصه داستان ضروری می‌باشد" required="" aria-required="true"></textarea>
+                                <textarea name="child_story_summary" id="child_story_summary" rows="4" class="form-control textarea_en" placeholder="Child's story summary" minlength="5" title="وارد کردن خلاصه داستان ضروری می‌باشد" required="" aria-required="true"></textarea>
                               </div>
                             </div>
 
                           </div>
 
                           <div class="text-center  m-t-20">
-                            <button type="submit" class="btn btn-embossed btn-dark" id="editChildData">ویرایش کودک</button>                          
+                            <button type="submit" class="btn btn-embossed btn-primary" id="editChildData">ویرایش کودک</button>                          
                             <button type="submit" class="btn btn-embossed btn-primary" id="sendChildData">افزودن کودک</button>
                             <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">پاک کردن فرم</button>
                             <div class="alert alert-danger dis-none" role="alert"></div>
@@ -652,7 +675,7 @@
                 </div>
 
                 <div class="panel-content bg-white">
-                  
+                  <!-- TODO: adding farsi fields -->
                   <table class="table table-hover table-striped dataTable">
                       <thead>
                         <tr>
@@ -685,9 +708,9 @@
                           <th class="wide_th">آدرس</th>
                           <th>وضعیت تایید</th>
                           <th>تایید کننده</th>
-                          <th>زمان تایید</th>
-                          <th>زمان ایجاد</th>
-                          <th>زمان آخرین ویرایش</th>
+                          <th>تاریخ تایید</th>
+                          <th>تاریخ ایجاد</th>
+                          <th>تاریخ آخرین ویرایش</th>
                         </tr>
                       </thead>
                       

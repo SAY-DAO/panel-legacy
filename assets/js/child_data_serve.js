@@ -91,7 +91,7 @@ $(document).ready(function(){
         child_url = '/child/all/confirm=2';
         child_id_url = '/child/all/confirm=1';
     }
-    
+    // TODO: adding farsi fields
     var keys = ['id' , 'generatedCode' , 'avatarUrl' , 'sleptAvatarUrl' , 'voiceUrl' , 'firstName' , 'lastName' , 'doneNeedCount' , 'spentCredit' , 'birthDate' , 'sayName' , 'country' , 'city' , 'gender' , 'bio' , 'bioSummary' , 'birthPlace' , 'nationality' , 'familyCount' , 'sayFamilyCount' , 'education' , 'housingStatus' , 'id_ngo' , 'id_social_worker' , 'phoneNumber' , 'address' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'createdAt' , 'lastUpdate']
     
 
@@ -111,7 +111,6 @@ $(document).ready(function(){
         },
         success: function(data) {
             var childData = data['children'];
-            // console.log("child data: ", childData[0]['id_social_worker']);
             var row_index = 1;
 
             $.each(childData , function(key ,value){
@@ -179,6 +178,7 @@ $(document).ready(function(){
                         }
                     }
 
+                    // TODO:
                     // if (keys[i] == 'education'){
                     //     // console.log("first element of string: " + value[keys[i]].charAt(0));
                     //     // console.log("count string length: " + value[keys[i]] + '-' + value[keys[i]].length);
@@ -345,7 +345,6 @@ $(document).ready(function(){
                     query += '<option value="' + value[keys[0]] + '">' + value[keys[1]] + ' - ' + value[keys[5]] + ' ' + value[keys[6]] + '</option>';
                 $('#child_id').append(query);
                 $('#child_need_select').append(query);
-                // console.log("Child field query:" + query);
             })
         },
         error: function(data) {
@@ -355,7 +354,7 @@ $(document).ready(function(){
 
     // Add new child
     $('#sendChildData').on('click' , function(e){
-        // e.preventDefault();
+        e.preventDefault();
         console.log("prevent default: " + e.isDefaultPrevented());
         // getting data from html form
 
@@ -383,6 +382,9 @@ $(document).ready(function(){
         var education = $('#education').val();
         var school_type = $('#school_type').val();
         var housingStatus = $('#housing_status').val();
+        // var  = $('#SAY_name_fa').val();  // TODO: waiting for backend to add this feild
+        // var  = $('#child_story_fa').val();  // TODO: waiting for backend to add this feild
+        // var  = $('#child_story_summary_fa').val();  // TODO: waiting for backend to add this feild
 
         //append datas to a Form Data
         var form_data = new FormData();
@@ -396,7 +398,7 @@ $(document).ready(function(){
         form_data.append('phoneNumber', phoneNumber);
         form_data.append('bio', bio);
         form_data.append('bioSummary', bioSummary);
-
+        
         if(firstName){
             form_data.append('firstName', firstName);
         }
@@ -433,6 +435,18 @@ $(document).ready(function(){
             form_data.append('housingStatus', housingStatus);
         }
 
+        // if() {
+        //     form_data.append('', ); // TODO: SAY_name_fa
+        // }
+
+        // if() {
+        //     form_data.append('', ); // TODO: child_story_fa
+        // }
+
+        // if() {
+        //     form_data.append('', ); // TODO: child_story_summary_fa
+        // }
+
         // for (var pair of form_data.entries()) {
         //     console.log(pair[0]+ ', ' + pair[1]); 
         // }
@@ -460,7 +474,7 @@ $(document).ready(function(){
                 },
                 success: function(data)  {
                     alert("Success\nChild added successfully\n" + JSON.stringify(data.message));
-                    location.reload();
+                    location.reload(true);
                 },
                 error: function(data) {
                     bootbox.alert({
@@ -498,6 +512,7 @@ $(document).ready(function(){
             },
             success: function(data) {
                 alert("Success\n" + JSON.stringify(data.message));
+                // TODO: only the table should be reload, so I commented it temporarily
                 // location.reload();
             },
             error: function(data) {
@@ -536,7 +551,6 @@ $(document).ready(function(){
                 $('#children_form_preloader').show();
             },
             success: function (data) {
-                // console.log(data);
 
                 $('#ngo_id').val(data['id_ngo']).change();
                 $('#social_worker_id').val(data['id_social_worker']).change();
@@ -551,11 +565,14 @@ $(document).ready(function(){
                 $('#child_age').val(getAge(data['birthDate']));
                 $('#child_birthplace').val(data['birthPlace']);
                 $('#family_count').val(data['familyCount']);
-                //education??
+                //TODO: education??
                 $('#child_phone_number').val(data['phoneNumber']);
                 $('#housing_status').val(data['housingStatus']).change();
                 $('#child_story').val(data['bio']);
                 $('#child_story_summary').val(data['bioSummary']);
+                // $('#SAY_name_fa').val(data['']);    // TODO: waiting for backend to add this feild
+                // $('#child_story_fa').val(data['']); // TODO: waiting for backend to add this feild
+                // $('#child_story_summary_fa').val(data['']); // TODO: waiting for backend to add this feild
 
                 $('#children_form_preloader').hide();
             },
@@ -594,6 +611,9 @@ $(document).ready(function(){
         var education = $('#education').val();
         var school_type = $('#school_type').val();
         var housingStatus = $('#housing_status').val();
+        // var  = $('#SAY_name_fa').val();  // TODO: waiting for backend to add this feild
+        // var  = $('#child_story_fa').val();  // TODO: waiting for backend to add this feild
+        // var  = $('#child_story_summary_fa').val();  // TODO: waiting for backend to add this feild
 
         // append datas to a Form Data
         var form_data = new FormData();
@@ -649,11 +669,21 @@ $(document).ready(function(){
             form_data.append('familyCount', familyCount);
         }
         if(education || school_type){
-            form_data.append('education', education == "-2" ? "-" + school_type + "2" : school_type + education);   //because "int(-2)" cannot be stored. temporarily solution!
+            form_data.append('education', education == "-2" ? "-" + school_type + "2" : school_type + education);   // TODO: because "int(-2)" cannot be stored. temporarily solution!
         }
         if(housingStatus){
             form_data.append('housingStatus', housingStatus);
         }
+        // if() {
+        //     form_data.append('', ); // TODO: SAY_name_fa
+        // }
+        // if() {
+        //     form_data.append('', ); // TODO: child_story_fa
+        // }
+        // if() {
+        //     form_data.append('', ); // TODO: child_story_summary_fa
+        // }
+
         console.log(form_data);
 
         // update the child with new data in the form
@@ -676,7 +706,7 @@ $(document).ready(function(){
             },
             success: function(data) {
                 alert("Success\nChild " + edit_childId + " updated successfully\n" + JSON.stringify(data.message));
-                location.reload();
+                location.reload(true);
             },
             error: function(data) {
                 bootbox.alert({

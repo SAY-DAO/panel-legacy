@@ -5,8 +5,7 @@ $(document).ready(function(){
     var edit_needId = -1;    
 
     // Get Children Needs by child id
-
-    var keys = ['id' , 'child_id' , 'ChildName' , 'name' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'type' , 'details' , 'isUrgent' , 'category' , 'description' , 'descriptionSummary' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'receipts' , 'createdAt' , 'isConfirmed' , 'confirmDate' , 'lastUpdate']
+    var keys = ['id' , 'child_id' , 'ChildName' , 'name' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'type' , 'details' , 'isUrgent' , 'category' , 'description' , 'descriptionSummary' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'receipts' , 'createdAt' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'lastUpdate']
 
     $('#child_need_select').change(function() {
         var selected_child = $(this).val();
@@ -177,7 +176,6 @@ $(document).ready(function(){
 
 
     // get Pre-defined needs of children in need forms drop down
-
     $.ajax({
         url: SAYApiUrl + '/child/need/childId=104&confirm=2',
         method: 'GET',
@@ -188,7 +186,6 @@ $(document).ready(function(){
             'Cache-Control': 'no-cache'
         },
         success: function(data) {
-            // console.log("predefined needs", data);
 
             $.each(data, function(key, value){
                 var query = '';
@@ -203,7 +200,6 @@ $(document).ready(function(){
 
     
     // need form fill out with Pre-defined need data
-    
     $('#pre_need_id').change(function() {
         $('#need_name').prop("disabled", true);
         $('#need_description').prop("disabled", true);
@@ -225,7 +221,6 @@ $(document).ready(function(){
                 $('#need_form_preloader').show();
             },
             success: function(data) {
-                // console.log(data);
 
                 var need_icon = baseUrl + data['imageUrl'];
 
@@ -240,6 +235,9 @@ $(document).ready(function(){
                 $('#need_doing_duration').val(data['doing_duration']);
                 $('#affiliate_link').val(data['affiliateLinkUrl']);
                 $('#direct_link').val(data['link']);
+                // $('#need_name_fa').val(data['']);   // TODO: waiting for backend to add this feild
+                // $('#need_description_fa').val(data['']);    // TODO: waiting for backend to add this feild
+                // $('#need_description_summary_fa').val(data['']);    // TODO: waiting for backend to add this feild
 
                 // // Trying to show predefined icon
                 // $('#need_icon').val(need_icon);
@@ -260,7 +258,6 @@ $(document).ready(function(){
 
 
     // Add new Need
-
     $('#sendNeedData').on('click' , function(e){
         e.preventDefault();
 
@@ -276,15 +273,13 @@ $(document).ready(function(){
         var type = $('#need_type').val();
         var doing_duration = $('#need_doing_duration').val();
         var isUrgent = $('#is_urgent').val();        
-        // if($('#is_urgent').is(":checked")){
-        //     isUrgent = true;
-        // }else{
-        //     isUrgent = false;
-        // }
 
         var affiliateLinkUrl = $('#affiliate_link').val();
         var link = $('#direct_link').val();
         var receipts = $('#need_receipts')[0].files[0];
+        // var  = $('#need_name_fa').val(); // TODO: waiting for backend to add this feild
+        // var  = $('#need_description_fa').val();  // TODO: waiting for backend to add this feild
+        // var  = $('#need_description_summary_fa').val();  // TODO: waiting for backend to add this feild
 
         var form_data = new FormData();
         form_data.append('imageUrl', imageUrl);
@@ -309,6 +304,15 @@ $(document).ready(function(){
         if(doing_duration){
             form_data.append('doing_duration', doing_duration);
         }
+        // if(){
+        //     form_data.append('', ); // TODO: need_name_fa
+        // }
+        // if(){
+        //     form_data.append('', ); // TODO: need_description_fa
+        // }
+        // if(){
+        //     form_data.append('', ); // TODO: need_description_summary_fa
+        // }
         console.log(form_data);
         
         $.ajax({
@@ -327,8 +331,7 @@ $(document).ready(function(){
                 return confirm("You are about to add new need.\nAre you sure?");                
             },
             success: function(data)  {
-                // console.log(data);
-                // alert("Success\n" + JSON.stringify(data));
+                // alert("Success\n" + JSON.stringify(data));   //prints the new need added
                 alert("Success\nNeed added successfully!");
                 location.reload(true);
             },
@@ -344,7 +347,6 @@ $(document).ready(function(){
 
 
     // Confirm a need
-
     $('#needList').on('click' , '.confirmBtn' , function(e){
         e.preventDefault();
         var needId = $(this).parent().attr('id');
@@ -382,7 +384,6 @@ $(document).ready(function(){
 
 
     // Edit a need
-
     $('#needList').on('click' , '.editBtn' , function(e){
         e.preventDefault();
 
@@ -421,6 +422,9 @@ $(document).ready(function(){
                 $('#direct_link').val(data['link']);
                 $('#need_doing_duration').val(data['doing_duration']);
                 $('#is_urgent').val(data['isUrgent']).change();
+                // $('#need_name_fa').val(data['']);   // TODO: waiting for backend to add this feild
+                // $('#need_description_fa').val(data['']);    // TODO: waiting for backend to add this feild
+                // $('#need_description_summary_fa').val(data['']);    // TODO: waiting for backend to add this feild
 
                 $('#need_form_preloader').hide();
             },
@@ -448,14 +452,13 @@ $(document).ready(function(){
         var type = $('#need_type').val();
         var doing_duration = $('#need_doing_duration').val();
         var isUrgent = $('#is_urgent').val();
-        // if($('#is_urgent').is(":checked")){
-        //     isUrgent = true;
-        // }else{
-        //     isUrgent = false;
-        // }
+        
         var affiliateLinkUrl = $('#affiliate_link').val();
         var link = $('#direct_link').val();
         var receipts = $('#need_receipts')[0].files[0];
+        // var  = $('#need_name_fa').val(); // TODO: waiting for backend to add this feild
+        // var  = $('#need_description_fa').val();  // TODO: waiting for backend to add this feild
+        // var  = $('#need_description_summary_fa').val();  // TODO: waiting for backend to add this feild
 
         // append datas to a Form Data
         var form_data = new FormData();
@@ -498,6 +501,15 @@ $(document).ready(function(){
         if(doing_duration){
             form_data.append('doing_duration', doing_duration);
         }
+        // if(){
+        //     form_data.append('', ); // TODO: need_name_fa
+        // }
+        // if(){
+        //     form_data.append('', ); // TODO: need_description_fa
+        // }
+        // if(){
+        //     form_data.append('', ); // TODO: need_description_summary_fa
+        // }
         console.log(form_data);
 
         // update the need with new data in the form
@@ -540,7 +552,6 @@ $(document).ready(function(){
     })
 
     // Delete a need
-
     $('#needList').on('click', '.deleteBtn' , function(e){
         e.preventDefault();
         var needId = $(this).parent().attr('id');
