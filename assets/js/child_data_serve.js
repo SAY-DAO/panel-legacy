@@ -32,17 +32,17 @@ $(document).ready(function(){
             "child_avatar[]": {
                 required: true,
                 extension: "jpg,png,jpeg",
-                filesize: 524288    // 512 KB
+                filesize: 0.5    // 0.5 MB
             },
             "child_slept_avatar[]": {
                 required: true,
                 extension: "jpg,png,jpeg",
-                filesize: 524288    // 512 KB
+                filesize: 0.5    // 0.5 MB
             },
             "child_voice[]": {
                 required: true,
                 extension: "mp3,wav,m4a,wma,aac,ogg",
-                filesize: 3145728   // 3 MB
+                filesize: 3   // 3 MB
             },
             child_story: {
                 required: true,
@@ -78,17 +78,17 @@ $(document).ready(function(){
             "child_avatar[]": {
                 required: "انتخاب آواتار کودک ضروری می‌باشد.",
                 extension: "فرمت‌های قابل پذیرش: {0}",
-                filesize: "بیش‌ترین حجم قابل پذیرش: {0}"
+                filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
             },
             "child_slept_avatar[]": {
                 required: "انتخاب آواتار خواب کودک ضروری می‌باشد.",
                 extension: "فرمت‌های قابل پذیرش: {0}",
-                filesize: "بیش‌ترین حجم قابل پذیرش: {0}"
+                filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
             },
             "child_voice[]": {
                 required: "انتخاب صدای کودک ضروری می‌باشد.",
                 extension: "فرمت‌های قابل پذیرش: {0}",
-                filesize: "بیش‌ترین حجم قابل پذیرش: {0}"
+                filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
             },
             child_story: {
                 required: "وارد کردن داستان ضروری می‌باشد."
