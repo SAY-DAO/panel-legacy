@@ -3,7 +3,6 @@ $(document).ready(function(){
     hasPrivilege();
     
     $('#children_form').validate({
-        // debug: true,
         ignore: [], // To validate hidden input
         rules: {
             ngo_id: {
@@ -391,10 +390,9 @@ $(document).ready(function(){
 
     // Add new child
     $('#sendChildData').on('click' , function(e){
-        // e.preventDefault();
-        console.log("prevent default: " + e.isDefaultPrevented());
-        // getting data from html form
+        e.preventDefault();
 
+        // getting data from html form
         // nullable
         var id_ngo = $('#ngo_id').val();
         var id_social_worker = $('#social_worker_id').val();
@@ -439,86 +437,70 @@ $(document).ready(function(){
         if(firstName){
             form_data.append('firstName', firstName);
         }
-
         if(lastName){
             form_data.append('lastName', lastName);
         }
-
         if(nationality){
             form_data.append('nationality', nationality);
         }
-
         if(address){
             form_data.append('address', address);
         }
-
         if(birthDate){
             form_data.append('birthDate', birthDate);
         }
-
         if(birthPlace){
             form_data.append('birthPlace', birthPlace);
         }
-
         if(familyCount){
             form_data.append('familyCount', familyCount);
         }
-
         if(education || school_type){
             form_data.append('education', education == "-2" ? "-" + school_type + "2" : school_type + education);   //because "int-2" cannot be stored. temporarily solution!
         }
-
         if(housingStatus){
             form_data.append('housingStatus', housingStatus);
         }
-
         // if() {
         //     form_data.append('', ); // TODO: SAY_name_fa
         // }
-
         // if() {
         //     form_data.append('', ); // TODO: child_story_fa
         // }
-
         // if() {
         //     form_data.append('', ); // TODO: child_story_summary_fa
         // }
 
-        // var formStatus = $('#children_form').valid();
-        // // var formStatus = validator.form();
-        // if(true == formStatus) {
-            // $.ajax({
-            //     url: SAYApiUrl + '/child/add/socialWorkerId=' + id_social_worker + '&ngoId=' + id_ngo,
-            //     method: 'POST',
-            //     headers : {
-            //         'Access-Control-Allow-Origin'  : baseUrl,
-            //         'Athorization': $.cookie('access_token'),    // check if authorize for this action
-            //         'Cache-Control': 'no-cache'
-            //     },
-            //     cache: false,
-            //     processData: false,
-            //     contentType: false,
-            //     dataType: 'json',
-            //     data: form_data,
-            //     beforeSend: function(){
-            //             return confirm("You are about to add a new child.\nAre you sure?");
+        if($('#children_form').valid()) {
+            $.ajax({
+                url: SAYApiUrl + '/child/add/socialWorkerId=' + id_social_worker + '&ngoId=' + id_ngo,
+                method: 'POST',
+                headers : {
+                    'Access-Control-Allow-Origin'  : baseUrl,
+                    'Athorization': $.cookie('access_token'),    // check if authorize for this action
+                    'Cache-Control': 'no-cache'
+                },
+                cache: false,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                data: form_data,
+                beforeSend: function(){
+                        return confirm("You are about to add a new child.\nAre you sure?");
                             
-            //     },
-            //     success: function(data)  {
-            //         alert("Success\nChild added successfully\n" + JSON.stringify(data.message));
-            //         location.reload(true);
-            //     },
-            //     error: function(data) {
-            //         bootbox.alert({
-            //             title: "Error!",
-            //             message: data.responseJSON.message,
-            //         });
-            //     }
-            // })
-        // }else{
-        //     console.log('form incorrect');
-        // }
-
+                },
+                success: function(data)  {
+                    alert("Success\nChild added successfully\n" + JSON.stringify(data.message));
+                    location.reload(true);
+                },
+                error: function(data) {
+                    bootbox.alert({
+                        title: "Error!",
+                        message: data.responseJSON.message,
+                    });
+                }
+            })
+        }
     })
 
     // Confirm a child
