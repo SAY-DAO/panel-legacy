@@ -2,6 +2,7 @@ $(document).ready(function(){
     isAthorized();
     hasPrivilege();
     
+    // children form validation
     $('#children_form').validate({
         ignore: [], // To validate hidden input
         rules: {

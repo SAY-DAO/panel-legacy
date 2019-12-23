@@ -2,6 +2,121 @@ $(document).ready(function(){
     isAthorized();
     hasPrivilege();
 
+    // needs form validation
+    $('#need_form').validate({
+        ignore: [], // To validate hidden input
+        rules: {
+            child_id: {
+                required: true
+            },
+            social_worker_id: {
+                required: true
+            },
+            SAY_name: {
+                required:true
+            },
+            child_gender: {
+                required: true
+            },
+            child_country: {
+                required: true
+            },
+            child_city: {
+                required: true
+            },
+            child_phone_number: {
+                required: true,
+                digits: true,
+                minlength: 8
+            },
+            "child_avatar[]": {
+                required: true,
+                extension: "jpg,png,jpeg",
+                filesize: 0.5    // 0.5 MB
+            },
+            "child_slept_avatar[]": {
+                required: true,
+                extension: "jpg,png,jpeg",
+                filesize: 0.5    // 0.5 MB
+            },
+            "child_voice[]": {
+                required: true,
+                extension: "mp3,wav,m4a,wma,aac,ogg",
+                filesize: 3   // 3 MB
+            },
+            child_story: {
+                required: true,
+            },
+            child_story_summary: {
+                required: true,
+            }
+        },
+        messages: {
+            child_id: {
+                required: "انتخاب کودک ضروری می‌باشد."
+            },
+            social_worker_id: {
+                required: "انتخاب مددکار ضروری می‌باشد."
+            },
+            SAY_name: {
+              required: "وارد کردن SAY name ضروری می‌باشد."
+            },
+            child_gender: {
+                required: "انتخاب جنسیت ضروری می‌باشد."
+            },
+            child_country: {
+                required: "انتخاب کشور ضروری می‌باشد."
+            },
+            child_city: {
+                required: "انتخاب شهر ضروری می‌باشد."
+            },
+            child_phone_number: {
+                required: "وارد کردن شماره تماس اجباری می‌باشد.",
+                digits: "شماره تماس تنها می‌تواند شامل اعداد باشد.",
+                minlength: "شماره تماس حداقل باید {0} رقم باشد."
+            },
+            "child_avatar[]": {
+                required: "انتخاب آواتار کودک ضروری می‌باشد.",
+                extension: "فرمت‌های قابل پذیرش: {0}",
+                filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
+            },
+            "child_slept_avatar[]": {
+                required: "انتخاب آواتار خواب کودک ضروری می‌باشد.",
+                extension: "فرمت‌های قابل پذیرش: {0}",
+                filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
+            },
+            "child_voice[]": {
+                required: "انتخاب صدای کودک ضروری می‌باشد.",
+                extension: "فرمت‌های قابل پذیرش: {0}",
+                filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
+            },
+            child_story: {
+                required: "وارد کردن داستان ضروری می‌باشد."
+            },
+            child_story_summary: {
+                required: "وارد کردن خلاصه داستان ضروری می‌باشد."
+            }
+        },
+        errorPlacement: function(error, element) {
+            error.appendTo(element.parent('div'));
+        },
+        submitHandler: function (form) { // for demo
+            alert('valid form submitted'); // for demo
+            return false; // for demo
+        },
+        invalidHandler: function(event, validator) {
+            // 'this' refers to the form
+            var errors = validator.numberOfInvalids();
+            if (errors) {
+                var message = errors + ' فیلد نادرست وجود دارد، لطفا بازبینی نمایید.';
+                $("div.alert").html(message);
+                $("div.alert").show();
+            } else {
+                $("div.alert").hide();
+            }
+        }
+    });
+
     var edit_needId = -1;    
 
     // Get Children Needs by child id
