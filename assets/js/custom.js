@@ -98,7 +98,7 @@ function cost(value) {
     return beauty_cost;
 }
 
-// Custom filesize
+// Custom filesize for form validation
 $.validator.addMethod('filesize', function (value, element, param) {
     return this.optional(element) || (element.files[0].size <= param)
 }, 'File size must be less than {0}');
