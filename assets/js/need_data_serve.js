@@ -2,6 +2,11 @@ $(document).ready(function(){
     isAthorized();
     hasPrivilege();
 
+    // Cost field comma and number
+    $('#need_cost').on('keyup', function() {
+        var n = parseInt($(this).val().replace(/\D/g,''),10);
+        $(this).val(n.toLocaleString());
+    })
     // needs form validation
     $('#need_form').validate({
         ignore: [], // To validate hidden input
@@ -9,92 +14,82 @@ $(document).ready(function(){
             child_id: {
                 required: true
             },
-            social_worker_id: {
+            need_name: {
                 required: true
             },
-            SAY_name: {
+            need_category: {
                 required:true
             },
-            child_gender: {
-                required: true
-            },
-            child_country: {
-                required: true
-            },
-            child_city: {
-                required: true
-            },
-            child_phone_number: {
+            need_cost: {
                 required: true,
-                digits: true,
-                minlength: 8
+                number: true
             },
-            "child_avatar[]": {
+            "need_icon[]": {
                 required: true,
                 extension: "jpg,png,jpeg",
-                filesize: 0.5    // 0.5 MB
+                filesize: 1    // 1 MB
             },
-            "child_slept_avatar[]": {
-                required: true,
-                extension: "jpg,png,jpeg",
-                filesize: 0.5    // 0.5 MB
+            "need_receipts[]": {
+                filesize: 3    // 3 MB
             },
-            "child_voice[]": {
-                required: true,
-                extension: "mp3,wav,m4a,wma,aac,ogg",
-                filesize: 3   // 3 MB
+            need_type: {
+                required: true
             },
-            child_story: {
-                required: true,
+            affiliate_link: {
+                url: true
             },
-            child_story_summary: {
-                required: true,
+            direct_link: {
+                url: true
+            },
+            need_doing_duration: {
+                number: true
+            },
+            need_description: {
+                required: true
+            },
+            need_description_summary: {
+                required: true
             }
         },
         messages: {
             child_id: {
-                required: "انتخاب کودک ضروری می‌باشد."
+                required: "انتخاب کودک ضروری است."
             },
-            social_worker_id: {
-                required: "انتخاب مددکار ضروری می‌باشد."
+            need_name: {
+                required: "وارد کردن نام نیاز ضروری است."
             },
-            SAY_name: {
-              required: "وارد کردن SAY name ضروری می‌باشد."
+            need_category: {
+              required: "انتخاب دسته‌بندی نیاز ضروری است."
             },
-            child_gender: {
-                required: "انتخاب جنسیت ضروری می‌باشد."
+            need_cost: {
+                required: "وارد کردن هزینه نیاز ضروری است.",
+                number: "لطفا فقط عدد وارد کنید."
             },
-            child_country: {
-                required: "انتخاب کشور ضروری می‌باشد."
-            },
-            child_city: {
-                required: "انتخاب شهر ضروری می‌باشد."
-            },
-            child_phone_number: {
-                required: "وارد کردن شماره تماس اجباری می‌باشد.",
-                digits: "شماره تماس تنها می‌تواند شامل اعداد باشد.",
-                minlength: "شماره تماس حداقل باید {0} رقم باشد."
-            },
-            "child_avatar[]": {
-                required: "انتخاب آواتار کودک ضروری می‌باشد.",
+            "need_icon[]": {
+                required: "انتخاب آیکون نیاز ضروری است.",
                 extension: "فرمت‌های قابل پذیرش: {0}",
                 filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
             },
-            "child_slept_avatar[]": {
-                required: "انتخاب آواتار خواب کودک ضروری می‌باشد.",
-                extension: "فرمت‌های قابل پذیرش: {0}",
+            "need_receipts[]": {
                 filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
             },
-            "child_voice[]": {
-                required: "انتخاب صدای کودک ضروری می‌باشد.",
-                extension: "فرمت‌های قابل پذیرش: {0}",
-                filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
+            need_type: {
+                required: "انتخاب نوع نیاز ضروری است."
             },
-            child_story: {
-                required: "وارد کردن داستان ضروری می‌باشد."
+            affiliate_link: {
+                url: "اشتباه شد."
             },
-            child_story_summary: {
-                required: "وارد کردن خلاصه داستان ضروری می‌باشد."
+            direct_link: {
+                url: "اشتباه شد."
+            },
+            need_doing_duration: {
+                number: "لطفا فقط عدد وارد کنید."
+            },
+            need_description: {
+                required: "وارد کردن شرح نیاز ضروری است."
+            },
+            need_description_summary: {
+                required: "وارد کردن خلاصه شرح نیاز ضروری است."
             }
         },
         errorPlacement: function(error, element) {
@@ -430,34 +425,36 @@ $(document).ready(function(){
         // }
         console.log(form_data);
         
-        $.ajax({
-            url: SAYApiUrl + '/need/add/childId=' + childId,
-            method: 'POST',
-            headers : {
-                'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token'),    // check if authorize for this action
-                'Cache-Control': 'no-cache'
-            },
-            cache: false,
-            processData: false,
-            contentType: false,
-            data: form_data,
-            beforeSend: function() {
-                return confirm("You are about to add new need.\nAre you sure?");                
-            },
-            success: function(data)  {
-                // alert("Success\n" + JSON.stringify(data));   //prints the new need added
-                alert("Success\nNeed added successfully!");
-                location.reload(true);
-            },
-            error: function(data) {
-                console.log(data);
-                bootbox.alert({
-                    title: "Error!",
-                    message: data.responseJSON.message,
-                });
-            }
-        })
+        if($('#need_form').valid()) {
+            $.ajax({
+                url: SAYApiUrl + '/need/add/childId=' + childId,
+                method: 'POST',
+                headers : {
+                    'Access-Control-Allow-Origin'  : baseUrl,
+                    'Athorization': $.cookie('access_token'),    // check if authorize for this action
+                    'Cache-Control': 'no-cache'
+                },
+                cache: false,
+                processData: false,
+                contentType: false,
+                data: form_data,
+                beforeSend: function() {
+                    return confirm("You are about to add new need.\nAre you sure?");                
+                },
+                success: function(data)  {
+                    // alert("Success\n" + JSON.stringify(data));   //prints the new need added
+                    alert("Success\nNeed added successfully!");
+                    location.reload(true);
+                },
+                error: function(data) {
+                    console.log(data);
+                    bootbox.alert({
+                        title: "Error!",
+                        message: data.responseJSON.message,
+                    });
+                }
+            })
+        }
     })
 
 
@@ -627,44 +624,48 @@ $(document).ready(function(){
         // }
         console.log(form_data);
 
+        //romove required rules of all fields
+        $('#need_form select').each(function() {
+            $(this).rules('remove', 'required');
+        })
+        $('#need_form input, textarea').each(function() {
+            $(this).rules('remove', 'required');
+        })
+        
         // update the need with new data in the form
-        $.ajax({
-            url: SAYApiUrl + '/need/update/needId=' + edit_needId,
-            method: 'PATCH',
-            headers : {
-                'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token'),    // check if authorize for this action
-                'Cache-Control': 'no-cache'
+        if($('#need_form').valid()) {
+            $.ajax({
+                url: SAYApiUrl + '/need/update/needId=' + edit_needId,
+                method: 'PATCH',
+                headers : {
+                    'Access-Control-Allow-Origin'  : baseUrl,
+                    'Athorization': $.cookie('access_token'),    // check if authorize for this action
+                    'Cache-Control': 'no-cache'
 
-            },
-            cache: false,
-            processData: false,
-            contentType: false,
-            dataType: 'json',
-            data: form_data,
-            beforeSend: function(){
-                return confirm("You are about to edit the need.\nAre you sure?");
-            },
-            success: function(data) {
-                alert("Success\nNeed " + edit_needId + " updated successfully\n" + JSON.stringify(data.message));
-                location.reload(true);
-            },
-            error: function(data) {
-                bootbox.alert({
-                    title: "Error!",
-                    message: data.responseJSON.message,
-                });
-            }
+                },
+                cache: false,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                data: form_data,
+                beforeSend: function(){
+                    return confirm("You are about to edit the need.\nAre you sure?");
+                },
+                success: function(data) {
+                    alert("Success\nNeed " + edit_needId + " updated successfully\n" + JSON.stringify(data.message));
+                    location.reload(true);
+                },
+                error: function(data) {
+                    bootbox.alert({
+                        title: "Error!",
+                        message: data.responseJSON.message,
+                    });
+                }
 
-        })  //end of Update ajax
+            })  //end of Update ajax
+        }
 
     })  //end of 'confirm edit' function
-
-    // Force user to fill with number and seprate with comma
-    $('#need_cost').on('keyup', function() {
-        var n = parseInt($(this).val().replace(/\D/g,''),10);
-        $(this).val(n.toLocaleString());
-    })
 
     // Delete a need
     $('#needList').on('click', '.deleteBtn' , function(e){

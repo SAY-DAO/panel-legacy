@@ -2,6 +2,63 @@ $(document).ready(function(){
     isAthorized();
     hasPrivilege();
 
+    // change need form validation
+    $('#change_need_form').validate({
+        ignore: [], // To validate hidden input
+        rules: {
+            need_status_product: {
+                required: true
+            },
+            need_status_service: {
+                required: true
+            },
+            delivery_date: {
+                required: true
+            },
+            "product_receipts[]": {
+                filesize: 3    // 3 MB
+            },
+            "service_receipts[]": {
+                filesize: 3    // 3 MB
+            }
+        },
+        messages: {
+            need_status_product: {
+                required: "انتخاب وضعیت جدید نیاز ضروری است."
+            },
+            need_status_service: {
+                required: "انتخاب وضعیت جدید نیاز ضروری است."
+            },
+            delivery_date: {
+                required: "انتخاب تاریخ تحویل ضروری است."
+            },
+            "product_receipts[]": {
+                filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
+            },
+            "service_receipts[]": {
+                filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
+            }
+        },
+        errorPlacement: function(error, element) {
+            error.appendTo(element.parent('div'));
+        },
+        submitHandler: function (form) { // for demo
+            alert('valid form submitted'); // for demo
+            return false; // for demo
+        },
+        invalidHandler: function(event, validator) {
+            // 'this' refers to the form
+            var errors = validator.numberOfInvalids();
+            if (errors) {
+                var message = errors + ' فیلد نادرست وجود دارد، لطفا بازبینی نمایید.';
+                $("div.alert").html(message);
+                $("div.alert").show();
+            } else {
+                $("div.alert").hide();
+            }
+        }
+    });
+
     var status_needId = -1;
     var type_id = -1;
     var keys = ['id' , 'type' , 'name' , 'status' , 'delivery_date' , 'imageUrl' , 'childGeneratedCode' , 'childFirstName' , 'childLastName' , 'cost', 'donated' , 'details' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'ngoName' , 'ngoAddress' , 'receipts' , 'doneAt'];
@@ -158,13 +215,13 @@ $(document).ready(function(){
                 $('#delivery_date').val(localDate(data['delivery_date']).split(', ')[0]);
 
                 type_id = data['type'];     // to use in confirm change status
-                if (type_id == 0) {
+                if (type_id == 0) { // if service
                     $('#product_status').hide();
                     $('#service_status').show();
                     $('#need_status_service').val(data['status']).change();  // need status feild in get need by id
                     $('#p_receipts').hide();
                     $('#s_receipts').show();
-                } else if (type_id == 1) {
+                } else if (type_id == 1) {  // if product
                     $('#service_status').hide();
                     $('#product_status').show();
                     $('#need_status_product').val(data['status']).change();  // need status feild in get need by id
@@ -173,7 +230,7 @@ $(document).ready(function(){
                 }
 
                 $('#need_status_product').change(function() {
-                    if ($(this).val() == 3) {
+                    if ($(this).val() == 3) {   // if product purchase
                         $('#delivery').show();
                     } else {
                         $('#delivery').hide();
@@ -197,14 +254,21 @@ $(document).ready(function(){
         var delivery = false;
 
         var need_name = $('#need_name').val();
-        if (type_id == 0) {
+        if (type_id == 0) { // if service
+            $('#need_status_product').rules('remove', 'required');  // remove rule
+            $('#delivery_date').rules('remove', 'required');    // remove rule
+
             status = $('#need_status_service').val();
             receipts = $('#service_receipts')[0].files[0];
-        } else if (type_id == 1) {
+        } else if (type_id == 1) {  // if product
+            $('#need_status_service').rules('remove', 'required');  // remove rule
+
             status = $('#need_status_product').val();
             receipts = $('#product_receipts')[0].files[0];
             if (status == 3) {
                 delivery = true;
+            }else{
+                $('#delivery_date').rules('remove', 'required');    // remove rule
             }
         }
         var delivery_date = $('#delivery_date').val();
@@ -221,33 +285,36 @@ $(document).ready(function(){
             form_data.append('delivery_date', delivery_date);
         }
 
-        $.ajax({
-            url: SAYApiUrl + '/need/update/needId=' + status_needId,
-            method: 'PATCH',
-            headers : {
-                'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token'),    // check if authorize for this action
-                'Cache-Control': 'no-cache'
-            },
-            cache: false,
-            processData: false,
-            contentType: false,
-            dataType: 'json',
-            data: form_data,
-            beforeSend: function(){
-                return confirm('You are about to change status of the need {' + status_needId + ': ' + need_name + '}.\nAre you sure?');
-            },
-            success: function(data) {
-                alert("Success\nNeed {" + status_needId + ': ' + need_name + "}'s status changed successfully\n" + JSON.stringify(data.message));
-                location.reload(true);
-            },
-            error: function(data) {
-                bootbox.alert({
-                    title: "Error!",
-                    message: data.responseJSON.message,
-                });
-            }
-        })
+        // TODO: different condition remove rule
+        if($('#change_need_form').valid()) {
+            $.ajax({
+                url: SAYApiUrl + '/need/update/needId=' + status_needId,
+                method: 'PATCH',
+                headers : {
+                    'Access-Control-Allow-Origin'  : baseUrl,
+                    'Athorization': $.cookie('access_token'),    // check if authorize for this action
+                    'Cache-Control': 'no-cache'
+                },
+                cache: false,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                data: form_data,
+                beforeSend: function(){
+                    return confirm('You are about to change status of the need {' + status_needId + ': ' + need_name + '}.\nAre you sure?');
+                },
+                success: function(data) {
+                    alert("Success\nNeed {" + status_needId + ': ' + need_name + "}'s status changed successfully\n" + JSON.stringify(data.message));
+                    location.reload(true);
+                },
+                error: function(data) {
+                    bootbox.alert({
+                        title: "Error!",
+                        message: data.responseJSON.message,
+                    });
+                }
+            })
+        }
     })
 
 

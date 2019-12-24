@@ -1,7 +1,10 @@
 $(document).ready(function(){
     isAthorized();
     hasPrivilege();
-    
+     // live age field
+     $('#child_birthdate').change(function() {
+        $('#child_age').val( getAge( $(this).val() ) );
+    })
     // children form validation
     $('#children_form').validate({
         ignore: [], // To validate hidden input
@@ -53,48 +56,48 @@ $(document).ready(function(){
         },
         messages: {
             ngo_id: {
-                required: "انتخاب انجمن ضروری می‌باشد."
+                required: "انتخاب انجمن ضروری است."
             },
             social_worker_id: {
-                required: "انتخاب مددکار ضروری می‌باشد."
+                required: "انتخاب مددکار ضروری است."
             },
             SAY_name: {
-              required: "وارد کردن SAY name ضروری می‌باشد."
+              required: "وارد کردن SAY name ضروری است."
             },
             child_gender: {
-                required: "انتخاب جنسیت ضروری می‌باشد."
+                required: "انتخاب جنسیت ضروری است."
             },
             child_country: {
-                required: "انتخاب کشور ضروری می‌باشد."
+                required: "انتخاب کشور ضروری است."
             },
             child_city: {
-                required: "انتخاب شهر ضروری می‌باشد."
+                required: "انتخاب شهر ضروری است."
             },
             child_phone_number: {
-                required: "وارد کردن شماره تماس اجباری می‌باشد.",
+                required: "وارد کردن شماره تماس ضروری است.",
                 digits: "شماره تماس تنها می‌تواند شامل اعداد باشد.",
                 minlength: "شماره تماس حداقل باید {0} رقم باشد."
             },
             "child_avatar[]": {
-                required: "انتخاب آواتار کودک ضروری می‌باشد.",
+                required: "انتخاب آواتار کودک ضروری است.",
                 extension: "فرمت‌های قابل پذیرش: {0}",
                 filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
             },
             "child_slept_avatar[]": {
-                required: "انتخاب آواتار خواب کودک ضروری می‌باشد.",
+                required: "انتخاب آواتار خواب کودک ضروری است.",
                 extension: "فرمت‌های قابل پذیرش: {0}",
                 filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
             },
             "child_voice[]": {
-                required: "انتخاب صدای کودک ضروری می‌باشد.",
+                required: "انتخاب صدای کودک ضروری است.",
                 extension: "فرمت‌های قابل پذیرش: {0}",
                 filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
             },
             child_story: {
-                required: "وارد کردن داستان ضروری می‌باشد."
+                required: "وارد کردن داستان ضروری است."
             },
             child_story_summary: {
-                required: "وارد کردن خلاصه داستان ضروری می‌باشد."
+                required: "وارد کردن خلاصه داستان ضروری است."
             }
         },
         errorPlacement: function(error, element) {
@@ -701,42 +704,47 @@ $(document).ready(function(){
 
         console.log(form_data);
 
-        // update the child with new data in the form
-        $.ajax({
-            url: SAYApiUrl + '/child/update/childId=' + edit_childId,
-            method: 'PATCH',
-            headers : {
-                'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token'),    // check if authorize for this action
-                'Cache-Control': 'no-cache'
+        //romove required rules of all fields
+        $('#children_form select').each(function() {
+            $(this).rules('remove', 'required');
+        })
+        $('#children_form input, textarea').each(function() {
+            $(this).rules('remove', 'required');
+        })
 
-            },
-            cache: false,
-            processData: false,
-            contentType: false,
-            dataType: 'json',
-            data: form_data,
-            beforeSend: function(){
-                return confirm("You are about to edit the child.\nAre you sure?");
-            },
-            success: function(data) {
-                alert("Success\nChild " + edit_childId + " updated successfully\n" + JSON.stringify(data.message));
-                location.reload(true);
-            },
-            error: function(data) {
-                bootbox.alert({
-                    title: "Error!",
-                    message: data.responseJSON.message,
-                });
-            }
-        })  //end of Update ajax
+        // update the child with new data in the form
+        if($('#children_form').valid()) {
+            $.ajax({
+                url: SAYApiUrl + '/child/update/childId=' + edit_childId,
+                method: 'PATCH',
+                headers : {
+                    'Access-Control-Allow-Origin'  : baseUrl,
+                    'Athorization': $.cookie('access_token'),    // check if authorize for this action
+                    'Cache-Control': 'no-cache'
+
+                },
+                cache: false,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                data: form_data,
+                beforeSend: function(){
+                    return confirm("You are about to edit the child.\nAre you sure?");
+                },
+                success: function(data) {
+                    alert("Success\nChild " + edit_childId + " updated successfully\n" + JSON.stringify(data.message));
+                    location.reload(true);
+                },
+                error: function(data) {
+                    bootbox.alert({
+                        title: "Error!",
+                        message: data.responseJSON.message,
+                    });
+                }
+            })  //end of Update ajax
+        }
 
     })  //end of 'confirm edit' function
-
-    // live age field in child form
-    $('#child_birthdate').change(function() {
-        $('#child_age').val( getAge( $(this).val() ) );
-    })
 
     // Delete a child
     $('#childList').on('click' , '.deleteBtn' , function(e){

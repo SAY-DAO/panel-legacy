@@ -149,7 +149,7 @@
                           <div class="col-md-4 col-sm-4">
                               <div class="form-group">
                                   <label for="need_name" class="control-label">نام نیاز</label>
-                                  <input type="text" id="need_name" name="need_name" class="form-control" readonly>
+                                  <input type="text" id="need_name" name="need_name" class="form-control" readonly />
                               </div>
                           </div>
                           
@@ -157,7 +157,7 @@
                               <div class="form-group">
                                   <label for="need_status_product" class="control-label">وضعیت نیاز <span class="required">*</span></label>
                                   <div class="option-group">
-                                      <select id="need_status_product" name="need_status_product" class="form-control" required>
+                                      <select id="need_status_product" name="need_status_product" class="form-control">
                                         <option value="">وضعیت مورد نظر را انتخاب کنید</option>
                                         <option value="2">Money transfer</option>
                                         <option value="3">Product purchase</option>
@@ -173,12 +173,11 @@
                               <div class="form-group">
                                   <label for="need_status_service" class="control-label">وضعیت نیاز <span class="required">*</span></label>
                                   <div class="option-group">
-                                      <select id="need_status_service" name="need_status_service" class="form-control" required>
+                                      <select id="need_status_service" name="need_status_service" class="form-control">
                                         <option value="">وضعیت مورد نظر را انتخاب کنید</option>
                                         <option value="2">Money transfer</option>
                                         <option value="3">Money transfer to the NGO</option>
                                         <option value="4">Service delivery</option>
-                                        
                                       </select>
                                   </div>
                               </div>
@@ -188,7 +187,7 @@
                             <div class="form-group">
                               <label for="delivery_date" class="control-label">تاریخ تحویل کالا <span class="required">*</span></label>
                               <div class="append-icon">
-                                <input type="date" id="delivery_date" name="delivery_date" class="form-control">
+                                <input type="date" id="delivery_date" name="delivery_date" class="form-control" />
                                 <i class="icon-calendar"></i>
                               </div>
                             </div>
@@ -198,11 +197,9 @@
                             <div class="form-group">
                               <label class="control-label" for="product_receipts">رسید کالا</label>
                               <div class="file">
-                                <div class="option-group">
-                                  <span class="file-button btn-primary">انتخاب فایل</span>
-                                  <input type="file" class="custom-file" name="product_receipts[]" id="product_receipts" title="حجم فایل انتخابی می‌بایست کمتر از 3 مگابایت باشد" multiple="multiple" onchange="document.getElementById('product_receipts_uploader').value = this.value;">
-                                  <input type="text" class="form-control" id="product_receipts_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="">
-                                </div>
+                                <span class="file-button btn-primary">انتخاب فایل</span>
+                                <input type="file" class="custom-file" name="product_receipts[]" id="product_receipts" multiple="multiple" onchange="document.getElementById('product_receipts_uploader').value = this.value;" />
+                                <input type="text" class="form-control" id="product_receipts_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="" />
                               </div>
                             </div>
                           </div>
@@ -211,11 +208,9 @@
                             <div class="form-group">
                               <label class="control-label" for="service_receipts">رسید سرویس</label>
                               <div class="file">
-                                <div class="option-group">
-                                  <span class="file-button btn-primary">انتخاب فایل</span>
-                                  <input type="file" class="custom-file" name="service_receipts[]" id="service_receipts" title="حجم فایل انتخابی می‌بایست کمتر از 3 مگابایت باشد" multiple="multiple" onchange="document.getElementById('service_receipts_uploader').value = this.value;">
-                                  <input type="text" class="form-control" id="service_receipts_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="">
-                                </div>
+                                <span class="file-button btn-primary">انتخاب فایل</span>
+                                <input type="file" class="custom-file" name="service_receipts[]" id="service_receipts" multiple="multiple" onchange="document.getElementById('service_receipts_uploader').value = this.value;" />
+                                <input type="text" class="form-control" id="service_receipts_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="" />
                               </div>
                             </div>
                           </div>
@@ -225,7 +220,8 @@
                         <div class="text-center  m-t-20">
                           <button type="submit" class="btn btn-embossed btn-primary" id="editNeedStatus">ثبت وضعیت</button>
                           <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">پاک کردن فرم</button>
-                        </div>
+                          <div class="alert alert-danger dis-none" role="alert"></div>
+                          </div>
                       </form>
                     </div>
                   </div>
