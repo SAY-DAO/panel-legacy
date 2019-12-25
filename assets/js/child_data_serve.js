@@ -35,17 +35,17 @@ $(document).ready(function(){
             "child_avatar[]": {
                 required: true,
                 extension: "jpg,png,jpeg",
-                filesize: 0.5    // 0.5 MB
+                filesize: 0.5    // MB
             },
             "child_slept_avatar[]": {
                 required: true,
                 extension: "jpg,png,jpeg",
-                filesize: 0.5    // 0.5 MB
+                filesize: 0.5    // MB
             },
             "child_voice[]": {
                 required: true,
                 extension: "mp3,wav,m4a,wma,aac,ogg",
-                filesize: 3   // 3 MB
+                filesize: 3   // MB
             },
             child_story: {
                 required: true,
@@ -704,7 +704,7 @@ $(document).ready(function(){
 
         console.log(form_data);
 
-        //romove required rules of all fields
+        //remove required rules of all fields
         $('#children_form select').each(function() {
             $(this).rules('remove', 'required');
         })

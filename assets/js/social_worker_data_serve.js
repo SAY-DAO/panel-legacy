@@ -1,12 +1,118 @@
 $(document).ready(function(){
     isAthorized();
 
+    // social worker form validation
+    $('#socialworker_form').validate({
+        ignore: [], // To validate hidden input
+        rules: {
+            social_worker_last_name: {
+                required: true
+            },
+            social_worker_type: {
+                required: true
+            },
+            social_worker_ngo: {
+                required:true
+            },
+            social_worker_id_number: {
+                required: true
+            },
+            "social_worker_id_card[]": {
+                filesize: 1    // MB
+            },
+            "social_worker_passport[]": {
+                filesize: 1    // MB
+            },
+            social_worker_gender: {
+                required: true
+            },
+            social_worker_phone_number: {
+                required: true,
+                digits: true,
+                minlength: 8
+            },
+            social_worker_emergency_phone_number: {
+                required: true,
+                digits: true,
+                minlength: 8
+            },
+            social_worker_email_address: {
+                required: true,
+                email: true,
+            },            
+            "social_worker_avatar[]": {
+                required: true,
+                extension: "jpg,png,jpeg",
+                filesize: 1   // MB
+            }
+        },
+        messages: {
+            social_worker_last_name: {
+                required: "وارد کردن نام خانوادگی مددکار ضروری است."
+            },
+            social_worker_type: {
+                required: "انتخاب نوع مددکار ضروری است."
+            },
+            social_worker_ngo: {
+              required: "انتخاب انجمن ضروری است."
+            },
+            social_worker_id_number: {
+                required: "وارد کردن کد ملی ضروری است."
+            },
+            "social_worker_id_card[]": {
+                filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
+            },
+            "social_worker_passport[]": {
+                filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
+            },
+            social_worker_gender: {
+                required: "انتخاب جنسیت ضروری است."
+            },
+            social_worker_phone_number: {
+                required: "وارد کردن شماره تماس ضروری است.",
+                digits: "شماره تماس تنها می‌تواند شامل اعداد باشد.",
+                minlength: "شماره تماس حداقل باید {0} رقم باشد."
+            },
+            social_worker_emergency_phone_number: {
+                required: "وارد کردن شماره تماس ضروری است.",
+                digits: "شماره تماس تنها می‌تواند شامل اعداد باشد.",
+                minlength: "شماره تماس حداقل باید {0} رقم باشد."
+            },
+            social_worker_email_address: {
+                required: "وارد کردن ایمیل ضروری است.",
+                email: "آدرس ایمیل اشتباه است.",
+            },
+            "social_worker_avatar[]": {
+                required: "انتخاب تصویر مددکار ضروری است.",
+                extension: "فرمت‌های قابل پذیرش: {0}",
+                filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
+            }
+        },
+        errorPlacement: function(error, element) {
+            error.appendTo(element.parent('div'));
+        },
+        submitHandler: function (form) { // for demo
+            alert('valid form submitted'); // for demo
+            return false; // for demo
+        },
+        invalidHandler: function(event, validator) {
+            // 'this' refers to the form
+            var errors = validator.numberOfInvalids();
+            if (errors) {
+                var message = errors + ' فیلد نادرست وجود دارد، لطفا بازبینی نمایید.';
+                $("div.alert").html(message);
+                $("div.alert").show();
+            } else {
+                $("div.alert").hide();
+            }
+        }
+    });
+
     var edit_socialworkerId = -1;
 
     var keys = ['id' , 'generatedCode' , 'firstName' , 'lastName' , 'userName' , 'avatarUrl' , 'id_type' , 'id_ngo' , 'birthCertificateNumber' , 'city' , 'country' , 'idNumber', 'idCardUrl' , 'passportNumber' , 'passportUrl' , 'gender' , 'birthDate' , 'phoneNumber' , 'emergencyPhoneNumber' , 'emailAddress' , 'telegramId' , 'postalAddress' , 'currentChildCount', 'currentNeedCount' , 'bankAccountNumber' , 'bankAccountShebaNumber' , 'bankAccountCardNumber' , 'registerDate' , 'lastLoginDate' , 'lastUpdateDate']
 
     // Get all Social workers
-
     $.ajax({
         url: SAYApiUrl + '/socialWorker/all',
         method: 'GET',
@@ -128,9 +234,7 @@ $(document).ready(function(){
         }
     })
 
-
     // Get social workers list for drop down menue in forms
-
     $.ajax({
         url: SAYApiUrl + '/socialWorker/all',
         method: 'GET',
@@ -154,9 +258,7 @@ $(document).ready(function(){
         }
     })
 
-
     // Adding new Social worker
-
     $('#sendSocialWorkerData').on('click' , function(e){
         e.preventDefault();
 
@@ -234,39 +336,38 @@ $(document).ready(function(){
 
         console.log(form_data);
 
-        $.ajax({
-            url: SAYApiUrl + '/socialWorker/add',
-            method: 'POST',
-            headers : {
-                'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token')    // check if authorize for this action
-            },
-            cache: false,
-            processData: false,
-            contentType: false,
-            data: form_data,
-            beforeSend: function(){
-                return confirm("You are about to add new user.\nAre you sure?");
-            },
-            success: function(data) {
-                console.log(data);
-                alert("Success\n" + JSON.stringify(data['message']));
-                // alert("Success\n" + data.responseJSON.message);                
-                location.reload(true);
-            },
-            error: function(data) {
-                bootbox.alert({
-                    title: "Error!",
-                    message: data.responseJSON.message,
-                });
-            }
-        })
-        
+        if($('#socialworker_form').valid()) {
+            $.ajax({
+                url: SAYApiUrl + '/socialWorker/add',
+                method: 'POST',
+                headers : {
+                    'Access-Control-Allow-Origin'  : baseUrl,
+                    'Athorization': $.cookie('access_token')    // check if authorize for this action
+                },
+                cache: false,
+                processData: false,
+                contentType: false,
+                data: form_data,
+                beforeSend: function(){
+                    return confirm("You are about to add new user.\nAre you sure?");
+                },
+                success: function(data) {
+                    console.log(data);
+                    alert("Success\n" + JSON.stringify(data['message']));
+                    // alert("Success\n" + data.responseJSON.message);                
+                    location.reload(true);
+                },
+                error: function(data) {
+                    bootbox.alert({
+                        title: "Error!",
+                        message: data.responseJSON.message,
+                    });
+                }
+            })
+        }
     })
 
-
     // Edit a social worker
-
     $('#socialWorkerList').on('click' , '.editBtn' , function(e){
         e.preventDefault();
 
@@ -429,40 +530,47 @@ $(document).ready(function(){
         }
         console.log(form_data);
 
+        //remove required rules of all fields
+        $('#socialworker_form select').each(function() {
+            $(this).rules('remove', 'required');
+        })
+        $('#socialworker_form input, textarea').each(function() {
+            $(this).rules('remove', 'required');
+        })
+
         // update the need with new data in the form
-        $.ajax({
-            url: SAYApiUrl + '/socialWorker/update/socialWorkerId=' + edit_socialworkerId,
-            method: 'PATCH',
-            headers : {
-                'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token')    // check if authorize for this action
-            },
-            cache: false,
-            processData: false,
-            contentType: false,
-            dataType: 'json',
-            data: form_data,
-            beforeSend: function(){
-                return confirm("You are about to edit the user.\nAre you sure?");
-            },
-            success: function(data) {
-                alert("Success\nThe user " + edit_socialworkerId + " updated successfully\n" + JSON.stringify(data.message));
-                location.reload(true);
-            },
-            error: function(data) {
-                bootbox.alert({
-                    title: "Error!",
-                    message: data.responseJSON.message,
-                });
-            }
+        if($('#socialworker_form').valid()) {
+            $.ajax({
+                url: SAYApiUrl + '/socialWorker/update/socialWorkerId=' + edit_socialworkerId,
+                method: 'PATCH',
+                headers : {
+                    'Access-Control-Allow-Origin'  : baseUrl,
+                    'Athorization': $.cookie('access_token')    // check if authorize for this action
+                },
+                cache: false,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                data: form_data,
+                beforeSend: function(){
+                    return confirm("You are about to edit the user.\nAre you sure?");
+                },
+                success: function(data) {
+                    alert("Success\nThe user " + edit_socialworkerId + " updated successfully\n" + JSON.stringify(data.message));
+                    location.reload(true);
+                },
+                error: function(data) {
+                    bootbox.alert({
+                        title: "Error!",
+                        message: data.responseJSON.message,
+                    });
+                }
 
-        })  //end of Update ajax
-
+            })  //end of Update ajax
+        }
     })  //end of 'confirm edit' function
 
-
     // Delete a social worker
-
     $('#socialWorkerList').on('click' , '.deleteBtn' , function(e) {
         e.preventDefault();
 

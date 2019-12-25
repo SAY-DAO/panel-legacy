@@ -148,16 +148,13 @@
                       <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
                           
-                          <form role="form" id="ngo_form" method="POST" target="upload_target" enctype="multipart/form-data">
+                          <form role="form" id="ngo_form" method="POST" enctype="multipart/form-data">
                             <div class="row">
   
                               <div class="col-md-4 col-sm-6 h-100">
                                 <div class="form-group">
                                   <label for="ngo_name" class="control-label">نام انجمن <span class="required">*</span></label>
-                                  <div class="append-icon">
-                                    <input type="text" class="form-control" id="ngo_name" name="ngo_name" placeholder="نام انجمن را وارد نمایید" required>
-                                    <i class=""></i>
-                                  </div>
+                                    <input type="text" class="form-control" id="ngo_name" name="ngo_name" placeholder="نام انجمن را وارد نمایید" />
                                 </div>
                               </div>
 
@@ -165,7 +162,7 @@
                                 <div class="form-group">
                                   <label for="ngo_country" class="control-label">کشور <span class="required">*</span></label>
                                   <div class="option-group">
-                                    <select id="ngo_country" name="ngo_country" class="form-control" required>
+                                    <select id="ngo_country" name="ngo_country" class="form-control">
                                       <option value="">کشور را انتخاب کنید</option>
                                       <option value="98">ایران</option>
                                     </select>
@@ -177,7 +174,7 @@
                                 <div class="form-group">
                                   <label for="ngo_city" class="control-label">شهر <span class="required">*</span></label>
                                   <div class="option-group">
-                                    <select id="ngo_city" name="ngo_city" class="form-control" required>
+                                    <select id="ngo_city" name="ngo_city" class="form-control">
                                       <option value="">شهر را انتخاب کنید</option>
                                       <option value="1">تهران</option>
                                       <option value="2">کرج</option>
@@ -189,7 +186,7 @@
                               <div class="col-md-4 col-sm-6">
                                 <div class="form-group">
                                   <label for="ngo_address" class="control-label">آدرس <span class="required">*</span></label>
-                                  <textarea name="ngo_address" id="ngo_address" rows="4" class="form-control textarea_en" placeholder="آدرس انجمن را وارد نمایید" minlength="5" required="" aria-required="true"></textarea>
+                                  <textarea name="ngo_address" id="ngo_address" rows="4" class="form-control textarea_en" placeholder="آدرس انجمن را وارد نمایید"></textarea>
                                 </div>
                               </div>
 
@@ -197,7 +194,7 @@
                                 <div class="form-group">
                                   <label for="ngo_phone_number" class="control-label">شماره تماس <span class="required">*</span></label>
                                   <div class="append-icon">
-                                    <input type="text" id="ngo_phone_number" name="ngo_phone_number" class="form-control" placeholder="شماره تماس انجمن را وارد نمایید" required>
+                                    <input type="text" id="ngo_phone_number" name="ngo_phone_number" class="form-control" placeholder="شماره تماس انجمن را وارد نمایید" />
                                     <i class="fa fa-phone"></i>
                                   </div>
                                 </div>
@@ -207,7 +204,7 @@
                                 <div class="form-group">
                                   <label for="ngo_email" class="control-label">ایمیل <span class="required">*</span></label>
                                   <div class="append-icon">
-                                    <input type="text" id="ngo_email" name="ngo_email" class="form-control" placeholder="آدرس ایمیل انجمن را وارد نمایید" required>
+                                    <input type="text" id="ngo_email" name="ngo_email" class="form-control" placeholder="آدرس ایمیل انجمن را وارد نمایید" />
                                     <i class="fa fa-envelope"></i>
                                   </div>
                                 </div>
@@ -217,7 +214,7 @@
                                 <div class="form-group">
                                   <label for="ngo_website" class="control-label">آدرس وبسایت</label>
                                   <div class="append-icon">
-                                    <input type="text" id="ngo_website" name="ngo_website" class="form-control" placeholder="آدرس وبسایت انجمن را وارد نمایید">
+                                    <input type="text" id="ngo_website" name="ngo_website" class="form-control" placeholder="آدرس وبسایت انجمن را وارد نمایید" />
                                   </div>
                                 </div>
                               </div>
@@ -227,10 +224,8 @@
                                   <label class="control-label" for="ngo_logo">لوگوی انجمن <span class="required">*</span></label>
                                   <div class="file">
                                     <span class="file-button btn-primary">انتخاب فایل</span>
-
-                                    <input type="file" class="custom-file" name="ngo_logo[]" id="ngo_logo" title="حجم فایل انتخابی می‌بایست کمتر از ۱ مگابایت باشد" multiple="multiple" onchange="document.getElementById('ngo_logo_url').value = this.value;" required>
-
-                                    <input type="text" class="form-control" id="ngo_logo_url" placeholder="هیج فایلی انتخاب نشده است" readonly="">
+                                    <input type="file" class="custom-file" name="ngo_logo[]" id="ngo_logo" onchange="document.getElementById('ngo_logo_url').value = this.value;" />
+                                    <input type="text" class="form-control" id="ngo_logo_url" placeholder="هیج فایلی انتخاب نشده است" readonly="" />
                                   </div>
                                 </div>
                               </div>
@@ -239,7 +234,7 @@
                                 <div class="form-group">
                                   <label for="coordinator_id" class="control-label">هماهنگ کننده‌ی انجمن <span class="required">*</span></label>
                                   <div class="option-group">
-                                    <select id="coordinator_id" name="coordinator_id" class="form-control" required>
+                                    <select id="coordinator_id" name="coordinator_id" class="form-control">
                                       <option value="">هماهنگ کننده‌ی انجمن را انتخاب نمایید</option>
                                     </select>
                                   </div>
@@ -250,7 +245,7 @@
                                 <div class="form-group">
                                   <label for="ngo_current_social_worker_count" class="control-label">تعداد مددکاران</label>
                                   <div class="append-icon">
-                                    <input type="text" id="ngo_current_social_worker_count" name="ngo_current_social_worker_count" class="form-control" value="0" readonly>
+                                    <input type="text" id="ngo_current_social_worker_count" name="ngo_current_social_worker_count" class="form-control" value="0" readonly />
                                     <i class="fa fa-users"></i>
                                   </div>
                                 </div>
@@ -260,7 +255,7 @@
                                 <div class="form-group">
                                   <label for="ngo_current_child_count" class="control-label">تعداد کودکان</label>
                                   <div class="append-icon">
-                                    <input type="text" id="ngo_current_child_count" name="ngo_current_child_count" class="form-control" value="0" readonly>
+                                    <input type="text" id="ngo_current_child_count" name="ngo_current_child_count" class="form-control" value="0" readonly />
                                     <i class="fa fa-child"></i>
                                   </div>
                                 </div>
@@ -272,7 +267,8 @@
                               <button type="submit" class="btn btn-embossed btn-primary" id="editNgoData">ویرایش انجمن</button>
                               <button type="submit" class="btn btn-embossed btn-primary" id="sendNgoData">افزودن انجمن</button>
                               <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">پاک کردن فرم</button>
-                            </div>
+                              <div class="alert alert-danger dis-none" role="alert"></div>
+                          </div>
                           </form>
                           <iframe id="upload_target" name="upload_target" src="#" style ="width:0; height:0; border:0; border:none"></iframe>
                         </div>
@@ -343,6 +339,7 @@
 <a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a>
 <script src="assets/plugins/jquery/jquery-1.11.1.min.js"></script>
 <script src="assets/plugins/jquery-validation/jquery.validate.min.js"></script> <!-- Form validation -->
+<script src="assets/plugins/jquery-validation/additional-methods.min.js"></script> <!-- Additional methods -->
 <script src="assets/plugins/jquery/jquery-migrate-1.2.1.min.js"></script>
 <script src="assets/plugins/gsap/main-gsap.min.js"></script> <!-- HTML Animations -->
 <script src="assets/plugins/jquery-ui/jquery-ui-1.11.2.min.js"></script>

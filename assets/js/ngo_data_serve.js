@@ -1,15 +1,104 @@
-
 // serving data on NGO page
 
 $(document).ready(function(){
     isAthorized();
+
+    // NGO form validation
+    $('#ngo_form').validate({
+        ignore: [], // To validate hidden input
+        rules: {
+            ngo_name: {
+                required: true
+            },
+            ngo_country: {
+                required: true
+            },
+            ngo_city: {
+                required:true
+            },
+            ngo_address: {
+                required: true
+            },
+            ngo_phone_number: {
+                required: true,
+                digits: true,
+                minlength: 8
+            },
+            ngo_email: {
+                required: true,
+                email: true
+            },
+            ngo_website: {
+                url: true
+            },
+            "ngo_logo[]": {
+                required: true,
+                extension: "jpg,png,jpeg",
+                filesize: 3    // MB
+            },            
+            coordinator_id: {
+                required: true,
+            },
+        },
+        messages: {
+            ngo_name: {
+                required: "وارد کردن نام انجمن ضروری است."
+            },
+            ngo_country: {
+                required: "انتخاب کشور ضروری است."
+            },
+            ngo_city: {
+              required: "انتخاب شهر ضروری است."
+            },
+            ngo_address: {
+                required: "وارد کردن آدرس ضروری است."
+            },
+            ngo_phone_number: {
+                required: "وارد کردن شماره تماس ضروری است.",
+                digits: "شماره تماس تنها می‌تواند شامل اعداد باشد.",
+                minlength: "شماره تماس حداقل باید {0} رقم باشد."
+            },
+            ngo_email: {
+                required: "وارد کردن ایمیل ضروری است.",
+                email: "آدرس ایمیل اشتباه است."
+            },
+            ngo_website: {
+                url: "اشتباه شد."
+            },     
+            "ngo_logo[]": {
+                required: "انتخاب لوگوی انجمن ضروری است.",
+                extension: "فرمت‌های قابل پذیرش: {0}",
+                filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
+            },            
+            coordinator_id: {
+                required: "انتخاب هماهنگ کننده انجمن ضروری است."
+            },
+        },
+        errorPlacement: function(error, element) {
+            error.appendTo(element.parent('div'));
+        },
+        submitHandler: function (form) { // for demo
+            alert('valid form submitted'); // for demo
+            return false; // for demo
+        },
+        invalidHandler: function(event, validator) {
+            // 'this' refers to the form
+            var errors = validator.numberOfInvalids();
+            if (errors) {
+                var message = errors + ' فیلد نادرست وجود دارد، لطفا بازبینی نمایید.';
+                $("div.alert").html(message);
+                $("div.alert").show();
+            } else {
+                $("div.alert").hide();
+            }
+        }
+    });
 
     var edit_ngoId = -1;
 
     var keys = ['id' , 'name' , 'country' , 'city' , 'coordinatorId' , 'postalAddress' , 'phoneNumber' , 'emailAddress' , 'website' , 'logoUrl' , 'currentSocialWorkerCount' , 'currentChildrenCount' , 'registerDate' , 'lastUpdateDate']
 
     // Get all NGO
-
     $.ajax({
         url: SAYApiUrl + '/ngo/all',
         method: 'GET',
@@ -134,7 +223,6 @@ $(document).ready(function(){
 
 
     // Add new NGO
-
     $('#sendNgoData').on('click' , function(e){
         e.preventDefault();
 
@@ -161,39 +249,38 @@ $(document).ready(function(){
         if(website){
             form_data.append('website', website);
         }
-
         console.log(form_data);
-
         
-        $.ajax({
-            url: SAYApiUrl + '/ngo/add',
-            method: 'POST',
-            headers : {
-                'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token')    // check if authorize for this action
-            },
-            cache: false,
-            processData: false,
-            contentType: false,
-            data: form_data,
-            beforeSend: function(){
-                return confirm("You are about to add new NGO.\nAre you sure?");
-            },
-            success: function(data)  {
-                // console.log(data);
-                alert('Success');
-                location.reload(true);
-            },
-            error: function(data) {
-                console.log(data);
-                alert('Error!');
-            }
-        })
+        if($('#ngo_form').valid()) {        
+            $.ajax({
+                url: SAYApiUrl + '/ngo/add',
+                method: 'POST',
+                headers : {
+                    'Access-Control-Allow-Origin'  : baseUrl,
+                    'Athorization': $.cookie('access_token')    // check if authorize for this action
+                },
+                cache: false,
+                processData: false,
+                contentType: false,
+                data: form_data,
+                beforeSend: function(){
+                    return confirm("You are about to add new NGO.\nAre you sure?");
+                },
+                success: function(data)  {
+                    // console.log(data);
+                    alert('Success');
+                    location.reload(true);
+                },
+                error: function(data) {
+                    console.log(data);
+                    alert('Error!');
+                }
+            })
+        }
     })
 
 
     // Edit a NGO
-
     $('#ngoList').on('click' , '.editBtn' , function(e){
         e.preventDefault();
 
@@ -281,41 +368,49 @@ $(document).ready(function(){
         if(coordinatorId){
             form_data.append('coordinatorId', coordinatorId);
         }
-
         console.log(form_data);
 
-        $.ajax({
-            url: SAYApiUrl + '/ngo/update/ngoId=' + edit_ngoId,
-            method: 'PATCH',
-            headers: {
-                'Access-Control-Allow-Origin' : baseUrl
-            },
-            cache: false,
-            processData: false,
-            contentType: false,
-            dataType: 'json',
-            data: form_data,
-            beforeSend: function(){
-                return confirm("You are about to edit the NGO.\nAre you sure?");
-            },
-            success: function(data){
-                alert("Success\nThe NGO " + edit_ngoId + " updated successfully\n" + JSON.stringify(data.message));
-                location.reload();
-            },
-            error: function(data){
-                bootbox.alert({
-                    title: "Error!",
-                    message: data.responseJSON.message,
-                });
-            }
-        })  //end of Update ajax
+         //remove required rules of all fields
+         $('#ngo_form select').each(function() {
+            $(this).rules('remove', 'required');
+        })
+        $('#ngo_form input, textarea').each(function() {
+            $(this).rules('remove', 'required');
+        })
+        
+        if($('#ngo_form').valid()) {        
+            $.ajax({
+                url: SAYApiUrl + '/ngo/update/ngoId=' + edit_ngoId,
+                method: 'PATCH',
+                headers: {
+                    'Access-Control-Allow-Origin' : baseUrl
+                },
+                cache: false,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                data: form_data,
+                beforeSend: function(){
+                    return confirm("You are about to edit the NGO.\nAre you sure?");
+                },
+                success: function(data){
+                    alert("Success\nThe NGO " + edit_ngoId + " updated successfully\n" + JSON.stringify(data.message));
+                    location.reload();
+                },
+                error: function(data){
+                    bootbox.alert({
+                        title: "Error!",
+                        message: data.responseJSON.message,
+                    });
+                }
+            })  //end of Update ajax
+        }
     })  //end of 'confirm edit' function
 })
 
 
 
 //NGO drop down field in forms
-
 $(document).ready(function(){
     isAthorized();
     

@@ -98,7 +98,11 @@ function cost(value) {
     return beauty_cost;
 }
 
-// Custom filesize for form validation
+// Custom methods for form validation
 $.validator.addMethod('filesize', function (value, element, param) {
     return this.optional(element) || (element.files[0].size/1024/1024 <= param)
 }, 'File size must be less than {0}');
+
+jQuery.validator.addMethod('notEqual', function(value, element, param) {
+    return this.optional(element) || value != param;
+  }, "Please specify a different (non-default) value");

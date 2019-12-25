@@ -7,30 +7,24 @@ $(document).ready(function(){
         ignore: [], // To validate hidden input
         rules: {
             need_status_product: {
-                required: true
+                required: true,
             },
             need_status_service: {
-                required: true
-            },
-            delivery_date: {
-                required: true
+                required: true,
             },
             "product_receipts[]": {
-                filesize: 3    // 3 MB
+                filesize: 3    // MB
             },
             "service_receipts[]": {
-                filesize: 3    // 3 MB
+                filesize: 3    // MB
             }
         },
         messages: {
             need_status_product: {
-                required: "انتخاب وضعیت جدید نیاز ضروری است."
+                required: "انتخاب وضعیت جدید نیاز ضروری است.",
             },
             need_status_service: {
-                required: "انتخاب وضعیت جدید نیاز ضروری است."
-            },
-            delivery_date: {
-                required: "انتخاب تاریخ تحویل ضروری است."
+                required: "انتخاب وضعیت جدید نیاز ضروری است.",
             },
             "product_receipts[]": {
                 filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
@@ -249,24 +243,25 @@ $(document).ready(function(){
     $('#editNeedStatus').on('click' , function(e) {
         e.preventDefault();
         console.log("change status for need " + status_needId);
+
         var status = -1;
         var receipts = -1;
         var delivery = false;
-
         var need_name = $('#need_name').val();
         if (type_id == 0) { // if service
             $('#need_status_product').rules('remove', 'required');  // remove rule
-            $('#delivery_date').rules('remove', 'required');    // remove rule
-
             status = $('#need_status_service').val();
             receipts = $('#service_receipts')[0].files[0];
         } else if (type_id == 1) {  // if product
             $('#need_status_service').rules('remove', 'required');  // remove rule
-
             status = $('#need_status_product').val();
             receipts = $('#product_receipts')[0].files[0];
             if (status == 3) {
                 delivery = true;
+                $('#delivery_date').rules('add', {
+                    required: true,
+                    messages: {required: "انتخاب تاریخ تحویل ضروری است."}
+                });    // add rule
             }else{
                 $('#delivery_date').rules('remove', 'required');    // remove rule
             }
@@ -285,7 +280,6 @@ $(document).ready(function(){
             form_data.append('delivery_date', delivery_date);
         }
 
-        // TODO: different condition remove rule
         if($('#change_need_form').valid()) {
             $.ajax({
                 url: SAYApiUrl + '/need/update/needId=' + status_needId,

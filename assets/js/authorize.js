@@ -17,7 +17,7 @@ var global_user_ngo = '';
 
 function isAthorized() {
     if(!$.cookie('access_token')) {
-        window.location.href = "user-login.html";
+        window.location.href = "login.html";
     } else {
         var jsonPayload = jwt_decode($.cookie('access_token'));
         var user_id = jsonPayload.identity;

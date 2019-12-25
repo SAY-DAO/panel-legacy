@@ -25,12 +25,12 @@ $(document).ready(function(){
                 number: true
             },
             "need_icon[]": {
-                required: true,
+                // required: true, // TODO: temporarily disabled for problem in adding by pre-need
                 extension: "jpg,png,jpeg",
-                filesize: 1    // 1 MB
+                filesize: 1    // MB
             },
             "need_receipts[]": {
-                filesize: 3    // 3 MB
+                filesize: 3    // MB
             },
             need_type: {
                 required: true
@@ -66,7 +66,7 @@ $(document).ready(function(){
                 number: "لطفا فقط عدد وارد کنید."
             },
             "need_icon[]": {
-                required: "انتخاب آیکون نیاز ضروری است.",
+                // required: "انتخاب آیکون نیاز ضروری است.",    // TODO: temporarily disabled for problem in adding by pre-need
                 extension: "فرمت‌های قابل پذیرش: {0}",
                 filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
             },
@@ -624,7 +624,7 @@ $(document).ready(function(){
         // }
         console.log(form_data);
 
-        //romove required rules of all fields
+        //remove required rules of all fields
         $('#need_form select').each(function() {
             $(this).rules('remove', 'required');
         })
