@@ -641,12 +641,16 @@ function handlePanelAction() {
     $('#childTableNew').click(function (e) {
         e.preventDefault();
         $('#childForm').slideDown();
+        $('#editChildData').hide();
+        $('#sendChildData').show();
     });
     // Say toggle for edit child form
     $('#childForm').css('display', 'none');
     $('#childList').on('click' , '.editBtn' , function(e) {
         e.preventDefault();
         $('#childForm').slideDown();
+        $('#editChildData').show();
+        $('#sendChildData').hide();
     });
 
     // Say toggle for add need form
@@ -654,12 +658,16 @@ function handlePanelAction() {
     $('#needTableNew').click(function (e) {
         e.preventDefault();
         $('#needForm').slideDown();
+        $('#editNeedData').hide();
+        $('#sendNeedData').show();
     });
     // Say toggle for edit need form
     $('#needForm').css('display', 'none');
     $('#needList').on('click' , '.editBtn' , function(e) {
         e.preventDefault();
         $('#needForm').slideDown();
+        $('#editNeedData').show();
+        $('#sendNeedData').hide();
     });
 
     // Say toggle for change need status form
@@ -676,11 +684,15 @@ function handlePanelAction() {
     $('#socialWorkerTableNew').click(function (e) {
         e.preventDefault();
         $('#socialWorkerForm').slideDown();
+        $('#sendSocialWorkerData').show();
+        $('#editSocialWorkerData').hide();
     });
     // Say toggle for edit social worker form
     $('#socialWorkerList').on('click' , '.editBtn' , function(e) {
         e.preventDefault();
         $('#socialWorkerForm').slideDown();
+        $('#editSocialWorkerData').show();
+        $('#sendSocialWorkerData').hide();
     });
     
     // Say toggle for add need category form
@@ -690,16 +702,20 @@ function handlePanelAction() {
         $('#needCategoryForm').slideDown();
     });
 
-    // Say toggle for  add ngo form
+    // Say toggle for  add NGO form
     $('#ngoForm').css('display', 'none');
     $('#ngoTableNew').click(function (e) {
         e.preventDefault();
         $('#ngoForm').slideDown();
+        $('#sendNgoData').show();
+        $('#editNgoData').hide();
     });
     // Say toggle for edit NGO form
     $('#ngoList').on('click' , '.editBtn' , function(e){
         e.preventDefault();
         $('#ngoForm').slideDown();
+        $('#editNgoData').show();
+        $('#sendNgoData').hide();
     });
 
     // Say toggle for  change password form

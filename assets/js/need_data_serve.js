@@ -371,6 +371,7 @@ $(document).ready(function(){
     $('#sendNeedData').on('click' , function(e){
         e.preventDefault();
 
+        $('#editNeedData').attr("disabled" , true);
         // recieving data from html form
         var childId = $('#child_id').val();
         var name = $('#need_name').val();

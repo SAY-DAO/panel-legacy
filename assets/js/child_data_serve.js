@@ -1,8 +1,9 @@
 $(document).ready(function(){
     isAthorized();
     hasPrivilege();
-     // live age field
-     $('#child_birthdate').change(function() {
+    
+    // live age field
+    $('#child_birthdate').change(function() {
         $('#child_age').val( getAge( $(this).val() ) );
     })
     // children form validation
@@ -103,8 +104,8 @@ $(document).ready(function(){
         errorPlacement: function(error, element) {
             error.appendTo(element.parent('div'));
         },
-        submitHandler: function (form) { // for demo
-            alert('valid form submitted'); // for demo
+        submitHandler: function () { // for demo
+            // alert('valid form submitted'); // for demo
             return false; // for demo
         },
         invalidHandler: function(event, validator) {
@@ -396,6 +397,7 @@ $(document).ready(function(){
     $('#sendChildData').on('click' , function(e){
         e.preventDefault();
 
+        $('#editChildData').attr("disabled" , true);
         // getting data from html form
         // nullable
         var id_ngo = $('#ngo_id').val();
@@ -548,7 +550,7 @@ $(document).ready(function(){
     $('#childList').on('click' , '.editBtn' , function(e){
         e.preventDefault();
 
-        $('#sendChildData').prop("disabled", true);
+        $('#sendChildData').attr("disabled" , true);
         $('#ngo_id').prop("disabled", true);
         $('#social_worker_id').prop("disabled", true);
         edit_childId = $(this).parent().attr('id');
