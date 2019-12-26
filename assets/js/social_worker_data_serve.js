@@ -334,9 +334,6 @@ $(document).ready(function(){
             $.ajax({
                 url: SAYApiUrl + '/socialWorker/add',
                 method: 'POST',
-                headers : {
-                    'Access-Control-Allow-Origin'  : baseUrl,
-                },
                 cache: false,
                 processData: false,
                 contentType: false,
@@ -533,9 +530,6 @@ $(document).ready(function(){
             $.ajax({
                 url: SAYApiUrl + '/socialWorker/update/socialWorkerId=' + edit_socialworkerId,
                 method: 'PATCH',
-                headers : {
-                    'Access-Control-Allow-Origin'  : baseUrl,
-                },
                 cache: false,
                 processData: false,
                 contentType: false,

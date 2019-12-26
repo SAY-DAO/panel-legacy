@@ -118,7 +118,7 @@ $(document).ready(function(){
                 <td>' + row_index + '</td>\
                 <td id="' + ngoId + '">\
                 <button class="btn btn-embossed btn-primary btn-block btn-sm editBtn" onclick="editScroll()">Edit</button>\
-                <button class="btn btn-embossed btn-danger btn-block btn-sm" disabled>Delete</button>\
+                <button class="btn btn-embossed btn-danger btn-block btn-sm deleteBtn" >Delete</button>\
                 </td>';
 
                 for(var i = 1 ; i < keys.length ; i++){
@@ -207,9 +207,6 @@ $(document).ready(function(){
             $.ajax({
                 url: SAYApiUrl + '/ngo/add',
                 method: 'POST',
-                headers : {
-                    'Access-Control-Allow-Origin'  : baseUrl,
-                },
                 cache: false,
                 processData: false,
                 contentType: false,
@@ -330,9 +327,6 @@ $(document).ready(function(){
             $.ajax({
                 url: SAYApiUrl + '/ngo/update/ngoId=' + edit_ngoId,
                 method: 'PATCH',
-                headers: {
-                    'Access-Control-Allow-Origin' : baseUrl
-                },
                 cache: false,
                 processData: false,
                 contentType: false,
@@ -354,6 +348,34 @@ $(document).ready(function(){
             })  //end of Update ajax
         }
     })  //end of 'confirm edit' function
+
+    // Delete a NGO
+    $('#ngoList').on('click' , '.deleteBtn' , function(e){
+        e.preventDefault();
+        var ngoId = $(this).parent().attr('id');
+        console.log(ngoId);
+        $.ajax({
+            url: SAYApiUrl + '/ngo/delete/ngoId=' + ngoId,
+            method: 'PATCH',
+            cache: false,
+            processData: false,
+            contentType: false,
+            beforeSend: function(){
+                return confirm("You are about to DELETE the NGO.\nAre you sure?");
+            },
+            success: function(data) {
+                alert("Success\n" + JSON.stringify(data.message));
+                location.reload();
+            },
+            error: function(data) {
+                bootbox.alert({
+                    title: "Error!",
+                    message: data.responseJSON.message,
+                });
+            }
+        })
+    })
+
 })
 
 

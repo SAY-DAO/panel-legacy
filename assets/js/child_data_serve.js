@@ -684,13 +684,8 @@ $(document).ready(function(){
         // update the child with new data in the form
         if($('#children_form').valid()) {
             $.ajax({
-            url: SAYApiUrl + '/child/update/childId=' + edit_childId,
-            method: 'PATCH',
-            headers : {
-                'Access-Control-Allow-Origin'  : baseUrl,
-                'Cache-Control': 'no-cache'
-
-                },
+                url: SAYApiUrl + '/child/update/childId=' + edit_childId,
+                method: 'PATCH',
                 cache: false,
                 processData: false,
                 contentType: false,

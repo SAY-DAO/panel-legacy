@@ -275,10 +275,6 @@ $(document).ready(function(){
             $.ajax({
                 url: SAYApiUrl + '/need/update/needId=' + status_needId,
                 method: 'PATCH',
-                headers : {
-                    'Access-Control-Allow-Origin'  : baseUrl,
-                    'Cache-Control': 'no-cache'
-                },
                 cache: false,
                 processData: false,
                 contentType: false,

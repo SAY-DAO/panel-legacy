@@ -36,9 +36,6 @@ $(document).ready(function(){
             $.ajax({
                 url: SAYApiUrl + '/panel/auth/login',
                 method: 'POST',
-                headers : {
-                    'Access-Control-Allow-Origin'  : baseUrl
-                },
                 data: {
                     username: $('#username').val(),
                     password: $('#password').val(),

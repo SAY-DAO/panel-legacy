@@ -417,10 +417,6 @@ $(document).ready(function(){
             $.ajax({
                 url: SAYApiUrl + '/need/',
                 method: 'POST',
-                headers : {
-                    'Access-Control-Allow-Origin'  : baseUrl,
-                    'Cache-Control': 'no-cache'
-                },
                 cache: false,
                 processData: false,
                 contentType: false,
@@ -614,11 +610,6 @@ $(document).ready(function(){
             $.ajax({
                 url: SAYApiUrl + '/need/update/needId=' + edit_needId,
                 method: 'PATCH',
-                headers : {
-                    'Access-Control-Allow-Origin'  : baseUrl,
-                    'Cache-Control': 'no-cache'
-
-                },
                 cache: false,
                 processData: false,
                 contentType: false,
