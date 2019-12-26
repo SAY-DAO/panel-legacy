@@ -24,7 +24,7 @@ $(document).ready(function(){
         errorPlacement: function(error, element) {
             error.appendTo(element.parent('div'));
         },
-        submitHandler: function () { // for demo
+        submitHandler: function (form) { // for demo
             return false; // for demo
         }
     });
