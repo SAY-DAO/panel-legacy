@@ -1,7 +1,7 @@
 // serving data on NGO page
 
 $(document).ready(function(){
-    isAthorized();
+    isAuthorized();
 
     // NGO form validation
     $('#ngo_form').validate({
@@ -103,11 +103,7 @@ $(document).ready(function(){
         url: SAYApiUrl + '/ngo/all',
         method: 'GET',
         dataType: 'json',
-        headers : {
-            'Access-Control-Allow-Origin'  : baseUrl,
-            'Athorization': $.cookie('access_token'),    // check if authorize for this action
-            'Cache-Control': 'no-cache'
-        },
+
         beforeSend: function() {
             $('#ngo_preloader').show();
         },
@@ -147,50 +143,6 @@ $(document).ready(function(){
                     if (keys[i] == 'logoUrl'){
                         value[keys[i]] = getImgFile(value[keys[i]]);
                     }
-
-                    // if (keys[i] == 'coordinatorId') {
-                    //     value[keys[i]] = 'Sara Mousavi';
-                    //     var coordinatorId = value[keys[i]];
-                    //     var newValue = [];
-
-                    //     $(document).ready(function(){
-                    //         var keys = ['id' , 'firstName' , 'lastName']
-
-                    //         $.ajax({
-                    //             url: SAYApiUrl + '/socialWorker/all',
-                    //             method: 'GET',
-                    //             dataType: 'json',
-                    //             headers: {
-                    //                 'Access-Control-Allow-Origin'  : baseUrl
-                    //             },
-                    //             success: function(data) {
-                    //                 console.log(data);
-
-                    //                 $.each(data, function(keys, value){
-
-                    //                     for(var j = 0 ; j < keys.length ; j++){
-
-                    //                         if(keys[j] == 'id'){
-                    //                             console.log("keys[j]:" + keys[j]);
-                    //                             if(value[keys[j]] == coordinatorId){
-
-                    //                                 newValue = value[keys[1]] + ' ' + value[keys[2]];
-                    //                                 console.log("new value1:" + newValue);
-                    //                             }
-                    //                         }
-                    //                     }
-                    //                 })
-                    //             },
-                    //             error: function(data) {
-                    //                 console.log("error:" + data);
-                    //             }
-                    //         })
-                    //     })
-
-                    //     value[keys[i]] = newValue;
-                    //     console.log("new value:" + newValue);
-
-                    // }
 
                     if (keys[i] == 'phoneNumber') {
                         value[keys[i]] = phoneTo(value[keys[i]]);                       
@@ -257,7 +209,6 @@ $(document).ready(function(){
                 method: 'POST',
                 headers : {
                     'Access-Control-Allow-Origin'  : baseUrl,
-                    'Athorization': $.cookie('access_token')    // check if authorize for this action
                 },
                 cache: false,
                 processData: false,
@@ -294,10 +245,7 @@ $(document).ready(function(){
             url: SAYApiUrl + '/ngo/ngoId=' + edit_ngoId,
             method: 'GET',
             dataType: 'json',
-            headers: {
-                'Access-Control-Allow-Origin'  : baseUrl,
-                'Athorization': $.cookie('access_token')    // check if authorize for this action
-            },
+ 
             beforeSend: function() {
                 $('#ngo_form_preloader').show();
             },
@@ -412,8 +360,8 @@ $(document).ready(function(){
 
 //NGO drop down field in forms
 $(document).ready(function(){
-    isAthorized();
-    
+    isAuthorized();
+    isAuthorized
     var keys = ['id', 'name']
 
     // getting NGO's id and name from DB
@@ -422,10 +370,7 @@ $(document).ready(function(){
         url: SAYApiUrl + '/ngo/all',
         method: 'GET',
         dataType: 'json',
-        headers : {
-            'Access-Control-Allow-Origin'  : baseUrl,
-            'Athorization': $.cookie('access_token')    // check if authorize for this action
-        },
+
         success: function(data) {
             // console.log(data);
             $.each(data , function(key ,value){

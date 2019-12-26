@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    isAthorized();
+    isAuthorized();
     
     var keys = ['privilege' , 'name']
 
@@ -7,10 +7,7 @@ $(document).ready(function(){
         url: SAYApiUrl + '/privilege/all',
         method: 'GET',
         dataType: 'json',
-        headers : {
-            'Access-Control-Allow-Origin'  : baseUrl,
-            'Athorization': $.cookie('access_token')    // check if authorize for this action
-        },
+
         success: function(data) {
             // console.log(data);
 
