@@ -413,6 +413,8 @@ $(document).ready(function(){
 
         //append datas to a Form Data
         var form_data = new FormData();
+        form_data.append('ngo_id', id_ngo);
+        form_data.append('sw_id', id_social_worker);
         form_data.append('avatarUrl', avatarUrl);
         form_data.append('sleptAvatarUrl', sleptAvatarUrl);
         form_data.append('voiceUrl', voiceUrl);
@@ -463,7 +465,7 @@ $(document).ready(function(){
 
         if($('#children_form').valid()) {
             $.ajax({
-                url: SAYApiUrl + '/child/add/socialWorkerId=' + id_social_worker + '&ngoId=' + id_ngo,
+                url: SAYApiUrl + '/child/add/',
                 method: 'POST',
                 cache: false,
                 processData: false,
