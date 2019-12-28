@@ -497,7 +497,7 @@ $(document).ready(function(){
         console.log("confirm child: ", childId);
 
         $.ajax({
-            url: SAYApiUrl + '/child/confirm/childId=' + childId + '&socialWorkerId=' + global_user_id,
+            url: SAYApiUrl + '/child/confirm/childId=' + childId,
             method: 'PATCH',
             cache: false,
             processData: false,
