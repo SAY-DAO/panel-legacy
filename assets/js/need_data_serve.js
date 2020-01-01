@@ -114,9 +114,9 @@ $(document).ready(function(){
 
     var edit_needId = -1;    
 
-    // Get Children Needs by child id
-    var keys = ['id' , 'child_id' , 'name' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'type' , 'details' , 'isUrgent' , 'category' , 'description' , 'descriptionSummary' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'receipts' , 'createdAt' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'lastUpdate']
+    var keys = ['id' , 'child_id' , 'name' , 'name_fa' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'type' , 'details' , 'isUrgent' , 'category' , 'description' , 'description_fa' , 'descriptionSummary' , 'descriptionSummary_fa' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'receipts' , 'createdAt' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'lastUpdate']
 
+    // Get Children Needs by child id
     $('#child_need_select').change(function() {
         var selected_child = $(this).val();
         $.ajax({
@@ -135,7 +135,7 @@ $(document).ready(function(){
                 $.each(data, function(key, value){
                     var needId = value[keys[0]];
                     var confirmStatus = -1;
-                    var needType = value[keys[8]];
+                    var needType = value[keys[9]];
     
                     // first td for row count numbers, second td for operational buttons
                     var query = '<tr>\
@@ -282,6 +282,7 @@ $(document).ready(function(){
         $('#needList').empty();
     })
 
+    // Get Needs by confirm status and ngo_id
     $('.need_filter').change(function() {
         var confirm_status = $('#need_confirm_status').val();
         var selected_ngo = $('#need_ngo').val();
@@ -301,7 +302,7 @@ $(document).ready(function(){
                 $.each(data, function(key, value){
                     var needId = value[keys[0]];
                     var confirmStatus = -1;
-                    var needType = value[keys[8]];
+                    var needType = value[keys[9]];
                     var sayName = value['childSayName'];
 
                     // first td for row count numbers, second td for operational buttons
@@ -446,7 +447,6 @@ $(document).ready(function(){
             }
         })
         $('#needList').empty();
-
     })
 
     // get Pre-defined needs of children in need forms drop down
@@ -459,7 +459,7 @@ $(document).ready(function(){
             data = data['needs']
             $.each(data, function(key, value){
                 var query = '';
-                    query += '<option value="' + value[keys[0]] + '">' + value[keys[2]] + ' | ' + value[keys[4]] + ' | ' + value[keys[9]] + '</option>';
+                    query += '<option value="' + value[keys[0]] + '">' + value[keys[2]] + ' | ' + value[keys[5]] + ' | ' + value[keys[10]] + '</option>';
                 $('#pre_need_id').append(query);
             })
         },
@@ -468,7 +468,6 @@ $(document).ready(function(){
         }
     })
 
-    
     // need form fill out with Pre-defined need data
     $('#pre_need_id').change(function() {
         $('#need_name').prop("disabled", true);
@@ -500,9 +499,9 @@ $(document).ready(function(){
                 $('#need_doing_duration').val(data['doing_duration']);
                 $('#affiliate_link').val(data['affiliateLinkUrl']);
                 $('#direct_link').val(data['link']);
-                // $('#need_name_fa').val(data['']);   // TODO: waiting for backend to add this feild
-                // $('#need_description_fa').val(data['']);    // TODO: waiting for backend to add this feild
-                // $('#need_description_summary_fa').val(data['']);    // TODO: waiting for backend to add this feild
+                $('#need_name_fa').val(data['name_fa']);
+                $('#need_description_fa').val(data['description_fa']);
+                $('#need_description_summary_fa').val(data['descriptionSummary_fa']);
 
                 // // Trying to show predefined icon
                 // $('#need_icon').val(need_icon);
@@ -543,9 +542,9 @@ $(document).ready(function(){
         var affiliateLinkUrl = $('#affiliate_link').val();
         var link = $('#direct_link').val();
         var receipts = $('#need_receipts')[0].files[0];
-        // var  = $('#need_name_fa').val(); // TODO: waiting for backend to add this feild
-        // var  = $('#need_description_fa').val();  // TODO: waiting for backend to add this feild
-        // var  = $('#need_description_summary_fa').val();  // TODO: waiting for backend to add this feild
+        var name_fa = $('#need_name_fa').val();
+        var description_fa = $('#need_description_fa').val();
+        var descriptionSummary_fa = $('#need_description_summary_fa').val();
 
         var form_data = new FormData();
         form_data.append('child_id', childId);
@@ -571,15 +570,15 @@ $(document).ready(function(){
         if(doing_duration){
             form_data.append('doing_duration', doing_duration);
         }
-        // if(){
-        //     form_data.append('', ); // TODO: need_name_fa
-        // }
-        // if(){
-        //     form_data.append('', ); // TODO: need_description_fa
-        // }
-        // if(){
-        //     form_data.append('', ); // TODO: need_description_summary_fa
-        // }
+        if(name_fa){
+            form_data.append('name_fa', name_fa);
+        }
+        if(description_fa){
+            form_data.append('description_fa', description_fa);
+        }
+        if(descriptionSummary_fa){
+            form_data.append('descriptionSummary_fa', descriptionSummary_fa);
+        }
         console.log(form_data);
         
         if($('#need_form').valid()) {
@@ -676,9 +675,9 @@ $(document).ready(function(){
                 $('#direct_link').val(data['link']);
                 $('#need_doing_duration').val(data['doing_duration']);
                 $('#is_urgent').val(data['isUrgent']).change();
-                // $('#need_name_fa').val(data['']);   // TODO: waiting for backend to add this feild
-                // $('#need_description_fa').val(data['']);    // TODO: waiting for backend to add this feild
-                // $('#need_description_summary_fa').val(data['']);    // TODO: waiting for backend to add this feild
+                $('#need_name_fa').val(data['name_fa']);
+                $('#need_description_fa').val(data['description_fa']);
+                $('#need_description_summary_fa').val(data['descriptionSummary_fa']);
 
                 $('#need_form_preloader').hide();
             },
@@ -710,9 +709,9 @@ $(document).ready(function(){
         var affiliateLinkUrl = $('#affiliate_link').val();
         var link = $('#direct_link').val();
         var receipts = $('#need_receipts')[0].files[0];
-        // var  = $('#need_name_fa').val(); // TODO: waiting for backend to add this feild
-        // var  = $('#need_description_fa').val();  // TODO: waiting for backend to add this feild
-        // var  = $('#need_description_summary_fa').val();  // TODO: waiting for backend to add this feild
+        var name_fa = $('#need_name_fa').val();
+        var description_fa = $('#need_description_fa').val();
+        var descriptionSummary_fa = $('#need_description_summary_fa').val();
 
         // append datas to a Form Data
         var form_data = new FormData();
@@ -755,15 +754,15 @@ $(document).ready(function(){
         if(doing_duration){
             form_data.append('doing_duration', doing_duration);
         }
-        // if(){
-        //     form_data.append('', ); // TODO: need_name_fa
-        // }
-        // if(){
-        //     form_data.append('', ); // TODO: need_description_fa
-        // }
-        // if(){
-        //     form_data.append('', ); // TODO: need_description_summary_fa
-        // }
+        if(name_fa){
+            form_data.append('name_fa', name_fa);
+        }
+        if(description_fa){
+            form_data.append('description_fa', description_fa);
+        }
+        if(descriptionSummary_fa){
+            form_data.append('descriptionSummary_fa', descriptionSummary_fa);
+        }
         console.log(form_data);
 
         //remove required rules of all fields

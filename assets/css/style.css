@@ -170,9 +170,9 @@ h1,
 	font-family: iranyekan; /*say*/
 
 }
-tbody td{
+/* tbody td{ SAY
   font-family: roboto !important;
-}
+} */
 .cursor{  /*SAY added*/
   cursor: pointer;  
 }

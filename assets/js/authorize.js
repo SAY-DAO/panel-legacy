@@ -16,7 +16,6 @@ var ROLES =  {
 
 
 //global variables to use in another js files
-
 var global_user_id = '';
 var global_username = '';
 var global_user_role = '';
@@ -24,7 +23,6 @@ var global_user_ngo = '';
 
 
 //  check loging status
-
 function isAuthorized() {
     if(!$.cookie('access_token')) {
         window.location.href = "login.html";
@@ -43,6 +41,7 @@ function isAuthorized() {
         global_user_role = user_role;
         global_user_ngo = user_ngoId;
         
+        // default setting for all ajax
         $.ajaxSetup({         
             headers : {
                 'Authorization': $.cookie('access_token'),
@@ -59,9 +58,7 @@ function hasPrivilege() {
     }
 }
 
-
 // logout , remove cookie
-
 $(".logout").click(function(e) {
     e.preventDefault();
     $.removeCookie('access_token');

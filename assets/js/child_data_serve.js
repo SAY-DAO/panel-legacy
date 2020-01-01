@@ -128,7 +128,7 @@ $(document).ready(function(){
     child_id_url = '/child/all/confirm=1';
     // TODO: adding farsi fields
 
-    var keys = ['id' , 'generatedCode' , 'avatarUrl' , 'sleptAvatarUrl' , 'voiceUrl' , 'firstName' , 'lastName' , 'doneNeedCount' , 'spentCredit' , 'birthDate' , 'sayName' , 'country' , 'city' , 'gender' , 'bio' , 'bioSummary' , 'birthPlace' , 'nationality' , 'familyCount' , 'sayFamilyCount' , 'education' , 'housingStatus' , 'id_ngo' , 'id_social_worker' , 'phoneNumber' , 'address' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'createdAt' , 'lastUpdate']
+    var keys = ['id' , 'generatedCode' , 'avatarUrl' , 'sleptAvatarUrl' , 'voiceUrl' , 'firstName' , 'lastName' , 'doneNeedCount' , 'spentCredit' , 'birthDate' , 'sayName' , 'sayName_fa' , 'country' , 'city' , 'gender' , 'bio' , 'bio_fa' , 'bioSummary' , 'bioSummary_fa' , 'birthPlace' , 'nationality' , 'familyCount' , 'sayFamilyCount' , 'education' , 'housingStatus' , 'id_ngo' , 'id_social_worker' , 'phoneNumber' , 'address' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'createdAt' , 'lastUpdate']
     
 
     // Get all Children
@@ -407,9 +407,9 @@ $(document).ready(function(){
         var education = $('#education').val();
         var school_type = $('#school_type').val();
         var housingStatus = $('#housing_status').val();
-        // var  = $('#SAY_name_fa').val();  // TODO: waiting for backend to add this feild
-        // var  = $('#child_story_fa').val();  // TODO: waiting for backend to add this feild
-        // var  = $('#child_story_summary_fa').val();  // TODO: waiting for backend to add this feild
+        var sayName_fa = $('#SAY_name_fa').val();
+        var bio_fa = $('#child_story_fa').val();
+        var bioSummary_fa = $('#child_story_summary_fa').val();
 
         //append datas to a Form Data
         var form_data = new FormData();
@@ -453,15 +453,15 @@ $(document).ready(function(){
         if(housingStatus){
             form_data.append('housingStatus', housingStatus);
         }
-        // if() {
-        //     form_data.append('', ); // TODO: SAY_name_fa
-        // }
-        // if() {
-        //     form_data.append('', ); // TODO: child_story_fa
-        // }
-        // if() {
-        //     form_data.append('', ); // TODO: child_story_summary_fa
-        // }
+        if(sayName_fa) {
+            form_data.append('sayName_fa', sayName_fa);
+        }
+        if(bio_fa) {
+            form_data.append('bio_fa', bio_fa);
+        }
+        if(bioSummary_fa) {
+            form_data.append('bioSummary_fa', bioSummary_fa);
+        }
 
         if($('#children_form').valid()) {
             $.ajax({
@@ -559,9 +559,9 @@ $(document).ready(function(){
                 $('#housing_status').val(data['housingStatus']).change();
                 $('#child_story').val(data['bio']);
                 $('#child_story_summary').val(data['bioSummary']);
-                // $('#SAY_name_fa').val(data['']);    // TODO: waiting for backend to add this feild
-                // $('#child_story_fa').val(data['']); // TODO: waiting for backend to add this feild
-                // $('#child_story_summary_fa').val(data['']); // TODO: waiting for backend to add this feild
+                $('#SAY_name_fa').val(data['sayName_fa']);
+                $('#child_story_fa').val(data['bio_fa']);
+                $('#child_story_summary_fa').val(data['bioSummary_fa']);
 
                 $('#children_form_preloader').hide();
             },
@@ -600,9 +600,9 @@ $(document).ready(function(){
         var education = $('#education').val();
         var school_type = $('#school_type').val();
         var housingStatus = $('#housing_status').val();
-        // var  = $('#SAY_name_fa').val();  // TODO: waiting for backend to add this feild
-        // var  = $('#child_story_fa').val();  // TODO: waiting for backend to add this feild
-        // var  = $('#child_story_summary_fa').val();  // TODO: waiting for backend to add this feild
+        var sayName_fa = $('#SAY_name_fa').val();
+        var bio_fa = $('#child_story_fa').val();
+        var bioSummary_fa = $('#child_story_summary_fa').val();
 
         // append datas to a Form Data
         var form_data = new FormData();
@@ -663,15 +663,15 @@ $(document).ready(function(){
         if(housingStatus){
             form_data.append('housingStatus', housingStatus);
         }
-        // if() {
-        //     form_data.append('', ); // TODO: SAY_name_fa
-        // }
-        // if() {
-        //     form_data.append('', ); // TODO: child_story_fa
-        // }
-        // if() {
-        //     form_data.append('', ); // TODO: child_story_summary_fa
-        // }
+        if(sayName_fa) {
+            form_data.append('sayName_fa', sayName_fa);
+        }
+        if(bio_fa) {
+            form_data.append('bio_fa', bio_fa);
+        }
+        if(bioSummary_fa) {
+            form_data.append('bioSummary_fa', bioSummary_fa);
+        }
 
         console.log(form_data);
 
