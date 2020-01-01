@@ -2,6 +2,10 @@ $(document).ready(function(){
     isAuthorized();
     hasPrivilege();
 
+    $('.date_time').datetimepicker({
+        dateFormat: 'yy-m-d',
+        timeFormat: 'H:0:0',
+    });
     // change need form validation
     $('#change_need_form').validate({
         ignore: [], // To validate hidden input
@@ -55,10 +59,10 @@ $(document).ready(function(){
 
     var status_needId = -1;
     var type_id = -1;
-    var keys = ['id' , 'type' , 'name' , 'status' , 'delivery_date' , 'imageUrl' , 'childGeneratedCode' , 'childFirstName' , 'childLastName' , 'cost', 'donated' , 'details' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'ngoName' , 'ngoAddress' , 'receipts' , 'doneAt'];
+    var keys = ['id' , 'type' , 'name' , 'status' , 'expected_delivery_date' , 'ngo_delivery_date' , 'imageUrl' , 'childGeneratedCode' , 'childFirstName' , 'childLastName' , 'cost', 'donated' , 'details' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'ngoName' , 'ngoAddress' , 'receipts' , 'doneAt'];
     
     // for the report to ngo ajax
-    var reportNGO_keys = ['id' , 'ngoName' , 'childGeneratedCode' , 'childFirstName' , 'childLastName' , 'name' , 'imageUrl' , 'cost' , 'delivery_date'];
+    var reportNGO_keys = ['id' , 'ngoName' , 'childGeneratedCode' , 'childFirstName' , 'childLastName' , 'name' , 'imageUrl' , 'cost' , 'expected_delivery_date'];
 
     // get Done needs
     $.ajax({
@@ -149,14 +153,10 @@ $(document).ready(function(){
                         }
                     }
 
-                    if (keys[i] == 'delivery_date') {
+                    if (keys[i] == 'expected_delivery_date' || keys[i] == 'ngo_delivery_date' || keys[i] == 'doneAt') {
                         if (value[keys[i]] != null) {
-                            value[keys[i]] = localDate(value[keys[i]]).split(', ')[0];
+                            value[keys[i]] = localDate(value[keys[i]]);
                         }
-                    }                    
-
-                    if(keys[i] == 'doneAt') {
-                        value[keys[i]] = localDate(value[keys[i]]);
                     }
 
                     if (value[keys[i]] == null) {
@@ -194,10 +194,12 @@ $(document).ready(function(){
                 $('#change_need_preloader').show();
             },
             success: function(data) {
-                $('#delivery').hide();
+                $('#expected_delivery').hide();
+                $('#real_delivery').hide();
                 
                 $('#need_name').val(data['name']);
-                $('#delivery_date').val(localDate(data['delivery_date']).split(', ')[0]);
+                $('#expected_delivery_date').val(localDate(data['expected_delivery_date']));
+                $('#ngo_delivery_date').val(localDate(data['ngo_delivery_date']));
 
                 type_id = data['type'];     // to use in confirm change status
                 if (type_id == 0) { // if service
@@ -216,9 +218,14 @@ $(document).ready(function(){
 
                 $('#need_status_product').change(function() {
                     if ($(this).val() == 3) {   // if product purchase
-                        $('#delivery').show();
+                        $('#expected_delivery').show();
                     } else {
-                        $('#delivery').hide();
+                        $('#expected_delivery').hide();
+                    }
+                    if ($(this).val() == 4) {   // if product delivered to NGO
+                        $('#real_delivery').show();
+                    } else {
+                        $('#real_delivery').hide();
                     }
                 })
                 $('#change_need_preloader').hide();
@@ -237,7 +244,8 @@ $(document).ready(function(){
 
         var status = -1;
         var receipts = -1;
-        var delivery = false;
+        var expected_delivery = false;
+        var real_delivery = false;
         var need_name = $('#need_name').val();
         if (type_id == 0) { // if service
             $('#need_status_product').rules('remove', 'required');  // remove rule
@@ -248,16 +256,28 @@ $(document).ready(function(){
             status = $('#need_status_product').val();
             receipts = $('#product_receipts')[0].files[0];
             if (status == 3) {
-                delivery = true;
-                $('#delivery_date').rules('add', {
+                expected_delivery = true;
+                // add rule
+                $('#expected_delivery_date').rules('add', {
                     required: true,
                     messages: {required: "انتخاب تاریخ تحویل ضروری است."}
-                });    // add rule
+                });
             }else{
-                $('#delivery_date').rules('remove', 'required');    // remove rule
+                $('#expected_delivery_date').rules('remove', 'required');    // remove rule
+            }
+            if (status == 4) {
+                real_delivery = true;
+                // add rule
+                $('#ngo_delivery_date').rules('add', {
+                    required: true,
+                    messages: {required: "انتخاب تاریخ رسیدن کالا ضروری است."}
+                });
+            }else{
+                $('#ngo_delivery_date').rules('remove', 'required');    // remove rule
             }
         }
-        var delivery_date = $('#delivery_date').val();
+        var expected_delivery_date = UTCDate($('#expected_delivery_date').val());   // utc date to back
+        var ngo_delivery_date = UTCDate($('#ngo_delivery_date').val()); // utc date to back
 
         // append datas to a Form Data
         var form_data = new FormData();
@@ -267,8 +287,11 @@ $(document).ready(function(){
         if (receipts) {
             form_data.append('receipts', receipts);
         }
-        if(delivery == true) {
-            form_data.append('delivery_date', delivery_date);
+        if(expected_delivery == true) { // if the product status is changing to 3
+            form_data.append('expected_delivery_date', expected_delivery_date);
+        }
+        if(real_delivery == true) { // if the product status is changing to 4
+            form_data.append('ngo_delivery_date', ngo_delivery_date);
         }
 
         if($('#change_need_form').valid()) {
@@ -329,7 +352,7 @@ $(document).ready(function(){
                             value[reportNGO_keys[i]] = cost(value[reportNGO_keys[i]]);
                         }
 
-                        if (reportNGO_keys[i] == 'delivery_date') {
+                        if (reportNGO_keys[i] == 'expected_delivery_date') {
                             if (value[reportNGO_keys[i]] != null) {
                                 value[reportNGO_keys[i]] = localDate(value[reportNGO_keys[i]]).split(', ')[0];
                             }

@@ -153,6 +153,7 @@
                               </div>
                           </div>
                           
+                          <!-- will show in product needs change status -->
                           <div class="col-md-4 col-sm-4" id="product_status" hidden>
                               <div class="form-group">
                                   <label for="need_status_product" class="control-label">وضعیت نیاز <span class="required">*</span></label>
@@ -169,6 +170,7 @@
                               </div>
                           </div>
 
+                          <!-- will show in service needs change status -->
                           <div class="col-md-4 col-sm-4" id="service_status" hidden>
                               <div class="form-group">
                                   <label for="need_status_service" class="control-label">وضعیت نیاز <span class="required">*</span></label>
@@ -183,16 +185,29 @@
                               </div>
                           </div>
 
-                          <div class="col-md-4 col-sm-4" id="delivery" hidden>
+                          <!-- will show in product needs change status 2->3 -->
+                          <div class="col-md-4 col-sm-4" id="expected_delivery" hidden>
                             <div class="form-group">
-                              <label for="delivery_date" class="control-label">تاریخ تحویل کالا <span class="required">*</span></label>
+                              <label for="expected_delivery_date" class="control-label">تاریخ مورد انتظار تحویل کالا به انجمن <span class="required">*</span></label>
                               <div class="append-icon">
-                                <input type="date" id="delivery_date" name="delivery_date" class="form-control" />
+                                <input type="text" id="expected_delivery_date" name="expected_delivery_date" class="form-control date_time" />
                                 <i class="icon-calendar"></i>
                               </div>
                             </div>
                           </div>
 
+                          <!-- will show in product needs change status 3->4 -->
+                          <div class="col-md-4 col-sm-4" id="real_delivery" hidden>
+                            <div class="form-group">
+                              <label for="ngo_delivery_date" class="control-label">تاریخ رسیدن کالا به انجمن <span class="required">*</span></label>
+                              <div class="append-icon">
+                                <input type="text" id="ngo_delivery_date" name="ngo_delivery_date" class="form-control date_time" />
+                                <i class="icon-calendar"></i>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- will show in product needs change status -->
                           <div class="col-md-4 col-sm-6" id="p_receipts" hidden>
                             <div class="form-group">
                               <label class="control-label" for="product_receipts">رسید کالا</label>
@@ -204,6 +219,7 @@
                             </div>
                           </div>
 
+                          <!-- will show in service needs change status -->
                           <div class="col-md-4 col-sm-6" id="s_receipts" hidden>
                             <div class="form-group">
                               <label class="control-label" for="service_receipts">رسید سرویس</label>
@@ -243,7 +259,8 @@
                           <th class="medium_th">عملیات</th>
                           <th>نام نیاز</th>
                           <th>وضعیت نیاز</th>
-                          <th>تاریخ تحویل نیاز</th>
+                          <th class="medium_th">تاریخ مورد انتظار تحویل کالا به انجمن</th>
+                          <th class="medium_th">تاریخ رسیدن کالا به انجمن</th>
                           <th class="small_th">آیکون نیاز</th>
                           <th>کد کودک</th>
                           <th>نام کودک</th>
@@ -333,6 +350,10 @@
 </div>
 <a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a>
 <script src="assets/plugins/jquery/jquery-1.11.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/1.1.1/jquery.datetimepicker.js"></script> <!-- datetime picker -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-dateFormat/1.0/jquery.dateFormat.min.js"></script> jquery date format | NOTICE: cannot use this with jquery validation library!!! u shoud use without jquery- library -->
+<script src="assets/plugins/dateFormat.min.js"></script> <!-- jquery date format -->
+<script src="http://hacks.bluesmoon.info/strftime/strftime-min.js"></script> <!-- jquery strftime -->
 <script src="assets/plugins/jquery-validation/jquery.validate.min.js"></script> <!-- Form validation -->
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script> <!-- Additional methods -->
 <script src="assets/plugins/jquery/jquery-migrate-1.2.1.min.js"></script>

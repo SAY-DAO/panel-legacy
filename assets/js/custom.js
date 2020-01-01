@@ -1,4 +1,5 @@
 //****************** YOUR CUSTOMIZED JAVASCRIPT **********************//
+var date_format = 'yyyy-MM-dd HH:mm:ss';
 
 // calculate age from birth date
 function getAge(DOB) {
@@ -79,17 +80,24 @@ function linkTo(value) {
     return link_to;
 }
 
-// Date Time values
+// local Date Time values
 function localDate(value) {
     var local_date = -1;
     if (value != null) {
         var that_date = new Date(value);
         local_date = that_date.toLocaleString();
     } else {
-        local_date = '-';
+        local_date = null;
     }
     
     return local_date;
+}
+
+//UTC date time
+function UTCDate(value) {
+    var utc_date_string = new Date(value).toUTCString();
+    var utc_date = DateFormat.format.date(utc_date_string, date_format); // u cannot use $.format(...) because it cannot use with jquery validation library, so we use DateFormat.format(...)
+    return utc_date;
 }
 
 // Cost values
