@@ -1,5 +1,6 @@
-SAY app panel to manage children and their needs <br />
-This project uses **HTML, CSS, jQuery and Bootstrap frameworks**
+***SAY app panel*** to manage children and their needs <br />
+This project uses **HTML, CSS, jQuery and Bootstrap frameworks** <br />
+The back is in **Python** and connected to front by **Ajax**
 
 # Installation
 jQuery and Bootstrap libraries have already been added to the project
