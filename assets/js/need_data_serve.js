@@ -114,7 +114,7 @@ $(document).ready(function(){
 
     var edit_needId = -1;    
 
-    var keys = ['id' , 'child_id' , 'name' , 'name_fa' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'type' , 'details' , 'isUrgent' , 'category' , 'description' , 'description_fa' , 'descriptionSummary' , 'descriptionSummary_fa' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'receipts' , 'createdAt' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'lastUpdate']
+    var keys = ['id' , 'child_id' , 'name' , 'name_fa' , 'title' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'type' , 'details' , 'isUrgent' , 'category' , 'description' , 'description_fa' , 'descriptionSummary' , 'descriptionSummary_fa' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'receipts' , 'createdAt' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'lastUpdate']
 
     // Get Children Needs by child id
     $('#child_need_select').change(function() {
@@ -133,9 +133,9 @@ $(document).ready(function(){
                 var sayName = data['sayName'];
                 data = data['needs'];
                 $.each(data, function(key, value){
-                    var needId = value[keys[0]];
+                    var needId = value['id'];
                     var confirmStatus = -1;
-                    var needType = value[keys[9]];
+                    var needType = value['type'];
     
                     // first td for row count numbers, second td for operational buttons
                     var query = '<tr>\
@@ -300,9 +300,9 @@ $(document).ready(function(){
                 data = data['needs'];
                 var row_index = 1;
                 $.each(data, function(key, value){
-                    var needId = value[keys[0]];
+                    var needId = value['id'];
                     var confirmStatus = -1;
-                    var needType = value[keys[9]];
+                    var needType = value['type'];
                     var sayName = value['childSayName'];
 
                     // first td for row count numbers, second td for operational buttons
@@ -458,8 +458,9 @@ $(document).ready(function(){
             // console.log("predefined needs", data);
             data = data['needs']
             $.each(data, function(key, value){
+                var title = value['type'] == 0 ? value['details'] : value['title']; // show details for services, and title for products
                 var query = '';
-                    query += '<option value="' + value[keys[0]] + '">' + value[keys[2]] + ' | ' + value[keys[5]] + ' | ' + value[keys[10]] + '</option>';
+                    query += '<option value="' + value['id'] + '">' + value['name'] + ' | ' + value['cost'] + ' | ' + title + '</option>';
                 $('#pre_need_id').append(query);
             })
         },

@@ -59,10 +59,10 @@ $(document).ready(function(){
 
     var status_needId = -1;
     var type_id = -1;
-    var keys = ['id' , 'type' , 'name' , 'status' , 'expected_delivery_date' , 'ngo_delivery_date' , 'imageUrl' , 'childGeneratedCode' , 'childFirstName' , 'childLastName' , 'cost', 'donated' , 'details' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'ngoName' , 'ngoAddress' , 'receipts' , 'doneAt'];
+    var keys = ['id' , 'type' , 'name' , 'title' , 'status' , 'expected_delivery_date' , 'ngo_delivery_date' , 'imageUrl' , 'childGeneratedCode' , 'childFirstName' , 'childLastName' , 'cost', 'donated' , 'details' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'ngoName' , 'ngoAddress' , 'receipts' , 'doneAt'];
     
     // for the report to ngo ajax
-    var reportNGO_keys = ['id' , 'ngoName' , 'childGeneratedCode' , 'childFirstName' , 'childLastName' , 'name' , 'imageUrl' , 'cost' , 'expected_delivery_date'];
+    var reportNGO_keys = ['id' , 'ngoName' , 'childGeneratedCode' , 'childFirstName' , 'childLastName' , 'name' , 'title' , 'imageUrl' , 'cost' , 'expected_delivery_date'];
 
     // get Done needs
     $.ajax({
@@ -354,10 +354,13 @@ $(document).ready(function(){
 
                         if (reportNGO_keys[i] == 'expected_delivery_date') {
                             if (value[reportNGO_keys[i]] != null) {
-                                value[reportNGO_keys[i]] = localDate(value[reportNGO_keys[i]]).split(', ')[0];
+                                value[reportNGO_keys[i]] = localDate(value[reportNGO_keys[i]]);
                             }
                         }
 
+                        if (value[reportNGO_keys[i]] == null) {
+                            value[reportNGO_keys[i]] = nullValues();
+                        }
                         query += '<td>' + value[reportNGO_keys[i]] + '</td>';
                     }
 
