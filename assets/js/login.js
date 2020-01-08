@@ -1,6 +1,10 @@
 
 
 $(document).ready(function(){
+    var jwt = document.createElement("script");
+    jwt.type = "text/javascript";
+    jwt.src = "assets/js/jwt-decode.min.js";
+    document.body.appendChild(jwt);
 
     // login form validation
     $('#login_form').validate({
@@ -42,7 +46,9 @@ $(document).ready(function(){
                 },
                 success: function(data)  {
                     var access_token = data.access_token;
-                    $.cookie('access_token', access_token); // set access token in cookie for authorization
+                    var jsonPayload = jwt_decode(access_token);
+                    var expDate = new Date(jsonPayload.exp * 1000); // Expiration date in token is in second, so it needs *1000 to be in milisecond
+                    $.cookie('access_token', access_token, {expires: expDate}); // set access token in cookie for authorization
                     window.location.href = "dashboard.html";
                 },
                 error: function(data) {

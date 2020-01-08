@@ -45,7 +45,14 @@ function isAuthorized() {
         $.ajaxSetup({         
             headers : {
                 'Authorization': $.cookie('access_token'),
-        }});
+            },
+            statusCode: {
+                401: function(){
+                    alert("Your are logged out.\nPlease login again.");
+                    window.location.href = "login.html";
+                }
+            }
+        });
     }
 }
 
