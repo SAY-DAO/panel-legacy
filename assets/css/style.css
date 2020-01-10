@@ -2161,8 +2161,8 @@ body:not(.sidebar-collapsed) .topbar .header-left .topnav .menutoggle:hover .men
   pointer-events: none;
 }
 .sidebar .sidebar-inner .nav-sidebar > li.active > a {
-  background-color: #F59E39; /*SAY*/
-  /* background-color: #319db5; */
+  /* background-color: #F59E39; SAY */
+  background-color: #319db5;
   color: #ffffff;
   opacity: 1;
 }
@@ -2170,8 +2170,8 @@ body:not(.sidebar-collapsed) .topbar .header-left .topnav .menutoggle:hover .men
   color: #ffffff;
 }
 .sidebar .sidebar-inner .nav-sidebar > li.nav-parent.active > a:hover {
-  background-color: #F59E39;  /*SAY*/
-  /* background-color: #319db5; */
+  /* background-color: #F59E39;  SAY */
+  background-color: #319db5;
   color: #ffffff !important;
 }
 .sidebar .sidebar-inner .nav-sidebar-placeholder {
@@ -3187,22 +3187,26 @@ body:not(.sidebar-collapsed) .sidebar .sidebar-inner .nav-sidebar > li.nav-paren
     background: #ffffff;
   }
   .sidebar-collapsed .sidebar .sidebar-inner .nav-sidebar > li.nav-hover.active > a {
-    background: #F59E39;  /*SAY changes*/
+    background: #319db5;
+    /* background: #F59E39;  SAY changes */
     color: #ffffff;
   }
   .sidebar-collapsed .sidebar .sidebar-inner .nav-sidebar > li.nav-hover.active > a i {
     color: #ffffff;
   }
   .sidebar-collapsed .sidebar .sidebar-inner .nav-sidebar > li.nav-hover.active > a span:not(.badge) {
-    background: #F59E39 !important; /*SAY changes*/
+    background: #319db5;
+    /* background: #F59E39 !important; SAY changes */
     color: #ffffff;
   }
   .sidebar-collapsed .sidebar .sidebar-inner .nav-sidebar > li.nav-hover.active > a > span:last-child {
-    background: #F59E39;  /*SAY changes*/
+    background: #319db5;
+    /* background: #F59E39;  SAY changes */
     color: #ffffff;
   }
   .sidebar-collapsed .sidebar .sidebar-inner .nav-sidebar > li.nav-hover.nav-active.active > a {
-    background: #F59E39;  /*SAY changes*/
+    background: #319db5;
+    /* background: #F59E39;  SAY changes */
   }
   .sidebar-collapsed .sidebar .sidebar-inner .nav-sidebar > li.nav-hover.nav-active > a i {
     color: #ffffff !important;
