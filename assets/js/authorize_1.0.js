@@ -69,5 +69,5 @@ function hasPrivilege() {
 $(".logout").click(function(e) {
     e.preventDefault();
     $.removeCookie('access_token');
-    location.reload();
+    location.reload(true);
 })
