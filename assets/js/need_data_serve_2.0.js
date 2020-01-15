@@ -116,7 +116,7 @@ $(document).ready(function(){
     $('#child_need_select').change(function() {
         var selected_child = $(this).val();
         $.ajax({
-            url: SAYApiUrl + '/child/childId=' + selected_child + '&confirm=2',
+            url: SAYApiUrl + '/child/childId=' + selected_child + '/needs',
             method: 'GET',
             dataType: 'json',
             beforeSend: function() {
@@ -126,7 +126,6 @@ $(document).ready(function(){
                 $('.total_count').empty();
                 console.log('option:' + selected_child);
                 var row_index = 1;
-                var sayName = data['sayName'];
                 
                 // Change data to needs
                 data = data['needs'];
@@ -137,6 +136,7 @@ $(document).ready(function(){
                     
                     var confirmStatus = -1;
                     var needType = value['type'];
+                    var sayName = value['childSayName'];
     
                     // first td for row count numbers, second td for operational buttons
                     var query = '<tr>\
