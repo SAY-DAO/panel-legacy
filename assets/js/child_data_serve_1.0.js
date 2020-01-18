@@ -142,10 +142,15 @@ $(document).ready(function(){
         },
         success: function(data) {
             var childData = data['children'];
+            
             var row_index = 1;
 
             $.each(childData , function(key ,value){
-                var childId = value[keys[0]];
+                var childId = value['id'];
+                var bio_translations = value['bio_translations'];
+                var bio_summary_translations = value['bio_summary_translations'];
+                var sayname_translations = value['sayname_translations'];
+
                 var confirmStatus = -1;
 
                 // first td for row count numbers, second td for operational buttons
@@ -158,6 +163,30 @@ $(document).ready(function(){
                 </td>';
 
                 for(var i = 1 ; i < keys.length ; i++){
+                    
+                    if (keys[i] == 'sayName') {
+                        value[keys[i]] = sayname_translations.en;
+                    }
+
+                    if (keys[i] == 'sayName_fa') {
+                        value[keys[i]] = sayname_translations.fa;
+                    }
+                    
+                    if (keys[i] == 'bio') {
+                        value[keys[i]] = bio_translations.en;
+                    }
+
+                    if (keys[i] == 'bio_fa') {
+                        value[keys[i]] = bio_translations.fa;
+                    }
+
+                    if (keys[i] == 'bioSummary') {
+                        value[keys[i]] = bio_summary_translations.en;
+                    }
+
+                    if (keys[i] == 'bioSummary_fa') {
+                        value[keys[i]] = bio_summary_translations.fa;
+                    }
                     
                     if(keys[i] == 'doneNeedCount'){
                         value[keys[i]] = value[keys[i]] + " Done";
@@ -367,7 +396,7 @@ $(document).ready(function(){
             var childData = data['children']
             $.each(childData , function(key ,value){
                 var query = '';
-                    query += '<option value="' + value[keys[0]] + '">' + value[keys[1]] + ' - ' + value[keys[5]] + ' ' + value[keys[6]] + '</option>';
+                    query += '<option value="' + value['id'] + '">' + value['generatedCode'] + ' - ' + value['firstName'] + ' ' + value['lastName'] + '</option>';
                 $('#child_id').append(query);
                 $('#child_need_select').append(query);
             })
@@ -383,20 +412,29 @@ $(document).ready(function(){
 
         $('#editChildData').attr("disabled" , true);
         // getting data from html form
-        // nullable
+        // Not nullable
         var id_ngo = $('#ngo_id').val();
         var id_social_worker = $('#social_worker_id').val();
-        var sayName = $('#SAY_name').val();
+        var sayname_translations = JSON.stringify({
+            en: $('#SAY_name').val(),
+            fa: $('#SAY_name_fa').val(),
+        });
+        var bio_translations = JSON.stringify({
+            en: $('#child_story').val(),
+            fa: $('#child_story_fa').val()
+        });
+        var bio_summary_translations = JSON.stringify({
+            en: $('#child_story_summary').val(),
+            fa: $('#child_story_summary_fa').val(),
+        });
         var gender = $('#child_gender').val();
         var country = $('#child_country').val();
         var city = $('#child_city').val();
         var phoneNumber = $('#child_phone_number').val();
-        var bio = $('#child_story').val();
-        var bioSummary = $('#child_story_summary').val();
         var avatarUrl = $('#child_avatar')[0].files[0];
         var sleptAvatarUrl = $('#child_slept_avatar')[0].files[0];
         var voiceUrl = $('#child_voice')[0].files[0];
-        //not nullable
+        // Nullable
         var firstName = $('#child_first_name').val();
         var lastName = $('#child_last_name').val();
         var nationality = $('#child_nationality').val();
@@ -407,9 +445,6 @@ $(document).ready(function(){
         var education = $('#education').val();
         var school_type = $('#school_type').val();
         var housingStatus = $('#housing_status').val();
-        var sayName_fa = $('#SAY_name_fa').val();
-        var bio_fa = $('#child_story_fa').val();
-        var bioSummary_fa = $('#child_story_summary_fa').val();
 
         //append datas to a Form Data
         var form_data = new FormData();
@@ -418,13 +453,13 @@ $(document).ready(function(){
         form_data.append('avatarUrl', avatarUrl);
         form_data.append('sleptAvatarUrl', sleptAvatarUrl);
         form_data.append('voiceUrl', voiceUrl);
-        form_data.append('sayName', sayName);
+        form_data.append('sayname_translations', sayname_translations);
         form_data.append('gender', gender);
         form_data.append('country', country);
         form_data.append('city', city);
         form_data.append('phoneNumber', phoneNumber);
-        form_data.append('bio', bio);
-        form_data.append('bioSummary', bioSummary);
+        form_data.append('bio_translations', bio_translations);
+        form_data.append('bio_summary_translations', bio_summary_translations);
         
         if(firstName){
             form_data.append('firstName', firstName);
@@ -452,15 +487,6 @@ $(document).ready(function(){
         }
         if(housingStatus){
             form_data.append('housingStatus', housingStatus);
-        }
-        if(sayName_fa) {
-            form_data.append('sayName_fa', sayName_fa);
-        }
-        if(bio_fa) {
-            form_data.append('bio_fa', bio_fa);
-        }
-        if(bioSummary_fa) {
-            form_data.append('bioSummary_fa', bioSummary_fa);
         }
 
         if($('#children_form').valid()) {
@@ -540,10 +566,14 @@ $(document).ready(function(){
                 $('#children_form_preloader').show();
             },
             success: function (data) {
+                var bio_translations = data['bio_translations'];
+                var bio_summary_translations = data['bio_summary_translations'];
+                var sayname_translations = data['sayname_translations'];
 
                 $('#ngo_id').val(data['id_ngo']).change();
                 $('#social_worker_id').val(data['id_social_worker']).change();
-                $('#SAY_name').val(data['sayName']);
+                $('#SAY_name').val(sayname_translations.en);
+                $('#SAY_name_fa').val(sayname_translations.fa);
                 $('#child_first_name').val(data['firstName']);
                 $('#child_last_name').val(data['lastName']);
                 $('#child_gender').val(data['gender']).change();
@@ -557,11 +587,10 @@ $(document).ready(function(){
                 //TODO: education??
                 $('#child_phone_number').val(data['phoneNumber']);
                 $('#housing_status').val(data['housingStatus']).change();
-                $('#child_story').val(data['bio']);
-                $('#child_story_summary').val(data['bioSummary']);
-                $('#SAY_name_fa').val(data['sayName_fa']);
-                $('#child_story_fa').val(data['bio_fa']);
-                $('#child_story_summary_fa').val(data['bioSummary_fa']);
+                $('#child_story').val(bio_translations.en);
+                $('#child_story_fa').val(bio_translations.fa);
+                $('#child_story_summary').val(bio_summary_translations.en);
+                $('#child_story_summary_fa').val(bio_summary_translations.fa);
 
                 $('#children_form_preloader').hide();
             },
@@ -579,13 +608,22 @@ $(document).ready(function(){
 
         // getting data from html form
 
-        var sayName = $('#SAY_name').val();
+        var sayname_translations = JSON.stringify({
+            en: $('#SAY_name').val(),
+            fa: $('#SAY_name_fa').val(),
+        });
+        var bio_translations = JSON.stringify({
+            en: $('#child_story').val(),
+            fa: $('#child_story_fa').val()
+        });
+        var bio_summary_translations = JSON.stringify({
+            en: $('#child_story_summary').val(),
+            fa: $('#child_story_summary_fa').val(),
+        });
         var gender = $('#child_gender').val();
         var country = $('#child_country').val();
         var city = $('#child_city').val();
         var phoneNumber = $('#child_phone_number').val();
-        var bio = $('#child_story').val();
-        var bioSummary = $('#child_story_summary').val();
         var avatarUrl = $('#child_avatar')[0].files[0];
         var sleptAvatarUrl = $('#child_slept_avatar')[0].files[0];
         var voiceUrl = $('#child_voice')[0].files[0];
@@ -600,12 +638,13 @@ $(document).ready(function(){
         var education = $('#education').val();
         var school_type = $('#school_type').val();
         var housingStatus = $('#housing_status').val();
-        var sayName_fa = $('#SAY_name_fa').val();
-        var bio_fa = $('#child_story_fa').val();
-        var bioSummary_fa = $('#child_story_summary_fa').val();
 
         // append datas to a Form Data
         var form_data = new FormData();
+
+        form_data.append('sayname_translations', sayname_translations);
+        form_data.append('bio_translations', bio_translations);
+        form_data.append('bio_summary_translations', bio_summary_translations);
         if(avatarUrl){
             form_data.append('avatarUrl', avatarUrl);
         }
@@ -614,9 +653,6 @@ $(document).ready(function(){
         }
         if(voiceUrl){
             form_data.append('voiceUrl', voiceUrl);
-        }
-        if(sayName){
-            form_data.append('sayName', sayName);
         }
         if(gender){
             form_data.append('gender', gender);
@@ -629,12 +665,6 @@ $(document).ready(function(){
         }
         if(phoneNumber){
             form_data.append('phoneNumber', phoneNumber);
-        }
-        if(bio){
-            form_data.append('bio', bio);
-        }
-        if(bioSummary){
-            form_data.append('bioSummary', bioSummary);
         }
         if(firstName){
             form_data.append('firstName', firstName);
@@ -663,23 +693,15 @@ $(document).ready(function(){
         if(housingStatus){
             form_data.append('housingStatus', housingStatus);
         }
-        if(sayName_fa) {
-            form_data.append('sayName_fa', sayName_fa);
-        }
-        if(bio_fa) {
-            form_data.append('bio_fa', bio_fa);
-        }
-        if(bioSummary_fa) {
-            form_data.append('bioSummary_fa', bioSummary_fa);
-        }
 
         console.log(form_data);
 
-        //remove required rules of all fields
+        //remove required rules of Select and File Type fields
         $('#children_form select').each(function() {
             $(this).rules('remove', 'required');
         })
-        $('#children_form input, textarea').each(function() {
+
+        $('.file_input').each(function() {
             $(this).rules('remove', 'required');
         })
 

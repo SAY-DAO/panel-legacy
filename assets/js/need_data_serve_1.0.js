@@ -47,9 +47,6 @@ $(document).ready(function(){
             need_description: {
                 required: true
             },
-            need_description_summary: {
-                required: true
-            }
         },
         messages: {
             child_id: {
@@ -88,9 +85,6 @@ $(document).ready(function(){
             need_description: {
                 required: "وارد کردن شرح نیاز ضروری است."
             },
-            need_description_summary: {
-                required: "وارد کردن خلاصه شرح نیاز ضروری است."
-            }
         },
         errorPlacement: function(error, element) {
             error.appendTo(element.parent('div'));
@@ -131,9 +125,14 @@ $(document).ready(function(){
                 console.log('option:' + selected_child);
                 var row_index = 1;
                 var sayName = data['sayName'];
+                
+                // Change data to needs
                 data = data['needs'];
                 $.each(data, function(key, value){
                     var needId = value['id'];
+                    var name_translations = value['name_translations'];
+                    var description_translations = value['description_translations'];
+                    
                     var confirmStatus = -1;
                     var needType = value['type'];
     
@@ -148,6 +147,22 @@ $(document).ready(function(){
                     <td>' + sayName + '</td>';
                     for(var i=2 ; i < keys.length ; i++){
                         
+                        if ( keys[i] == 'name') {
+                            value[keys[i]] = name_translations.en;
+                        }
+
+                        if ( keys[i] == 'name_fa') {
+                            value[keys[i]] = name_translations.fa;
+                        }
+
+                        if ( keys[i] == 'description') {
+                            value[keys[i]] = description_translations.en;
+                        }
+
+                        if ( keys[i] == 'description_fa') {
+                            value[keys[i]] = description_translations.fa;
+                        }
+
                         if (keys[i] == 'imageUrl') {
                             value[keys[i]] = getImgFile(value[keys[i]]);
                         }
@@ -304,6 +319,8 @@ $(document).ready(function(){
                     var confirmStatus = -1;
                     var needType = value['type'];
                     var sayName = value['childSayName'];
+                    var name_translations = value['name_translations'];
+                    var description_translations = value['description_translations'];
 
                     // first td for row count numbers, second td for operational buttons
                     var query = '<tr>\
@@ -316,6 +333,22 @@ $(document).ready(function(){
                     <td>' + sayName + '</td>';
                     for(var i=2 ; i < keys.length ; i++){
                         
+                        if ( keys[i] == 'name') {
+                            value[keys[i]] = name_translations.en;
+                        }
+
+                        if ( keys[i] == 'name_fa') {
+                            value[keys[i]] = name_translations.fa;
+                        }
+
+                        if ( keys[i] == 'description') {
+                            value[keys[i]] = description_translations.en;
+                        }
+
+                        if ( keys[i] == 'description_fa') {
+                            value[keys[i]] = description_translations.fa;
+                        }
+
                         if (keys[i] == 'imageUrl') {
                             value[keys[i]] = getImgFile(value[keys[i]]);
                         }
@@ -451,16 +484,17 @@ $(document).ready(function(){
 
     // get Pre-defined needs of children in need forms drop down
     $.ajax({
-        url: SAYApiUrl + '/child/childId=104&confirm=2',  // TODO: Pri Defined needs
+        url: SAYApiUrl + '/child/childId=104&confirm=2',  // TODO: Pre Defined needs
         method: 'GET',
         dataType: 'json',
         success: function(data) {
             // console.log("predefined needs", data);
-            data = data['needs']
+            data = data['needs'];
             $.each(data, function(key, value){
+                var name_translations = value['name_translations'];
                 var title = value['type'] == 0 ? value['details'] : value['title']; // show details for services, and title for products
                 var query = '';
-                    query += '<option value="' + value['id'] + '">' + value['name'] + ' | ' + value['cost'] + ' | ' + title + '</option>';
+                    query += '<option value="' + value['id'] + '">' + name_translations.fa + ' | ' + value['cost'] + ' | ' + title + '</option>';
                 $('#pre_need_id').append(query);
             })
         },
@@ -488,21 +522,22 @@ $(document).ready(function(){
             success: function(data) {
 
                 var need_icon = baseUrl + data['imageUrl'];
+                var name_translations = data['name_translations'];
+                var description_translations = data['description_translations'];
 
-                $('#need_name').val(data['name']);
+                $('#need_name').val(name_translations.en);
+                $('#need_name_fa').val(name_translations.fa);
                 $('#need_category').val(data['category']).change();
                 $('#need_type').val(data['type']).change();
                 $('#is_urgent').val(data['isUrgent']).change();
                 $('#need_cost').val(data['cost']);
-                $('#need_description').val(data['description']);
+                $('#need_description').val(description_translations.en);
+                $('#need_description_fa').val(description_translations.fa);
                 $('#need_description_summary').val(data['descriptionSummary']);
                 $('#need_details').val(data['details']);
                 $('#need_doing_duration').val(data['doing_duration']);
                 $('#affiliate_link').val(data['affiliateLinkUrl']);
                 $('#direct_link').val(data['link']);
-                $('#need_name_fa').val(data['name_fa']);
-                $('#need_description_fa').val(data['description_fa']);
-                $('#need_description_summary_fa').val(data['descriptionSummary_fa']);
 
                 // // Trying to show predefined icon
                 // $('#need_icon').val(need_icon);
@@ -529,33 +564,34 @@ $(document).ready(function(){
         $('#editNeedData').attr("disabled" , true);
         // recieving data from html form
         var childId = $('#child_id').val();
-        var name = $('#need_name').val();
         var imageUrl = $('#need_icon')[0].files[0];
         var category = $('#need_category').val();
         var cost = $('#need_cost').val();
         var details = $('#need_details').val();
-        var description = $('#need_description').val();
-        var descriptionSummary = $('#need_description_summary').val();
         var type = $('#need_type').val();
         var doing_duration = $('#need_doing_duration').val();
-        var isUrgent = $('#is_urgent').val();        
-
+        var isUrgent = $('#is_urgent').val();
+        var name_translations = JSON.stringify({
+            en: $('#need_name').val(),
+            fa: $('#need_name_fa').val(),
+        });
+        var description_translations = JSON.stringify({
+            en: $('#need_description').val(),
+            fa: $('#need_description_fa').val(),
+        });
+        
         var affiliateLinkUrl = $('#affiliate_link').val();
         var link = $('#direct_link').val();
         var receipts = $('#need_receipts')[0].files[0];
-        var name_fa = $('#need_name_fa').val();
-        var description_fa = $('#need_description_fa').val();
-        var descriptionSummary_fa = $('#need_description_summary_fa').val();
 
         var form_data = new FormData();
         form_data.append('child_id', childId);
         form_data.append('imageUrl', imageUrl);
-        form_data.append('name', name);
+        form_data.append('name_translations', name_translations);
+        form_data.append('description_translations', description_translations);
         form_data.append('category', category);
         form_data.append('cost', cost);
         form_data.append('details', details);
-        form_data.append('description', description);
-        form_data.append('descriptionSummary', descriptionSummary);
         form_data.append('type', type);
         form_data.append('isUrgent', isUrgent);
 
@@ -571,15 +607,7 @@ $(document).ready(function(){
         if(doing_duration){
             form_data.append('doing_duration', doing_duration);
         }
-        if(name_fa){
-            form_data.append('name_fa', name_fa);
-        }
-        if(description_fa){
-            form_data.append('description_fa', description_fa);
-        }
-        if(descriptionSummary_fa){
-            form_data.append('descriptionSummary_fa', descriptionSummary_fa);
-        }
+       
         console.log(form_data);
         
         if($('#need_form').valid()) {
@@ -662,23 +690,22 @@ $(document).ready(function(){
                 $('#need_form_preloader').show();
             },
             success: function(data) {
-                console.log(data);
+                var name_translations = data['name_translations'];
+                var description_translations = data['description_translations'];
 
                 $('#child_id').val(data['child_id']).change();
-                $('#need_name').val(data['name']);
+                $('#need_name').val(name_translations.en);
+                $('#need_name_fa').val(name_translations.fa);
                 $('#need_category').val(data['category']).change();
                 $('#need_cost').val(data['cost']);
                 $('#need_details').val(data['details']);
-                $('#need_description').val(data['description']);
-                $('#need_description_summary').val(data['descriptionSummary']);
+                $('#need_description').val(description_translations.en);
+                $('#need_description_fa').val(description_translations.fa);
                 $('#need_type').val(data['type']).change();
                 $('#affiliate_link').val(data['affiliateLinkUrl']);
                 $('#direct_link').val(data['link']);
                 $('#need_doing_duration').val(data['doing_duration']);
                 $('#is_urgent').val(data['isUrgent']).change();
-                $('#need_name_fa').val(data['name_fa']);
-                $('#need_description_fa').val(data['description_fa']);
-                $('#need_description_summary_fa').val(data['descriptionSummary_fa']);
 
                 $('#need_form_preloader').hide();
             },
@@ -696,31 +723,32 @@ $(document).ready(function(){
 
         // getting data from html form
 
-        var name = $('#need_name').val();
         var imageUrl = $('#need_icon')[0].files[0];
         var category = $('#need_category').val();
         var cost = $('#need_cost').val();
         var details = $('#need_details').val();
-        var description = $('#need_description').val();
-        var descriptionSummary = $('#need_description_summary').val();
         var type = $('#need_type').val();
         var doing_duration = $('#need_doing_duration').val();
         var isUrgent = $('#is_urgent').val();
-        
+        var name_translations = JSON.stringify({
+            en: $('#need_name').val(),
+            fa: $('#need_name_fa').val(),
+        });
+        var description_translations = JSON.stringify({
+            en: $('#need_description').val(),
+            fa: $('#need_description_fa').val(),
+        });
+
         var affiliateLinkUrl = $('#affiliate_link').val();
         var link = $('#direct_link').val();
         var receipts = $('#need_receipts')[0].files[0];
-        var name_fa = $('#need_name_fa').val();
-        var description_fa = $('#need_description_fa').val();
-        var descriptionSummary_fa = $('#need_description_summary_fa').val();
 
         // append datas to a Form Data
         var form_data = new FormData();
+        form_data.append('name_translations', name_translations);
+        form_data.append('description_translations', description_translations);
         if(imageUrl) {
             form_data.append('imageUrl', imageUrl);
-        }
-        if(name) {
-            form_data.append('name', name);
         }
         if(category) {
             form_data.append('category', category);
@@ -730,12 +758,6 @@ $(document).ready(function(){
         }
         if(details) {
             form_data.append('details', details);
-        }
-        if(description) {
-            form_data.append('description', description);
-        }
-        if(descriptionSummary) {
-            form_data.append('descriptionSummary', descriptionSummary);
         }
         if(type) {
             form_data.append('type', type);
@@ -755,24 +777,13 @@ $(document).ready(function(){
         if(doing_duration){
             form_data.append('doing_duration', doing_duration);
         }
-        if(name_fa){
-            form_data.append('name_fa', name_fa);
-        }
-        if(description_fa){
-            form_data.append('description_fa', description_fa);
-        }
-        if(descriptionSummary_fa){
-            form_data.append('descriptionSummary_fa', descriptionSummary_fa);
-        }
         console.log(form_data);
 
         //remove required rules of all fields
         $('#need_form select').each(function() {
             $(this).rules('remove', 'required');
         })
-        $('#need_form input, textarea').each(function() {
-            $(this).rules('remove', 'required');
-        })
+        //TODO: After fixing the pre-need icon problem, the required validation of icon input should be remove here.
         
         // update the need with new data in the form
         if($('#need_form').valid()) {
