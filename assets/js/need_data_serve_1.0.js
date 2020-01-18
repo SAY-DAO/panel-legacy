@@ -108,7 +108,7 @@ $(document).ready(function(){
 
     var edit_needId = -1;    
 
-    var keys = ['id' , 'child_id' , 'name' , 'name_fa' , 'title' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'type' , 'details' , 'isUrgent' , 'category' , 'description' , 'descriptionSummary' , 'description_fa' , 'descriptionSummary_fa' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'receipts' , 'createdAt' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'lastUpdate']
+    var keys = ['id' , 'child_id' , 'name' , 'name_fa' , 'title' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'type' , 'details' , 'isUrgent' , 'category' , 'description' , 'description_fa' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'receipts' , 'createdAt' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'lastUpdate']
 
     // Get Children Needs by child id
     $('#child_need_select').change(function() {
@@ -507,7 +507,6 @@ $(document).ready(function(){
     $('#pre_need_id').change(function() {
         $('#need_name').prop("disabled", true);
         $('#need_description').prop("disabled", true);
-        $('#need_description_summary').prop("disabled", true);
         $('#need_category').prop("disabled", true);
         $('#need_type').prop("disabled", true);
         
@@ -533,7 +532,6 @@ $(document).ready(function(){
                 $('#need_cost').val(data['cost']);
                 $('#need_description').val(description_translations.en);
                 $('#need_description_fa').val(description_translations.fa);
-                $('#need_description_summary').val(data['descriptionSummary']);
                 $('#need_details').val(data['details']);
                 $('#need_doing_duration').val(data['doing_duration']);
                 $('#affiliate_link').val(data['affiliateLinkUrl']);
