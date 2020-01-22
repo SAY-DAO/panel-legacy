@@ -178,6 +178,20 @@ $(document).ready(function(){
         }
     })
 
+    // Handle delivery date fields
+    $('#need_status_product').change(function() {
+        if ($(this).val() == 3) {   // if product purchase
+            $('#expected_delivery').show();
+        } else {
+            $('#expected_delivery').hide();
+        }
+        if ($(this).val() == 4) {   // if product delivered to NGO
+            $('#real_delivery').show();
+        } else {
+            $('#real_delivery').hide();
+        }
+    })
+
     // change needs status
     $('#reportDoneNeedList').on('click' , '.changeStatus' , function(e) {
         e.preventDefault();
@@ -216,18 +230,6 @@ $(document).ready(function(){
                     $('#p_receipts').show();
                 }
 
-                $('#need_status_product').change(function() {
-                    if ($(this).val() == 3) {   // if product purchase
-                        $('#expected_delivery').show();
-                    } else {
-                        $('#expected_delivery').hide();
-                    }
-                    if ($(this).val() == 4) {   // if product delivered to NGO
-                        $('#real_delivery').show();
-                    } else {
-                        $('#real_delivery').hide();
-                    }
-                })
                 $('#change_need_preloader').hide();
                 
             },
