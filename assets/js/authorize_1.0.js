@@ -62,6 +62,7 @@ function hasPrivilege() {
         $('.operation').hide();
         $('#needList').find('.confirmBtn').hide();
         $('.privilege1').hide();
+        $('.disable_privilege1').prop("disabled", true);
     }
 }
 

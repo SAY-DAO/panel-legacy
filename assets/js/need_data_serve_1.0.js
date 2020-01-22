@@ -6,84 +6,84 @@ $(document).ready(function(){
     $('#need_cost').on('keyup', function() {
         var n = parseInt($(this).val().replace(/\D/g,''),10);
         $(this).val(n.toLocaleString());
-    })
+    });
     // needs form validation
     $('#need_form').validate({
         ignore: [], // To validate hidden input
         rules: {
             child_id: {
-                required: true
+                required: true,
             },
             need_name: {
-                required: true
+                required: true,
             },
             need_category: {
-                required:true
+                required:true,
             },
             need_cost: {
                 required: true,
-                number: true
+                number: true,
             },
             "need_icon[]": {
                 // required: true, // TODO: temporarily disabled for problem in adding by pre-need
                 extension: "jpg,png,jpeg",
-                filesize: 1    // MB
+                filesize: 1,    // MB
             },
             "need_receipts[]": {
-                filesize: 3    // MB
+                filesize: 3,    // MB
             },
             need_type: {
-                required: true
+                required: true,
             },
             affiliate_link: {
-                url: true
+                url: true,
             },
             direct_link: {
-                url: true
+                url: true,
             },
             need_doing_duration: {
-                number: true
+                number: true,
             },
             need_description: {
-                required: true
+                required: true,
             },
         },
         messages: {
             child_id: {
-                required: "انتخاب کودک ضروری است."
+                required: "انتخاب کودک ضروری است.",
             },
             need_name: {
-                required: "وارد کردن نام نیاز ضروری است."
+                required: "وارد کردن نام نیاز ضروری است.",
             },
             need_category: {
-              required: "انتخاب دسته‌بندی نیاز ضروری است."
+              required: "انتخاب دسته‌بندی نیاز ضروری است.",
             },
             need_cost: {
                 required: "وارد کردن هزینه نیاز ضروری است.",
-                number: "لطفا فقط عدد وارد کنید."
+                number: "لطفا فقط عدد وارد کنید.",
             },
             "need_icon[]": {
                 // required: "انتخاب آیکون نیاز ضروری است.",    // TODO: temporarily disabled for problem in adding by pre-need
                 extension: "فرمت‌های قابل پذیرش: {0}",
-                filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
+                filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB",
             },
             "need_receipts[]": {
-                filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
+                filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB",
             },
             need_type: {
-                required: "انتخاب نوع نیاز ضروری است."
+                required: "انتخاب نوع نیاز ضروری است.",
             },
             affiliate_link: {
-                url: "اشتباه شد."
+                url: "اشتباه شد.",
             },
             direct_link: {
-                url: "اشتباه شد."
+                url: "اشتباه شد.",
             },
             need_doing_duration: {
-                number: "لطفا فقط عدد وارد کنید."
+                number: "لطفا فقط عدد وارد کنید.",
             },
             need_description: {
-                required: "وارد کردن شرح نیاز ضروری است."
+                required: "وارد کردن شرح نیاز ضروری است.",
             },
         },
         errorPlacement: function(error, element) {
@@ -103,12 +103,12 @@ $(document).ready(function(){
             } else {
                 $("div.alert").hide();
             }
-        }
+        },
     });
 
     var edit_needId = -1;    
 
-    var keys = ['id' , 'child_id' , 'name' , 'name_fa' , 'title' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'type' , 'details' , 'isUrgent' , 'category' , 'description' , 'description_fa' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'receipts' , 'createdAt' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'lastUpdate']
+    var keys = ['id' , 'child_id' , 'name' , 'name_fa' , 'title' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'type' , 'details' , 'isUrgent' , 'category' , 'description' , 'description_fa' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'receipts' , 'createdAt' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'lastUpdate'];
 
     // Get Children Needs by child id
     $('#child_need_select').change(function() {
@@ -286,7 +286,7 @@ $(document).ready(function(){
                         $('#' + needId).find('.confirmBtn').prop("disabled", true);
                     }
                     row_index += 1;
-                })
+                });
                 $('#needs_preloader').hide();
 
             },
@@ -295,7 +295,7 @@ $(document).ready(function(){
             }
         })
         $('#needList').empty();
-    })
+    });
 
     // Get Needs by confirm status and ngo_id
     $('.need_filter').change(function() {
@@ -480,7 +480,7 @@ $(document).ready(function(){
             }
         })
         $('#needList').empty();
-    })
+    });
 
     // get Pre-defined needs of children in need forms drop down
     $.ajax({
@@ -501,7 +501,7 @@ $(document).ready(function(){
         error: function(data) {
             console.log(data.responseJSON.message);
         }
-    })
+    });
 
     // need form fill out with Pre-defined need data
     $('#pre_need_id').change(function() {
@@ -552,7 +552,7 @@ $(document).ready(function(){
                 console.log(data.responseJSON.message);
             }
         })
-    })
+    });
 
 
     // Add new Need
@@ -633,7 +633,7 @@ $(document).ready(function(){
                 }
             })
         }
-    })
+    });
 
 
     // Confirm a need
@@ -665,7 +665,7 @@ $(document).ready(function(){
             }
         })
 
-    })
+    });
 
 
     // Edit a need
@@ -711,7 +711,7 @@ $(document).ready(function(){
                 console.log(data.responseJSON.message);
             }
         })
-    })
+    });
 
     // confirm Edit need
     $('#editNeedData').on('click' , function(e) {
@@ -810,7 +810,7 @@ $(document).ready(function(){
             })  //end of Update ajax
         }
 
-    })  //end of 'confirm edit' function
+    });  //end of 'confirm edit' function
 
     // Delete a need
     $('#needList').on('click', '.deleteBtn' , function(e){
@@ -839,6 +839,6 @@ $(document).ready(function(){
                 });
             }
         })
-    })
+    });
 
-})
+});
