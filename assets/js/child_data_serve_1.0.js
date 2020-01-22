@@ -128,7 +128,7 @@ $(document).ready(function(){
     child_id_url = '/child/all/confirm=1';
     // TODO: adding farsi fields
 
-    var keys = ['id' , 'generatedCode' , 'avatarUrl' , 'sleptAvatarUrl' , 'voiceUrl' , 'firstName' , 'lastName' , 'doneNeedCount' , 'spentCredit' , 'birthDate' , 'sayName' , 'sayName_fa' , 'country' , 'city' , 'gender' , 'bio' , 'bioSummary' , 'bio_fa' , 'bioSummary_fa' , 'birthPlace' , 'nationality' , 'familyCount' , 'sayFamilyCount' , 'education' , 'housingStatus' , 'id_ngo' , 'id_social_worker' , 'phoneNumber' , 'address' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'createdAt' , 'lastUpdate']
+    var keys = ['id' , 'generatedCode' , 'avatarUrl' , 'sleptAvatarUrl' , 'voiceUrl' , 'firstName' , 'lastName' , 'firstName_fa' , 'lastName_fa' , 'doneNeedCount' , 'spentCredit' , 'birthDate' , 'sayName' , 'sayName_fa' , 'country' , 'city' , 'gender' , 'bio' , 'bioSummary' , 'bio_fa' , 'bioSummary_fa' , 'birthPlace' , 'nationality' , 'familyCount' , 'sayFamilyCount' , 'education' , 'housingStatus' , 'id_ngo' , 'id_social_worker' , 'phoneNumber' , 'address' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'createdAt' , 'lastUpdate']
     
 
     // Get all Children
@@ -147,9 +147,13 @@ $(document).ready(function(){
 
             $.each(childData , function(key ,value){
                 var childId = value['id'];
+                // Start translation fields
                 var bio_translations = value['bio_translations'];
                 var bio_summary_translations = value['bio_summary_translations'];
                 var sayname_translations = value['sayname_translations'];
+                var firstName_translations = value['firstName_translations'];
+                var lastName_translations = value['lastName_translations'];
+                // End translation fields
 
                 var confirmStatus = -1;
 
@@ -164,6 +168,7 @@ $(document).ready(function(){
 
                 for(var i = 1 ; i < keys.length ; i++){
                     
+                    // Start translation fields
                     if (keys[i] == 'sayName') {
                         value[keys[i]] = sayname_translations.en;
                     }
@@ -187,7 +192,24 @@ $(document).ready(function(){
                     if (keys[i] == 'bioSummary_fa') {
                         value[keys[i]] = bio_summary_translations.fa;
                     }
-                    
+
+                    if (keys[i] == 'firstName') {
+                        value[keys[i]] = firstName_translations.en;
+                    }
+
+                    if (keys[i] == 'firstName_fa') {
+                        value[keys[i]] = firstName_translations.fa;
+                    }
+
+                    if (keys[i] == 'lastName') {
+                        value[keys[i]] = lastName_translations.en;
+                    }
+
+                    if (keys[i] == 'lastName_fa') {
+                        value[keys[i]] = lastName_translations.fa;
+                    }
+                    // End translation fields
+
                     if(keys[i] == 'doneNeedCount'){
                         value[keys[i]] = value[keys[i]] + " Done";
                     }
@@ -393,7 +415,7 @@ $(document).ready(function(){
         method: 'GET',
         dataType: 'json',
         success: function(data) {
-            var childData = data['children']
+            var childData = data['children'];
             $.each(childData , function(key ,value){
                 var query = '';
                     query += '<option value="' + value['id'] + '">' + value['generatedCode'] + ' - ' + value['firstName'] + ' ' + value['lastName'] + '</option>';
@@ -415,6 +437,8 @@ $(document).ready(function(){
         // Not nullable
         var id_ngo = $('#ngo_id').val();
         var id_social_worker = $('#social_worker_id').val();
+
+        // Start translation fields
         var sayname_translations = JSON.stringify({
             en: $('#SAY_name').val(),
             fa: $('#SAY_name_fa').val(),
@@ -427,6 +451,7 @@ $(document).ready(function(){
             en: $('#child_story_summary').val(),
             fa: $('#child_story_summary_fa').val(),
         });
+        // End translation fields
         var gender = $('#child_gender').val();
         var country = $('#child_country').val();
         var city = $('#child_city').val();
@@ -435,8 +460,6 @@ $(document).ready(function(){
         var sleptAvatarUrl = $('#child_slept_avatar')[0].files[0];
         var voiceUrl = $('#child_voice')[0].files[0];
         // Nullable
-        var firstName = $('#child_first_name').val();
-        var lastName = $('#child_last_name').val();
         var nationality = $('#child_nationality').val();
         var address = $('#child_address').val();
         var birthDate = $('#child_birthdate').val();
@@ -445,6 +468,16 @@ $(document).ready(function(){
         var education = $('#education').val();
         var school_type = $('#school_type').val();
         var housingStatus = $('#housing_status').val();
+        // Start translation fields
+        var firstName_translations = JSON.stringify({
+            en: $('#child_first_name').val(),
+            fa: $('#child_first_name_fa').val(),
+        });
+        var lastName_translations = JSON.stringify({
+            en: $('#child_last_name').val(),
+            fa: $('#child_last_name_fa').val(),
+        });
+        // End translation fields
 
         //append datas to a Form Data
         var form_data = new FormData();
@@ -453,20 +486,18 @@ $(document).ready(function(){
         form_data.append('avatarUrl', avatarUrl);
         form_data.append('sleptAvatarUrl', sleptAvatarUrl);
         form_data.append('voiceUrl', voiceUrl);
-        form_data.append('sayname_translations', sayname_translations);
         form_data.append('gender', gender);
         form_data.append('country', country);
         form_data.append('city', city);
         form_data.append('phoneNumber', phoneNumber);
+        // Start translation fields
+        form_data.append('sayname_translations', sayname_translations);
         form_data.append('bio_translations', bio_translations);
         form_data.append('bio_summary_translations', bio_summary_translations);
+        form_data.append('firstName_translations', firstName_translations);
+        form_data.append('lastName_translations', lastName_translations);
+        // End translation fields
         
-        if(firstName){
-            form_data.append('firstName', firstName);
-        }
-        if(lastName){
-            form_data.append('lastName', lastName);
-        }
         if(nationality){
             form_data.append('nationality', nationality);
         }
@@ -557,7 +588,7 @@ $(document).ready(function(){
         edit_childId = $(this).parent().attr('id');
         console.log("child id get value: " + edit_childId);
 
-        // get the dhild's data to the form
+        // get the child's data to the form
         $.ajax({
             url: SAYApiUrl + '/child/childId=' + edit_childId + '&confirm=2',
             method: 'GET',
@@ -566,16 +597,16 @@ $(document).ready(function(){
                 $('#children_form_preloader').show();
             },
             success: function (data) {
+                // Start translation fields
                 var bio_translations = data['bio_translations'];
                 var bio_summary_translations = data['bio_summary_translations'];
                 var sayname_translations = data['sayname_translations'];
+                var firstName_translations = data['firstName_translations'];
+                var lastName_translations = data['lastName_translations'];
+                // End translation fields
 
                 $('#ngo_id').val(data['id_ngo']).change();
                 $('#social_worker_id').val(data['id_social_worker']).change();
-                $('#SAY_name').val(sayname_translations.en);
-                $('#SAY_name_fa').val(sayname_translations.fa);
-                $('#child_first_name').val(data['firstName']);
-                $('#child_last_name').val(data['lastName']);
                 $('#child_gender').val(data['gender']).change();
                 $('#child_nationality').val(data['nationality']).change();
                 $('#child_country').val(data['country']).change();
@@ -587,10 +618,18 @@ $(document).ready(function(){
                 //TODO: education??
                 $('#child_phone_number').val(data['phoneNumber']);
                 $('#housing_status').val(data['housingStatus']).change();
+                // Start translation fields
                 $('#child_story').val(bio_translations.en);
                 $('#child_story_fa').val(bio_translations.fa);
                 $('#child_story_summary').val(bio_summary_translations.en);
                 $('#child_story_summary_fa').val(bio_summary_translations.fa);
+                $('#SAY_name').val(sayname_translations.en);
+                $('#SAY_name_fa').val(sayname_translations.fa);
+                $('#child_first_name').val(firstName_translations.en);
+                $('#child_first_name_fa').val(firstName_translations.fa);
+                $('#child_last_name').val(lastName_translations.en);
+                $('#child_last_name_fa').val(lastName_translations.fa);
+                // End translation fields
 
                 $('#children_form_preloader').hide();
             },
@@ -608,6 +647,7 @@ $(document).ready(function(){
 
         // getting data from html form
 
+        // Start translation fields
         var sayname_translations = JSON.stringify({
             en: $('#SAY_name').val(),
             fa: $('#SAY_name_fa').val(),
@@ -620,6 +660,15 @@ $(document).ready(function(){
             en: $('#child_story_summary').val(),
             fa: $('#child_story_summary_fa').val(),
         });
+        var firstName_translations = JSON.stringify({
+            en: $('#child_first_name').val(),
+            fa: $('#child_first_name_fa').val(),
+        });
+        var lastName_translations = JSON.stringify({
+            en: $('#child_last_name').val(),
+            fa: $('#child_last_name_fa').val(),
+        });
+        // End translation fields
         var gender = $('#child_gender').val();
         var country = $('#child_country').val();
         var city = $('#child_city').val();
@@ -628,8 +677,6 @@ $(document).ready(function(){
         var sleptAvatarUrl = $('#child_slept_avatar')[0].files[0];
         var voiceUrl = $('#child_voice')[0].files[0];
 
-        var firstName = $('#child_first_name').val();
-        var lastName = $('#child_last_name').val();
         var nationality = $('#child_nationality').val();
         var address = $('#child_address').val();
         var birthDate = $('#child_birthdate').val();
@@ -642,9 +689,13 @@ $(document).ready(function(){
         // append datas to a Form Data
         var form_data = new FormData();
 
+        // Start translation fields
         form_data.append('sayname_translations', sayname_translations);
         form_data.append('bio_translations', bio_translations);
         form_data.append('bio_summary_translations', bio_summary_translations);
+        form_data.append('firstName_translations', firstName_translations);
+        form_data.append('lastName_translations', lastName_translations);
+        // End translation fields
         if(avatarUrl){
             form_data.append('avatarUrl', avatarUrl);
         }
@@ -665,12 +716,6 @@ $(document).ready(function(){
         }
         if(phoneNumber){
             form_data.append('phoneNumber', phoneNumber);
-        }
-        if(firstName){
-            form_data.append('firstName', firstName);
-        }
-        if(lastName){
-            form_data.append('lastName', lastName);
         }
         if(nationality){
             form_data.append('nationality', nationality);
