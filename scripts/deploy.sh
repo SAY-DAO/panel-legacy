@@ -23,6 +23,7 @@ tar -xvf $CI_PROJECT_NAME.tar.gz &&
 cd $CI_PROJECT_NAME &&
 docker build -t $REPO_UPLOAD_ADD . &&
 cd /home/server/say-installer &&
-docker-compose up -d
+docker-compose up -d &&
+rm -rf $CI_PROJECT_NAME $CI_PROJECT_NAME.tar.gz
 "
 echo 'DONE'
