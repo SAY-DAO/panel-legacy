@@ -114,7 +114,7 @@ $(document).ready(function(){
     $('#child_need_select').change(function() {
         var selected_child = $(this).val();
         $.ajax({
-            url: SAYApiUrl + '/child/childId=' + selected_child + '/needs',
+            url: SAYApiUrl + '/child/childId=' + selected_child + '&confirm=2',
             method: 'GET',
             dataType: 'json',
             beforeSend: function() {

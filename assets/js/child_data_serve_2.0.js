@@ -128,7 +128,7 @@ $(document).ready(function(){
     child_id_url = '/child/all/confirm=1';
     // TODO: adding farsi fields
 
-    var keys = ['id' , 'generatedCode' , 'avatarUrl' , 'sleptAvatarUrl' , 'voiceUrl' , 'firstName' , 'lastName' , 'firstName_fa' , 'lastName_fa' , 'done_needs_count' , 'spent_credit' , 'birthDate' , 'sayName' , 'sayName_fa' , 'country' , 'city' , 'gender' , 'bio' , 'bioSummary' , 'bio_fa' , 'bioSummary_fa' , 'birthPlace' , 'nationality' , 'familyCount' , 'sayFamilyCount' , 'education' , 'housingStatus' , 'id_ngo' , 'id_social_worker' , 'phoneNumber' , 'address' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'createdAt' , 'lastUpdate']
+    var keys = ['id' , 'generatedCode' , 'avatarUrl' , 'sleptAvatarUrl' , 'voiceUrl' , 'firstName' , 'lastName' , 'firstName_fa' , 'lastName_fa' , 'doneNeedCount' , 'spentCredit' , 'birthDate' , 'sayName' , 'sayName_fa' , 'country' , 'city' , 'gender' , 'bio' , 'bioSummary' , 'bio_fa' , 'bioSummary_fa' , 'birthPlace' , 'nationality' , 'familyCount' , 'sayFamilyCount' , 'education' , 'housingStatus' , 'id_ngo' , 'id_social_worker' , 'phoneNumber' , 'address' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'createdAt' , 'lastUpdate']
     
 
     // Get all Children
@@ -210,7 +210,7 @@ $(document).ready(function(){
                     }
                     // End translation fields
 
-                    if(keys[i] == 'done_needs_count'){
+                    if(keys[i] == 'doneNeedCount'){
                         value[keys[i]] = value[keys[i]] + " Done";
                     }
 
@@ -372,7 +372,7 @@ $(document).ready(function(){
                         value[keys[i]] = getVoiceFile(value[keys[i]]);
                     }
 
-                    if(keys[i] == 'spent_credit'){
+                    if(keys[i] == 'spentCredit'){
                         value[keys[i]] = cost(value[keys[i]]);
                     }
 
