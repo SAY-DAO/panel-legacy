@@ -12,17 +12,17 @@ $(document).ready(function(){
         ignore: [], // To validate hidden input
         rules: {
             child_id: {
-                required: true
+                required: true,
             },
             need_name: {
-                required: true
+                required: true,
             },
             need_category: {
-                required:true
+                required:true,
             },
             need_cost: {
                 required: true,
-                number: true
+                number: true,
             },
             "need_icon[]": {
                 // required: true, // TODO: temporarily disabled for problem in adding by pre-need
@@ -30,60 +30,62 @@ $(document).ready(function(){
                 filesize: 1    // MB
             },
             "need_receipts[]": {
-                filesize: 3    // MB
+                extension: "jpg,png,jpeg",
+                filesize: 3,    // MB
             },
             need_type: {
-                required: true
+                required: true,
             },
             affiliate_link: {
-                url: true
+                url: true,
             },
             direct_link: {
-                url: true
+                url: true,
             },
             need_doing_duration: {
-                number: true
+                number: true,
             },
             need_description: {
-                required: true
+                required: true,
             },
         },
         messages: {
             child_id: {
-                required: "انتخاب کودک ضروری است."
+                required: "انتخاب کودک ضروری است.",
             },
             need_name: {
-                required: "وارد کردن نام نیاز ضروری است."
+                required: "وارد کردن نام نیاز ضروری است.",
             },
             need_category: {
-              required: "انتخاب دسته‌بندی نیاز ضروری است."
+              required: "انتخاب دسته‌بندی نیاز ضروری است.",
             },
             need_cost: {
                 required: "وارد کردن هزینه نیاز ضروری است.",
-                number: "لطفا فقط عدد وارد کنید."
+                number: "لطفا فقط عدد وارد کنید.",
             },
             "need_icon[]": {
                 // required: "انتخاب آیکون نیاز ضروری است.",    // TODO: temporarily disabled for problem in adding by pre-need
                 extension: "فرمت‌های قابل پذیرش: {0}",
-                filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
+                filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB",
             },
             "need_receipts[]": {
-                filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
+                extension: "فرمت‌های قابل پذیرش: {0}",
+                filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB",
             },
             need_type: {
-                required: "انتخاب نوع نیاز ضروری است."
+                required: "انتخاب نوع نیاز ضروری است.",
             },
             affiliate_link: {
-                url: "اشتباه شد."
+                url: "اشتباه شد.",
             },
             direct_link: {
-                url: "اشتباه شد."
+                url: "اشتباه شد.",
             },
             need_doing_duration: {
-                number: "لطفا فقط عدد وارد کنید."
+                number: "لطفا فقط عدد وارد کنید.",
             },
             need_description: {
-                required: "وارد کردن شرح نیاز ضروری است."
+                required: "وارد کردن شرح نیاز ضروری است.",
             },
         },
         errorPlacement: function(error, element) {

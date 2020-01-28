@@ -53,7 +53,10 @@ $(document).ready(function(){
             },
             child_story_summary: {
                 required: true,
-            }
+            },
+            child_birthdate: {
+                required:true,
+            },
         },
         messages: {
             ngo_id: {
@@ -99,7 +102,10 @@ $(document).ready(function(){
             },
             child_story_summary: {
                 required: "وارد کردن خلاصه داستان ضروری است."
-            }
+            },
+            child_birthdate: {
+                required: "وارد کردن تاریخ تولد ضروری است."
+            },
         },
         errorPlacement: function(error, element) {
             error.appendTo(element.parent('div'));
@@ -456,13 +462,13 @@ $(document).ready(function(){
         var country = $('#child_country').val();
         var city = $('#child_city').val();
         var phoneNumber = $('#child_phone_number').val();
+        var birthDate = $('#child_birthdate').val();
         var avatarUrl = $('#child_avatar')[0].files[0];
         var sleptAvatarUrl = $('#child_slept_avatar')[0].files[0];
         var voiceUrl = $('#child_voice')[0].files[0];
         // Nullable
         var nationality = $('#child_nationality').val();
         var address = $('#child_address').val();
-        var birthDate = $('#child_birthdate').val();
         var birthPlace = $('#child_birthplace').val();
         var familyCount = $('#family_count').val();
         var education = $('#education').val();
@@ -490,6 +496,7 @@ $(document).ready(function(){
         form_data.append('country', country);
         form_data.append('city', city);
         form_data.append('phoneNumber', phoneNumber);
+        form_data.append('birthDate', birthDate);
         // Start translation fields
         form_data.append('sayname_translations', sayname_translations);
         form_data.append('bio_translations', bio_translations);
@@ -503,9 +510,6 @@ $(document).ready(function(){
         }
         if(address){
             form_data.append('address', address);
-        }
-        if(birthDate){
-            form_data.append('birthDate', birthDate);
         }
         if(birthPlace){
             form_data.append('birthPlace', birthPlace);
