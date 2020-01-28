@@ -30,7 +30,7 @@ $(document).ready(function(){
                 filesize: 1    // MB
             },
             "need_receipts[]": {
-                extension: "jpg,png,jpeg",
+                extension: "jpg,png,jpeg,PDF",
                 filesize: 3,    // MB
             },
             need_type: {
