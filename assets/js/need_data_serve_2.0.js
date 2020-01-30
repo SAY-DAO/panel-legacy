@@ -110,7 +110,7 @@ $(document).ready(function(){
 
     var edit_needId = -1;    
 
-    var keys = ['id' , 'child_id' , 'name' , 'name_fa' , 'title' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'type' , 'details' , 'isUrgent' , 'category' , 'description' , 'description_fa' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'receipts' , 'createdAt' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'lastUpdate']
+    var keys = ['id' , 'child_id' , 'name' , 'name_fa' , 'title' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'type' , 'details' , 'isUrgent' , 'category' , 'description' , 'description_fa' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'receipts' , 'created' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'updated']
 
     // Get Children Needs by child id
     $('#child_need_select').change(function() {
@@ -269,7 +269,7 @@ $(document).ready(function(){
                             }
                         }
 
-                        if(keys[i] == 'confirmDate' || keys[i] == 'createdAt' || keys[i] == 'lastUpdate') {
+                        if(keys[i] == 'confirmDate' || keys[i] == 'created' || keys[i] == 'updated') {
                             value[keys[i]] = localDate(value[keys[i]]);
                         }
  
@@ -455,7 +455,7 @@ $(document).ready(function(){
                             }
                         }
 
-                        if(keys[i] == 'confirmDate' || keys[i] == 'createdAt' || keys[i] == 'lastUpdate') {
+                        if(keys[i] == 'confirmDate' || keys[i] == 'created' || keys[i] == 'updated') {
                             value[keys[i]] = localDate(value[keys[i]]);
                         }
  
