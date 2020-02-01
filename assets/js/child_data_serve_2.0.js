@@ -621,6 +621,7 @@ $(document).ready(function(){
                 $('#child_country').val(data['country']).change();
                 $('#child_city').val(data['city']).change();
                 $('#child_address').val(data['address']);
+                $('#child_birthdate').val(localDate(data['birthDate']));    // not working
                 $('#child_age').val(getAge(data['birthDate']));
                 $('#child_birthplace').val(data['birthPlace']);
                 $('#family_count').val(data['familyCount']);
@@ -733,8 +734,8 @@ $(document).ready(function(){
             form_data.append('address', address);
         }
         if(birthDate){
-            form_data.append('birthDate', birthDate);
-        }
+            form_data.append('birthDate', birthDate);   // if the user change the birth date
+        } 
         if(birthPlace){
             form_data.append('birthPlace', birthPlace);
         }
@@ -751,13 +752,12 @@ $(document).ready(function(){
         console.log(form_data);
 
         //remove required rules of Select and File Type fields
-        $('#children_form select').each(function() {
+        $('#children_form select, input[type="date"]').each(function() {
             $(this).rules('remove', 'required');
-        })
-
+        });
         $('.file_input').each(function() {
             $(this).rules('remove', 'required');
-        })
+        });
 
         // update the child with new data in the form
         if($('#children_form').valid()) {
