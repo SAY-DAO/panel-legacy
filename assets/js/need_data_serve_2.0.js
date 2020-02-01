@@ -2,11 +2,6 @@ $(document).ready(function(){
     isAuthorized();
     hasPrivilege();
 
-    // Cost field comma and number
-    $('#need_cost').on('keyup', function() {
-        var n = parseInt($(this).val().replace(/\D/g,''),10);
-        $(this).val(n.toLocaleString());
-    })
     // needs form validation
     $('#need_form').validate({
         ignore: [], // To validate hidden input

@@ -114,3 +114,9 @@ $.validator.addMethod('filesize', function (value, element, param) {
 jQuery.validator.addMethod('notEqual', function(value, element, param) {
     return this.optional(element) || value != param;
   }, "Please specify a different (non-default) value");
+
+// Cost field comma and number
+$('.cost').on('keyup', function() {
+    var n = parseInt($(this).val().replace(/\D/g,''),10);
+    $(this).val(n.toLocaleString());
+})
