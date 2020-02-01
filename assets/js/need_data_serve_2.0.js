@@ -481,7 +481,7 @@ $(document).ready(function(){
 
     // get Pre-defined needs of children in need forms drop down
     $.ajax({
-        url: SAYApiUrl + '/child/childId=104&confirm=2',  // TODO: Pre Defined needs
+        url: SAYApiUrl + '/child/childId=104/needs',  // TODO: Pre Defined needs
         method: 'GET',
         dataType: 'json',
         success: function(data) {
