@@ -134,8 +134,13 @@ $(document).ready(function(){
     child_id_url = '/child/all/confirm=1';
     // TODO: adding farsi fields
 
-    var keys = ['id' , 'generatedCode' , 'avatarUrl' , 'sleptAvatarUrl' , 'voiceUrl' , 'firstName' , 'lastName' , 'firstName_fa' , 'lastName_fa' , 'doneNeedCount' , 'spentCredit' , 'birthDate' , 'sayName' , 'sayName_fa' , 'country' , 'city' , 'gender' , 'bio' , 'bioSummary' , 'bio_fa' , 'bioSummary_fa' , 'birthPlace' , 'nationality' , 'familyCount' , 'sayFamilyCount' , 'education' , 'housingStatus' , 'id_ngo' , 'id_social_worker' , 'phoneNumber' , 'address' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'createdAt' , 'lastUpdate']
-    
+    var keys = ['id' , 'generatedCode' , 'avatarUrl' , 'sleptAvatarUrl' , 'voiceUrl' , 'firstName' , 
+                'lastName' , 'firstName_fa', 'lastName_fa', 'done_needs_count' , 'spent_credit' , 'birthDate' , 'sayName' , 'sayName_fa' ,
+                'country' , 'city' , 'gender' , 'bio' , 'bioSummary' , 'bio_fa' , 'bioSummary_fa' , 
+                'birthPlace' , 'nationality' , 'familyCount' , 'sayFamilyCount' , 'education' , 
+                'housingStatus' , 'id_ngo' , 'id_social_worker' , 'phoneNumber' , 'address' , 
+                'isConfirmed' , 'confirmUser' , 'confirmDate' , 'created' , 'updated',
+    ]    
 
     // Get all Children
 
@@ -386,7 +391,7 @@ $(document).ready(function(){
                         value[keys[i]] = value[keys[i]] + " Members";
                     }
 
-                    if(keys[i] == 'confirmDate' || keys[i] == 'createdAt' || keys[i] == 'lastUpdate') {
+                    if(keys[i] == 'confirmDate' || keys[i] == 'created' || keys[i] == 'updated') {
                         value[keys[i]] = localDate(value[keys[i]]);
                     }
                     
