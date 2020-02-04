@@ -182,15 +182,15 @@ $(document).ready(function(){
     $('#need_status_product').change(function() {
         if ($(this).val() == 3) {   // if product purchase
             $('#expected_delivery').show();
+            $('#cost_field').show();
         } else {
             $('#expected_delivery').hide();
+            $('#cost_field').hide();
         }
         if ($(this).val() == 4) {   // if product delivered to NGO
             $('#real_delivery').show();
-            $('#cost_field').show();
         } else {
             $('#real_delivery').hide();
-            $('#cost_field').hide();
         }
     })
 
@@ -215,7 +215,7 @@ $(document).ready(function(){
                 $('#cost_field').hide();
                 
                 $('#need_name').val(data['name']);
-                $('#report_need_cost').val(data['cost']);
+                $('#report_need_cost').val(data['purchase_cost']);
                 $('#expected_delivery_date').val(localDate(data['expected_delivery_date']));
                 $('#ngo_delivery_date').val(localDate(data['ngo_delivery_date']));
 
@@ -299,7 +299,7 @@ $(document).ready(function(){
         }
         if(real_delivery == true) { // if the product status is changing to 4
             form_data.append('ngo_delivery_date', ngo_delivery_date);
-            form_data.append('cost', need_cost);
+            form_data.append('purchase_cost', need_cost);
         }
 
         if($('#change_need_form').valid()) {
