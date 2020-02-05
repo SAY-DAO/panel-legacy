@@ -57,9 +57,10 @@ $(document).ready(function(){
         }
     });
 
+    var need_paid = -1;
     var status_needId = -1;
     var type_id = -1;
-    var keys = ['id' , 'type' , 'name' , 'title' , 'status' , 'expected_delivery_date' , 'ngo_delivery_date' , 'imageUrl' , 'childGeneratedCode' , 'childFirstName' , 'childLastName' , 'cost', 'donated' , 'details' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'ngoName' , 'ngoAddress' , 'receipts' , 'doneAt'];
+    var keys = ['id' , 'type' , 'name' , 'title' , 'status' , 'expected_delivery_date' , 'ngo_delivery_date' , 'imageUrl' , 'childGeneratedCode' , 'childFirstName' , 'childLastName' , 'cost' , 'cost_variance' , 'donated' , 'details' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'ngoName' , 'ngoAddress' , 'receipts' , 'doneAt'];
     
     // for the report to ngo ajax
     var reportNGO_keys = ['id' , 'ngoName' , 'childGeneratedCode' , 'childFirstName' , 'childLastName' , 'name' , 'title' , 'imageUrl' , 'cost' , 'expected_delivery_date'];
@@ -79,8 +80,10 @@ $(document).ready(function(){
 
             $.each(needData, function(key, value){
                 var needId = value[keys[0]];
-                var need_type = value[keys[1]];
+                var need_type = value['type'];
                 var need_status = -1;
+                var status_number = value['status'];
+                var need_cost = value['cost'];
                 
                 var query = '<tr>\
                 <td>' + row_index + '</td>\
@@ -159,6 +162,15 @@ $(document).ready(function(){
                         }
                     }
 
+                    // The actual cost
+                    if(keys[i] == 'cost_variance') {
+                        if (need_type == 1 && status_number == 3) {
+                            value[keys[i]] = cost(need_cost + value[keys[i]]);
+                        } else {
+                            value[keys[i]] = cost(need_cost);
+                        }
+                    }
+
                     if (value[keys[i]] == null) {
                         value[keys[i]] = nullValues();
                     }
@@ -210,16 +222,23 @@ $(document).ready(function(){
                 $('#change_need_preloader').show();
             },
             success: function(data) {
+                type_id = data['type'];     // to use in confirm change status
                 $('#expected_delivery').hide();
                 $('#real_delivery').hide();
                 $('#cost_field').hide();
-                
+                need_paid = data['paid'];
+
+                if (type_id == 1 && data['status'] == 3) {
+                    var purchase_cost = data['cost'] + data['cost_variance'];
+                    $('#purchase_cost').val(cost(purchase_cost));
+                } else {
+                    $('#purchase_cost').val(cost(data['cost']));
+                }
+
                 $('#need_name').val(data['name']);
-                $('#report_need_cost').val(data['purchase_cost']);
                 $('#expected_delivery_date').val(localDate(data['expected_delivery_date']));
                 $('#ngo_delivery_date').val(localDate(data['ngo_delivery_date']));
 
-                type_id = data['type'];     // to use in confirm change status
                 if (type_id == 0) { // if service
                     $('#product_status').hide();
                     $('#service_status').show();
@@ -284,7 +303,8 @@ $(document).ready(function(){
         }
         var expected_delivery_date = UTCDate($('#expected_delivery_date').val());   // utc date to back
         var ngo_delivery_date = UTCDate($('#ngo_delivery_date').val()); // utc date to back
-        var need_cost = $('#report_need_cost').val();
+        var purchase_cost = $('#purchase_cost').val().replace(',','');
+        var cost_variance = parseInt(purchase_cost) - need_paid;
 
         // append datas to a Form Data
         var form_data = new FormData();
@@ -296,10 +316,10 @@ $(document).ready(function(){
         }
         if(expected_delivery == true) { // if the product status is changing to 3
             form_data.append('expected_delivery_date', expected_delivery_date);
+            form_data.append('cost_variance', cost_variance);
         }
         if(real_delivery == true) { // if the product status is changing to 4
             form_data.append('ngo_delivery_date', ngo_delivery_date);
-            form_data.append('purchase_cost', need_cost);
         }
 
         if($('#change_need_form').valid()) {
