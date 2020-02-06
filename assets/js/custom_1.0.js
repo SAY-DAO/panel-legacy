@@ -120,3 +120,8 @@ $('.cost').on('keyup', function() {
     var n = parseInt($(this).val().replace(/\D/g,''),10);
     $(this).val(n.toLocaleString());
 })
+
+$('.date_time').datetimepicker({
+    dateFormat: 'yy-m-d',
+    timeFormat: 'H:0:0',
+});
