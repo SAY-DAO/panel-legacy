@@ -401,6 +401,7 @@ $(document).ready(function(){
                 $('#ngo_id').append(query);
                 $('#social_worker_ngo').append(query);
                 $('#need_ngo').append(query);
+                $('#ngo_filter').append(query);
                 // console.log("NGO field query:" + query);
             })
         },

@@ -630,7 +630,6 @@ function handlePanelAction() {
         });
     });
     // Toggle Panel Content
-    $('.report-content').slideToggle();  // SAY
     $(document).on("click", ".panel-header", function(event) {  // SAY change, from ".panel-header .panel-toggle" to ".panel-header"
         event.preventDefault();
         $(this).parents(".panel:first").find(".panel-content").slideToggle();
