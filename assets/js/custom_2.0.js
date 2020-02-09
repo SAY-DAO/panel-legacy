@@ -121,7 +121,10 @@ $('.cost').on('keyup', function() {
     $(this).val(n.toLocaleString());
 })
 
+// JQuery datetime picker customize
 $('.date_time').datetimepicker({
     dateFormat: 'yy-m-d',
     timeFormat: 'H:0:0',
+    prevText: '<i class="fa fa-chevron-circle-left custom"></i>',
+    nextText: '<i class="fa fa-chevron-circle-right custom"></i>',
 });

@@ -196,6 +196,10 @@ h1,
   background-color: #e3e3e3 !important;
 }
 
+#ui-datepicker-div { /* SAY added */
+  z-index: 10 !important;
+}
+
 .activeStatus{
   background: linear-gradient(90deg, #F59E39 0%, #F05A31 100%);
   color: #ffffff !important;
