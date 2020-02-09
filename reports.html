@@ -164,7 +164,6 @@
                                         <option value="3">Product purchase</option>
                                         <option value="4">Product delivery to the NGO</option>
                                         <option value="5">Product delivery</option>
-                                        
                                       </select>
                                   </div>
                               </div>
@@ -251,6 +250,40 @@
                 </div>
                 
                 <div class="panel-content report-content bg-white">
+                  
+                  <div class="option-group btn-group center-block col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div>
+                      <select id="ngo_filter" name="ngo_filter" class="btn btn-sm btn-dark btn-block col-lg-4 col-md-4 col-sm-4 col-xs-12 done_filter">
+                          <option value="">انتخاب انجمن...</option>
+                      </select>
+                    </div> 
+                    <div>
+                      <select id="type_filter" name="type_filter" class="btn btn-sm btn-dark btn-block col-lg-4 col-md-4 col-sm-4 col-xs-12 done_filter">
+                          <option value="-1">انتخاب نوع نیاز...</option>
+                          <option value="0">Sevice</option>
+                          <option value="1">Product</option>
+                      </select>
+                    </div>
+                    <!-- SERVICE -->
+                    <div id="1s" hidden>
+                      <select id="status_filter_service" name="status_filter" class="btn btn-sm btn-dark btn-block col-lg-4 col-md-4 col-sm-4 col-xs-12 done_filter">
+                          <option value="-1">انتخاب وضعیت نیاز...</option>
+                          <option value="2">Money transfer</option>
+                          <option value="3">Money transfer to the NGO</option>
+                          <option value="4">Service delivery</option>
+                      </select>
+                    </div>
+                    <!-- PRODUCT -->
+                    <div id="1p" hidden>
+                      <select id="status_filter_product" name="status_filter" class="btn btn-sm btn-dark btn-block col-lg-4 col-md-4 col-sm-4 col-xs-12 done_filter">
+                        <option value="-1">انتخاب وضعیت نیاز...</option>
+                        <option value="2">Money transfer</option>
+                        <option value="3">Product purchase</option>
+                        <option value="4">Product delivery to the NGO</option>
+                        <option value="5">Product delivery</option>
+                      </select>
+                    </div>
+                  </div>
                     
                   <table class="table table-hover table-striped dataTable" id="table-editable">
                       <thead>
@@ -264,6 +297,7 @@
                           <th class="medium_th">تاریخ رسیدن کالا به انجمن</th>
                           <th class="small_th">آیکون نیاز</th>
                           <th>کد کودک</th>
+                          <th>نام SAY کودک</th>
                           <th>نام کودک</th>
                           <th>نام خانوادگی کودک</th>
                           <th>هزینه نیاز</th>
@@ -293,7 +327,10 @@
                   <h3 class="panel-title"> گزارش <strong>نیازهای پرداخت شده/ارسال شده</strong> به انجمن<img class="preloader" id="report_ngo_preloader" src="assets/images/preloader/25.gif"/></h3>
                   <span class="f-12">لیست این نیازها ساعت ۹ صبح فردا به ایمیل هماهنگ کننده‌ی انجمن کودک ارسال می‌شود.</span>
                 </div>
-                <div class="option-group btn-group center-block col-lg-6 col-md-8 col-sm-8  col-xs-12">
+                
+                <div class="panel-content bg-white">
+
+                  <div class="option-group btn-group center-block col-lg-6 col-md-8 col-sm-8  col-xs-12">
                     <select id="need_ngo" name="need_ngo" class="btn btn-sm btn-dark btn-block col-lg-6 col-md-6 col-sm-6 col-xs-12 report_filter">
                         <option value="">انتخاب انجمن...</option>
                     </select>
@@ -302,8 +339,7 @@
                         <option value="0">Sevice</option>
                         <option value="1">Product</option>
                     </select>
-                </div>
-                <div class="panel-content bg-white">
+                  </div>
                     
                   <table class="table table-hover table-striped dataTable" id="table-editable">
                       <thead>
@@ -394,7 +430,7 @@
 <script src="assets/plugins/visible/jquery.visible.min.js"></script> <!-- Visible in Viewport -->
 <script src="assets/js/builder.js"></script>
 <script src="assets/js/sidebar_hover.js"></script>
-<script src="assets/js/application_1.0.js"></script> <!-- Main Application Script -->
+<script src="assets/js/application_2.0.js"></script> <!-- Main Application Script -->
 <script src="assets/js/plugins.js"></script> <!-- Main Plugin Initialization Script -->
 <script src="assets/js/widgets/notes.js"></script>
 <script src="assets/js/quickview.js"></script> <!-- Quickview Script -->
@@ -412,8 +448,8 @@
 <!-- <script src="assets/js/pages/table_dynamic.js"></script> -->
 <!-- <script src="assets/js/pages/table_editable.js"></script> -->
 
-<script src="assets/js/reports_2.0.js"></script>  <!--reports data feed-->
-<script src="assets/js/ngo_data_serve_1.0.js"></script>  <!--ngo data feed-->
+<script src="assets/js/reports_3.0.js"></script>  <!--reports data feed-->
+<script src="assets/js/ngo_data_serve_3.0.js"></script>  <!--ngo data feed-->
 <script src="assets/js/config.js"></script>  <!--url configurations-->
 <script src="assets/js/html_config_1.0.js"></script>  <!--HTML url configurations-->
 <script src="assets/js/custom_1.0.js"></script>  <!--custom functions-->
