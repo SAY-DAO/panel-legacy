@@ -282,6 +282,9 @@ $(document).ready(function(){
                     if(confirmStatus == 1){
                         $('#' + needId).find('.confirmBtn').prop("disabled", true);
                     }
+                    if (selected_child == 104) {
+                        $('#' + needId).find('.confirmBtn').hide();
+                    }
                     row_index += 1;
                 })
                 $('#needs_preloader').hide();
@@ -637,7 +640,6 @@ $(document).ready(function(){
     $('#needList').on('click' , '.confirmBtn' , function(e){
         e.preventDefault();
         var needId = $(this).parent().attr('id');
-        var childId = $('#child_need_select').val();
         console.log(needId);
 
         $.ajax({
