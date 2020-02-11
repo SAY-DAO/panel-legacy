@@ -287,6 +287,8 @@ $(document).ready(function(){
                     if(confirmStatus == 1){
                         $('#' + needId).find('.confirmBtn').prop("disabled", true);
                     }
+
+                    // TODO: Pre Defined needs (this is a hard code)
                     if (selected_child == 104) {
                         $('#' + needId).find('.confirmBtn').hide();
                     }
