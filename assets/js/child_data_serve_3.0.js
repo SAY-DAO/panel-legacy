@@ -387,7 +387,7 @@ $(document).ready(function(){
                     }
 
                     if(keys[i] == 'confirmDate' || keys[i] == 'createdAt' || keys[i] == 'lastUpdate') {
-                        value[keys[i]] = localDate(value[keys[i]]);
+                        value[keys[i]] = jalaliDate(value[keys[i]]);
                     }
                     
                     if(value[keys[i]] == null){
@@ -616,7 +616,7 @@ $(document).ready(function(){
                 $('#child_country').val(data['country']).change();
                 $('#child_city').val(data['city']).change();
                 $('#child_address').val(data['address']);
-                $('#child_birthdate').val(localDate(data['birthDate']));    // not working
+                $('#child_birthdate').val(jalaliDate(data['birthDate']));    // not working
                 $('#child_age').val(getAge(data['birthDate']));
                 $('#child_birthplace').val(data['birthPlace']);
                 $('#family_count').val(data['familyCount']);
