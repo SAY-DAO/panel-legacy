@@ -265,7 +265,7 @@ $(document).ready(function(){
                         }
 
                         if(keys[i] == 'confirmDate' || keys[i] == 'created' || keys[i] == 'updated') {
-                            value[keys[i]] = localDate(value[keys[i]]);
+                            value[keys[i]] = jalaliDate(value[keys[i]]);
                         }
  
                         if(value[keys[i]] == null){
@@ -456,7 +456,7 @@ $(document).ready(function(){
                         }
 
                         if(keys[i] == 'confirmDate' || keys[i] == 'created' || keys[i] == 'updated') {
-                            value[keys[i]] = localDate(value[keys[i]]);
+                            value[keys[i]] = jalaliDate(value[keys[i]]);
                         }
  
                         if(value[keys[i]] == null){

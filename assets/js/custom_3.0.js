@@ -80,17 +80,31 @@ function linkTo(value) {
     return link_to;
 }
 
-// local Date Time values
-function localDate(value) {
-    var local_date = -1;
+// Jalali Date Time values
+function jalaliDate(value) {
+    var jalali_date = -1;
     if (value != null) {
         var that_date = new Date(value);
-        local_date = that_date.toLocaleString();
+        jalali_date = (new JDate(that_date).format("dddd D MMMM YYYY")) + "<br />" + that_date.toLocaleTimeString('en-GB');
+        // local_date = that_date.toLocaleTimeString();
     } else {
-        local_date = null;
+        jalali_date = null;
     }
     
-    return local_date;
+    return jalali_date;
+}
+
+// locale Date Time values
+function localeDate(value) {
+    var locale_date = -1;
+    if (value != null) {
+        var that_date = new Date(value);
+        locale_date = that_date.toLocaleString();
+    } else {
+        locale_date = null;
+    }
+    
+    return locale_date;
 }
 
 //UTC date time
