@@ -128,3 +128,17 @@ $.validator.addMethod('filesize', function (value, element, param) {
 jQuery.validator.addMethod('notEqual', function(value, element, param) {
     return this.optional(element) || value != param;
   }, "Please specify a different (non-default) value");
+
+// Cost field comma and number
+$('.cost').on('keyup', function() {
+    var n = parseInt($(this).val().replace(/\D/g,''),10);
+    $(this).val(n.toLocaleString());
+})
+
+// JQuery datetime picker customize
+$('.date_time').datetimepicker({
+    dateFormat: 'yy-m-d',
+    timeFormat: 'H:0:0',
+    prevText: '<i class="fa fa-chevron-circle-left custom"></i>',
+    nextText: '<i class="fa fa-chevron-circle-right custom"></i>',
+});

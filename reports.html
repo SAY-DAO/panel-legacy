@@ -19,7 +19,7 @@
 
   <!--css files-->
   <link href="https://fonts.googleapis.com/css?family=Nothing+You+Could+Do" rel="stylesheet" type="text/css">
-  <link href="assets/css/style_1.0.css" rel="stylesheet"> <!-- MANDATORY -->
+  <link href="assets/css/style_2.0.css" rel="stylesheet"> <!-- MANDATORY -->
   <link href="assets/css/theme.css" rel="stylesheet"> <!-- MANDATORY -->
   <link href="assets/css/ui.css" rel="stylesheet"> <!-- MANDATORY -->
   
@@ -146,7 +146,7 @@
                       <form role="form" id="change_need_form" method="POST" enctype="multipart/form-data">
                         <div class="row">
 
-                          <div class="col-md-4 col-sm-4">
+                          <div class="col-md-4 col-sm-6">
                               <div class="form-group">
                                   <label for="need_name" class="control-label">نام نیاز</label>
                                   <input type="text" id="need_name" name="need_name" class="form-control" readonly />
@@ -154,7 +154,7 @@
                           </div>
                           
                           <!-- will show in product needs change status -->
-                          <div class="col-md-4 col-sm-4" id="product_status" hidden>
+                          <div class="col-md-4 col-sm-6" id="product_status" hidden>
                               <div class="form-group">
                                   <label for="need_status_product" class="control-label">وضعیت نیاز <span class="required">*</span></label>
                                   <div class="option-group">
@@ -170,7 +170,7 @@
                           </div>
 
                           <!-- will show in service needs change status -->
-                          <div class="col-md-4 col-sm-4" id="service_status" hidden>
+                          <div class="col-md-4 col-sm-6" id="service_status" hidden>
                               <div class="form-group">
                                   <label for="need_status_service" class="control-label">وضعیت نیاز <span class="required">*</span></label>
                                   <div class="option-group">
@@ -185,7 +185,7 @@
                           </div>
 
                           <!-- will show in product needs change status 2->3 -->
-                          <div class="col-md-4 col-sm-4" id="expected_delivery" hidden>
+                          <div class="col-md-4 col-sm-6" id="expected_delivery" hidden>
                             <div class="form-group">
                               <label for="expected_delivery_date" class="control-label">تاریخ مورد انتظار تحویل کالا به انجمن <span class="required">*</span></label>
                               <div class="append-icon">
@@ -196,12 +196,22 @@
                           </div>
 
                           <!-- will show in product needs change status 3->4 -->
-                          <div class="col-md-4 col-sm-4" id="real_delivery" hidden>
+                          <div class="col-md-4 col-sm-6" id="real_delivery" hidden>
                             <div class="form-group">
                               <label for="ngo_delivery_date" class="control-label">تاریخ رسیدن کالا به انجمن <span class="required">*</span></label>
                               <div class="append-icon">
                                 <input type="text" id="ngo_delivery_date" name="ngo_delivery_date" class="form-control date_time" />
                                 <i class="icon-calendar"></i>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-4 col-sm-6" id="cost_field" hidden>
+                            <div class="form-group">
+                              <label for="purchase_cost" class="control-label">هزینه پرداخت شده واقعی (تومان)</label>
+                              <div class="append-icon">
+                                <input type="text" id="purchase_cost" name="purchase_cost" class="form-control cost" placeholder="هزینه نیاز را وارد نمایید - تومان" />
+                                <i class="icon-tag"></i>
                               </div>
                             </div>
                           </div>
@@ -299,8 +309,10 @@
                           <th>کد کودک</th>
                           <th>نام SAY کودک</th>
                           <th>نام کودک</th>
-                          <th>نام خانوادگی کودک</th>
+                          <th class="medium_th">نام خانوادگی کودک</th>
                           <th>هزینه نیاز</th>
+                          <th class="medium_th">هزینه پرداخت شده کاربر</th>
+                          <th class="medium_th">هزینه پرداخت شده واقعی</th>
                           <th>مبلغ Donation</th>
                           <th class="medium_th">جزئیات نیاز</th>
                           <th>مدت زمان انجام</th>
@@ -352,6 +364,7 @@
                           <th class="medium_th">عنوان نیاز</th>
                           <th class="small_th">آیکون نیاز</th>
                           <th class="medium_th">هزینه نیاز</th>
+                          <th class="medium_th">هزینه پرداخت شده واقعی</th>
                           <th class="medium_th">تاریخ مورد انتظار تحویل کالا به انجمن</th>
                         </tr>
                       </thead>
@@ -448,11 +461,11 @@
 <!-- <script src="assets/js/pages/table_dynamic.js"></script> -->
 <!-- <script src="assets/js/pages/table_editable.js"></script> -->
 
-<script src="assets/js/reports_4.0.js"></script>  <!--reports data feed-->
-<script src="assets/js/ngo_data_serve_3.0.js"></script>  <!--ngo data feed-->
+<script src="assets/js/reports_6.0.js"></script>  <!--reports data feed-->
+<script src="assets/js/ngo_data_serve_4.0.js"></script>  <!--ngo data feed-->
 <script src="assets/js/config.js"></script>  <!--url configurations-->
 <script src="assets/js/html_config_1.0.js"></script>  <!--HTML url configurations-->
-<script src="assets/js/custom_2.0.js"></script>  <!--custom functions-->
+<script src="assets/js/custom_3.0.js"></script>  <!--custom functions-->
 <script src="assets/js/authorize_1.0.js"></script>  <!--Athorization-->
 <script src="assets/js/jwt-decode.min.js"></script>  <!--jwt decoder script-->
 <script src="assets/plugins/jdate.js" type="text/javascript" charset="utf-8"></script>  <!-- Jalali date -->
