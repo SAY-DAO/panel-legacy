@@ -21,7 +21,7 @@ ssh -t $SERVER_USER@$SERVER "
 cd /tmp &&
 tar -xvf $CI_PROJECT_NAME.tar.gz &&
 cd $CI_PROJECT_NAME &&
-docker build -t $REPO_UPLOAD_ADD . &&
+docker build -t $IMAGE_NAME . &&
 cd .. &&
 rm -rf $CI_PROJECT_NAME $CI_PROJECT_NAME.tar.gz &&
 cd /home/server/say-installer &&
