@@ -274,13 +274,7 @@ $(document).ready(function(){
                 $('#expected_delivery').hide();
                 $('#real_delivery').hide();
                 $('#cost_field').hide();
-
-                if (type_id == 1 && data['status'] == 3) {
-                    // In this condition the cost and purchase cost of the product are not equal
-                    $('#purchase_cost').val(cost(data['purchase_cost']).replace("Toman", ""));
-                } else {
-                    $('#purchase_cost').val(cost(data['cost']).replace("Toman", ""));
-                }
+                $('#purchase_cost').val(cost(data['purchase_cost']).replace("Toman", ""));
 
                 $('#need_name').val(data['name']);
                 $('#expected_delivery_date').val(localeDate(data['expected_delivery_date']));
