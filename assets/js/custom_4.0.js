@@ -142,3 +142,8 @@ $('.date_time').datetimepicker({
     prevText: '<i class="fa fa-chevron-circle-left custom"></i>',
     nextText: '<i class="fa fa-chevron-circle-right custom"></i>',
 });
+
+// Make the text rtl
+function rtl(value) {
+    return '<span dir="rtl">' + value + '</span>';
+}

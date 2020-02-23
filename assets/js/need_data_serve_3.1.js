@@ -149,7 +149,7 @@ $(document).ready(function(){
                         }
 
                         if ( keys[i] == 'name_fa') {
-                            value[keys[i]] = name_translations.fa;
+                            value[keys[i]] = rtl(name_translations.fa);
                         }
 
                         if ( keys[i] == 'description') {
@@ -157,7 +157,7 @@ $(document).ready(function(){
                         }
 
                         if ( keys[i] == 'description_fa') {
-                            value[keys[i]] = description_translations.fa;
+                            value[keys[i]] = rtl(description_translations.fa);
                         }
 
                         if (keys[i] == 'imageUrl') {
@@ -223,6 +223,12 @@ $(document).ready(function(){
                                 if(value[keys[i]] == 5) {
                                     value[keys[i]] = childDelivery();
                                 }
+                            }
+                        }
+
+                        if (keys[i] == 'details' || keys[i] == 'title') {
+                            if(value[keys[i]] != null) {
+                                value[keys[i]] = rtl(value[keys[i]]);
                             }
                         }
 
@@ -340,7 +346,7 @@ $(document).ready(function(){
                         }
 
                         if ( keys[i] == 'name_fa') {
-                            value[keys[i]] = name_translations.fa;
+                            value[keys[i]] = rtl(name_translations.fa);
                         }
 
                         if ( keys[i] == 'description') {
@@ -348,7 +354,7 @@ $(document).ready(function(){
                         }
 
                         if ( keys[i] == 'description_fa') {
-                            value[keys[i]] = description_translations.fa;
+                            value[keys[i]] = rtl(description_translations.fa);
                         }
 
                         if (keys[i] == 'imageUrl') {
@@ -414,6 +420,12 @@ $(document).ready(function(){
                                 if(value[keys[i]] == 5) {
                                     value[keys[i]] = childDelivery();
                                 }
+                            }
+                        }
+
+                        if (keys[i] == 'details' || keys[i] == 'title') {
+                            if(value[keys[i]] != null) {
+                                value[keys[i]] = rtl(value[keys[i]]);
                             }
                         }
 
