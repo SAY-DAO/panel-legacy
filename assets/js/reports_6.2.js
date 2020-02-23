@@ -217,6 +217,12 @@ $(document).ready(function(){
                             }
                         }
 
+                        if (keys[i] == 'details' || keys[i] == 'title') {
+                            if(value[keys[i]] != null) {
+                                value[keys[i]] = rtl(value[keys[i]]);
+                            }
+                        }
+
                         if (value[keys[i]] == null) {
                             value[keys[i]] = nullValues();
                         }
@@ -423,6 +429,12 @@ $(document).ready(function(){
                         if (reportNGO_keys[i] == 'expected_delivery_date') {
                             if (value[reportNGO_keys[i]] != null) {
                                 value[reportNGO_keys[i]] = jalaliDate(value[reportNGO_keys[i]]);
+                            }
+                        }
+
+                        if (keys[i] == 'title') {
+                            if(value[keys[i]] != null) {
+                                value[keys[i]] = rtl(value[keys[i]]);
                             }
                         }
 

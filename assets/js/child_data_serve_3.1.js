@@ -185,7 +185,7 @@ $(document).ready(function(){
                     }
 
                     if (keys[i] == 'sayName_fa') {
-                        value[keys[i]] = sayname_translations.fa;
+                        value[keys[i]] = rtl(sayname_translations.fa);
                     }
                     
                     if (keys[i] == 'bio') {
@@ -193,7 +193,7 @@ $(document).ready(function(){
                     }
 
                     if (keys[i] == 'bio_fa') {
-                        value[keys[i]] = bio_translations.fa;
+                        value[keys[i]] = rtl(bio_translations.fa);
                     }
 
                     if (keys[i] == 'bioSummary') {
@@ -201,7 +201,7 @@ $(document).ready(function(){
                     }
 
                     if (keys[i] == 'bioSummary_fa') {
-                        value[keys[i]] = bio_summary_translations.fa;
+                        value[keys[i]] = rtl(bio_summary_translations.fa);
                     }
 
                     if (keys[i] == 'firstName') {
@@ -209,7 +209,7 @@ $(document).ready(function(){
                     }
 
                     if (keys[i] == 'firstName_fa') {
-                        value[keys[i]] = firstName_translations.fa;
+                        value[keys[i]] = rtl(firstName_translations.fa);
                     }
 
                     if (keys[i] == 'lastName') {
@@ -217,7 +217,7 @@ $(document).ready(function(){
                     }
 
                     if (keys[i] == 'lastName_fa') {
-                        value[keys[i]] = lastName_translations.fa;
+                        value[keys[i]] = rtl(lastName_translations.fa);
                     }
                     // End translation fields
 
@@ -225,6 +225,10 @@ $(document).ready(function(){
                         value[keys[i]] = value[keys[i]] + " Done";
                     }
 
+                    if(keys[i] == 'spent_credit'){
+                        value[keys[i]] = cost(value[keys[i]]);
+                    }
+                    
                     if(keys[i] == 'birthDate'){
                         value[keys[i]] = getAge(value[keys[i]]);
                     }
