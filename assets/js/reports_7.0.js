@@ -17,7 +17,10 @@ $(document).ready(function(){
             },
             "service_receipts[]": {
                 filesize: 3    // MB
-            }
+            },
+            bank_track_id: {
+                number: true,
+            },
         },
         messages: {
             need_status_product: {
@@ -31,7 +34,10 @@ $(document).ready(function(){
             },
             "service_receipts[]": {
                 filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
-            }
+            },
+            bank_track_id: {
+                number: "لطفا فقط عدد وارد کنید.",
+            },
         },
         errorPlacement: function(error, element) {
             error.appendTo(element.parent('div'));
@@ -62,6 +68,7 @@ $(document).ready(function(){
                 'status',
                 'expected_delivery_date',
                 'ngo_delivery_date',
+                'bank_track_id',
                 'imageUrl',
                 'childGeneratedCode',
                 'childSayName',
@@ -91,7 +98,8 @@ $(document).ready(function(){
                         'imageUrl',
                         'cost',
                         'purchase_cost',
-                        'expected_delivery_date'];
+                        'expected_delivery_date',
+                        'bank_track_id'];
 
     // Handle status filtering in done needs report
     $('#type_filter').change(function() {
@@ -260,6 +268,15 @@ $(document).ready(function(){
         }
     })
 
+    // Handle bank track id field
+    $('#need_status_service').change(function() {
+        if ($(this).val() == 3) {   // if money transferred to the NGO
+            $('#track_id').show();
+        } else {
+            $('#track_id').hide();
+        }
+    })
+
     // change needs status
     $('#reportDoneNeedList').on('click' , '.changeStatus' , function(e) {
         e.preventDefault();
@@ -280,7 +297,9 @@ $(document).ready(function(){
                 $('#expected_delivery').hide();
                 $('#real_delivery').hide();
                 $('#cost_field').hide();
+                $('#track_id').hide();
                 $('#purchase_cost').val(cost(data['purchase_cost']).replace("Toman", ""));
+                $('#bank_track_id').val(data['bank_track_id']);
 
                 $('#need_name').val(data['name']);
                 $('#expected_delivery_date').val(localeDate(data['expected_delivery_date']));
@@ -318,11 +337,22 @@ $(document).ready(function(){
         var receipts = -1;
         var expected_delivery = false;
         var real_delivery = false;
+        var ngo_money_transfer = false;
         var need_name = $('#need_name').val();
         if (type_id == 0) { // if service
             $('#need_status_product').rules('remove', 'required');  // remove rule
             status = $('#need_status_service').val();
             receipts = $('#service_receipts')[0].files[0];
+            if (status == 3) {  // if money transferred to the NGO
+                ngo_money_transfer = true;
+                // add rule
+                $('#bank_track_id').rules('add', {
+                    required: true,
+                    messages: {required: "شماره پیگیری بانک ضروری است."}
+                });
+            } else {
+                $('#bank_track_id').rules('remove', 'required');    // remove rule
+            }
         } else if (type_id == 1) {  // if product
             $('#need_status_service').rules('remove', 'required');  // remove rule
             status = $('#need_status_product').val();
@@ -351,6 +381,7 @@ $(document).ready(function(){
         var expected_delivery_date = UTCDate($('#expected_delivery_date').val());   // utc date to back
         var ngo_delivery_date = UTCDate($('#ngo_delivery_date').val()); // utc date to back
         var purchase_cost = $('#purchase_cost').val().replace(',','');
+        var bank_track_id = $('#bank_track_id').val();
 
         // append datas to a Form Data
         var form_data = new FormData();
@@ -360,12 +391,15 @@ $(document).ready(function(){
         if (receipts) {
             form_data.append('receipts', receipts);
         }
-        if(expected_delivery == true) { // if the product status is changing to 3
+        if (expected_delivery) { // if the product status is changing to 3
             form_data.append('expected_delivery_date', expected_delivery_date);
             form_data.append('purchase_cost', purchase_cost);
         }
-        if(real_delivery == true) { // if the product status is changing to 4
+        if (real_delivery) { // if the product status is changing to 4
             form_data.append('ngo_delivery_date', ngo_delivery_date);
+        }
+        if (ngo_money_transfer) {   // if the Service status is changing to 3
+            form_data.append('bank_track_id', bank_track_id);
         }
 
         if($('#change_need_form').valid()) {
