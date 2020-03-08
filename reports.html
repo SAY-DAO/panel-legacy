@@ -147,10 +147,10 @@
                         <div class="row">
 
                           <div class="col-md-4 col-sm-6">
-                              <div class="form-group">
-                                  <label for="need_name" class="control-label">نام نیاز</label>
-                                  <input type="text" id="need_name" name="need_name" class="form-control" readonly />
-                              </div>
+                            <div class="form-group">
+                              <label for="need_name" class="control-label">نام نیاز</label>
+                              <input type="text" id="need_name" name="need_name" class="form-control" readonly />
+                            </div>
                           </div>
                           
                           <!-- will show in product needs change status -->
@@ -206,6 +206,7 @@
                             </div>
                           </div>
 
+                          <!-- will show in product needs change status 2->3 -->
                           <div class="col-md-4 col-sm-6" id="cost_field" hidden>
                             <div class="form-group">
                               <label for="purchase_cost" class="control-label">هزینه پرداخت شده واقعی (تومان)</label>
@@ -213,6 +214,14 @@
                                 <input type="text" id="purchase_cost" name="purchase_cost" class="form-control cost" placeholder="هزینه نیاز را وارد نمایید - تومان" />
                                 <i class="icon-tag"></i>
                               </div>
+                            </div>
+                          </div>
+
+                          <!-- will show in Service needs change status 2->3 -->
+                          <div class="col-md-4 col-sm-6" id="track_id" hidden>
+                            <div class="form-group">
+                              <label for="bank_track_id" class="control-label">شماره پیگیری واریز وجه</label>
+                              <input type="text" id="bank_track_id" name="bank_track_id" class="form-control" placeholder="شماره پیگیری واریز وجه را وارد نمایید" />
                             </div>
                           </div>
 
@@ -305,6 +314,7 @@
                           <th>وضعیت نیاز</th>
                           <th class="medium_th">تاریخ مورد انتظار تحویل کالا به انجمن</th>
                           <th class="medium_th">تاریخ رسیدن کالا به انجمن</th>
+                          <th class="medium_th">شماره پیگیری واریز وجه</th>
                           <th class="small_th">آیکون نیاز</th>
                           <th>کد کودک</th>
                           <th>نام SAY کودک</th>
@@ -366,6 +376,7 @@
                           <th class="medium_th">هزینه نیاز</th>
                           <th class="medium_th">هزینه پرداخت شده واقعی</th>
                           <th class="medium_th">تاریخ مورد انتظار تحویل کالا به انجمن</th>
+                          <th class="medium_th">شماره پیگیری واریز وجه</th>
                         </tr>
                       </thead>
                       <tbody id="reportNGONeedList">
@@ -461,7 +472,7 @@
 <!-- <script src="assets/js/pages/table_dynamic.js"></script> -->
 <!-- <script src="assets/js/pages/table_editable.js"></script> -->
 
-<script src="assets/js/reports_6.2.js"></script>  <!--reports data feed-->
+<script src="assets/js/reports_7.0.js"></script>  <!--reports data feed-->
 <script src="assets/js/ngo_data_serve_4.0.js"></script>  <!--ngo data feed-->
 <script src="assets/js/config.js"></script>  <!--url configurations-->
 <script src="assets/js/html_config_1.0.js"></script>  <!--HTML url configurations-->
