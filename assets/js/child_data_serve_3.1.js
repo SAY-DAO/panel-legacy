@@ -134,7 +134,7 @@ $(document).ready(function(){
     child_id_url = '/child/all/confirm=1';
     // TODO: adding farsi fields
 
-    var keys = ['id' , 'generatedCode' , 'avatarUrl' , 'sleptAvatarUrl' , 'voiceUrl' , 'firstName' , 
+    var keys = ['id' , 'generatedCode' , 'awakeAvatarUrl' , 'sleptAvatarUrl' , 'voiceUrl' , 'firstName' , 
                 'lastName' , 'firstName_fa', 'lastName_fa', 'done_needs_count' , 'spent_credit' , 'birthDate' , 'sayName' , 'sayName_fa' ,
                 'country' , 'city' , 'gender' , 'bio' , 'bioSummary' , 'bio_fa' , 'bioSummary_fa' , 
                 'birthPlace' , 'nationality' , 'familyCount' , 'sayFamilyCount' , 'education' , 
@@ -375,7 +375,7 @@ $(document).ready(function(){
                         }
                     }
 
-                    if (keys[i] == 'avatarUrl'){
+                    if (keys[i] == 'awakeAvatarUrl'){
                         value[keys[i]] = getImgFile(value[keys[i]]);
                     }
 
@@ -472,7 +472,7 @@ $(document).ready(function(){
         var city = $('#child_city').val();
         var phoneNumber = $('#child_phone_number').val();
         var birthDate = $('#child_birthdate').val();
-        var avatarUrl = $('#child_avatar')[0].files[0];
+        var awakeAvatarUrl = $('#child_avatar')[0].files[0];
         var sleptAvatarUrl = $('#child_slept_avatar')[0].files[0];
         var voiceUrl = $('#child_voice')[0].files[0];
         // Nullable
@@ -498,7 +498,7 @@ $(document).ready(function(){
         var form_data = new FormData();
         form_data.append('ngo_id', id_ngo);
         form_data.append('sw_id', id_social_worker);
-        form_data.append('avatarUrl', avatarUrl);
+        form_data.append('awakeAvatarUrl', awakeAvatarUrl);
         form_data.append('sleptAvatarUrl', sleptAvatarUrl);
         form_data.append('voiceUrl', voiceUrl);
         form_data.append('gender', gender);
@@ -687,7 +687,7 @@ $(document).ready(function(){
         var country = $('#child_country').val();
         var city = $('#child_city').val();
         var phoneNumber = $('#child_phone_number').val();
-        var avatarUrl = $('#child_avatar')[0].files[0];
+        var awakeAvatarUrl = $('#child_avatar')[0].files[0];
         var sleptAvatarUrl = $('#child_slept_avatar')[0].files[0];
         var voiceUrl = $('#child_voice')[0].files[0];
 
@@ -710,8 +710,8 @@ $(document).ready(function(){
         form_data.append('firstName_translations', firstName_translations);
         form_data.append('lastName_translations', lastName_translations);
         // End translation fields
-        if(avatarUrl){
-            form_data.append('avatarUrl', avatarUrl);
+        if(awakeAvatarUrl){
+            form_data.append('awakeAvatarUrl', awakeAvatarUrl);
         }
         if(sleptAvatarUrl){
             form_data.append('sleptAvatarUrl', sleptAvatarUrl);
