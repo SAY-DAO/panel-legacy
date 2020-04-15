@@ -54,8 +54,8 @@ $(document).ready(function(){
                 error: function(data) {
                     var json = JSON.parse(data.responseText);
                     bootbox.alert({
-                        title: "Error!",
-                        message: json.message,
+                        title: errorTitle(),
+                        message: errorContent(json.message),
                     });
                 }
             })

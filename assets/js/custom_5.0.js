@@ -16,10 +16,19 @@ function getAge(DOB) {
 
 // null values in tables
 function nullValues() {
-    var value = '<span class="null">Not entered</span>';
+    var value = '<span class="null">وارد نشده</span>';
     return value;
 }
 
+// Error custom dialogue box
+function errorTitle() {
+    var value = '<span class="errorTitle">خطا رخ داده است</span>';
+    return value;
+}
+function errorContent(val) {
+    var value = '<span class="errorContent">' + val + '</span>';
+    return value;
+}
 
 //needs status in report and need page
 function fullPayment() {

@@ -341,8 +341,8 @@ $(document).ready(function(){
                 },
                 error: function(data){
                     bootbox.alert({
-                        title: "Error!",
-                        message: data.responseJSON.message,
+                        title: errorTitle(),
+                        message: errorContent(data.responseJSON.message),
                     });
                 }
             })  //end of Update ajax
@@ -369,8 +369,8 @@ $(document).ready(function(){
             },
             error: function(data) {
                 bootbox.alert({
-                    title: "Error!",
-                    message: data.responseJSON.message,
+                    title: errorTitle(),
+                    message: errorContent(data.responseJSON.message),
                 });
             }
         })
