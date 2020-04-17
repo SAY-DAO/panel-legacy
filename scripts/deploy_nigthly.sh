@@ -17,6 +17,8 @@ ssh-keyscan $SERVER >> ~/.ssh/known_hosts
 cd /builds/$CI_PROJECT_NAMESPACE/
 tar -zcf /tmp/$CI_PROJECT_NAME_NIGHTLY.tar.gz --exclude=.git $CI_PROJECT_NAME
 
+ssh -t $SERVER_USER@$SERVER "mkdir -p $CI_PROJECT_DIR_NIGHTLY"
+
 cd /tmp
 scp $CI_PROJECT_NAME_NIGHTLY.tar.gz $SERVER_USER@$SERVER:$CI_PROJECT_DIR_NIGHTLY
 ssh -t $SERVER_USER@$SERVER "
