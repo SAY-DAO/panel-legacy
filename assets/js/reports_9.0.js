@@ -428,7 +428,18 @@ $(document).ready(function(){
         }
     })
 
-
+    // Handle email hint text
+    // If 7am < time <1pm = email will send on 1pm, if 1pm < time < 7am = email will send on 7am
+    var now = new Date();
+    var hour = now.getHours();
+    var morningText = 'لیست این نیازها ساعت ۷ صبح به ایمیل هماهنگ کننده‌ی انجمن کودک ارسال می‌شود.';
+    var afternoonText = 'لیست این نیازها ساعت ۱ بعد از ظهر به ایمیل هماهنگ کننده‌ی انجمن کودک ارسال می‌شود.';
+    if (hour > 7 && hour < 13) {
+        $('#email-hint').append(afternoonText);
+    } else {
+        $('#email-hint').append(morningText);
+    }
+    
     // status 3 needs to report to NGO
     $('.report_filter').change(function() {
         var selected_ngo = $('#need_ngo').val();
