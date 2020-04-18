@@ -150,6 +150,10 @@ $('.date_time').datetimepicker({
     timeFormat: 'H:0:0',
     prevText: '<i class="fa fa-chevron-circle-left custom"></i>',
     nextText: '<i class="fa fa-chevron-circle-right custom"></i>',
+    currentText: 'امروز',
+    closeText: 'بستن',
+    dayNamesMin: ["ی", "د", "س", "چ", "پ", "ج", "ش"],
+    firstDay: 6,
 });
 
 // Make the text rtl
