@@ -16,10 +16,19 @@ function getAge(DOB) {
 
 // null values in tables
 function nullValues() {
-    var value = '<span class="null">Not entered</span>';
+    var value = '<span class="null">وارد نشده</span>';
     return value;
 }
 
+// Error custom dialogue box
+function errorTitle() {
+    var value = '<span class="errorTitle">خطا رخ داده است</span>';
+    return value;
+}
+function errorContent(val) {
+    var value = '<span class="errorContent">' + val + '</span>';
+    return value;
+}
 
 //needs status in report and need page
 function fullPayment() {
@@ -141,6 +150,10 @@ $('.date_time').datetimepicker({
     timeFormat: 'H:0:0',
     prevText: '<i class="fa fa-chevron-circle-left custom"></i>',
     nextText: '<i class="fa fa-chevron-circle-right custom"></i>',
+    currentText: 'امروز',
+    closeText: 'بستن',
+    dayNamesMin: ["ی", "د", "س", "چ", "پ", "ج", "ش"],
+    firstDay: 6,
 });
 
 // Make the text rtl
