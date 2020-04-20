@@ -289,6 +289,10 @@ $(document).ready(function(){
                         $('#' + needId).find('.confirmBtn').prop("disabled", true);
                     }
 
+                    if (global_user_role != ROLES.SUPER_ADMIN && confirmStatus == 1) {
+                        $('#' + needId).find('.editBtn').prop("disabled", true);
+                    }
+
                     // TODO: Pre Defined needs (this is a hard code)
                     if (selected_child == 104) {
                         $('#' + needId).find('.confirmBtn').hide();
