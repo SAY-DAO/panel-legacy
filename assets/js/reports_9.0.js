@@ -103,7 +103,6 @@ $(document).ready(function(){
 
     // Handle status filtering in done needs report
     $('#type_filter').change(function() {
-        console.log($(this).val());
         if ($(this).val() == 0) {   // if service
             $('#1s').show();
             $('#1p').hide();
@@ -252,7 +251,7 @@ $(document).ready(function(){
         $('#reportDoneNeedList').empty();
     })
 
-    // Handle delivery date fields
+    // Handle delivery date and cost fields - Products
     $('#need_status_product').change(function() {
         if ($(this).val() == 3) {   // if product purchase
             $('#expected_delivery').show();
@@ -268,12 +267,17 @@ $(document).ready(function(){
         }
     })
 
-    // Handle bank track id field
+    // Handle bank track id and cost fields - Services
     $('#need_status_service').change(function() {
         if ($(this).val() == 3) {   // if money transferred to the NGO
             $('#track_id').show();
         } else {
             $('#track_id').hide();
+        }
+        if ($(this).val() == 4) {
+            $('#cost_field').show();
+        } else {
+            $('#cost_field').hide();
         }
     })
 
@@ -338,6 +342,7 @@ $(document).ready(function(){
         var expected_delivery = false;
         var real_delivery = false;
         var ngo_money_transfer = false;
+        var service_cost_change = false;
         var need_name = $('#need_name').val();
         if (type_id == 0) { // if service
             $('#need_status_product').rules('remove', 'required');  // remove rule
@@ -352,6 +357,9 @@ $(document).ready(function(){
                 });
             } else {
                 $('#bank_track_id').rules('remove', 'required');    // remove rule
+            }
+            if (status == 4) {
+                service_cost_change = true;
             }
         } else if (type_id == 1) {  // if product
             $('#need_status_service').rules('remove', 'required');  // remove rule
@@ -400,6 +408,9 @@ $(document).ready(function(){
         }
         if (ngo_money_transfer) {   // if the Service status is changing to 3
             form_data.append('bank_track_id', bank_track_id);
+        }
+        if (service_cost_change) {  // if the Service status is changing to 4
+            form_data.append('purchase_cost', purchase_cost);
         }
 
         if($('#change_need_form').valid()) {
