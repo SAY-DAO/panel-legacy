@@ -227,7 +227,7 @@ $(document).ready(function(){
                         }
 
                         if (keys[i] == 'details' || keys[i] == 'title') {
-                            if(value[keys[i]] != null) {
+                            if(Boolean(value[keys[i]]) != false) {
                                 value[keys[i]] = rtl(value[keys[i]]);
                             }
                         }
@@ -274,7 +274,7 @@ $(document).ready(function(){
                             value[keys[i]] = jalaliDate(value[keys[i]]);
                         }
  
-                        if(value[keys[i]] == null){
+                        if(Boolean(value[keys[i]]) == false){
                             value[keys[i]] = nullValues();
                         }
 
@@ -428,7 +428,7 @@ $(document).ready(function(){
                         }
 
                         if (keys[i] == 'details' || keys[i] == 'title') {
-                            if(value[keys[i]] != null) {
+                            if(Boolean(value[keys[i]]) == false) {
                                 value[keys[i]] = rtl(value[keys[i]]);
                             }
                         }
@@ -475,7 +475,7 @@ $(document).ready(function(){
                             value[keys[i]] = jalaliDate(value[keys[i]]);
                         }
  
-                        if(value[keys[i]] == null){
+                        if(Boolean(value[keys[i]]) == false){
                             value[keys[i]] = nullValues();
                         }
 
@@ -771,9 +771,7 @@ $(document).ready(function(){
         if(cost) {
             form_data.append('cost', cost);
         }
-        if(details) {
-            form_data.append('details', details);
-        }
+        form_data.append('details', details);
         if(type) {
             form_data.append('type', type);
         }
