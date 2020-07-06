@@ -68,6 +68,7 @@ $(document).ready(function(){
                 'status',
                 'expected_delivery_date',
                 'ngo_delivery_date',
+                'dkc',
                 'bank_track_id',
                 'imageUrl',
                 'childGeneratedCode',
@@ -99,7 +100,8 @@ $(document).ready(function(){
                         'cost',
                         'purchase_cost',
                         'expected_delivery_date',
-                        'bank_track_id'];
+                        'bank_track_id',
+                        'dkc'];
 
     // Handle status filtering in done needs report
     $('#type_filter').change(function() {
@@ -252,14 +254,16 @@ $(document).ready(function(){
         $('#reportDoneNeedList').empty();
     })
 
-    // Handle delivery date fields
+    // Handle Product's fields
     $('#need_status_product').change(function() {
         if ($(this).val() == 3) {   // if product purchase
             $('#expected_delivery').show();
             $('#cost_field').show();
+            $('#dkc_number').show();
         } else {
             $('#expected_delivery').hide();
             $('#cost_field').hide();
+            $('#dkc_number').hide();
         }
         if ($(this).val() == 4) {   // if product delivered to NGO
             $('#real_delivery').show();
@@ -268,7 +272,7 @@ $(document).ready(function(){
         }
     })
 
-    // Handle bank track id field
+    // Handle Service's field
     $('#need_status_service').change(function() {
         if ($(this).val() == 3) {   // if money transferred to the NGO
             $('#track_id').show();
@@ -298,8 +302,10 @@ $(document).ready(function(){
                 $('#real_delivery').hide();
                 $('#cost_field').hide();
                 $('#track_id').hide();
+                $('#dkc_number').hide();
                 $('#purchase_cost').val(cost(data['purchase_cost']).replace("Toman", ""));
                 $('#bank_track_id').val(data['bank_track_id']);
+                $('#dkc').val(data['dkc']);
 
                 $('#need_name').val(data['name']);
                 $('#expected_delivery_date').val(localeDate(data['expected_delivery_date']));
@@ -382,6 +388,7 @@ $(document).ready(function(){
         var ngo_delivery_date = UTCDate($('#ngo_delivery_date').val()); // utc date to back
         var purchase_cost = $('#purchase_cost').val().replace(',','');
         var bank_track_id = $('#bank_track_id').val();
+        var dkc = $('#dkc').val();
 
         // append datas to a Form Data
         var form_data = new FormData();
@@ -394,6 +401,7 @@ $(document).ready(function(){
         if (expected_delivery) { // if the product status is changing to 3
             form_data.append('expected_delivery_date', expected_delivery_date);
             form_data.append('purchase_cost', purchase_cost);
+            form_data.append('dkc', dkc);
         }
         if (real_delivery) { // if the product status is changing to 4
             form_data.append('ngo_delivery_date', ngo_delivery_date);
