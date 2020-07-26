@@ -287,6 +287,7 @@ $(document).ready(function(){
                     // disable confirm button if the need has confirmed already!
                     if(confirmStatus == 1){
                         $('#' + needId).find('.confirmBtn').prop("disabled", true);
+                        $('#' + needId).find('.confirmBtn').text("Confirmed");
                     }
 
                     if (global_user_role != ROLES.SUPER_ADMIN && confirmStatus == 1) {

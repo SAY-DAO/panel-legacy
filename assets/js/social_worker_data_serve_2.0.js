@@ -127,12 +127,13 @@ $(document).ready(function(){
 
             $.each(data , function(key , value){
                 var socialworkerId = value[keys[0]];
+                var deactivateStatus = !(value['isActive']);
 
                 // first td for row count numbers, second td for operational buttons
                 var query = '<tr>\
                 <td>' + row_index + '</td>\
                 <td id="' + socialworkerId + '">\
-                <button type="submit" class="btn btn-embossed btn-success btn-block btn-sm confirmBtn" disabled>Confirm</button>\
+                <button type="submit" class="btn btn-embossed btn-inverse btn-block btn-sm deactivateBtn">Deactivate</button>\
                 <button class="btn btn-embossed btn-primary btn-block btn-sm editBtn" onclick="editScroll()">Edit</button>\
                 <button class="btn btn-embossed btn-danger btn-block btn-sm deleteBtn">Delete</button>\
                 </td>';
@@ -220,6 +221,13 @@ $(document).ready(function(){
                 }
                 query+= '</tr>';
                 $('#socialWorkerList').append(query);
+
+                // Disable deactivation btn if social worker is deactivated
+                if (deactivateStatus) {
+                    $('#' + socialworkerId).find('.deactivateBtn').prop("disabled", true);
+                    $('#' + socialworkerId).find('.deactivateBtn').text("Deactivated");
+                }
+
                 row_index += 1;
                 
             })

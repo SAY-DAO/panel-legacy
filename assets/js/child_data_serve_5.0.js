@@ -413,6 +413,7 @@ $(document).ready(function(){
                 // disable confirm button if the child has confirmed already!
                 if(confirmStatus == 1){
                         $('#' + childId).find('.confirmBtn').prop("disabled", true);
+                        $('#' + childId).find('.confirmBtn').text("Confirmed");
                 }
                 row_index += 1;
             })
