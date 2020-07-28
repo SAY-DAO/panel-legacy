@@ -583,9 +583,10 @@ $(document).ready(function(){
                 var confirmDeactivate = confirm("You are about to DEACTIVATE the penel user.\nAre you sure?");
                 if (confirmDeactivate) {
                     $('#content_preloader').show();
-                    return;
+                    return confirmDeactivate;
                 } else {
-                    return;
+                    console.log ("canceled");
+                    return confirmDeactivate;
                 }
             },
             success: function(data) {
@@ -595,10 +596,6 @@ $(document).ready(function(){
             },
             error: function(data) {
                 $('#content_preloader').hide();
-                // bootbox.alert({
-                //     title: errorTitle(),
-                //     message: errorContent(data.responseJSON.message),
-                // });
                 console.log(data.responseJSON.message);
             },
             statusCode: {
@@ -609,12 +606,13 @@ $(document).ready(function(){
                     var newSwId = prompt("مددکار دارای کودک می‌باشد، ابتدا باید کودکان او به مددکاری دیگر انتقال یابند.\nلطفا آی دی مددکار جدید را وارد نمایید:");
                     if (newSwId) {
                         if (!newSwId.match(valid)) {
-                            alert("آی دی تنها می‌تواند شامل اعداد باشد.");
+                            alert("آی دی تنها می‌تواند شامل اعداد باشد.\n مقدار وارد شده: (" + newSwId + ")");
                         } else {
                             getPrevSwChild(id, newSwId);
                         }
                     } else {
                         console.log ("canceled");
+                        return newSwId;
                     }
                 },
                 404: function() {
@@ -627,40 +625,33 @@ $(document).ready(function(){
 
     // Get children of previous socialworker(that gonna be deactivated)
     function getPrevSwChild(prevSwId, newSwId) {
-        $.ajax({
-            url: SAYApiUrl + '/child/all/confirm=2?sw_id=' + prevSwId,
-            method: 'GET',
-            dataType: 'json',
-            beforeSend: function() {
-                $('#content_preloader').show();
-            },
-            success: function(data) {
-                $('#content_preloader').hide();
+        // $.ajax({
+        //     url: SAYApiUrl + '/child/all/confirm=2?sw_id=' + prevSwId,
+        //     method: 'GET',
+        //     dataType: 'json',
+        //     beforeSend: function() {
+        //         $('#content_preloader').show();
+        //     },
+        //     success: function(data) {
+        //         $('#content_preloader').hide();
 
-                var childrenData = data.children;
-                var childrenId = [];
-                $.each(childrenData, function(key, value) {
-                    childrenId.push(value['id']);
-                })
-                var continueMigrate = confirm(childrenId.length + " کودک به مددکار جدید انتقال می‌یابد.\nادامه می‌دهید؟");
-                if (continueMigrate) {
-                    // Call migrate function
-                    migrate(childrenId, newSwId);
-                } else {
-                    return;
-                }
-            },
-            error: function(data) {
-                $('#content_preloader').hide();
-                console.log(data.responseJSON.message);
-            }
-        })
-    }
-
-    // Migrate a socialworker children
-    function migrate(childId, swId) {
-        console.log("Children to be migrate: ", childId);
-        console.log("migrate child to socialworker: ", swId);
+        //         var childrenData = data.children;
+        //         var childrenId = [];
+        //         $.each(childrenData, function(key, value) {
+        //             childrenId.push(value['id']);
+        //         })
+        //         var continueMigrate = confirm(childrenId.length + " کودک به مددکار جدید انتقال می‌یابد.\nادامه می‌دهید؟");
+        //         if (continueMigrate) {
+        //             // Call migrate function
+        //         } else {
+        //             return;
+        //         }
+        //     },
+        //     error: function(data) {
+        //         $('#content_preloader').hide();
+        //         console.log(data.responseJSON.message);
+        //     }
+        // })
     }
 
     // Delete a social worker
