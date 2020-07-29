@@ -570,7 +570,6 @@ $(document).ready(function(){
     })
 
     function deactivateSW(id) {
-        // var deactivate_socialworkerId = socialworkerId || id;
         console.log(id);
 
         $.ajax({
@@ -580,7 +579,7 @@ $(document).ready(function(){
             processData: false,
             contentType: false,
             beforeSend: function(){
-                var confirmDeactivate = confirm("You are about to DEACTIVATE the penel user.\nAre you sure?");
+                var confirmDeactivate = confirm("You are about to DEACTIVATE the penel user #" + id + ".\nAre you sure?");
                 if (confirmDeactivate) {
                     $('#content_preloader').show();
                     return confirmDeactivate;
@@ -601,14 +600,13 @@ $(document).ready(function(){
             statusCode: {
                 400: function() {
                     $('#content_preloader').hide();
-                    console.log("statusCode is 400");
                     var valid = /^[0-9]*$/;
                     var newSwId = prompt("مددکار دارای کودک می‌باشد، ابتدا باید کودکان او به مددکاری دیگر انتقال یابند.\nلطفا آی دی مددکار جدید را وارد نمایید:");
                     if (newSwId) {
                         if (!newSwId.match(valid)) {
                             alert("آی دی تنها می‌تواند شامل اعداد باشد.\n مقدار وارد شده: (" + newSwId + ")");
                         } else {
-                            getPrevSwChild(id, newSwId);
+                            migrateSwChild(id, newSwId);
                         }
                     } else {
                         console.log ("canceled");
@@ -623,35 +621,34 @@ $(document).ready(function(){
         })
     }
 
-    // Get children of previous socialworker(that gonna be deactivated)
-    function getPrevSwChild(prevSwId, newSwId) {
-        // $.ajax({
-        //     url: SAYApiUrl + '/child/all/confirm=2?sw_id=' + prevSwId,
-        //     method: 'GET',
-        //     dataType: 'json',
-        //     beforeSend: function() {
-        //         $('#content_preloader').show();
-        //     },
-        //     success: function(data) {
-        //         $('#content_preloader').hide();
-
-        //         var childrenData = data.children;
-        //         var childrenId = [];
-        //         $.each(childrenData, function(key, value) {
-        //             childrenId.push(value['id']);
-        //         })
-        //         var continueMigrate = confirm(childrenId.length + " کودک به مددکار جدید انتقال می‌یابد.\nادامه می‌دهید؟");
-        //         if (continueMigrate) {
-        //             // Call migrate function
-        //         } else {
-        //             return;
-        //         }
-        //     },
-        //     error: function(data) {
-        //         $('#content_preloader').hide();
-        //         console.log(data.responseJSON.message);
-        //     }
-        // })
+    // Migrate prev social worker to a new one
+    function migrateSwChild(prevSwId, newSwId) {
+        var form_data = new FormData();
+        form_data.append('destinationSocialWorkerId', newSwId);
+        $.ajax({
+            url: SAYApiUrl + '/socialWorker/' + prevSwId + '/children/migrate',
+            method: 'POST',
+            cache: false,
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            data: form_data,
+            beforeSend: function() {
+                $('#content_preloader').show();
+            },
+            success: function(data) {
+                $('#content_preloader').hide();
+                alert("Success\nکودکان مددکار " + prevSwId + " با موفقیت به مددکار " + newSwId + " انتقال یافتند.");
+                deactivateSW(prevSwId);
+            },
+            error: function(data) {
+                $('#content_preloader').hide();
+                bootbox.alert({
+                    title: errorTitle(),
+                    message: errorContent(data.responseJSON.message),
+                });
+            }
+        })
     }
 
     // Delete a social worker
