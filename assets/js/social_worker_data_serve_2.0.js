@@ -127,12 +127,13 @@ $(document).ready(function(){
 
             $.each(data , function(key , value){
                 var socialworkerId = value[keys[0]];
+                var deactivateStatus = !(value['isActive']);
 
                 // first td for row count numbers, second td for operational buttons
                 var query = '<tr>\
                 <td>' + row_index + '</td>\
                 <td id="' + socialworkerId + '">\
-                <button type="submit" class="btn btn-embossed btn-success btn-block btn-sm confirmBtn" disabled>Confirm</button>\
+                <button type="submit" class="btn btn-embossed btn-inverse btn-block btn-sm deactivateBtn">Deactivate</button>\
                 <button class="btn btn-embossed btn-primary btn-block btn-sm editBtn" onclick="editScroll()">Edit</button>\
                 <button class="btn btn-embossed btn-danger btn-block btn-sm deleteBtn">Delete</button>\
                 </td>';
@@ -220,6 +221,13 @@ $(document).ready(function(){
                 }
                 query+= '</tr>';
                 $('#socialWorkerList').append(query);
+
+                // Disable deactivation btn if social worker is deactivated
+                if (deactivateStatus) {
+                    $('#' + socialworkerId).find('.deactivateBtn').prop("disabled", true);
+                    $('#' + socialworkerId).find('.deactivateBtn').text("Deactivated");
+                }
+
                 row_index += 1;
                 
             })
@@ -552,6 +560,96 @@ $(document).ready(function(){
             })  //end of Update ajax
         }
     })  //end of 'confirm edit' function
+
+    // Deactivate a social worker
+    $('#socialWorkerList').on('click', '.deactivateBtn', function(e) {
+        e.preventDefault();
+
+        var socialworkerId = $(this).parent().attr('id');
+        deactivateSW(socialworkerId);
+    })
+
+    function deactivateSW(id) {
+        console.log(id);
+
+        $.ajax({
+            url: SAYApiUrl + '/socialWorker/deactivate/socialWorkerId=' + id,
+            method: 'PATCH',
+            cache: false,
+            processData: false,
+            contentType: false,
+            beforeSend: function(){
+                var confirmDeactivate = confirm("You are about to DEACTIVATE the penel user #" + id + ".\nAre you sure?");
+                if (confirmDeactivate) {
+                    $('#content_preloader').show();
+                    return confirmDeactivate;
+                } else {
+                    console.log ("canceled");
+                    return confirmDeactivate;
+                }
+            },
+            success: function(data) {
+                $('#content_preloader').hide();
+                alert("Success\nThe user " + id + " deactivated successfully\n" + JSON.stringify(data.message));
+                location.reload(true);
+            },
+            error: function(data) {
+                $('#content_preloader').hide();
+                console.log(data.responseJSON.message);
+            },
+            statusCode: {
+                400: function() {
+                    $('#content_preloader').hide();
+                    var valid = /^[0-9]*$/;
+                    var newSwId = prompt("مددکار دارای کودک می‌باشد، ابتدا باید کودکان او به مددکاری دیگر انتقال یابند.\nلطفا آی دی مددکار جدید را وارد نمایید:");
+                    if (newSwId) {
+                        if (!newSwId.match(valid)) {
+                            alert("آی دی تنها می‌تواند شامل اعداد باشد.\n مقدار وارد شده: (" + newSwId + ")");
+                        } else {
+                            migrateSwChildren(id, newSwId);
+                        }
+                    } else {
+                        console.log ("canceled");
+                        return newSwId;
+                    }
+                },
+                404: function() {
+                    $('#content_preloader').hide();
+                    console.log("not found");
+                }
+            }
+        })
+    }
+
+    // Migrate prev social worker to a new one
+    function migrateSwChildren(prevSwId, newSwId) {
+        var formData = new FormData();
+        formData.append('destinationSocialWorkerId', newSwId);
+        $.ajax({
+            url: SAYApiUrl + '/socialWorker/' + prevSwId + '/children/migrate',
+            method: 'POST',
+            cache: false,
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            data: formData,
+            beforeSend: function() {
+                $('#content_preloader').show();
+            },
+            success: function(data) {
+                $('#content_preloader').hide();
+                alert("Success\nکودکان مددکار " + prevSwId + " با موفقیت به مددکار " + newSwId + " انتقال یافتند.");
+                deactivateSW(prevSwId);
+            },
+            error: function(data) {
+                $('#content_preloader').hide();
+                bootbox.alert({
+                    title: errorTitle(),
+                    message: errorContent(data.responseJSON.message),
+                });
+            }
+        })
+    }
 
     // Delete a social worker
     $('#socialWorkerList').on('click' , '.deleteBtn' , function(e) {
