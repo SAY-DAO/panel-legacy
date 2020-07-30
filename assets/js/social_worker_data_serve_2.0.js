@@ -606,7 +606,7 @@ $(document).ready(function(){
                         if (!newSwId.match(valid)) {
                             alert("آی دی تنها می‌تواند شامل اعداد باشد.\n مقدار وارد شده: (" + newSwId + ")");
                         } else {
-                            migrateSwChild(id, newSwId);
+                            migrateSwChildren(id, newSwId);
                         }
                     } else {
                         console.log ("canceled");
@@ -622,9 +622,9 @@ $(document).ready(function(){
     }
 
     // Migrate prev social worker to a new one
-    function migrateSwChild(prevSwId, newSwId) {
-        var form_data = new FormData();
-        form_data.append('destinationSocialWorkerId', newSwId);
+    function migrateSwChildren(prevSwId, newSwId) {
+        var formData = new FormData();
+        formData.append('destinationSocialWorkerId', newSwId);
         $.ajax({
             url: SAYApiUrl + '/socialWorker/' + prevSwId + '/children/migrate',
             method: 'POST',
@@ -632,7 +632,7 @@ $(document).ready(function(){
             processData: false,
             contentType: false,
             dataType: 'json',
-            data: form_data,
+            data: formData,
             beforeSend: function() {
                 $('#content_preloader').show();
             },
