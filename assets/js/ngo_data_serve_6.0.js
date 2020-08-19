@@ -35,9 +35,6 @@ $(document).ready(function(){
                 required: true,
                 extension: "jpg,png,jpeg",
                 filesize: 3    // MB
-            },            
-            coordinator_id: {
-                required: true,
             },
         },
         messages: {
@@ -69,9 +66,6 @@ $(document).ready(function(){
                 required: "انتخاب لوگوی انجمن ضروری است.",
                 extension: "فرمت‌های قابل پذیرش: {0}",
                 filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
-            },            
-            coordinator_id: {
-                required: "انتخاب هماهنگ کننده انجمن ضروری است."
             },
         },
         errorPlacement: function(error, element) {
@@ -194,12 +188,14 @@ $(document).ready(function(){
         form_data.append('name', name);
         form_data.append('country', country);
         form_data.append('city', city);
-        form_data.append('coordinatorId', coordinatorId);
         form_data.append('postalAddress', postalAddress);
         form_data.append('phoneNumber', phoneNumber);
         form_data.append('emailAddress', emailAddress);
         if(website){
             form_data.append('website', website);
+        }
+        if (coordinatorId) {
+            form_data.append('coordinatorId', coordinatorId);
         }
         console.log(form_data);
         
