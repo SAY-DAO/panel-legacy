@@ -1,85 +1,31 @@
-cache:
-  paths:
-    - node_modules/
+image: docker:19.03.12
+services:
+  - docker:19.03.12-dind
+
+stages:
+  - build
+  - release
+  - deploy
+
+variables:
+  CONTAINER_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  LATEST_IMAGE: $CI_REGISTRY_IMAGE:latest
+
+before_script:
+  - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
 
 build:
-  image: docker:latest
   stage: build
-  services:
-    - name: docker:dind
-      alias: docker-service
-  variables:
-    DOCKER_TLS_CERTDIR: ""
-    DOCKER_DRIVER: overlay2
-  before_script:
-    - docker login $DOCKER_REGISTRY -u $REGISTRY_USER -p $REGISTRY_PASSWORD
-    - export IMAGE_NAME=$(echo "$DOCKER_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME" | tr '[:upper:]' '[:lower:]')
-    - export IMAGE_TAG=$(echo "$IMAGE_NAME:$CI_COMMIT_REF_SLUG")
   script:
-    - docker pull $COMPILE_IMAGE_TAG || true
-    - docker pull $IMAGE_TAG || true
-    - export DOCKER_FILE=Dockerfile
-    - docker build --cache-from $IMAGE_NAME -t $IMAGE_TAG . -f $DOCKER_FILE
-    - docker push $IMAGE_TAG
-  only:
-    - branches
-    - tags
-  tags:
-    - build
+    - docker pull $LATEST_IMAGE|| true
+    - docker build --cache-from $LATEST_IMAGE -t $CONTAINER_IMAGE -t $LATEST_IMAGE .
+    - docker push $CONTAINER_IMAGE
+    - docker push $LATEST_IMAGE
 
-deploy-branches:
-  image: kroniak/ssh-client
+
+deploy:
   stage: deploy
-  services:
-    - name: docker:dind
-      alias: docker-service
-  variables:
-    DOCKER_TLS_CERTDIR: ""
-    DOCKER_DRIVER: overlay2
-  before_script:
-    - export IMAGE_NAME=$(echo "$DOCKER_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME" | tr '[:upper:]' '[:lower:]')
-    - export IMAGE_TAG=$(echo "$IMAGE_NAME:$CI_COMMIT_REF_SLUG")
-
-    - mkdir ~/.ssh
-    - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
-    - chmod 644 ~/.ssh/known_hosts
-    - eval $(ssh-agent -s)
-    - ssh-add <(echo "$SSH_PRIVATE_KEY")
-
   script:
-    - ssh $SERVER_USER@$SERVER "docker login $DOCKER_REGISTRY -u '$REGISTRY_USER' -p '$REGISTRY_PASSWORD'"
-    - ssh $SERVER_USER@$SERVER "cd /home/server/say-installer && docker pull $IMAGE_TAG && docker-compose up --remove-orphans -d"
-
+    - ./deploy.sh
   only:
-    - develop
-  # except:
     - master
-  tags:
-    - deploy
-
-# stop_staging:
-#   stage: deploy
-#   variables:
-#     GIT_STRATEGY: none
-#   script:
-#     # add the server as a known host
-#     - mkdir ~/.ssh
-#     - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
-#     - chmod 644 ~/.ssh/known_hosts
-#     # add ssh key stored in SSH_PRIVATE_KEY variable to the agent store
-#     - eval $(ssh-agent -s)
-#     - ssh-add <(echo "$SSH_PRIVATE_KEY")
-#     # log into Docker registry
-#     - ssh deployer@thecodingmachine.io "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.thecodingmachine.com"
-#     # stop container, remove image.
-#     - ssh deployer@thecodingmachine.io "docker stop thecodingmachine.io_${CI_COMMIT_REF_SLUG}" || true
-#     - ssh deployer@thecodingmachine.io "docker rm thecodingmachine.io_${CI_COMMIT_REF_SLUG}" || true
-#     - ssh deployer@thecodingmachine.io "docker rmi registry.thecodingmachine.com/tcm-projects/thecodingmachine.io:${CI_COMMIT_REF_SLUG}" || true
-#   when: manual
-#   environment:
-#     name: review/$CI_COMMIT_REF_NAME
-#     action: stop
-#   only:
-#     - branches
-#   except:
-#     - master
