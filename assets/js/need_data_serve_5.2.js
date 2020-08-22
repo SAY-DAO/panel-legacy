@@ -43,6 +43,9 @@ $(document).ready(function(){
             need_description: {
                 required: true,
             },
+            need_description_fa: {
+                required: true,
+            },
         },
         messages: {
             child_id: {
@@ -80,6 +83,9 @@ $(document).ready(function(){
                 number: "لطفا فقط عدد وارد کنید.",
             },
             need_description: {
+                required: "وارد کردن شرح نیاز ضروری است.",
+            },
+            need_description_fa: {
                 required: "وارد کردن شرح نیاز ضروری است.",
             },
         },
@@ -603,7 +609,6 @@ $(document).ready(function(){
 
         var form_data = new FormData();
         form_data.append('child_id', childId);
-        form_data.append('imageUrl', imageUrl);
         form_data.append('name_translations', name_translations);
         form_data.append('description_translations', description_translations);
         form_data.append('category', category);
@@ -612,6 +617,9 @@ $(document).ready(function(){
         form_data.append('type', type);
         form_data.append('isUrgent', isUrgent);
 
+        if (imageUrl) {
+            form_data.append('imageUrl', imageUrl);
+        }
         if(affiliateLinkUrl){
             form_data.append('affiliateLinkUrl', affiliateLinkUrl);
         }
