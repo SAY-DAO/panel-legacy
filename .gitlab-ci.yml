@@ -41,7 +41,7 @@ deploy-dev:
       ENVIRONMENT=dev
       DOMAIN=panel.d.sayapp.company
       STACK_NAME=say-dev
-      ./scripts/deploy.sh
+      sh ./scripts/deploy.sh
   only:
     - develop
   tags:
@@ -54,7 +54,7 @@ deploy-stag:
       ENVIRONMENT=stag 
       DOMAIN=panel.s.sayapp.company
       STACK_NAME=say-stag
-      ./scripts/deploy.sh
+      sh ./scripts/deploy.sh
   only:
     - master
   tags:
