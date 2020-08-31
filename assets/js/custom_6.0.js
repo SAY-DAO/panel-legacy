@@ -144,18 +144,6 @@ $('.cost').on('keyup', function() {
     $(this).val(n.toLocaleString());
 })
 
-// JQuery datetime picker customize
-$('.date_time').datetimepicker({
-    dateFormat: 'yy-m-d',
-    timeFormat: 'H:0:0',
-    prevText: '<i class="fa fa-chevron-circle-left custom"></i>',
-    nextText: '<i class="fa fa-chevron-circle-right custom"></i>',
-    currentText: 'امروز',
-    closeText: 'بستن',
-    dayNamesMin: ["ی", "د", "س", "چ", "پ", "ج", "ش"],
-    firstDay: 6,
-});
-
 // Make the text rtl
 function rtl(value) {
     return '<span dir="rtl">' + value + '</span>';
@@ -171,3 +159,15 @@ if (ENVIRONMENT !== 'local') {
         });
     });
 }
+
+// JQuery datetime picker customize
+$('.date_time').datetimepicker({
+    dateFormat: 'yy-m-d',
+    timeFormat: 'H:0:0',
+    prevText: '<i class="fa fa-chevron-circle-left custom"></i>',
+    nextText: '<i class="fa fa-chevron-circle-right custom"></i>',
+    currentText: 'امروز',
+    closeText: 'بستن',
+    dayNamesMin: ["ی", "د", "س", "چ", "پ", "ج", "ش"],
+    firstDay: 6,
+});
