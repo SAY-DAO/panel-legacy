@@ -7,6 +7,7 @@
 var baseUrl = 'https://sayapp.company';
 var apiEndPointUrl = '/api/v2';
 var SAYApiUrl = baseUrl + apiEndPointUrl;
+var ENVIRONMENT = 'local';
 // console.log("SAY API url: " + SAYApiUrl);
 
 $.ajaxSetup({         
