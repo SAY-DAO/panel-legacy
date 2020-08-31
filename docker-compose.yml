@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  panel:
+    image: ${CONTAINER_IMAGE}
+    networks:
+      - traefik-public
+    config: 
+    deploy:
+      placement:
+        constraints:
+          - node.labels.${STACK_NAME} == true
+      mode: replicated
+      replicas: 1
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=traefik-public
+        - traefik.constraint-label=traefik-public
+        - traefik.http.routers.${STACK_NAME}-panel-http.entrypoints=http
+        - traefik.http.routers.${STACK_NAME}-panel-http.rule=Host(`${DOMAIN?Variable not set}`)
+        - traefik.http.routers.${STACK_NAME}-panel-http.service=${STACK_NAME}-panel
+        - traefik.http.routers.${STACK_NAME}-panel-http.middlewares=https-redirect
+        - traefik.http.routers.${STACK_NAME}-panel.entrypoints=https
+        - traefik.http.routers.${STACK_NAME}-panel.rule=Host(`${DOMAIN?Variable not set}`)
+        - traefik.http.routers.${STACK_NAME}-panel.service=${STACK_NAME}-panel
+        - traefik.http.routers.${STACK_NAME}-panel.tls=true
+        - traefik.http.routers.${STACK_NAME}-panel.tls.certresolver=le
+        - traefik.http.services.${STACK_NAME}-panel.loadbalancer.server.port=80 
+networks:
+  traefik-public:
+    external: true
+configs:
+  panel-config:
+    name: config.js
+    file: /etc/$STACK_NAME/panel/config.js
