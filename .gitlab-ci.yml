@@ -40,7 +40,7 @@ deploy-dev:
     - >
       ENVIRONMENT=dev
       DOMAIN=panel.d.sayapp.company
-      STACK_NAME=say-dev
+      STACK_NAME=say-dev-panel
       sh ./scripts/deploy.sh
   only:
     - develop
@@ -53,7 +53,7 @@ deploy-stag:
     - >
       ENVIRONMENT=stag 
       DOMAIN=panel.s.sayapp.company
-      STACK_NAME=say-stag
+      STACK_NAME=say-stag-panel
       sh ./scripts/deploy.sh
   only:
     - master
@@ -66,7 +66,7 @@ deploy-prod:
     - >
       ENVIRONMENT=prod
       DOMAIN=panel.sayapp.company
-      STACK_NAME=say-prod
+      STACK_NAME=say-prod-panel
       sh ./scripts/deploy.sh
   only:
     - release
