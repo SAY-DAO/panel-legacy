@@ -2,6 +2,7 @@
 
 set -e
 
+TIMESTAMP=$(date +%s) \
 docker-compose \
     -f docker-compose.yml \
     config > docker-stack.yml
