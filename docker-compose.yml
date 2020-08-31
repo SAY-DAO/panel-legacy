@@ -11,7 +11,7 @@ services:
     deploy:
       placement:
         constraints:
-          - node.labels.${STACK_NAME} == true
+          - node.labels.${ENVIRONMENT} == true
       mode: replicated
       replicas: 1
       labels:
