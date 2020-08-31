@@ -34,4 +34,4 @@ networks:
 configs:
   panel-config:
     name: ${STACK_NAME}-panel-config-${TIMESTAMP}.js
-    file: /etc/$STACK_NAME/panel/config.js
+    file: /etc/$STACK_NAME/config.js
