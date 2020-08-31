@@ -6,6 +6,8 @@ services:
     networks:
       - traefik-public
     configs: 
+      - source: panel-config
+      target: assets/config.js
     deploy:
       placement:
         constraints:
