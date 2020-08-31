@@ -67,7 +67,7 @@ deploy-prod:
       ENVIRONMENT=prod
       DOMAIN=panel.sayapp.company
       STACK_NAME=say-prod
-      ./scripts/deploy.sh
+      sh ./scripts/deploy.sh
   only:
     - release
   tags:
