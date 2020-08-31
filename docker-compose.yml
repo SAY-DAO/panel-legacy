@@ -1,11 +1,11 @@
-version: '3'
+version: '3.6'
 
 services:
   panel:
     image: ${CONTAINER_IMAGE}
     networks:
       - traefik-public
-    config: 
+    configs: 
     deploy:
       placement:
         constraints:
