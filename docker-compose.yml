@@ -19,11 +19,11 @@ services:
         - traefik.docker.network=traefik-public
         - traefik.constraint-label=traefik-public
         - traefik.http.routers.${STACK_NAME}-panel-http.entrypoints=http
-        - traefik.http.routers.${STACK_NAME}-panel-http.rule=Host(`panel.${DOMAIN?Variable not set}`)
+        - traefik.http.routers.${STACK_NAME}-panel-http.rule=Host(`${DOMAIN?Variable not set}`)
         - traefik.http.routers.${STACK_NAME}-panel-http.service=${STACK_NAME}-panel
         - traefik.http.routers.${STACK_NAME}-panel-http.middlewares=https-redirect
         - traefik.http.routers.${STACK_NAME}-panel.entrypoints=https
-        - traefik.http.routers.${STACK_NAME}-panel.rule=Host(`panel.${DOMAIN?Variable not set}`)
+        - traefik.http.routers.${STACK_NAME}-panel.rule=Host(`${DOMAIN?Variable not set}`)
         - traefik.http.routers.${STACK_NAME}-panel.service=${STACK_NAME}-panel
         - traefik.http.routers.${STACK_NAME}-panel.tls=true
         - traefik.http.routers.${STACK_NAME}-panel.tls.certresolver=le
