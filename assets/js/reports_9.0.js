@@ -139,17 +139,22 @@ $(document).ready(function(){
             var selected_status = $('#status_filter_product').val() != -1 ? $('#status_filter_product').val() : '';
         }
 
-        $.ajax({
+        var ajaxReq = $.ajax({
             url: SAYApiUrl + '/need/all/confirm=2?done=1&ngoId=' + selected_ngo + '&type=' + selected_type + '&status=' + selected_status,
             method: 'GET',
             dataType: 'json',
             beforeSend: function() {
+                if (ajaxReq.readyState < 4) {
+                    ajaxReq.abort();
+                }
                 $('#done_need_preloader').show();
             },
             success: function(data) {
-                console.log(data);
                 needData = data['needs'];
                 var row_index = 1;
+
+                // To empty the table from previous api result that loaded by delay
+                $('#reportDoneNeedList').empty();
 
                 $.each(needData, function(key, value){
                     var needId = value[keys[0]];
