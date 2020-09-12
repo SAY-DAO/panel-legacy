@@ -149,17 +149,6 @@ function rtl(value) {
     return '<span dir="rtl">' + value + '</span>';
 }
 
-if (ENVIRONMENT !== 'local') {
-    $(document).ready(function(){
-        Sentry.init({
-            dsn: "https://fe5dce9cacab4187adaa33eec223ef27@sentry.say.company/7",
-            integrations: [new Sentry.Integrations.BrowserTracing()],
-            tracesSampleRate: 1.0, // Be sure to lower this in production
-            environment: ENVIRONMENT,
-        });
-    });
-}
-
 // JQuery datetime picker customize
 $('.date_time').datetimepicker({
     dateFormat: 'yy-m-d',
@@ -171,3 +160,14 @@ $('.date_time').datetimepicker({
     dayNamesMin: ["ی", "د", "س", "چ", "پ", "ج", "ش"],
     firstDay: 6,
 });
+
+if (ENVIRONMENT !== 'local') {
+    $(document).ready(function(){
+        Sentry.init({
+            dsn: "https://fe5dce9cacab4187adaa33eec223ef27@sentry.say.company/7",
+            integrations: [new Sentry.Integrations.BrowserTracing()],
+            tracesSampleRate: 1.0, // Be sure to lower this in production
+            environment: ENVIRONMENT,
+        });
+    });
+}
