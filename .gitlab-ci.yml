@@ -43,7 +43,7 @@ deploy-dev:
   script:
     - >
       ENVIRONMENT=dev
-      DOMAIN=d.panel.sayapp.company
+      DOMAIN=panel.d.sayapp.company
       STACK_NAME=say-dev-panel
       sh ./scripts/deploy.sh
   only:
@@ -57,7 +57,7 @@ deploy-stag:
   script:
     - >
       ENVIRONMENT=stag 
-      DOMAIN=s.panel.sayapp.company
+      DOMAIN=panel.s.sayapp.company
       STACK_NAME=say-stag-panel
       sh ./scripts/deploy.sh
   only:
