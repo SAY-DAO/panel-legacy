@@ -659,7 +659,9 @@ function handlePanelAction() {
         $('#needForm').slideDown();
         $('#editNeedData').hide();
         $('#sendNeedData').show();
+        $('#receiptForm').css('display', 'none');
     });
+
     // Say toggle for edit need form
     $('#needForm').css('display', 'none');
     $('#needList').on('click' , '.editBtn' , function(e) {
@@ -667,7 +669,16 @@ function handlePanelAction() {
         $('#needForm').slideDown();
         $('#editNeedData').show();
         $('#sendNeedData').hide();
-    });
+        $('#receiptForm').css('display', 'none');
+});
+
+    // Say toggle for add receipts to need form
+    $('#receiptForm').css('display', 'none');
+    $('#needList').on('click' , '.receiptBtn' , function(e) {
+        e.preventDefault();
+        $('#receiptForm').slideDown();
+        $('#needForm').css('display', 'none');
+});
 
     // Say toggle for change need status form
     $('#changeStatusForm').css('display', 'none');

@@ -2,6 +2,9 @@ $(document).ready(function(){
     isAuthorized();
     hasPrivilege();
 
+    // Reset static fields after refresh
+    $('.static').val('');
+
     // needs form validation
     $('#need_form').validate({
         ignore: [], // To validate hidden input
@@ -109,6 +112,42 @@ $(document).ready(function(){
         }
     });
 
+    $('#receipt_form').validate({
+        ignore: [], // To validate hidden input
+        rules: {
+            "r_need_receipts[]": {
+                extension: "jpg,png,jpeg,PDF",
+                filesize: 3,    // MB
+                required: true,
+            },
+        },
+        messages: {
+            "r_need_receipts[]": {
+                extension: "فرمت‌های قابل پذیرش: {0}",
+                filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB",
+                required: "رسید را وارد کنید.",
+            },
+        },
+        errorPlacement: function(error, element) {
+            error.appendTo(element.parent('div'));
+        },
+        submitHandler: function (form) { // for demo
+            alert('valid form submitted'); // for demo
+            return false; // for demo
+        },
+        invalidHandler: function(event, validator) {
+            // 'this' refers to the form
+            var errors = validator.numberOfInvalids();
+            if (errors) {
+                var message = errors + ' فیلد نادرست وجود دارد، لطفا بازبینی نمایید.';
+                $("div.alert").html(message);
+                $("div.alert").show();
+            } else {
+                $("div.alert").hide();
+            }
+        }
+    });
+    
     var edit_needId = -1;    
 
     var keys = ['id' , 'child_id' , 'name' , 'name_fa' , 'title' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'type' , 'details' , 'isUrgent' , 'category' , 'description' , 'description_fa' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'receipts' , 'created' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'updated']
@@ -145,6 +184,7 @@ $(document).ready(function(){
                     <td id="' + needId + '">\
                     <button type="submit" class="btn btn-embossed btn-success btn-block btn-sm confirmBtn">Confirm</button>\
                     <button class="btn btn-embossed btn-primary btn-block btn-sm editBtn" onclick="editScroll()">Edit</button>\
+                    <button class="btn btn-embossed btn-warning btn-block btn-sm receiptBtn" onclick="editScroll()">Receipt</button>\
                     <button class="btn btn-embossed btn-danger btn-block btn-sm deleteBtn">Delete</button>\
                     </td>\
                     <td>' + sayName + '</td>';
@@ -583,6 +623,7 @@ $(document).ready(function(){
     // Add new Need
     $('#sendNeedData').on('click' , function(e){
         e.preventDefault();
+        $('.static').val('');
 
         $('#editNeedData').attr("disabled" , true);
         // recieving data from html form
@@ -697,13 +738,13 @@ $(document).ready(function(){
     // Edit a need
     $('#needList').on('click' , '.editBtn' , function(e){
         e.preventDefault();
+        $('.static').val('');
 
         $('#sendNeedData').attr("disabled" , true);
         $('#child_id').attr("disabled" , true);
         $('#pre_need').hide();
 
         edit_needId = $(this).parent().attr('id');
-        console.log(edit_needId);
 
         // get the need's data to the form
         $.ajax({
@@ -836,6 +877,75 @@ $(document).ready(function(){
 
     })  //end of 'confirm edit' function
 
+    // Add receipt for needs
+    $('#needList').on('click', '.receiptBtn', function(e) {
+        e.preventDefault();
+        $('.static').val('');
+
+        $('#r_child_id').attr('disabled', true);
+        $('#r_need_name_fa').attr('disabled', true);
+
+        edit_needId = $(this).parent().attr('id');
+
+        $.ajax({
+            url: SAYApiUrl + '/need/needId=' + edit_needId,
+            method: 'GET',
+            dataType: 'json',
+            beforeSend: function() {
+                $('#need_form_preloader').show();
+            },
+            success: function(data) {
+                var name_translations = data['name_translations'];
+
+                $('#r_child_id').val(data['child_id']).change();
+                $('#r_need_name_fa').val(name_translations.fa);
+                
+                $('#need_form_preloader').hide();
+            },
+            error: function() {
+                console.log(data.responseJSON.message);
+            }
+        })
+    })
+
+    $('#addReceipt').on('click', function(e) {
+        e.preventDefault();
+
+        var receipts = $('#r_need_receipts')[0].files[0];
+
+        // append datas to a Form Data
+        var form_data = new FormData();
+        if (receipts) {
+            form_data.append('receipts', receipts);
+        }
+
+        if ( $('#receipt_form').valid() ) {
+            $.ajax({
+                url: SAYApiUrl + '/need/update/needId=' + edit_needId,
+                method: 'PATCH',
+                cache: false,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                data: form_data,
+                beforeSend: function(){
+                    return confirm("You are about to add receipts to the need.\nAre you sure?");
+                },
+                success: function(data) {
+                    alert("Success\nThe receipts added to need: " + edit_needId + "\n" + JSON.stringify(data.message));
+                    location.reload(true);
+                },
+                error: function(data) {
+                    bootbox.alert({
+                        title: errorTitle(),
+                        message: errorContent(data.responseJSON.message),
+                    });
+                }
+            })
+        }
+
+    })
+    
     // Delete a need
     $('#needList').on('click', '.deleteBtn' , function(e){
         e.preventDefault();

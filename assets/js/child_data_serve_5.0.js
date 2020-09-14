@@ -436,6 +436,7 @@ $(document).ready(function(){
                 var query = '';
                     query += '<option value="' + value['id'] + '">' + value['generatedCode'] + ' - ' + value['firstName'] + ' ' + value['lastName'] + '</option>';
                 $('#child_id').append(query);
+                $('#r_child_id').append(query);
                 $('#child_need_select').append(query);
             })
         },
