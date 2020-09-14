@@ -656,6 +656,7 @@ function handlePanelAction() {
     $('#needForm').css('display', 'none');
     $('#needTableNew').click(function (e) {
         e.preventDefault();
+        $('.static').val('');
         $('#needForm').slideDown();
         $('#editNeedData').hide();
         $('#sendNeedData').show();

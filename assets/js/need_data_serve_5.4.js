@@ -623,7 +623,6 @@ $(document).ready(function(){
     // Add new Need
     $('#sendNeedData').on('click' , function(e){
         e.preventDefault();
-        $('.static').val('');
 
         $('#editNeedData').attr("disabled" , true);
         // recieving data from html form
