@@ -3,10 +3,7 @@ $(document).ready(function(){
     hasPrivilege();
 
     // Reset static select inputs
-    $('#type_filter').prop('selectedIndex',0);
-    $('#status_filter_service').prop('selectedIndex',0);
-    $('#status_filter_product').prop('selectedIndex',0);
-    $('#need_type').prop('selectedIndex',0);
+    $('.static').prop('selectedIndex',0);
 
     // change need form validation
     $('#change_need_form').validate({
