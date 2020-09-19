@@ -136,22 +136,17 @@ $(document).ready(function(){
             var selected_status = $('#status_filter_product').val() != -1 ? $('#status_filter_product').val() : '';
         }
 
-        var ajaxReq = $.ajax({
+        $.ajax({
             url: SAYApiUrl + '/need/all/confirm=2?done=1&ngoId=' + selected_ngo + '&type=' + selected_type + '&status=' + selected_status,
             method: 'GET',
             dataType: 'json',
             beforeSend: function() {
-                if (ajaxReq.readyState < 4) {
-                    ajaxReq.abort();
-                }
+                $('.done_filter').prop('disabled', 'disabled');
                 $('#done_need_preloader').show();
             },
             success: function(data) {
                 needData = data['needs'];
                 var row_index = 1;
-
-                // To empty the table from previous api result that loaded by delay
-                $('#reportDoneNeedList').empty();
 
                 $.each(needData, function(key, value){
                     var needId = value[keys[0]];
@@ -253,14 +248,21 @@ $(document).ready(function(){
                     row_index += 1;
                 })
                 $('#done_need_preloader').hide();
-
+                $('.done_filter').prop('disabled', false);
             },
             error: function(data) {
                 console.log(data.responseJSON.message);
+                $('.done_filter').prop('disabled', false);
             }
-        })
+        });
+
         $('#reportDoneNeedList').empty();
     })
+
+    // $('#submitFilter').on('click', function(e) {
+    //     e.preventDefault();
+        
+    // })
 
     // Handle Product's fields
     $('#need_status_product').change(function() {
