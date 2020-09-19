@@ -2,6 +2,9 @@ $(document).ready(function(){
     isAuthorized();
     hasPrivilege();
 
+    // Reset static select inputs
+    $('.static').prop('selectedIndex',0);
+
     // change need form validation
     $('#change_need_form').validate({
         ignore: [], // To validate hidden input
@@ -138,10 +141,10 @@ $(document).ready(function(){
             method: 'GET',
             dataType: 'json',
             beforeSend: function() {
+                $('.done_filter').prop('disabled', 'disabled');
                 $('#done_need_preloader').show();
             },
             success: function(data) {
-                console.log(data);
                 needData = data['needs'];
                 var row_index = 1;
 
@@ -245,14 +248,21 @@ $(document).ready(function(){
                     row_index += 1;
                 })
                 $('#done_need_preloader').hide();
-
+                $('.done_filter').prop('disabled', false);
             },
             error: function(data) {
                 console.log(data.responseJSON.message);
+                $('.done_filter').prop('disabled', false);
             }
-        })
+        });
+
         $('#reportDoneNeedList').empty();
     })
+
+    // $('#submitFilter').on('click', function(e) {
+    //     e.preventDefault();
+        
+    // })
 
     // Handle Product's fields
     $('#need_status_product').change(function() {
