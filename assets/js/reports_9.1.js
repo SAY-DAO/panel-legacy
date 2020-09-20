@@ -259,11 +259,6 @@ $(document).ready(function(){
         $('#reportDoneNeedList').empty();
     })
 
-    // $('#submitFilter').on('click', function(e) {
-    //     e.preventDefault();
-        
-    // })
-
     // Handle Product's fields
     $('#need_status_product').change(function() {
         if ($(this).val() == 3) {   // if product purchase
