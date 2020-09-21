@@ -302,6 +302,8 @@ $(document).ready(function(){
                 $('#change_need_preloader').show();
             },
             success: function(data) {
+                $("div.alert").hide();
+
                 type_id = data['type'];     // to use in confirm change status
                 $('#expected_delivery').hide();
                 $('#real_delivery').hide();
@@ -352,6 +354,9 @@ $(document).ready(function(){
         var need_name = $('#need_name').val();
         if (type_id == 0) { // if service
             $('#need_status_product').rules('remove', 'required');  // remove rule
+            $('#expected_delivery_date').rules('remove', 'required'); // remove rule
+            $('#ngo_delivery_date').rules('remove', 'required');    // remove rule
+
             status = $('#need_status_service').val();
             receipts = $('#service_receipts')[0].files[0];
             if (status == 3) {  // if money transferred to the NGO
@@ -366,6 +371,8 @@ $(document).ready(function(){
             }
         } else if (type_id == 1) {  // if product
             $('#need_status_service').rules('remove', 'required');  // remove rule
+            $('#bank_track_id').rules('remove', 'required');    // remove rule
+
             status = $('#need_status_product').val();
             receipts = $('#product_receipts')[0].files[0];
             if (status == 3) {
