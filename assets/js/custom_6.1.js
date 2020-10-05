@@ -53,11 +53,17 @@ function childDelivery() {
 
 // get the file url and return the tag to show it on html
 function getImgFile(fileUrl) {
+    if (fileUrl.charAt(0) !== "/") {
+        fileUrl = "/".concat(fileUrl);
+    }
     var show_file = '<a target="_blank" href="' + baseUrl + fileUrl +'"><img class="tableImg" src="' + baseUrl + fileUrl +'" /></a>';
     return show_file;
 }
 
 function getVoiceFile(fileUrl) {
+    if (fileUrl.charAt(0) !== "/") {
+        fileUrl = "/".concat(fileUrl);
+    }
     var show_file = '<audio src="' + baseUrl + fileUrl +'" controls preload="none"></audio>';
     return show_file;
 }
@@ -67,6 +73,9 @@ function getFile(fileUrl) {
     var result = [];
     var index = 1;
     $.each(files, function(key, value) {
+        if (value.charAt(0) !== "/") {
+            value = "/".concat(value);
+        }
         result.push('<a target="_blank" href="' + baseUrl + value +'">Receipt' + index + '</a>');
         index += 1;
     })    
