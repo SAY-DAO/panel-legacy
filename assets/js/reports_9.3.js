@@ -131,9 +131,9 @@ $(document).ready(function(){
         var selected_type = $('#type_filter').val() != -1 ? $('#type_filter').val() : '';
 
         if (selected_type == 0) {
-            var selected_status = $('#status_filter_service').val() != -1 ? $('#status_filter_service').val() : '';
+            var selected_status = $('#status_filter_service').val() != -1 ? $('#status_filter_service').val() : 2;
         } else if (selected_type == 1) {
-            var selected_status = $('#status_filter_product').val() != -1 ? $('#status_filter_product').val() : '';
+            var selected_status = $('#status_filter_product').val() != -1 ? $('#status_filter_product').val() : 2;
         }
 
         $.ajax({
