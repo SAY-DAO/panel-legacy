@@ -343,6 +343,7 @@ $(document).ready(function(){
                     // TODO: Pre Defined needs (this is a hard code)
                     if (selected_child == 104) {
                         $('#' + needId).find('.confirmBtn').hide();
+                        $('#' + needId).find('.receiptBtn').hide();
                     }
                     row_index += 1;
                 })

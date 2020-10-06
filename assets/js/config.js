@@ -3,7 +3,7 @@
 
 // var baseUrl = 'http://192.168.111.2:5001';
 // var baseUrl = 'http://0.0.0.0:5000';
-var baseUrl = 'https://d.sayapp.company';
+var baseUrl = 'https://s.sayapp.company';
 var apiEndPointUrl = '/api/v2';
 var SAYApiUrl = baseUrl + apiEndPointUrl;
 var ENVIRONMENT = 'local';
