@@ -132,6 +132,23 @@ $(document).ready(function(){
 
     child_url = '/child/all/confirm=2';
     child_id_url = '/child/all/confirm=1';
+    getAllChildren();
+
+    $('#myonoffswitch1').prop('checked', false);
+    $('.existenceText').text('نمایش کودکانی که نیستند');
+    $('#myonoffswitch1').change(function() {
+        if(this.checked) {
+            child_url = '/child/all/confirm=2?existence_status=2';
+            $('.existenceText').text('نمایش کودکان در دسترس');
+            console.log("checkbox checked");
+        } else {
+            child_url = '/child/all/confirm=2';
+            $('.existenceText').text('نمایش کودکانی که نیستند');
+            console.log("checkbox not checked");
+        }
+        getAllChildren();
+    })
+    
     // TODO: adding farsi fields
 
     var keys = ['id' , 'generatedCode' , 'awakeAvatarUrl' , 'sleptAvatarUrl' , 'voiceUrl' , 'firstName' , 
@@ -144,286 +161,302 @@ $(document).ready(function(){
 
     // Get all Children
 
-    $.ajax({
-        url: SAYApiUrl + child_url,
-        method: 'GET',
-        dataType: 'json',
-        beforeSend: function() {
-            $('#children_preloader').show();
-        },
-        success: function(data) {
-            var childData = data['children'];
-            
-            var row_index = 1;
-
-            $.each(childData , function(key ,value){
-                var childId = value['id'];
-                // Start translation fields
-                var bio_translations = value['bio_translations'];
-                var bio_summary_translations = value['bio_summary_translations'];
-                var sayname_translations = value['sayname_translations'];
-                var firstName_translations = value['firstName_translations'];
-                var lastName_translations = value['lastName_translations'];
-                // End translation fields
-
-                var confirmStatus = -1;
-
-                // first td for row count numbers, second td for operational buttons
-                var query = '<tr>\
-                <td>' + row_index + '</td>\
-                <td class="operation" id="' + childId + '">\
-                <button type="submit" class="btn btn-embossed btn-success btn-block btn-sm confirmBtn">Confirm</button>\
-                <button class="btn btn-embossed btn-primary btn-block btn-sm editBtn" onclick="editScroll()">Edit</button>\
-                <button class="btn btn-embossed btn-danger btn-block btn-sm deleteBtn">Delete</button>\
-                </td>';
-
-                for(var i = 1 ; i < keys.length ; i++){
-                    
-                    // Start translation fields
-                    if (keys[i] == 'sayName') {
-                        value[keys[i]] = sayname_translations.en;
-                    }
-
-                    if (keys[i] == 'sayName_fa') {
-                        value[keys[i]] = rtl(sayname_translations.fa);
-                    }
-                    
-                    if (keys[i] == 'bio') {
-                        value[keys[i]] = bio_translations.en;
-                    }
-
-                    if (keys[i] == 'bio_fa') {
-                        value[keys[i]] = rtl(bio_translations.fa);
-                    }
-
-                    if (keys[i] == 'bioSummary') {
-                        value[keys[i]] = bio_summary_translations.en;
-                    }
-
-                    if (keys[i] == 'bioSummary_fa') {
-                        value[keys[i]] = rtl(bio_summary_translations.fa);
-                    }
-
-                    if (keys[i] == 'firstName') {
-                        value[keys[i]] = firstName_translations.en;
-                    }
-
-                    if (keys[i] == 'firstName_fa') {
-                        value[keys[i]] = rtl(firstName_translations.fa);
-                    }
-
-                    if (keys[i] == 'lastName') {
-                        value[keys[i]] = lastName_translations.en;
-                    }
-
-                    if (keys[i] == 'lastName_fa') {
-                        value[keys[i]] = rtl(lastName_translations.fa);
-                    }
-                    // End translation fields
-
-                    if(keys[i] == 'doneNeedCount'){
-                        value[keys[i]] = value[keys[i]] + " Done";
-                    }
-
-                    if(keys[i] == 'spent_credit'){
-                        value[keys[i]] = cost(value[keys[i]]);
-                    }
-                    
-                    if(keys[i] == 'birthDate'){
-                        value[keys[i]] = getAge(value[keys[i]]);
-                    }
-
-                    if(keys[i] == 'country'){
-                        if(value[keys[i]] == '98'){
-                            value[keys[i]] = 'Iran';
-                        }
-                    }
-
-                    if (keys[i] == 'city'){
-                        if(value[keys[i]] == '1'){
-                            value[keys[i]] = 'Tehran';
-                        }
-                        if(value[keys[i]] == '2'){
-                            value[keys[i]] = 'Karaj';
-                        }
-                    }
-
-                    if (keys[i] == 'gender') {
-                        if (value[keys[i]] == false) {
-                            value[keys[i]] = 'Girl';
-                        }
-                        if (value[keys[i]] == true) {
-                            value[keys[i]] = 'Boy';
-                        }
-                    }
-
-                    if (keys[i] == 'birthPlace'){
-                        if(value[keys[i]] == '1'){
-                            value[keys[i]] = 'Tehran';
-                        }
-                        if(value[keys[i]] == '2'){
-                            value[keys[i]] = 'Karaj';
-                        }
-                    }
-
-                    if (keys[i] == 'nationality'){
-                        if(value[keys[i]] == '98'){
-                            value[keys[i]] = 'Iranian';
-                        }
-                        if(value[keys[i]] == '93'){
-                            value[keys[i]] = 'Afghan';
-                        }
-                    }
-
-                    // TODO:
-                    // if (keys[i] == 'education'){
-                    //     // console.log("first element of string: " + value[keys[i]].charAt(0));
-                    //     // console.log("count string length: " + value[keys[i]] + '-' + value[keys[i]].length);
-                    //     // console.log("remove first element: " + value[keys[i]].substring(1));
-
-                    //     if(value[keys[i]].length >= 2){
-                    //         if(value[keys[i]].charAt(0) == 6 ){
-                    //             value[keys[i]] += " - School for the deaf";
-                    //         }
-                    //         if(value[keys[i]].charAt(0) == 7 ){
-                    //             value[keys[i]] += " - School for the blind";
-                    //         }
-                    //         if(value[keys[i]].charAt(0) == 8 ){
-                    //             value[keys[i]] += " - Intellectual disabilities school";
-                    //         }
-                    //         if(value[keys[i]].charAt(0) == 9 ){
-                    //             value[keys[i]] += " - School";
-                    //         }
-                    //     }
-
-                    //     if(value[keys[i]] == '-3'){
-                    //         value[keys[i]] = 'Deprived of education';
-                    //     }
-                    //     if(value[keys[i]] == '-2'){
-                    //         value[keys[i]] = 'Kinder garden';
-                    //     }
-                    //     if(value[keys[i]] == '-1'){
-                    //         value[keys[i]] = 'Not attending';
-                    //     }
-                    //     if(value[keys[i]] == '0'){
-                    //         value[keys[i]] = 'Pre-school';
-                    //     }
-                    //     if(value[keys[i]] == '1'){
-                    //         value[keys[i]] = '1<sup>th</sup> grade';
-                    //     }
-                    //     if(value[keys[i]] == '2'){
-                    //         value[keys[i]] = '2<sup>th</sup> grade';
-                    //     }
-                    //     if(value[keys[i]] == '3'){
-                    //         value[keys[i]] = '3<sup>th</sup> grade';
-                    //     }
-                    //     if(value[keys[i]] == '4'){
-                    //         value[keys[i]] = '4<sup>th</sup> grade';
-                    //     }
-                    //     if(value[keys[i]] == '5'){
-                    //         value[keys[i]] = '5<sup>th</sup> grade';
-                    //     }
-                    //     if(value[keys[i]] == '6'){
-                    //         value[keys[i]] = '6<sup>th</sup> grade';
-                    //     }
-                    //     if(value[keys[i]] == '7'){
-                    //         value[keys[i]] = '7<sup>th</sup> grade';
-                    //     }
-                    //     if(value[keys[i]] == '8'){
-                    //         value[keys[i]] = '8<sup>th</sup> grade';
-                    //     }
-                    //     if(value[keys[i]] == '9'){
-                    //         value[keys[i]] = '9<sup>th</sup> grade';
-                    //     }
-                    //     if(value[keys[i]] == '10'){
-                    //         value[keys[i]] = '10<sup>th</sup> grade';
-                    //     }
-                    //     if(value[keys[i]] == '11'){
-                    //         value[keys[i]] = '11<sup>th</sup> grade';
-                    //     }
-                    //     if(value[keys[i]] == '12'){
-                    //         value[keys[i]] = '12<sup>th</sup> grade';
-                    //     }
-                    //     if(value[keys[i]] == '13'){
-                    //         value[keys[i]] = 'University';
-                    //     }
-                    // }
-
-                    if (keys[i] == 'phoneNumber'){
-                        value[keys[i]] = phoneTo(value[keys[i]]);
-                    }
-
-                    if(keys[i] == 'housingStatus'){
-                        if(value[keys[i]] == '0'){
-                            value[keys[i]] = 'Street child';
-                        }
-                        if(value[keys[i]] == '1'){
-                            value[keys[i]] = 'Living at home';
-                        }
-                        if(value[keys[i]] == '2'){
-                            value[keys[i]] = 'Care centers';
-                        }
-                    }
-
-                    if(keys[i] == 'isConfirmed'){
-                        if(value[keys[i]] == true){
-                            value[keys[i]] = 'Confirmed';
-                            confirmStatus = 1;
-                        }
-                        if(value[keys[i]] == false){
-                            value[keys[i]] = 'Not confirmed';
-                        }
-                    }
-
-                    if (keys[i] == 'awakeAvatarUrl'){
-                        value[keys[i]] = getImgFile(value[keys[i]]);
-                    }
-
-                    if (keys[i] == 'sleptAvatarUrl'){
-                        value[keys[i]] = getImgFile(value[keys[i]]);
-                    }
-
-                    if (keys[i] == 'voiceUrl'){
-                        value[keys[i]] = getVoiceFile(value[keys[i]]);
-                    }
-
-                    if(keys[i] == 'spentCredit'){
-                        value[keys[i]] = cost(value[keys[i]]);
-                    }
-
-                    if(keys[i] == 'familyCount' || keys[i] == 'sayFamilyCount'){
-                        value[keys[i]] = value[keys[i]] + " Members";
-                    }
-
-                    if(keys[i] == 'confirmDate' || keys[i] == 'created' || keys[i] == 'updated') {
-                        value[keys[i]] = jalaliDate(value[keys[i]]);
-                    }
-                    
-                    if(value[keys[i]] == null){
-                        value[keys[i]] = nullValues();
-                    }
-
-                    query += '<td>' + value[keys[i]] + '</td>';
-                }
+    function getAllChildren() {
+        $.ajax({
+            url: SAYApiUrl + child_url,
+            method: 'GET',
+            dataType: 'json',
+            beforeSend: function() {
+                $('#children_preloader').show();
+            },
+            success: function(data) {
+                var childData = data['children'];
                 
-                query+= '</tr>';
-                $('#childList').append(query);
-                hasPrivilege();
-
-                // disable confirm button if the child has confirmed already!
-                if(confirmStatus == 1){
-                        $('#' + childId).find('.confirmBtn').prop("disabled", true);
-                        $('#' + childId).find('.confirmBtn').text("Confirmed");
-                }
-                row_index += 1;
-            })
-            $('#children_preloader').hide();
-
-        },
-        error: function(data) {
-            console.log(data.responseJSON.message);
-        }
-    })
+                var row_index = 1;
+    
+                $.each(childData , function(key ,value){
+                    var childId = value['id'];
+                    // Start translation fields
+                    var bio_translations = value['bio_translations'];
+                    var bio_summary_translations = value['bio_summary_translations'];
+                    var sayname_translations = value['sayname_translations'];
+                    var firstName_translations = value['firstName_translations'];
+                    var lastName_translations = value['lastName_translations'];
+                    // End translation fields
+    
+                    var confirmStatus = -1;
+    
+                    // first td for row count numbers, second td for operational buttons
+                    var query = '<tr>\
+                    <td>' + row_index + '</td>\
+                    <td class="operation" id="' + childId + '">\
+                    <button type="submit" class="btn btn-embossed btn-success btn-block btn-sm confirmBtn">Confirm</button>\
+                    <button class="btn btn-embossed btn-primary btn-block btn-sm editBtn" onclick="editScroll()">Edit</button>\
+                    <button class="btn btn-embossed btn-default btn-block btn-sm existenceBtn">Deactivate</button>\
+                    <button class="btn btn-embossed btn-danger btn-block btn-sm deleteBtn">Delete</button>\
+                    </td>';
+    
+                    for(var i = 1 ; i < keys.length ; i++){
+                        
+                        // Start translation fields
+                        if (keys[i] == 'sayName') {
+                            value[keys[i]] = sayname_translations.en;
+                        }
+    
+                        if (keys[i] == 'sayName_fa') {
+                            value[keys[i]] = rtl(sayname_translations.fa);
+                        }
+                        
+                        if (keys[i] == 'bio') {
+                            value[keys[i]] = bio_translations.en;
+                        }
+    
+                        if (keys[i] == 'bio_fa') {
+                            value[keys[i]] = rtl(bio_translations.fa);
+                        }
+    
+                        if (keys[i] == 'bioSummary') {
+                            value[keys[i]] = bio_summary_translations.en;
+                        }
+    
+                        if (keys[i] == 'bioSummary_fa') {
+                            value[keys[i]] = rtl(bio_summary_translations.fa);
+                        }
+    
+                        if (keys[i] == 'firstName') {
+                            value[keys[i]] = firstName_translations.en;
+                        }
+    
+                        if (keys[i] == 'firstName_fa') {
+                            value[keys[i]] = rtl(firstName_translations.fa);
+                        }
+    
+                        if (keys[i] == 'lastName') {
+                            value[keys[i]] = lastName_translations.en;
+                        }
+    
+                        if (keys[i] == 'lastName_fa') {
+                            value[keys[i]] = rtl(lastName_translations.fa);
+                        }
+                        // End translation fields
+    
+                        if(keys[i] == 'doneNeedCount'){
+                            value[keys[i]] = value[keys[i]] + " Done";
+                        }
+    
+                        if(keys[i] == 'spent_credit'){
+                            value[keys[i]] = cost(value[keys[i]]);
+                        }
+                        
+                        if(keys[i] == 'birthDate'){
+                            value[keys[i]] = getAge(value[keys[i]]);
+                        }
+    
+                        if(keys[i] == 'country'){
+                            if(value[keys[i]] == '98'){
+                                value[keys[i]] = 'Iran';
+                            }
+                        }
+    
+                        if (keys[i] == 'city'){
+                            if(value[keys[i]] == '1'){
+                                value[keys[i]] = 'Tehran';
+                            }
+                            if(value[keys[i]] == '2'){
+                                value[keys[i]] = 'Karaj';
+                            }
+                        }
+    
+                        if (keys[i] == 'gender') {
+                            if (value[keys[i]] == false) {
+                                value[keys[i]] = 'Girl';
+                            }
+                            if (value[keys[i]] == true) {
+                                value[keys[i]] = 'Boy';
+                            }
+                        }
+    
+                        if (keys[i] == 'birthPlace'){
+                            if(value[keys[i]] == '1'){
+                                value[keys[i]] = 'Tehran';
+                            }
+                            if(value[keys[i]] == '2'){
+                                value[keys[i]] = 'Karaj';
+                            }
+                        }
+    
+                        if (keys[i] == 'nationality'){
+                            if(value[keys[i]] == '98'){
+                                value[keys[i]] = 'Iranian';
+                            }
+                            if(value[keys[i]] == '93'){
+                                value[keys[i]] = 'Afghan';
+                            }
+                        }
+    
+                        // TODO:
+                        // if (keys[i] == 'education'){
+                        //     // console.log("first element of string: " + value[keys[i]].charAt(0));
+                        //     // console.log("count string length: " + value[keys[i]] + '-' + value[keys[i]].length);
+                        //     // console.log("remove first element: " + value[keys[i]].substring(1));
+    
+                        //     if(value[keys[i]].length >= 2){
+                        //         if(value[keys[i]].charAt(0) == 6 ){
+                        //             value[keys[i]] += " - School for the deaf";
+                        //         }
+                        //         if(value[keys[i]].charAt(0) == 7 ){
+                        //             value[keys[i]] += " - School for the blind";
+                        //         }
+                        //         if(value[keys[i]].charAt(0) == 8 ){
+                        //             value[keys[i]] += " - Intellectual disabilities school";
+                        //         }
+                        //         if(value[keys[i]].charAt(0) == 9 ){
+                        //             value[keys[i]] += " - School";
+                        //         }
+                        //     }
+    
+                        //     if(value[keys[i]] == '-3'){
+                        //         value[keys[i]] = 'Deprived of education';
+                        //     }
+                        //     if(value[keys[i]] == '-2'){
+                        //         value[keys[i]] = 'Kinder garden';
+                        //     }
+                        //     if(value[keys[i]] == '-1'){
+                        //         value[keys[i]] = 'Not attending';
+                        //     }
+                        //     if(value[keys[i]] == '0'){
+                        //         value[keys[i]] = 'Pre-school';
+                        //     }
+                        //     if(value[keys[i]] == '1'){
+                        //         value[keys[i]] = '1<sup>th</sup> grade';
+                        //     }
+                        //     if(value[keys[i]] == '2'){
+                        //         value[keys[i]] = '2<sup>th</sup> grade';
+                        //     }
+                        //     if(value[keys[i]] == '3'){
+                        //         value[keys[i]] = '3<sup>th</sup> grade';
+                        //     }
+                        //     if(value[keys[i]] == '4'){
+                        //         value[keys[i]] = '4<sup>th</sup> grade';
+                        //     }
+                        //     if(value[keys[i]] == '5'){
+                        //         value[keys[i]] = '5<sup>th</sup> grade';
+                        //     }
+                        //     if(value[keys[i]] == '6'){
+                        //         value[keys[i]] = '6<sup>th</sup> grade';
+                        //     }
+                        //     if(value[keys[i]] == '7'){
+                        //         value[keys[i]] = '7<sup>th</sup> grade';
+                        //     }
+                        //     if(value[keys[i]] == '8'){
+                        //         value[keys[i]] = '8<sup>th</sup> grade';
+                        //     }
+                        //     if(value[keys[i]] == '9'){
+                        //         value[keys[i]] = '9<sup>th</sup> grade';
+                        //     }
+                        //     if(value[keys[i]] == '10'){
+                        //         value[keys[i]] = '10<sup>th</sup> grade';
+                        //     }
+                        //     if(value[keys[i]] == '11'){
+                        //         value[keys[i]] = '11<sup>th</sup> grade';
+                        //     }
+                        //     if(value[keys[i]] == '12'){
+                        //         value[keys[i]] = '12<sup>th</sup> grade';
+                        //     }
+                        //     if(value[keys[i]] == '13'){
+                        //         value[keys[i]] = 'University';
+                        //     }
+                        // }
+    
+                        if (keys[i] == 'phoneNumber'){
+                            value[keys[i]] = phoneTo(value[keys[i]]);
+                        }
+    
+                        if(keys[i] == 'housingStatus'){
+                            if(value[keys[i]] == '0'){
+                                value[keys[i]] = 'Street child';
+                            }
+                            if(value[keys[i]] == '1'){
+                                value[keys[i]] = 'Living at home';
+                            }
+                            if(value[keys[i]] == '2'){
+                                value[keys[i]] = 'Care centers';
+                            }
+                        }
+    
+                        if(keys[i] == 'isConfirmed'){
+                            if(value[keys[i]] == true){
+                                value[keys[i]] = 'Confirmed';
+                                confirmStatus = 1;
+                            }
+                            if(value[keys[i]] == false){
+                                value[keys[i]] = 'Not confirmed';
+                            }
+                        }
+    
+                        if (keys[i] == 'awakeAvatarUrl'){
+                            value[keys[i]] = getImgFile(value[keys[i]]);
+                        }
+    
+                        if (keys[i] == 'sleptAvatarUrl'){
+                            value[keys[i]] = getImgFile(value[keys[i]]);
+                        }
+    
+                        if (keys[i] == 'voiceUrl'){
+                            value[keys[i]] = getVoiceFile(value[keys[i]]);
+                        }
+    
+                        if(keys[i] == 'spentCredit'){
+                            value[keys[i]] = cost(value[keys[i]]);
+                        }
+    
+                        if(keys[i] == 'familyCount' || keys[i] == 'sayFamilyCount'){
+                            value[keys[i]] = value[keys[i]] + " Members";
+                        }
+    
+                        if(keys[i] == 'confirmDate' || keys[i] == 'created' || keys[i] == 'updated') {
+                            value[keys[i]] = jalaliDate(value[keys[i]]);
+                        }
+                        
+                        if(value[keys[i]] == null){
+                            value[keys[i]] = nullValues();
+                        }
+    
+                        query += '<td>' + value[keys[i]] + '</td>';
+                    }
+                    
+                    query+= '</tr>';
+                    $('#childList').append(query);
+                    hasPrivilege();
+    
+                    // disable confirm button if the child has confirmed already!
+                    if(confirmStatus == 1){
+                            $('#' + childId).find('.confirmBtn').prop("disabled", true);
+                            $('#' + childId).find('.confirmBtn').text("Confirmed");
+                    }
+    
+                    // Handle existence status
+                    if (value['existence_status'] != 1) {
+                        $(`#${childId}`).find('.existenceBtn').text('Activate');
+                        if (value['existence_status'] == 0) {
+                            $(`#${childId}`).find('.existenceBtn').text('Asleep :(');
+                            $(`#${childId}`).find('.existenceBtn').prop("disabled", true);
+                        } else if (value['existence_status'] == 2) {
+                            $(`#${childId}`).find('.existenceBtn').text('Gone');
+                            $(`#${childId}`).find('.existenceBtn').prop("disabled", true);
+                        }
+                    }
+                    row_index += 1;
+                })
+                $('#children_preloader').hide();
+    
+            },
+            error: function(data) {
+                console.log(data.responseJSON.message);
+            }
+        })
+        $('#childList').empty();
+    }
 
     //Child drop down field in needs form
     $.ajax({
