@@ -135,16 +135,11 @@ $(document).ready(function(){
     getAllChildren();
 
     $('#myonoffswitch1').prop('checked', false);
-    $('.existenceText').text('نمایش کودکانی که نیستند');
     $('#myonoffswitch1').change(function() {
         if(this.checked) {
             child_url = '/child/all/confirm=2?existence_status=2';
-            $('.existenceText').text('نمایش کودکان در دسترس');
-            console.log("checkbox checked");
         } else {
             child_url = '/child/all/confirm=2';
-            $('.existenceText').text('نمایش کودکانی که نیستند');
-            console.log("checkbox not checked");
         }
         getAllChildren();
     })
@@ -634,7 +629,6 @@ $(document).ready(function(){
         $('#ngo_id').prop("disabled", true);
         $('#social_worker_id').prop("disabled", true);
         edit_childId = $(this).parent().attr('id');
-        console.log("child id get value: " + edit_childId);
 
         // get the child's data to the form
         $.ajax({
@@ -691,8 +685,6 @@ $(document).ready(function(){
     // confirm Edit child
     $('#editChildData').on('click' , function(e){
         e.preventDefault();
-
-        console.log("edit child " + edit_childId);
 
         // getting data from html form
 
@@ -850,6 +842,32 @@ $(document).ready(function(){
                     title: errorTitle(),
                     message: errorContent(data.responseJSON.message),
                 });
+            }
+        })
+    })
+
+    $('#childList').on('click' , '.existenceBtn' , function(e) {
+        $('.static').val(-1).change();
+        e.preventDefault();
+
+        edit_childId = $(this).parent().attr('id');
+        $('#deactive-modal').modal('show');
+
+        $.ajax({
+            url: SAYApiUrl + '/child/childId=' + edit_childId + '&confirm=2',
+            method: 'GET',
+            dataType: 'json',
+            beforeSend: function() {
+                $('#children_existence_preloader').show();
+            },
+            success: function (data) {
+                $('#sayName').text(data['sayname_translations'].fa);
+                $('#existenceStatus').val(data['existence_status']).change();
+
+                $('#children_existence_preloader').hide();
+            },
+            error: function (data) {
+                console.log(data.responseJSON.message);
             }
         })
     })
