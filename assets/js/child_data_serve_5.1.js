@@ -137,7 +137,7 @@ $(document).ready(function(){
     $('#myonoffswitch1').prop('checked', false);
     $('#myonoffswitch1').change(function() {
         if(this.checked) {
-            child_url = '/child/all/confirm=2?existence_status=2';
+            child_url = '/child/all/confirm=2?existence_status=!1';
         } else {
             child_url = '/child/all/confirm=2';
         }
@@ -846,6 +846,7 @@ $(document).ready(function(){
         })
     })
 
+    // Change children existence status
     $('#childList').on('click' , '.existenceBtn' , function(e) {
         $('.static').val(-1).change();
         e.preventDefault();
@@ -859,17 +860,52 @@ $(document).ready(function(){
             dataType: 'json',
             beforeSend: function() {
                 $('#children_existence_preloader').show();
+                $('#existenceStatus').prop('disabled', 'disabled');
             },
             success: function (data) {
                 $('#sayName').text(data['sayname_translations'].fa);
                 $('#existenceStatus').val(data['existence_status']).change();
 
                 $('#children_existence_preloader').hide();
+                $('#existenceStatus').prop('disabled', false);
             },
             error: function (data) {
                 console.log(data.responseJSON.message);
             }
         })
+    })
+
+    $('#changeExistence').on('click', function(e) {
+        e.preventDefault();
+
+        var existenceStaus = $('#existenceStatus').val();
+        var formData = new FormData();
+        if (existenceStaus != -1) {
+            formData.append('existence_status', existenceStaus);
+        } else return;
+
+        $.ajax({
+            url: SAYApiUrl + '/child/update/childId=' + edit_childId,
+            method: 'PATCH',
+            cache: false,
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            data: formData,
+            beforeSend: function(){
+                return confirm("در صورت غیر فعال کردن کودک، نیازهای فعال او غیر فعال شده و نیازهایی که هنوز وضعیت آن به دست کودک نرسیده است مبلغش به کیف پول کاربران برگشت داده شده می‌شود.\nAre you sure?");
+            },
+            success: function(data) {
+                alert("Success\nChild " + edit_childId + " updated successfully\n" + JSON.stringify(data.message));
+                location.reload(true);
+            },
+            error: function(data) {
+                bootbox.alert({
+                    title: errorTitle(),
+                    message: errorContent(data.responseJSON.message),
+                });
+            }
+        }) 
     })
 
 })
