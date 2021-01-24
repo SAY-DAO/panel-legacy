@@ -530,3 +530,57 @@ $(document).ready(function(){
     })
 
 })
+
+// DK receipt add/view
+$('#reportDoneNeedList').on('click', '.receiptBtn', function(e) {
+    e.preventDefault();
+
+    status_needId = $(this).parent().attr('id');
+    $('#dk-modal').modal('show');
+
+    $.ajax({
+        url: `${SAYApiUrl}/need/needId=${status_needId}`,
+        method: 'GET',
+        dataType: 'json',
+        beforeSend: function() {
+            $('#dk_preloader').show();
+        },
+        success: function(data) {
+            $('#needName').text(data['title']);
+            getReceipts(status_needId);
+        },
+        error: function(data) {
+            console.log(data.responseJSON.message);
+        }
+    })
+
+    
+})
+
+function getReceipts(needId) {
+    $.ajax({
+        url: `${SAYApiUrl}/needs/${needId}/receipts`,
+        method: 'GET',
+        dataType: 'json',
+        beforeSend: function() {
+            $('#dk_preloader').show();
+        },
+        success: function(data) {
+            $.each(data, (key, receipt) => {
+                var accessibility = receipt['isPublic'] ? 'Public' : 'Private';
+                var query = '';
+                query += `<li><a href=${receipt['attachment']} target='_blank'>${receipt['title']}</a> - ${accessibility}</li>`;
+                $('#dk-receipt-item').append(query);
+            })
+            $('#dk_preloader').hide();
+        },
+        error: function(data) {
+            console.log(data.responseJSON.message);
+        }
+    })
+}
+
+$('#addReceipt').on('click', function(e) {
+    e.preventDefault();
+    
+})
