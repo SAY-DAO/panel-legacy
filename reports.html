@@ -122,6 +122,37 @@
         <!-- END TOPBAR -->
         <!-- BEGIN PAGE CONTENT -->
         <!--say changes-->
+
+        <!-- DK receipt modal -->
+        <div class="modal fade" id="dk-modal" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-bottomfull">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icons-office-52"></i></button>
+                <img class="preloader" id="dk_preloader" src="assets/images/preloader/25.gif"/>
+                <h4 class="modal-title">رسید دیجیکالای <strong id="needName">-</strong></h4>
+              </div>
+              <div class="modal-body">
+                <ul id="dk-receipt-item"></ul>
+                <br />
+                <form>
+                  <div class="form-group">
+                    <div class="file">
+                      <span class="file-button btn-primary">انتخاب فایل</span>
+                      <input type="file" class="custom-file" name="dk_receipts[]" id="dk_receipts" multiple="multiple" onchange="document.getElementById('dk_receipts_uploader').value = this.value;" />
+                      <input type="text" class="form-control" id="dk_receipts_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="" />
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-embossed" data-dismiss="modal">بستن</button>
+                <button type="button" class="btn btn-primary btn-embossed" id="addReceipt" data-dismiss="modal">ثبت</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="page-content">
           <div class="custom-page text-center">
                 <div class="header">
