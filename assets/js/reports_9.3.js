@@ -566,6 +566,10 @@ $('#reportDoneNeedList').on('click', '.receiptBtn', function(e) {
     $('#dk-receipt-item').empty();
     $('#dk_receipts').val(null);
     $('#dk_receipts_uploader').val(null);
+    $('#dk_code').val(null);
+    $('#dk_title').val(null);
+    $('#dk_receipt_form').validate().resetForm();
+    $('#dk_receipt_form .form-control').removeClass('error');
 
     status_needId = $(this).parent().attr('id');
     $('#dk-modal').modal('show');
