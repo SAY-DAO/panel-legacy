@@ -534,27 +534,28 @@ $(document).ready(function(){
 // DK receipt add/view
 $('#reportDoneNeedList').on('click', '.receiptBtn', function(e) {
     e.preventDefault();
+    $('#dk-receipt-item').empty();
+    $('#dk_receipts').val(null);
+    $('#dk_receipts_uploader').val(null);
 
     status_needId = $(this).parent().attr('id');
     $('#dk-modal').modal('show');
 
     $.ajax({
-        url: `${SAYApiUrl}/need/needId=${status_needId}`,
-        method: 'GET',
-        dataType: 'json',
-        beforeSend: function() {
-            $('#dk_preloader').show();
-        },
-        success: function(data) {
-            $('#needName').text(data['title']);
-            getReceipts(status_needId);
-        },
-        error: function(data) {
-            console.log(data.responseJSON.message);
-        }
-    })
-
-    
+      url: `${SAYApiUrl}/need/needId=${status_needId}`,
+      method: 'GET',
+      dataType: 'json',
+      beforeSend: function () {
+        $('#dk_preloader').show();
+      },
+      success: function (data) {
+        $('#needName').text(data['title']);
+        getReceipts(status_needId);
+      },
+      error: function (data) {
+        console.log(data.responseJSON.message);
+      },
+    });
 })
 
 function getReceipts(needId) {
@@ -582,5 +583,6 @@ function getReceipts(needId) {
 
 $('#addReceipt').on('click', function(e) {
     e.preventDefault();
-    
+    var receipts = $('#dk_receipts')[0].files[0];
+    console.log(receipts);
 })
