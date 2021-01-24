@@ -62,6 +62,35 @@ $(document).ready(function(){
         }
     });
 
+    // Add dk receipt modal form validation
+    $('#dk_receipt_form').validate({
+      rules: {
+        dk_code: {
+          required: true,
+        },
+        dk_title: {
+          required: true,
+        },
+        'dk_receipts[]': {
+          filesize: 3, // MB
+        },
+      },
+      messages: {
+        dk_code: {
+          required: 'ضروری',
+        },
+        dk_title: {
+          required: 'ضروری',
+        },
+        'dk_receipts[]': {
+          filesize: 'بیش‌ترین حجم قابل پذیرش: {0} مگابایت',
+        },
+      },
+      errorPlacement: function (error, element) {
+        error.appendTo(element.parent('div'));
+      },
+    });
+
     var status_needId = -1;
     var type_id = -1;
     var keys = ['id',
