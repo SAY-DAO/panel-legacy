@@ -616,6 +616,47 @@ function getReceipts(needId) {
 
 $('#addReceipt').on('click', function(e) {
     e.preventDefault();
-    var receipts = $('#dk_receipts')[0].files[0];
-    console.log(receipts);
+    var attachment = $('#dk_receipts')[0].files[0];
+    var code = $('#dk_code').val();
+    var title = $('#dk_title').val();
+    var isPublic = $('#isPublic').val();
+
+    if (attachment) {
+      var formData = new FormData();
+      formData.append('attachment', attachment);
+      formData.append('code', code);
+      formData.append('title', title);
+      formData.append('isPublic', isPublic);
+
+      if ($('#dk_receipt_form').valid()) {
+        $.ajax({
+          url: `${SAYApiUrl}/needs/${status_needId}/receipts`,
+          method: 'POST',
+          cache: false,
+          processData: false,
+          contentType: false,
+          dataType: 'json',
+          data: formData,
+          beforeSend: function () {
+            $('#dk_preloader').show();
+            return confirm('Are you sure?');
+          },
+          success: function (data) {
+            $('#dk_preloader').hide();
+            alert("Success\nReceipt " + data.title + " added successfully.");
+            $('#dk-modal').modal('hide');
+          },
+          error: function (data) {
+            $('#dk_preloader').hide();
+            bootbox.alert({
+              title: errorTitle(),
+              message: errorContent(data.responseJSON.message),
+            });
+          },
+        });
+      }
+
+    } else {
+        $('#dk-modal').modal('hide');
+    };
 })
