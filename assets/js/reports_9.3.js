@@ -157,6 +157,7 @@ $(document).ready(function(){
                     <td>' + row_index + '</td>\
                     <td id="' + needId + '">\
                     <button type="submit" class="btn btn-block btn-embossed btn-default btn-sm changeStatus" onclick="editScroll()">Change status</button>\
+                    <button class="btn btn-embossed btn-warning btn-block btn-sm receiptBtn">رسید دیجیکالا</button>\
                     </td>\
                     ';
 
@@ -244,6 +245,10 @@ $(document).ready(function(){
 
                     query += '</tr>';
                     $('#reportDoneNeedList').append(query);
+
+                    if (!(need_status === 14 || need_status === 15)) {
+                        $('#' + needId).find('.receiptBtn').hide();
+                    }
 
                     row_index += 1;
                 })
