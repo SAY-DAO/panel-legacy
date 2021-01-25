@@ -575,6 +575,8 @@ $(document).ready(function(){
         $('#dk_receipt_form').validate().resetForm();
         $('#dk_receipt_form .form-control').removeClass('error');
         $('.dk').prop('disabled', false);
+        $('#show_dk').hide();
+        $('#dk_file_container').find('.file').show();
 
         status_needId = $(this).parent().attr('id');
         $('#dk-modal').modal('show');
@@ -652,6 +654,7 @@ $(document).ready(function(){
           $('#dk_preloader').show();
           $('#addReceipt').prop('disabled', 'disabled');
           $('#dk_code_search').prop('disabled', 'disabled');
+          $('#show_dk').removeAttr('href');
         },
         error: function (err) {
           $('#dk_preloader').hide();
@@ -667,9 +670,12 @@ $(document).ready(function(){
         $('#dk_code').val(response['code']);
         $('#dk_title').val(response['title']);
         $('#isPublic').val(isPublic).change();
+        $('#show_dk').attr('href', response['attachment']);
         $('.dk').prop('disabled', 'disabled');
         $('#addReceipt').prop('disabled', false);
         $('#dk_code_search').prop('disabled', false);
+        $('#dk_file_container').find('.file').hide();
+        $('#show_dk').show();
         $('#dk_preloader').hide();
       });
     });
