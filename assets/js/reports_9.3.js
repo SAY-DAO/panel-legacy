@@ -563,6 +563,10 @@ $(document).ready(function(){
         e.preventDefault();
         $('#dk-receipt-item').empty();
         $('#dk_code_search').empty();
+        $('#dk_code_search').append(
+          '<option value="0">جستجوی رسیدهای پیشین</option>'
+        );
+        $('#dk_code_search').select2('val', 0);
         $('#dk_receipts').val(null);
         $('#dk_receipts_uploader').val(null);
         $('#dk_code').val(null);
@@ -570,6 +574,7 @@ $(document).ready(function(){
         $('#isPublic').val(0).change();
         $('#dk_receipt_form').validate().resetForm();
         $('#dk_receipt_form .form-control').removeClass('error');
+        $('.dk').prop('disabled', false);
 
         status_needId = $(this).parent().attr('id');
         $('#dk-modal').modal('show');
@@ -584,7 +589,7 @@ $(document).ready(function(){
         },
         success: function (data) {
             $('#needName').text(data['title']);
-            getReceipts(status_needId);
+            getNeedReceipts(status_needId);
         },
         error: function (data) {
             console.log(data.responseJSON.message);
@@ -592,31 +597,31 @@ $(document).ready(function(){
         });
     });
 
-    function getReceipts(needId) {
-        $.ajax({
-            url: `${SAYApiUrl}/needs/${needId}/receipts`,
-            method: 'GET',
-            dataType: 'json',
-            beforeSend: function() {
-                $('#dk_preloader').show();
-            },
-            success: function(data) {
-                $.each(data, (key, receipt) => {
-                    var accessibility = receipt['isPublic'] ? 'Public' : 'Private';
-                    var query = '';
-                    query += `<li id=${receipt['id']}>\
+    function getNeedReceipts(needId) {
+      $.ajax({
+        url: `${SAYApiUrl}/needs/${needId}/receipts`,
+        method: 'GET',
+        dataType: 'json',
+        beforeSend: function () {
+          $('#dk_preloader').show();
+        },
+        success: function (data) {
+          $.each(data, (key, receipt) => {
+            var accessibility = receipt['isPublic'] ? 'Public' : 'Private';
+            var query = '';
+            query += `<li id=${receipt['id']}>\
                         <button class="btn btn-rounded btn-transparent btn-danger btn-sm delReceipt">Delete</button> - \
                         <a href=${receipt['attachment']} target='_blank'>${receipt['title']}</a> - ${accessibility}\
                         </li>`;
-                    $('#dk-receipt-item').append(query);
-                })
-                $('#dk_preloader').hide();
-            },
-            error: function(data) {
-                console.log(data.responseJSON.message);
-            }
-        })
-        $('#dk-receipt-item').empty();
+            $('#dk-receipt-item').append(query);
+          });
+          $('#dk_preloader').hide();
+        },
+        error: function (data) {
+          console.log(data.responseJSON.message);
+        },
+      });
+      $('#dk-receipt-item').empty();
     };
 
     function getAllReceipts() {
@@ -637,6 +642,37 @@ $(document).ready(function(){
             }
         })
     };
+
+    function getReceipt(id) {
+      return $.ajax({
+        url: `${SAYApiUrl}/receipts/${id}`,
+        method: 'GET',
+        dataType: 'json',
+        beforeSend: function () {
+          $('#dk_preloader').show();
+          $('#addReceipt').prop('disabled', 'disabled');
+          $('#dk_code_search').prop('disabled', 'disabled');
+        },
+        error: function (err) {
+          $('#dk_preloader').hide();
+          console.log(err.responseJSON.message);
+        },
+      });
+    }
+
+    $('#dk_code_search').change(function () {
+      var receipt_id = $(this).val();
+      getReceipt(receipt_id).then((response) => {
+        var isPublic = response['isPublic'] ? '1' : '0';
+        $('#dk_code').val(response['code']);
+        $('#dk_title').val(response['title']);
+        $('#isPublic').val(isPublic).change();
+        $('.dk').prop('disabled', 'disabled');
+        $('#addReceipt').prop('disabled', false);
+        $('#dk_code_search').prop('disabled', false);
+        $('#dk_preloader').hide();
+      });
+    });
 
     $('#addReceipt').on('click', function(e) {
         e.preventDefault();
@@ -700,7 +736,7 @@ $(document).ready(function(){
             },
             success: function(data) {
                 alert(`Success\n${data.title} deleted from this need successfully.`);
-                getReceipts(status_needId);
+                getNeedReceipts(status_needId);
                 $('#dk_preloader').hide();
             },
             error: function(data) {
