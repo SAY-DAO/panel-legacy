@@ -116,6 +116,36 @@
         <!-- END TOPBAR -->
         <!-- BEGIN PAGE CONTENT -->
         <!--say changes-->
+
+        <!-- Deactivate/Activate children modal -->
+        <div class="modal fade" id="deactive-modal" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-bottomfull">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icons-office-52"></i></button>
+                <img class="preloader" id="children_existence_preloader" src="assets/images/preloader/25.gif"/>
+                <h4 class="modal-title">تغییر وضعیت <strong id="sayName">-</strong></h4>
+              </div>
+              <div class="modal-body">
+                <select id="existenceStatus" name="existenceStatus" class="form-control static">
+                  <option value="-1">انتخاب وضعیت</option>
+                  <option value="1">در دسترس</option>
+                  <option value="2">غیرفعال برای همیشه</option>
+                  <option value="3">غیرفعال موقت</option>
+                  <option value="0">از دنیا رفته :(</option>
+                </select>
+                <p class="c-orange">وضعیت‌های <i><small>غیرفعال برای همیشه</small></i> و <i><small>از دنیا رفته</small></i> قابل تغییر
+                  نخواهند بود.
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-embossed" data-dismiss="modal">بستن</button>
+                <button type="button" class="btn btn-primary btn-embossed" id="changeExistence" data-dismiss="modal">ثبت</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="page-content">
           <div class="custom-page text-center">
                 <div class="header">
@@ -466,6 +496,19 @@
                   </div>
               </div>
 
+              <div class="row btn-group">
+                <h4 class="existenceText">نمایش کودکانی که نیستند</h4>
+                <div class="onoffswitch col-lg-12">
+                  <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch1">
+                  <label class="onoffswitch-label" for="myonoffswitch1">
+                    <span class="onoffswitch-inner">
+                      <span class="onoffswitch-active"><span class="onoffswitch-switch">ON</span></span>
+                      <span class="onoffswitch-inactive"><span class="onoffswitch-switch">OFF</span></span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+
               <div class="panel panel-default no-bd">
                 <div class="panel-header bg-dark panel-controls">
                   <h3 class="panel-title">لیست<strong> کودکان</strong><img class="preloader" id="children_preloader" src="assets/images/preloader/25.gif"/></h3>
@@ -600,14 +643,15 @@
 <script src="../builder/page-builder/plugins/saveas/saveAs.js"></script>
 <script src="../builder/page-builder/js/builder_page.js"></script>
 
-<script src="assets/js/child_data_serve_5.1.js"></script>  <!--Child data feed-->
+<script src="assets/js/child_data_serve_6.js"></script>
+<!--Child data feed-->
 <script src="assets/js/ngo_data_serve_6.0.js"></script>  <!--NGO field data feed-->
 <script src="assets/js/social_worker_data_serve_3.0.js"></script>  <!--Social worker field data feed-->
 <script
   src="https://browser.sentry-cdn.com/5.22.3/bundle.tracing.min.js"
   crossorigin="anonymous"
 ></script>
-<script src="assets/js/custom_6.1.js"></script>  <!--custom functions-->
+<script src="assets/js/custom_6.3.js"></script>  <!--custom functions-->
 <script src="assets/js/config.js"></script>  <!--url configurations-->
 <script src="assets/js/html_config_1.0.js"></script>  <!--HTML url configurations-->
 <script src="assets/js/authorize_1.0.js"></script>  <!--Athorization-->

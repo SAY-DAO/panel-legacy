@@ -212,7 +212,7 @@
                             <div class="form-group">
                               <label for="pre_need_id" class="control-label">نیاز</label>
                               <div class="option-group">
-                                <select id="pre_need_id" name="pre_need_id" class="form-control">
+                                <select id="pre_need_id" name="pre_need_id" class="form-control" data-search="true">
                                   <option value="">نیاز پیش‌فرض مورد نظر را انتخاب کنید</option>
                                 </select>
                               </div>
@@ -223,7 +223,7 @@
                             <div class="form-group">
                               <label for="child_id" class="control-label">کودک <span class="required">*</span></label>
                               <div class="option-group">
-                                <select id="child_id" name="child_id" class="form-control">
+                                <select id="child_id" name="child_id" class="form-control" data-search="true">
                                   <option value="">کودک مورد نظر را انتخاب کنید</option>
                                 </select>
                               </div>
@@ -423,7 +423,7 @@
                 </div>
 
                 <div class="option-group btn-group center-block col-md-12 col-sm-12 col-xs-12">
-                    <select id="child_need_select" name="child_need_select" class="btn btn-sm btn-dark btn-block col-md-4 col-sm-5 pull-left">
+                    <select id="child_need_select" name="child_need_select" class="btn btn-sm btn-dark btn-block col-md-4 col-sm-5 pull-left" data-search="true">
                         <option value="">انتخاب کودک...</option>
                     </select>
                     <select id="need_confirm_status" name="need_confirm_status" class="btn btn-sm btn-dark btn-block col-md-3 col-sm-3 col-xs-12 pull-right need_filter privilege1">
@@ -554,15 +554,16 @@
 <script src="../builder/page-builder/js/builder_page.js"></script>
 
 <script src="assets/js/ngo_data_serve_6.0.js"></script>  <!--NGO field data feed-->
-<script src="assets/js/need_data_serve_5.4.js"></script>  <!--Need data feed-->
-<script src="assets/js/child_data_serve_5.1.js"></script>  <!--child data feed for child_id field-->
+<script src="assets/js/need_data_serve_5.6.js"></script>  <!--Need data feed-->
+<script src="assets/js/child_data_serve_6.js"></script>
+<!--child data feed for child_id field-->
 <script
   src="https://browser.sentry-cdn.com/5.22.3/bundle.tracing.min.js"
   crossorigin="anonymous"
 ></script>
 <script src="assets/js/config.js"></script>  <!--url configurations-->
 <script src="assets/js/html_config_1.0.js"></script>  <!--HTML url configurations-->
-<script src="assets/js/custom_6.1.js"></script>  <!--custom functions-->
+<script src="assets/js/custom_6.3.js"></script>  <!--custom functions-->
 <script src="assets/js/authorize_1.0.js"></script>  <!--Athorization-->
 <script src="assets/js/jwt-decode.min.js"></script>  <!--jwt decoder script-->
 <script src="assets/plugins/jdate.js" type="text/javascript" charset="utf-8"></script>  <!-- Jalali date -->

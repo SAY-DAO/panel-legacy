@@ -343,6 +343,7 @@ $(document).ready(function(){
                     // TODO: Pre Defined needs (this is a hard code)
                     if (selected_child == 104) {
                         $('#' + needId).find('.confirmBtn').hide();
+                        $('#' + needId).find('.receiptBtn').hide();
                     }
                     row_index += 1;
                 })
@@ -629,7 +630,7 @@ $(document).ready(function(){
         var childId = $('#child_id').val();
         var imageUrl = $('#need_icon')[0].files[0];
         var category = $('#need_category').val();
-        var cost = $('#need_cost').val();
+        var cost = $('#need_cost').val().replaceAll(',','');
         var details = $('#need_details').val();
         var type = $('#need_type').val();
         var doing_duration = $('#need_doing_duration').val();
@@ -761,7 +762,7 @@ $(document).ready(function(){
                 $('#need_name').val(name_translations.en);
                 $('#need_name_fa').val(name_translations.fa);
                 $('#need_category').val(data['category']).change();
-                $('#need_cost').val(data['cost']);
+                $('#need_cost').val(data['pretty_cost']);
                 $('#need_details').val(data['details']);
                 $('#need_description').val(description_translations.en);
                 $('#need_description_fa').val(description_translations.fa);
@@ -789,7 +790,7 @@ $(document).ready(function(){
 
         var imageUrl = $('#need_icon')[0].files[0];
         var category = $('#need_category').val();
-        var cost = $('#need_cost').val();
+        var cost = $('#need_cost').val().replaceAll(',','');
         var details = $('#need_details').val();
         var type = $('#need_type').val();
         var doing_duration = $('#need_doing_duration').val();
