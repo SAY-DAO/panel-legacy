@@ -644,10 +644,10 @@ $(document).ready(function(){
                     $('#dk_code_search').append(query);
                 })
             },
-            error: function(data) {
-                console.log(data);
+            error: function(err) {
+                console.log(err);
             }
-        })
+        });
     };
 
     function getReceipt(id) {
@@ -666,7 +666,7 @@ $(document).ready(function(){
           console.log(err.responseJSON.message);
         },
       });
-    }
+    };
 
     $('#dk_code_search').change(function () {
       receipt_id = $(this).val();
@@ -720,7 +720,8 @@ $(document).ready(function(){
                     success: function (data) {
                         $('#dk_preloader').hide();
                         alert("Success\nReceipt " + data.title + " added successfully.");
-                        $('#dk-modal').modal('hide');
+                        resetDk();
+                        getNeedReceipts(status_needId);
                     },
                     error: function (data) {
                         $('#dk_preloader').hide();
@@ -746,6 +747,7 @@ $(document).ready(function(){
                 success: function(data) {
                     $('#dk_preloader').hide();
                     alert("Success");
+                    resetDk();
                     getNeedReceipts(status_needId);
                 },
                 error: function(err) {
@@ -776,7 +778,6 @@ $(document).ready(function(){
             success: function(data) {
                 alert(`Success\n${data.title} deleted from this need successfully.`);
                 getNeedReceipts(status_needId);
-                $('#dk_preloader').hide();
             },
             error: function(data) {
                 $('#dk_preloader').hide();
