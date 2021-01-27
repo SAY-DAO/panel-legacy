@@ -618,7 +618,7 @@ $(document).ready(function(){
             var query = '';
             query += `<li id=${receipt['id']}>\
                         <button class="btn btn-rounded btn-transparent btn-danger btn-sm delReceipt">Delete</button> - \
-                        <a href=${receipt['attachment']} target='_blank'>${receipt['title']}</a> - ${accessibility}\
+                        <a href=${receipt['attachment']} target='_blank'>${receipt['code']}</a> - ${accessibility}\
                         </li>`;
             $('#dk-receipt-item').append(query);
           });
@@ -640,7 +640,7 @@ $(document).ready(function(){
                 $.each(data, (key, receipt) => {
                     var accessibility = receipt['isPublic'] ? 'Public' : 'Private';
                     var query = '';
-                    query += `<option value=${receipt['id']}>${receipt['code']} - ${receipt['title']} - <b>${accessibility}</b></option>`;
+                    query += `<option value=${receipt['id']}>${receipt['code']} - ${accessibility}</option>`;
                     $('#dk_code_search').append(query);
                 })
             },
@@ -677,7 +677,6 @@ $(document).ready(function(){
       getReceipt(receipt_id).then((response) => {
         var isPublic = response['isPublic'] ? '1' : '0';
         $('#dk_code').val(response['code']);
-        $('#dk_title').val(response['title']);
         $('#isPublic').val(isPublic).change();
         $('#show_dk').attr('href', response['attachment']);
         $('.dk').prop('disabled', 'disabled');
@@ -694,7 +693,7 @@ $(document).ready(function(){
         e.preventDefault();
         var attachment = $('#dk_receipts')[0].files[0];
         var code = $('#dk_code').val();
-        var title = $('#dk_title').val();
+        var title = 'dkc';
         var isPublic = $('#isPublic').val();
 
         if (attachment) {
