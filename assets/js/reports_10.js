@@ -615,10 +615,12 @@ $(document).ready(function(){
         success: function (data) {
           $.each(data, (key, receipt) => {
             var accessibility = receipt['isPublic'] ? 'Public' : 'Private';
+            var icon = receipt['isPublic'] ? 'icon-lock-open' : 'icon-key';
             var query = '';
             query += `<li id=${receipt['id']}>\
                         <button class="btn btn-rounded btn-transparent btn-danger btn-sm delReceipt">Delete</button> - \
                         <a href=${receipt['attachment']} target='_blank'>${receipt['code']}</a> - ${accessibility}\
+                        <button id=${receipt['isPublic']} class='btn btn-sm btn-rounded btn-default changeAccess' data-toggle='tooltip' title='Click to change'><i class=${icon}></i></button>\
                         </li>`;
             $('#dk-receipt-item').append(query);
           });
@@ -784,6 +786,42 @@ $(document).ready(function(){
             }
         })
         $('#dk_preloader').hide();
+    });
+
+    // Update receipt's accessibility
+    $('#dk-receipt-item').on('click', '.changeAccess', function (e) {
+      e.preventDefault();
+      var id = $(this).parent().attr('id');
+      var current = $(this).attr('id') == 'true';
+      var changeTo = !current;
+      var message = changeTo ? 'PUBLIC' : 'PRIVATE';
+
+      var formData = new FormData();
+      formData.append('isPublic', changeTo);
+      $.ajax({
+        url: `${SAYApiUrl}/receipts/${id}`,
+        method: 'PATCH',
+        cache: false,
+        processData: false,
+        contentType: false,
+        dataType: 'json',
+        data: formData,
+        beforeSend: function () {
+          $('#dk_preloader').show();
+          return confirm(
+            'این تغییر بر روی تمام نیازهایی که این رسید را دارند نیز اعمال می‌شود.\nAre you sure?'
+          );
+        },
+        success: function () {
+          alert(`Success\nSuccessfully change to ${message}.`);
+          getNeedReceipts(status_needId);
+        },
+        error: function (err) {
+          $('#dk_preloader').hide();
+          console.log(err);
+        },
+      });
+      $('#dk_preloader').hide();
     });
 
 })
