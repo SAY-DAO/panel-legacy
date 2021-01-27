@@ -62,7 +62,37 @@ $(document).ready(function(){
         }
     });
 
+    // Add dk receipt modal form validation
+    $('#dk_receipt_form').validate({
+      rules: {
+        dk_code: {
+          required: true,
+        },
+        dk_title: {
+          required: true,
+        },
+        'dk_receipts[]': {
+          filesize: 3, // MB
+        },
+      },
+      messages: {
+        dk_code: {
+          required: 'ضروری',
+        },
+        dk_title: {
+          required: 'ضروری',
+        },
+        'dk_receipts[]': {
+          filesize: 'بیش‌ترین حجم قابل پذیرش: {0} مگابایت',
+        },
+      },
+      errorPlacement: function (error, element) {
+        error.appendTo(element.parent('div'));
+      },
+    });
+
     var status_needId = -1;
+    var receipt_id = -1;
     var type_id = -1;
     var keys = ['id',
                 'type',
@@ -157,6 +187,7 @@ $(document).ready(function(){
                     <td>' + row_index + '</td>\
                     <td id="' + needId + '">\
                     <button type="submit" class="btn btn-block btn-embossed btn-default btn-sm changeStatus" onclick="editScroll()">Change status</button>\
+                    <button class="btn btn-embossed btn-warning btn-block btn-sm receiptBtn">رسید دیجیکالا</button>\
                     </td>\
                     ';
 
@@ -244,6 +275,10 @@ $(document).ready(function(){
 
                     query += '</tr>';
                     $('#reportDoneNeedList').append(query);
+
+                    if (!(need_status === 14 || need_status === 15)) {
+                        $('#' + needId).find('.receiptBtn').hide();
+                    }
 
                     row_index += 1;
                 })
@@ -523,5 +558,233 @@ $(document).ready(function(){
         $('#reportNGONeedList').empty();
 
     })
+
+    // DK receipt add/view
+    $('#reportDoneNeedList').on('click', '.receiptBtn', function(e) {
+        e.preventDefault();
+        status_needId = $(this).parent().attr('id');
+        receipt_id = -1;
+        resetDk();
+        $('#dk-modal').modal('show');
+        getNeedReceipts(status_needId);
+
+        $.ajax({
+            url: `${SAYApiUrl}/need/needId=${status_needId}`,
+            method: 'GET',
+            dataType: 'json',
+            beforeSend: function () {
+                $('#dk_preloader').show();
+            },
+            success: function (data) {
+                $('#needName').text(data['title']);
+                $('#dk_preloader').hide();
+        },
+            error: function (data) {
+                console.log(data.responseJSON.message);
+            },
+        });
+    });
+
+    function resetDk() {
+        $('#dk_code_search').empty();
+        $('#dk_code_search').append(
+          '<option value="0">جستجوی رسیدهای پیشین</option>'
+        );
+        $('#dk_code_search').select2('val', 0);
+        $('#dk_receipts').val(null);
+        $('#dk_receipts_uploader').val(null);
+        $('#dk_code').val(null);
+        $('#dk_title').val(null);
+        $('#isPublic').val(0).change();
+        $('#dk_receipt_form').validate().resetForm();
+        $('#dk_receipt_form .form-control').removeClass('error');
+        $('.dk').prop('disabled', false);
+        $('#show_dk').hide();
+        $('#dk_file_container').find('.file').show();
+        getAllReceipts();
+    }
+
+    function getNeedReceipts(needId) {
+      $.ajax({
+        url: `${SAYApiUrl}/needs/${needId}/receipts`,
+        method: 'GET',
+        dataType: 'json',
+        beforeSend: function () {
+          $('#dk_preloader').show();
+        },
+        success: function (data) {
+          $.each(data, (key, receipt) => {
+            var accessibility = receipt['isPublic'] ? 'Public' : 'Private';
+            var query = '';
+            query += `<li id=${receipt['id']}>\
+                        <button class="btn btn-rounded btn-transparent btn-danger btn-sm delReceipt">Delete</button> - \
+                        <a href=${receipt['attachment']} target='_blank'>${receipt['title']}</a> - ${accessibility}\
+                        </li>`;
+            $('#dk-receipt-item').append(query);
+          });
+          $('#dk_preloader').hide();
+        },
+        error: function (data) {
+          console.log(data.responseJSON.message);
+        },
+      });
+      $('#dk-receipt-item').empty();
+    };
+
+    function getAllReceipts() {
+        $.ajax({
+            url: `${SAYApiUrl}/receipts?take=100`,
+            method: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                $.each(data, (key, receipt) => {
+                    var accessibility = receipt['isPublic'] ? 'Public' : 'Private';
+                    var query = '';
+                    query += `<option value=${receipt['id']}>${receipt['code']} - ${receipt['title']} - <b>${accessibility}</b></option>`;
+                    $('#dk_code_search').append(query);
+                })
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    };
+
+    function getReceipt(id) {
+      return $.ajax({
+        url: `${SAYApiUrl}/receipts/${id}`,
+        method: 'GET',
+        dataType: 'json',
+        beforeSend: function () {
+          $('#dk_preloader').show();
+          $('#addReceipt').prop('disabled', 'disabled');
+          $('#dk_code_search').prop('disabled', 'disabled');
+          $('#show_dk').removeAttr('href');
+        },
+        error: function (err) {
+          $('#dk_preloader').hide();
+          console.log(err.responseJSON.message);
+        },
+      });
+    };
+
+    $('#dk_code_search').change(function () {
+      receipt_id = $(this).val();
+      if (receipt_id === "0") {
+        resetDk();
+        return;
+      }
+      getReceipt(receipt_id).then((response) => {
+        var isPublic = response['isPublic'] ? '1' : '0';
+        $('#dk_code').val(response['code']);
+        $('#dk_title').val(response['title']);
+        $('#isPublic').val(isPublic).change();
+        $('#show_dk').attr('href', response['attachment']);
+        $('.dk').prop('disabled', 'disabled');
+        $('#addReceipt').prop('disabled', false);
+        $('#dk_code_search').prop('disabled', false);
+        $('#dk_file_container').find('.file').hide();
+        $('#show_dk').show();
+        $('#dk_preloader').hide();
+      });
+    });
+
+    // Submit adding a receipt to a need
+    $('#addReceipt').on('click', function(e) {
+        e.preventDefault();
+        var attachment = $('#dk_receipts')[0].files[0];
+        var code = $('#dk_code').val();
+        var title = $('#dk_title').val();
+        var isPublic = $('#isPublic').val();
+
+        if (attachment) {
+            var formData = new FormData();
+            formData.append('attachment', attachment);
+            formData.append('code', code);
+            formData.append('title', title);
+            formData.append('isPublic', isPublic);
+
+            if ($('#dk_receipt_form').valid()) {
+                $.ajax({
+                    url: `${SAYApiUrl}/needs/${status_needId}/receipts`,
+                    method: 'POST',
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    dataType: 'json',
+                    data: formData,
+                    beforeSend: function () {
+                        $('#dk_preloader').show();
+                        return confirm('Are you sure?');
+                    },
+                    success: function (data) {
+                        $('#dk_preloader').hide();
+                        alert("Success\nReceipt " + data.title + " added successfully.");
+                        resetDk();
+                        getNeedReceipts(status_needId);
+                    },
+                    error: function (data) {
+                        $('#dk_preloader').hide();
+                        bootbox.alert({
+                            title: errorTitle(),
+                            message: errorContent(data.responseJSON.message),
+                        });
+                    },
+                });
+                $('#dk_preloader').hide();
+            }
+        } else if (receipt_id !== -1) {
+            $.ajax({
+                url: `${SAYApiUrl}/receipts/${receipt_id}/needs/${status_needId}`,
+                method: 'POST',
+                cache: false,
+                processData: false,
+                contentType: false,
+                beforeSend: function() {
+                    $('#dk_preloader').show();
+                    return confirm('You are attaching the receipt to this need.\nAre you sure?');
+                },
+                success: function(data) {
+                    $('#dk_preloader').hide();
+                    alert("Success");
+                    resetDk();
+                    getNeedReceipts(status_needId);
+                },
+                error: function(err) {
+                    $('#dk_preloader').hide();
+                    bootbox.alert({
+                        title: errorTitle(),
+                        message: errorContent(err.responseJSON.message),
+                    });
+                }
+            });
+            $('#dk_preloader').hide();
+        } else {
+            $('#dk-modal').modal('hide');
+        };
+    });
+
+    // Delete a receipt from a need
+    $('#dk-receipt-item').on('click', '.delReceipt', function (e) {
+        e.preventDefault();
+        var del_receipt_id = $(this).parent().attr('id');
+        $.ajax({
+            url: `${SAYApiUrl}/needs/${status_needId}/receipts/${del_receipt_id}`,
+            method: 'DELETE',
+            beforeSend: function () {
+                $('#dk_preloader').show();
+                return confirm('Are you sure?');
+            },
+            success: function(data) {
+                alert(`Success\n${data.title} deleted from this need successfully.`);
+                getNeedReceipts(status_needId);
+            },
+            error: function(data) {
+                $('#dk_preloader').hide();
+                console.log(data);
+            }
+        })
+        $('#dk_preloader').hide();
+    });
 
 })
