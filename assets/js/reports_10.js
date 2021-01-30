@@ -563,7 +563,6 @@ $(document).ready(function(){
     $('#reportDoneNeedList').on('click', '.receiptBtn', function(e) {
         e.preventDefault();
         status_needId = $(this).parent().attr('id');
-        receipt_id = -1;
         resetDk();
         $('#dk-modal').modal('show');
         getNeedReceipts(status_needId);
@@ -586,6 +585,7 @@ $(document).ready(function(){
     });
 
     function resetDk() {
+        receipt_id = -1;
         $('#dk_code_search').empty();
         $('#dk_code_search').append(
           '<option value="0">جستجوی رسیدهای پیشین</option>'
