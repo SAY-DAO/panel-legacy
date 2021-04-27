@@ -555,7 +555,6 @@ $(document).ready(function(){
       dataType: "json",
       success: function (data) {
         // console.log("predefined needs", data);
-        data = data["needs"];
         $.each(data, function (key, value) {
           var name = value["name"];
           var title = value["type"] == 0 ? value["details"] : value["title"]; // show details for services, and title for products
