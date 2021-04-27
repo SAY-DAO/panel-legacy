@@ -550,24 +550,33 @@ $(document).ready(function(){
 
     // get Pre-defined needs of children in need forms drop down
     $.ajax({
-        url: SAYApiUrl + '/child/childId=104/needs',  // TODO: Pre Defined needs
-        method: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            // console.log("predefined needs", data);
-            data = data['needs'];
-            $.each(data, function(key, value){
-                var name_translations = value['name_translations'];
-                var title = value['type'] == 0 ? value['details'] : value['title']; // show details for services, and title for products
-                var query = '';
-                    query += '<option value="' + value['id'] + '">' + name_translations.fa + ' | ' + value['cost'] + ' | ' + title + '</option>';
-                $('#pre_need_id').append(query);
-            })
-        },
-        error: function(data) {
-            console.log(data.responseJSON.message);
-        }
-    })
+      url: SAYApiUrl + "/preneeds/", // TODO: Pre Defined needs
+      method: "GET",
+      dataType: "json",
+      success: function (data) {
+        // console.log("predefined needs", data);
+        data = data["needs"];
+        $.each(data, function (key, value) {
+          var name = value["name"];
+          var title = value["type"] == 0 ? value["details"] : value["title"]; // show details for services, and title for products
+          var query = "";
+          query +=
+            '<option value="' +
+            value["id"] +
+            '">' +
+            name +
+            " | " +
+            value["cost"] +
+            " | " +
+            title +
+            "</option>";
+          $("#pre_need_id").append(query);
+        });
+      },
+      error: function (data) {
+        console.log(data.responseJSON.message);
+      },
+    });
 
     // need form fill out with Pre-defined need data
     $('#pre_need_id').change(function() {
