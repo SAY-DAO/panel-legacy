@@ -236,7 +236,9 @@ $(document).ready(function(){
                         }
 
                         if (keys[i] == 'cost' || keys[i] == 'paid' || keys[i] == 'purchase_cost' || keys[i] == 'donated') {
-                            value[keys[i]] = cost(value[keys[i]]);
+                            if (value[keys[i]] != null) {
+                                value[keys[i]] = cost(value[keys[i]]);
+                            }
                         }
 
                         if(keys[i] == 'doing_duration') {
@@ -345,7 +347,7 @@ $(document).ready(function(){
                 $('#cost_field').hide();
                 $('#track_id').hide();
                 $('#dkc_number').hide();
-                $('#purchase_cost').val(cost(data['purchase_cost']).replace("Toman", ""));
+                $('#purchase_cost').val(data['purchase_cost'] ? cost(data['purchase_cost']).replace("Toman", "") : data['pretty_paid']);
                 $('#bank_track_id').val(data['bank_track_id']);
                 $('#dkc').val(data['dkc']);
 
