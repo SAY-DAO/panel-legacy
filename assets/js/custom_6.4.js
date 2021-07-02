@@ -10,7 +10,7 @@ function getAge(DOB) {
     if (m < 0 || (m == 0 && today.getDate() < birthDate.getDate())) {
         age = age - 1;
     }
-    return age + " Years old";
+    return age + " ساله";
 }
 
 
