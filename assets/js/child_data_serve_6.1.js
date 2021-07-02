@@ -462,7 +462,7 @@ $(document).ready(function(){
             var childData = data['children'];
             $.each(childData , function(key ,value){
                 var query = '';
-                    query += '<option value="' + value['id'] + '">' + value['generatedCode'] + ' - ' + value['firstName'] + ' ' + value['lastName'] + '</option>';
+                    query += `<option value=${value['id']}>${value['generatedCode']} - ${value['firstName']} ${value['lastName']} - ${getAge(value['birthDate'])}</option>`;
                 $('#child_id').append(query);
                 $('#r_child_id').append(query);
                 $('#child_need_select').append(query);
