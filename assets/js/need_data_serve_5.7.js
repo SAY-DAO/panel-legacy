@@ -15,6 +15,9 @@ $(document).ready(function(){
             need_name: {
                 required: true,
             },
+            need_name_fa: {
+                required: true,
+            },
             need_category: {
                 required:true,
             },
@@ -55,6 +58,9 @@ $(document).ready(function(){
                 required: "انتخاب کودک ضروری است.",
             },
             need_name: {
+                required: "وارد کردن نام نیاز ضروری است.",
+            },
+            need_name_fa: {
                 required: "وارد کردن نام نیاز ضروری است.",
             },
             need_category: {
