@@ -15,6 +15,9 @@ $(document).ready(function(){
             need_name: {
                 required: true,
             },
+            need_name_fa: {
+                required: true,
+            },
             need_category: {
                 required:true,
             },
@@ -55,6 +58,9 @@ $(document).ready(function(){
                 required: "انتخاب کودک ضروری است.",
             },
             need_name: {
+                required: "وارد کردن نام نیاز ضروری است.",
+            },
+            need_name_fa: {
                 required: "وارد کردن نام نیاز ضروری است.",
             },
             need_category: {
@@ -150,7 +156,7 @@ $(document).ready(function(){
     
     var edit_needId = -1;    
 
-    var keys = ['id' , 'child_id' , 'name' , 'name_fa' , 'title' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'type' , 'details' , 'isUrgent' , 'category' , 'description' , 'description_fa' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'receipts' , 'created' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'updated']
+    var keys = ['id' , 'child_id' , 'name' , 'name_fa' , 'title' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'type' , 'informations' , 'details' , 'isUrgent' , 'category' , 'description' , 'description_fa' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'receipts' , 'created' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'updated']
 
     // Get Children Needs by child id
     $('#child_need_select').change(function() {
@@ -272,7 +278,7 @@ $(document).ready(function(){
                             }
                         }
 
-                        if (keys[i] == 'details' || keys[i] == 'title') {
+                        if (keys[i] == 'details' || keys[i] == 'title' || keys[i] == 'informations') {
                             if(Boolean(value[keys[i]]) != false) {
                                 value[keys[i]] = rtl(value[keys[i]]);
                             }
@@ -475,8 +481,8 @@ $(document).ready(function(){
                             }
                         }
 
-                        if (keys[i] == 'details' || keys[i] == 'title') {
-                            if(Boolean(value[keys[i]]) == false) {
+                        if (keys[i] == 'details' || keys[i] == 'title' || keys[i] == 'informations') {
+                            if(Boolean(value[keys[i]]) != false) {
                                 value[keys[i]] = rtl(value[keys[i]]);
                             }
                         }
@@ -580,7 +586,9 @@ $(document).ready(function(){
     // need form fill out with Pre-defined need data
     $('#pre_need_id').change(function() {
         $('#need_name').prop("disabled", true);
+        $('#need_name_fa').prop("disabled", true);
         $('#need_description').prop("disabled", true);
+        $('#need_description_fa').prop("disabled", true);
         $('#need_category').prop("disabled", true);
         $('#need_type').prop("disabled", true);
         
@@ -607,6 +615,7 @@ $(document).ready(function(){
                 $('#need_description').val(description_translations.en);
                 $('#need_description_fa').val(description_translations.fa);
                 $('#need_details').val(data['details']);
+                $('#need_informations').val(data['informations']);
                 $('#need_doing_duration').val(data['doing_duration']);
                 $('#affiliate_link').val(data['affiliateLinkUrl']);
                 $('#direct_link').val(data['link']);
@@ -640,6 +649,7 @@ $(document).ready(function(){
         var category = $('#need_category').val();
         var cost = $('#need_cost').val().replaceAll(',','');
         var details = $('#need_details').val();
+        var informations = $('#need_informations').val();
         var type = $('#need_type').val();
         var doing_duration = $('#need_doing_duration').val();
         var isUrgent = $('#is_urgent').val();
@@ -663,6 +673,7 @@ $(document).ready(function(){
         form_data.append('category', category);
         form_data.append('cost', cost);
         form_data.append('details', details);
+        form_data.append('informations', informations);
         form_data.append('type', type);
         form_data.append('isUrgent', isUrgent);
 
@@ -772,6 +783,7 @@ $(document).ready(function(){
                 $('#need_category').val(data['category']).change();
                 $('#need_cost').val(data['pretty_cost']);
                 $('#need_details').val(data['details']);
+                $('#need_informations').val(data['informations']);
                 $('#need_description').val(description_translations.en);
                 $('#need_description_fa').val(description_translations.fa);
                 $('#need_type').val(data['type']).change();
@@ -800,6 +812,7 @@ $(document).ready(function(){
         var category = $('#need_category').val();
         var cost = $('#need_cost').val().replaceAll(',','');
         var details = $('#need_details').val();
+        var informations = $('#need_informations').val();
         var type = $('#need_type').val();
         var doing_duration = $('#need_doing_duration').val();
         var isUrgent = $('#is_urgent').val();
@@ -830,6 +843,7 @@ $(document).ready(function(){
             form_data.append('cost', cost);
         }
         form_data.append('details', details);
+        form_data.append('informations', informations);
         if(type) {
             form_data.append('type', type);
         }

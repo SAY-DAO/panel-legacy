@@ -233,7 +233,7 @@
                           <!-- Farsi -->
                           <div class="col-md-4 col-sm-6 h-100">
                             <div class="form-group">
-                              <label for="need_name_fa" class="control-label">نام فارسی نیاز</label>
+                              <label for="need_name_fa" class="control-label">نام فارسی نیاز <span class="required">*</span></label>
                               <div class="append-icon">
                                 <input type="text" id="need_name_fa" name="need_name_fa" class="form-control static" placeholder="نام فارسی نیاز را وارد نمایید" />
                                 <i class="icon-heart"></i>
@@ -247,6 +247,19 @@
                               <div class="append-icon">
                                 <input type="text" id="need_name" name="need_name" class="form-control static" placeholder="نام انگلیسی نیاز را وارد نمایید" />
                                 <i class="icon-heart"></i>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-4 col-sm-6 h-100">
+                            <div class="form-group">
+                              <label for="need_type" class="control-label"> نوع نیاز <span class="required">*</span></label>
+                              <div class="option-group">
+                                <select id="need_type" name="need_type" class="form-control static">
+                                  <option value="">نوع نیاز را انتخاب کنید</option>
+                                  <option value="0">Service</option>
+                                  <option value="1">Product</option>
+                                </select>
                               </div>
                             </div>
                           </div>
@@ -278,48 +291,6 @@
 
                           <div class="col-md-4 col-sm-6 h-100">
                             <div class="form-group">
-                              <label for="need_details" class="control-label">جز‌ئیات نیاز</label>
-                              <textarea name="need_details" id="need_details" rows="2" class="form-control static" placeholder="جز‌ئیات نیاز را وارد نمایید"></textarea>
-                            </div>
-                          </div>
-
-                          <div class="col-md-4 col-sm-6 h-100">
-                            <div class="form-group">
-                              <label class="control-label" for="need_icon">آیکون نیاز</label>
-                              <div class="file">
-                                <span class="file-button btn-primary">انتخاب عکس</span>
-                                <input type="file" class="custom-file static" name="need_icon[]" id="need_icon" onchange="document.getElementById('need_icon_uploader').value = this.value;" />
-                                <input type="text" class="form-control static" id="need_icon_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="" />
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="col-md-4 col-sm-6 h-100">
-                            <div class="form-group">
-                              <label class="control-label" for="need_receipts">رسید پرداخت</label>
-                              <div class="file">
-                                <span class="file-button btn-primary">انتخاب عکس</span>
-                                <input type="file" class="custom-file static" name="need_receipts[]" id="need_receipts" multiple="multiple" onchange="document.getElementById('need_receipts_uploader').value = this.value;" />
-                                <input type="text" class="form-control static" id="need_receipts_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="" />
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="col-md-4 col-sm-6 h-100">
-                            <div class="form-group">
-                              <label for="need_type" class="control-label"> نوع نیاز <span class="required">*</span></label>
-                              <div class="option-group">
-                                <select id="need_type" name="need_type" class="form-control static">
-                                  <option value="">نوع نیاز را انتخاب کنید</option>
-                                  <option value="0">Service</option>
-                                  <option value="1">Product</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                          
-                          <div class="col-md-4 col-sm-6 h-100">
-                            <div class="form-group">
                               <label for="affiliate_link" class="control-label">لینک affiliate خرید کالا</label>
                               <div class="append-icon">
                                 <input type="text" id="affiliate_link" name="affiliate_link" class="form-control static" placeholder="لینک affiliate خرید کالا را وارد نمایید" />
@@ -348,10 +319,35 @@
                             </div>
                           </div>
 
+                          <div class="col-md-4 col-sm-6 h-100">
+                            <div class="form-group">
+                              <label class="control-label" for="need_icon">آیکون نیاز</label>
+                              <div class="file">
+                                <span class="file-button btn-primary">انتخاب عکس</span>
+                                <input type="file" class="custom-file static" name="need_icon[]" id="need_icon" onchange="document.getElementById('need_icon_uploader').value = this.value;" />
+                                <input type="text" class="form-control static" id="need_icon_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="" />
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-4 col-sm-6 h-100">
+                            <div class="form-group">
+                              <label for="need_details" class="control-label">یادداشت مددکار <small class="c-orange">(نمایش در اپلیکیشن)</small></label>
+                              <textarea name="need_details" id="need_details" rows="2" class="form-control static" placeholder="یادداشت مددکار"></textarea>
+                            </div>
+                          </div>
+
+                          <div class="col-md-4 col-sm-6 h-100">
+                            <div class="form-group">
+                              <label for="need_informations" class="control-label">اطلاعات ضروری</label>
+                              <textarea name="need_informations" id="need_informations" rows="2" class="form-control static" placeholder="اطلاعات ضروری مورد نیاز هنگام خرید"></textarea>
+                            </div>
+                          </div>
+
                           <!-- Farsi -->
                           <div class="col-sm-6">
                             <div class="form-group">
-                              <label for="need_description_fa" class="control-label">شرح فارسی نیاز</label>
+                              <label for="need_description_fa" class="control-label">شرح فارسی نیاز <span class="required">*</span></label>
                               <textarea name="need_description_fa" id="need_description_fa" rows="2" class="form-control static" placeholder="شرح فارسی نیاز را وارد نمایید"></textarea>
                             </div>
                           </div>
@@ -372,6 +368,17 @@
                                   <option value="false">خیر</option>
                                   <option value="true">بله</option>
                                 </select>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-4 col-sm-6 h-100">
+                            <div class="form-group">
+                              <label class="control-label" for="need_receipts">رسید پرداخت</label>
+                              <div class="file">
+                                <span class="file-button btn-primary">انتخاب عکس</span>
+                                <input type="file" class="custom-file static" name="need_receipts[]" id="need_receipts" multiple="multiple" onchange="document.getElementById('need_receipts_uploader').value = this.value;" />
+                                <input type="text" class="form-control static" id="need_receipts_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="" />
                               </div>
                             </div>
                           </div>
@@ -451,7 +458,8 @@
                           <th>میزان پیشرفت</th>
                           <th>وضعیت نیاز</th>
                           <th>نوع نیاز</th>
-                          <th class="wide_th">جز‌ئیات نیاز</th>
+                          <th class="wide_th">اطلاعات ضروری</th>
+                          <th class="wide_th">یادداشت مددکار</th>
                           <th>ضروری</th>
                           <th>دسته‌بندی</th>
                           <th class="wide_th">توضیحات انگلیسی نیاز</th>
@@ -554,7 +562,7 @@
 <script src="../builder/page-builder/js/builder_page.js"></script>
 
 <script src="assets/js/ngo_data_serve_6.0.js"></script>  <!--NGO field data feed-->
-<script src="assets/js/need_data_serve_5.7.js"></script>  <!--Need data feed-->
+<script src="assets/js/need_data_serve_6.0.js"></script>  <!--Need data feed-->
 <script src="assets/js/child_data_serve_6.1.js"></script>
 <!--child data feed for child_id field-->
 <script
