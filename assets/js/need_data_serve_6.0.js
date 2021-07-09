@@ -156,13 +156,15 @@ $(document).ready(function(){
     
     var edit_needId = -1;    
 
-    var keys = ['id' , 'child_id' , 'name' , 'name_fa' , 'title' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'type' , 'informations' , 'details' , 'isUrgent' , 'category' , 'description' , 'description_fa' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'receipts' , 'created' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'updated']
+    var oldKeys = ['id' , 'child_id' , 'name' , 'name_fa' , 'title' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'type' , 'informations' , 'details' , 'isUrgent' , 'category' , 'description' , 'description_fa' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'receipts' , 'created' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'updated']
+
+    var keys = ['id', 'name', 'imageUrl', 'cost', 'progress', 'type', 'isUrgent', 'category', 'created']
 
     // Get Children Needs by child id
     $('#child_need_select').change(function() {
         var selected_child = $(this).val();
         $.ajax({
-            url: SAYApiUrl + '/child/childId=' + selected_child + '/needs',
+            url: `${SAYApiUrl}/child/${selected_child}/needs/summary`,
             method: 'GET',
             dataType: 'json',
             beforeSend: function() {
@@ -170,6 +172,8 @@ $(document).ready(function(){
             },
             success: function(data) {
                 $('.total_count').empty();
+                var total_count = data['total_count'];
+                $('.total_count').html(' - ' + total_count + ' تا');
                 console.log('option:' + selected_child);
                 var row_index = 1;
                 
@@ -177,60 +181,63 @@ $(document).ready(function(){
                 data = data['needs'];
                 $.each(data, function(key, value){
                     var needId = value['id'];
-                    var name_translations = value['name_translations'];
-                    var description_translations = value['description_translations'];
+                    // var name_translations = value['name_translations'];
+                    // var description_translations = value['description_translations'];
                     
                     var confirmStatus = -1;
                     var needType = value['type'];
-                    var sayName = value['childSayName'];
+                    // var sayName = value['childSayName'];
     
                     // first td for row count numbers, second td for operational buttons
                     var query = '<tr>\
                     <td>' + row_index + '</td>\
                     <td id="' + needId + '">\
-                    <button type="submit" class="btn btn-embossed btn-success btn-block btn-sm confirmBtn">Confirm</button>\
-                    <button class="btn btn-embossed btn-primary btn-block btn-sm editBtn" onclick="editScroll()">Edit</button>\
-                    <button class="btn btn-embossed btn-warning btn-block btn-sm receiptBtn" onclick="editScroll()">Receipt</button>\
-                    <button class="btn btn-embossed btn-danger btn-block btn-sm deleteBtn">Delete</button>\
-                    </td>\
-                    <td>' + sayName + '</td>';
-                    for(var i=2 ; i < keys.length ; i++){
+                        <button class="btn btn-embossed btn-info btn-block btn-sm moreBtn">اطلاعات بیش‌تر</button>\
+                        <button type="submit" class="btn btn-embossed btn-success btn-block btn-sm confirmBtn">Confirm</button>\
+                        <button class="btn btn-embossed btn-primary btn-block btn-sm editBtn" onclick="editScroll()">Edit</button>\
+                        <button class="btn btn-embossed btn-warning btn-block btn-sm receiptBtn" onclick="editScroll()">Receipt</button>\
+                        <button class="btn btn-embossed btn-danger btn-block btn-sm deleteBtn">Delete</button>\
+                    </td>';
+                    // \
+                    // <td>' + sayName + '</td>';
+                    for(var i=1 ; i < keys.length ; i++){
                         
                         if ( keys[i] == 'name') {
-                            value[keys[i]] = name_translations.en;
+                            // value[keys[i]] = name_translations.en;
+                            value[keys[i]] = rtl(value[keys[i]]);
                         }
 
-                        if ( keys[i] == 'name_fa') {
-                            value[keys[i]] = rtl(name_translations.fa);
-                        }
+                        // if ( keys[i] == 'name_fa') {
+                        //     value[keys[i]] = rtl(name_translations.fa);
+                        // }
 
-                        if ( keys[i] == 'description') {
-                            value[keys[i]] = description_translations.en;
-                        }
+                        // if ( keys[i] == 'description') {
+                        //     value[keys[i]] = description_translations.en;
+                        // }
 
-                        if ( keys[i] == 'description_fa') {
-                            value[keys[i]] = rtl(description_translations.fa);
-                        }
+                        // if ( keys[i] == 'description_fa') {
+                        //     value[keys[i]] = rtl(description_translations.fa);
+                        // }
 
                         if (keys[i] == 'imageUrl') {
                             value[keys[i]] = getImgFile(value[keys[i]]);
                         }
 
-                        if (keys[i] == 'receipts') {
-                            if(value[keys[i]] != null){
-                                value[keys[i]] = getFile(value[keys[i]]);
-                            }
-                        }
+                        // if (keys[i] == 'receipts') {
+                        //     if(value[keys[i]] != null){
+                        //         value[keys[i]] = getFile(value[keys[i]]);
+                        //     }
+                        // }
 
                         if (keys[i] == 'cost' || keys[i] == 'paid') {
                             value[keys[i]] = cost(value[keys[i]]);
                         }
 
-                        if (keys[i] == 'affiliateLinkUrl' || keys[i] == 'link') {
-                            if(value[keys[i]] != null) {
-                                value[keys[i]] = linkTo(value[keys[i]]);
-                            }
-                        }
+                        // if (keys[i] == 'affiliateLinkUrl' || keys[i] == 'link') {
+                        //     if(value[keys[i]] != null) {
+                        //         value[keys[i]] = linkTo(value[keys[i]]);
+                        //     }
+                        // }
 
                         if (keys[i] == 'progress') {
                             value[keys[i]] = value[keys[i]] + '%'
@@ -245,44 +252,44 @@ $(document).ready(function(){
                             }
                         }
 
-                        if (keys[i] == 'status') {
-                            if(value[keys[i]] == 0){
-                                value[keys[i]] = 'Not paid';
-                            }
-                            if(value[keys[i]] == 1){
-                                value[keys[i]] = 'Partially paid';
-                            }
-                            if(value[keys[i]] == 2){
-                                value[keys[i]] = fullPayment();
-                            }
+                        // if (keys[i] == 'status') {
+                        //     if(value[keys[i]] == 0){
+                        //         value[keys[i]] = 'Not paid';
+                        //     }
+                        //     if(value[keys[i]] == 1){
+                        //         value[keys[i]] = 'Partially paid';
+                        //     }
+                        //     if(value[keys[i]] == 2){
+                        //         value[keys[i]] = fullPayment();
+                        //     }
                             
-                            if(needType == 0){
-                                if(value[keys[i]] == 3) {
-                                    value[keys[i]] = ngoDelivery();
-                                }
-                                if(value[keys[i]] == 4) {
-                                    value[keys[i]] = childDelivery();
-                                }
-                            }
+                        //     if(needType == 0){
+                        //         if(value[keys[i]] == 3) {
+                        //             value[keys[i]] = ngoDelivery();
+                        //         }
+                        //         if(value[keys[i]] == 4) {
+                        //             value[keys[i]] = childDelivery();
+                        //         }
+                        //     }
     
-                            if(needType == 1){
-                                if(value[keys[i]] == 3) {
-                                    value[keys[i]] = purchased();
-                                }
-                                if(value[keys[i]] == 4) {
-                                    value[keys[i]] = ngoDelivery();
-                                }
-                                if(value[keys[i]] == 5) {
-                                    value[keys[i]] = childDelivery();
-                                }
-                            }
-                        }
+                        //     if(needType == 1){
+                        //         if(value[keys[i]] == 3) {
+                        //             value[keys[i]] = purchased();
+                        //         }
+                        //         if(value[keys[i]] == 4) {
+                        //             value[keys[i]] = ngoDelivery();
+                        //         }
+                        //         if(value[keys[i]] == 5) {
+                        //             value[keys[i]] = childDelivery();
+                        //         }
+                        //     }
+                        // }
 
-                        if (keys[i] == 'details' || keys[i] == 'title' || keys[i] == 'informations') {
-                            if(Boolean(value[keys[i]]) != false) {
-                                value[keys[i]] = rtl(value[keys[i]]);
-                            }
-                        }
+                        // if (keys[i] == 'details' || keys[i] == 'title' || keys[i] == 'informations') {
+                        //     if(Boolean(value[keys[i]]) != false) {
+                        //         value[keys[i]] = rtl(value[keys[i]]);
+                        //     }
+                        // }
 
                         if (keys[i] == 'isUrgent') {
                             if(value[keys[i]] == false){
@@ -308,19 +315,19 @@ $(document).ready(function(){
                             }
                         }
 
-                        if(keys[i] == 'doing_duration') {
-                            value[keys[i]] = value[keys[i]] + " days";
-                        }
+                        // if(keys[i] == 'doing_duration') {
+                        //     value[keys[i]] = value[keys[i]] + " days";
+                        // }
 
-                        if (keys[i] == 'isConfirmed') {
-                            if(value[keys[i]] == false){
-                                value[keys[i]] = 'Not confirmed';
-                            }
-                            if(value[keys[i]] == true){
-                                value[keys[i]] = 'Confirmed';
-                                confirmStatus = 1;
-                            }
-                        }
+                        // if (keys[i] == 'isConfirmed') {
+                        //     if(value[keys[i]] == false){
+                        //         value[keys[i]] = 'Not confirmed';
+                        //     }
+                        //     if(value[keys[i]] == true){
+                        //         value[keys[i]] = 'Confirmed';
+                        //         confirmStatus = 1;
+                        //     }
+                        // }
 
                         if(keys[i] == 'confirmDate' || keys[i] == 'created' || keys[i] == 'updated') {
                             value[keys[i]] = jalaliDate(value[keys[i]]);
@@ -337,10 +344,10 @@ $(document).ready(function(){
                     hasPrivilege();
 
                     // disable confirm button if the need has confirmed already!
-                    if(confirmStatus == 1){
-                        $('#' + needId).find('.confirmBtn').prop("disabled", true);
-                        $('#' + needId).find('.confirmBtn').text("Confirmed");
-                    }
+                    // if(confirmStatus == 1){
+                    //     $('#' + needId).find('.confirmBtn').prop("disabled", true);
+                    //     $('#' + needId).find('.confirmBtn').text("Confirmed");
+                    // }
 
                     if (global_user_role != ROLES.SUPER_ADMIN && confirmStatus == 1) {
                         $('#' + needId).find('.editBtn').prop("disabled", true);
@@ -995,6 +1002,11 @@ $(document).ready(function(){
                 });
             }
         })
+    })
+
+    $('#needList').on('click' , '.moreBtn' , function(e){
+        var needId = $(this).parent().attr('id');
+        $('#details-modal').modal('show');
     })
 
 })
