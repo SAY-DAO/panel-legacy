@@ -788,7 +788,7 @@ $(document).ready(function(){
                 $('#need_name').val(name_translations.en);
                 $('#need_name_fa').val(name_translations.fa);
                 $('#need_category').val(data['category']).change();
-                $('#need_cost').val(data['pretty_cost']);
+                $('#need_cost').val(toLocale(data['cost']));
                 $('#need_details').val(data['details']);
                 $('#need_informations').val(data['informations']);
                 $('#need_description').val(description_translations.en);

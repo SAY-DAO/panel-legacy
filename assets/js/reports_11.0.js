@@ -347,7 +347,7 @@ $(document).ready(function(){
                 $('#cost_field').hide();
                 $('#track_id').hide();
                 $('#dkc_number').hide();
-                $('#purchase_cost').val(data['purchase_cost'] ? cost(data['purchase_cost']).replace("Toman", "") : data['pretty_paid']);
+                $('#purchase_cost').val(data['purchase_cost'] ? toLocale(data['purchase_cost']) : toLocale(data['paid']));
                 $('#bank_track_id').val(data['bank_track_id']);
                 $('#dkc').val(data['dkc']);
 

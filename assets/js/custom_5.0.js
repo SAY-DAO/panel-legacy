@@ -205,6 +205,11 @@ function cost(value) {
     return beauty_cost;
 }
 
+// Thousands separated numbers
+function toLocale(value) {
+    return value.toLocaleString();
+}
+
 // Custom methods for form validation
 $.validator.addMethod('filesize', function (value, element, param) {
     return this.optional(element) || (element.files[0].size/1024/1024 <= param)
