@@ -102,6 +102,29 @@ body > .pace > .pace-activity {
 body.modal-open {
   overflow: visible;
 }
+.modal-dialog {
+  overflow-y: initial !important
+}
+.modal-body {
+  max-height: 50vh;
+  overflow-y: auto;
+}
+.modal-dialog-centered {
+  display: flex;
+  align-items: center;
+  height: calc(100% - 20px);
+  justify-content: center;
+}
+.modal-content {
+  width: 100%;
+}
+.modal-header {
+  background-color: rgba(0, 0, 0, 0.18);
+}
+
+.say-color {
+  color: #3a9c99;
+}
 
 input,
 select,
@@ -7251,6 +7274,9 @@ tbody{ /* SAY */
     display: table-cell;
     vertical-align: top;
     width: 57%;
+  }
+  .modal-dialog-centered {
+    height: calc(100% - 60px);
   }
 }
 @media (max-width: 800px) {
