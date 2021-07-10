@@ -458,7 +458,11 @@ $(document).ready(function(){
         url: SAYApiUrl + child_id_url,
         method: 'GET',
         dataType: 'json',
+        beforeSend: function () {
+            $('#child_dropdown_preloader').show();
+        },
         success: function(data) {
+            $('#child_dropdown_preloader').hide();
             var childData = data['children'];
             $.each(childData , function(key ,value){
                 var query = '';
