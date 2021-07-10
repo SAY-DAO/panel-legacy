@@ -16,7 +16,7 @@ function getAge(DOB) {
 
 // null values in tables
 function nullValues() {
-    var value = '<span class="null">وارد نشده</span>';
+    var value = '<span class="null">ندارد</span>';
     return value;
 }
 
@@ -51,13 +51,63 @@ function childDelivery() {
     return value;
 }
 
+function generateStatus(status, type) {
+    if (status == 0) {
+        return 'Not paid';
+    } else if (status == 1) {
+        return 'Partially paid';
+    } else if (status == 2) {
+        return fullPayment();
+    } else if (type == 0) {
+        if (status == 3) {
+            return ngoDelivery();
+        } else if (status == 4) {
+            return childDelivery();
+        }
+    } else if(type == 1) {
+        if (status == 3) {
+            return purchased();
+        } else if (status == 4) {
+            return ngoDelivery();
+        } else if (status == 5) {
+            return childDelivery();
+        }
+    }
+}
+
+function generateCategory(category) {
+    switch(category) {
+        case 0:
+            return 'Growth';
+        case 1:
+            return 'Joy';
+        case 2:
+            return 'Health';
+        case 3:
+            return 'Surroundings';
+    }
+}
+
+// Boolean values
+function booleanValue(value) {
+    if (value) {
+        return 'بله'
+    } else {
+        return 'خیر'
+    }
+}
+
 // get the file url and return the tag to show it on html
 function getImgFile(fileUrl) {
     if (fileUrl) {
-        if (fileUrl.charAt(0) !== "/") {
-            fileUrl = "/".concat(fileUrl);
+        if(fileUrl.startsWith('http')) {
+            var show_file = `<a target="_blank" href="${fileUrl}"><img class="tableImg" src="${fileUrl}" /></a>`;
+        } else {
+            if (fileUrl.charAt(0) !== "/") {
+                fileUrl = "/".concat(fileUrl);
+            }
+            var show_file = `<a target="_blank" href="${baseUrl}${fileUrl}"><img class="tableImg" src="${baseUrl}${fileUrl}" /></a>`;
         }
-        var show_file = '<a target="_blank" href="' + baseUrl + fileUrl +'"><img class="tableImg" src="' + baseUrl + fileUrl +'" /></a>';
         return show_file;
     } else {
         return;
@@ -105,8 +155,13 @@ function mailTo(value) {
     return mail_to;
 }
 
-function linkTo(value) {
-    var link_to = '<a href="' + value + '" target="_blank">Click here!</a>';
+function linkTo(value, text) {
+    var link_to = '';
+    if (text) {
+        link_to = `<a href="${value}" target="_blank">${text}</a>`;
+    } else {
+        link_to = '<a href="' + value + '" target="_blank">Click here!</a>';
+    }
     return link_to;
 }
 
@@ -146,7 +201,7 @@ function UTCDate(value) {
 
 // Cost values
 function cost(value) {
-    beauty_cost = value.toLocaleString() + ' Toman';
+    beauty_cost = value.toLocaleString() + ' تومان';
     return beauty_cost;
 }
 
