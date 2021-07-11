@@ -681,3 +681,18 @@ $(document).ready(function(){
         })
     })
 })
+// Get sw name by id
+function getSwName(id, handleData) {
+    $.ajax({
+        url: `${SAYApiUrl}/socialWorker/socialWorkerId=${id}`,
+        method: 'GET',
+        dataType: 'json',
+
+        success: function(data) {
+            handleData(data['userName']);
+        },
+        error: function(data) {
+            console.log(data.responseJSON.message);
+        },
+    })
+}

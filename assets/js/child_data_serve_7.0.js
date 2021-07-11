@@ -458,7 +458,11 @@ $(document).ready(function(){
         url: SAYApiUrl + child_id_url,
         method: 'GET',
         dataType: 'json',
+        beforeSend: function () {
+            $('#child_dropdown_preloader').show();
+        },
         success: function(data) {
+            $('#child_dropdown_preloader').hide();
             var childData = data['children'];
             $.each(childData , function(key ,value){
                 var query = '';
@@ -909,3 +913,17 @@ $(document).ready(function(){
     })
 
 })
+
+const getChildById = (id, handleData) => {
+    $.ajax({
+        url: `${SAYApiUrl}/child/childId=${id}&confirm=2`,
+        method: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            handleData(data);
+        },
+        error: function (data) {
+            console.log(data.responseJSON.message);
+        }
+    })
+}

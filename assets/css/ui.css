@@ -1567,7 +1567,7 @@ fieldset[disabled].btn-primary.active {
   border-color: #10353d;
 }
 .btn-info {
-  background-color: #b066ff;
+  background-color: #a28c8a;
   color: #fff;
 }
 .btn-info:active {
@@ -1579,8 +1579,8 @@ fieldset[disabled].btn-primary.active {
 .btn-info:active,
 .btn-info.active,
 .open .dropdown-toggle.btn-info {
-  background-color: #a34cff;
-  border-color: #a34cff;
+  background-color: #866328;
+  border-color: #866328;
   color: #fff;
 }
 .btn-info.active {
@@ -1925,13 +1925,13 @@ fieldset[disabled].btn-inverse.active {
   color: #258cd1;
 }
 .btn-info.btn-transparent {
-  border: 1px solid #b066ff !important;
-  color: #b066ff;
+  border: 1px solid #a28c8a !important;
+  color: #a28c8a;
 }
 .btn-info.btn-transparent:hover {
   background-color: rgba(163, 76, 255, 0.1);
   border: 1px solid #46b8da;
-  color: #a34cff;
+  color: #866328;
 }
 .btn-warning.btn-transparent {
   border: 1px solid #ff8408 !important;
@@ -2281,7 +2281,7 @@ h4.alert-title {
   background-color: #18a689;
 }
 .badge-info {
-  background-color: #b066ff;
+  background-color: #a28c8a;
 }
 .badge-warning {
   background-color: #ff9122;
@@ -2343,16 +2343,16 @@ h4.alert-title {
   background-color: #159077;
 }
 .label-info {
-  background-color: #b066ff;
+  background-color: #a28c8a;
 }
 .label-info:hover {
-  background-color: #a34cff;
+  background-color: #866328;
 }
 .label-info[href]:hover {
-  background-color: #a34cff;
+  background-color: #866328;
 }
 .label-info[href]:focus {
-  background-color: #a34cff;
+  background-color: #866328;
 }
 .label-warning {
   background-color: #ff9122;
@@ -2440,7 +2440,7 @@ h4.alert-title {
   background-color: #c75757;
 }
 .progress-bar-info {
-  background-color: #b066ff;
+  background-color: #a28c8a;
 }
 .progress-bar-purple {
   background-color: #b381f5;
@@ -2479,7 +2479,7 @@ ul.list-unstyled {
   border: none;
 }
 .modal-dialog {
-  margin-top: 10%;
+  /* margin-top: 10%; */
   z-index: 10000;
 }
 .modal-header {
@@ -5121,7 +5121,7 @@ body.DTTT_Print {
   background-color: #ff9122;
 }
 .nav-tabs-info > li:after {
-  background-color: #b066ff;
+  background-color: #a28c8a;
 }
 .nav-tabs > li.active > a {
   border: none;
