@@ -126,6 +126,21 @@ body.modal-open {
   color: #3a9c99;
 }
 
+.flex-center {
+  display: flex;
+  align-items: center;
+}
+
+.image-wrapper {
+  background-color: rgba(251,181,99,.4);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.image-wrapper img {
+  width: 100%;
+}
+
 input,
 select,
 textarea {

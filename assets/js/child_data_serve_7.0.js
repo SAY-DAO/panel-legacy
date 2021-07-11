@@ -913,3 +913,17 @@ $(document).ready(function(){
     })
 
 })
+
+const getChildById = (id, handleData) => {
+    $.ajax({
+        url: `${SAYApiUrl}/child/childId=${id}&confirm=2`,
+        method: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            handleData(data);
+        },
+        error: function (data) {
+            console.log(data.responseJSON.message);
+        }
+    })
+}
