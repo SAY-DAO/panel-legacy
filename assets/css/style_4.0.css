@@ -73,6 +73,7 @@ p{
 }
 html {
   height: 100%;
+  overflow-x: unset !important;
 }
 body {
   height: 100%;
@@ -99,9 +100,9 @@ body > .pace > .pace-activity {
   display: none !important;
 }
 
-body.modal-open {
+/* body.modal-open {
   overflow: visible;
-}
+} */
 .modal-dialog {
   overflow-y: initial !important
 }
