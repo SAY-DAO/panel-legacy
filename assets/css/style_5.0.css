@@ -132,6 +132,10 @@ body > .pace > .pace-activity {
   align-items: center;
 }
 
+.x-scroll {
+  overflow-x: scroll;
+}
+
 .image-wrapper {
   background-color: rgba(251,181,99,.4);
   width: 100px;

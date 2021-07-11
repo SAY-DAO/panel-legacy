@@ -19,7 +19,7 @@
 
   <!--css files-->
   <link href="https://fonts.googleapis.com/css?family=Nothing+You+Could+Do" rel="stylesheet" type="text/css">
-  <link href="assets/css/style_4.0.css" rel="stylesheet"> <!-- MANDATORY -->
+  <link href="assets/css/style_5.0.css" rel="stylesheet"> <!-- MANDATORY -->
   <link href="assets/css/theme.css" rel="stylesheet"> <!-- MANDATORY -->
   <link href="assets/css/ui.css" rel="stylesheet"> <!-- MANDATORY -->
   
@@ -602,7 +602,8 @@
                   </h3>
                 </div>
 
-                <div class="option-group btn-group center-block col-md-12 col-sm-12 col-xs-12">
+                <div class="col-xs-12">
+                  <div class="option-group btn-group center-block">
                     <img class="preloader" id="child_dropdown_preloader" src="assets/images/preloader/25.gif"/>  
                     <select id="child_need_select" name="child_need_select" class="btn btn-sm btn-dark btn-block col-md-4 col-sm-5 pull-left" data-search="true">
                       <option value="">انتخاب کودک...</option>
@@ -615,6 +616,7 @@
                     <select id="need_ngo" name="need_ngo" class="btn btn-sm btn-dark btn-block col-md-3 col-sm-3 col-xs-12 pull-right report_filter privilege1">
                         <option value="">انتخاب انجمن...</option>
                     </select>
+                  </div>
                 </div>
 
                 <!-- Child's avatar and SAY name -->
@@ -629,38 +631,51 @@
                   </div>
                 </div>
 
-                <div class="panel-content bg-white">                  
+                <div class="panel-content bg-white x-scroll">
                   <table class="table table-hover table-striped dataTable" id="table-editable">
                       <thead>
-                        <tr>
+                        <tr id="summary_rows" hidden>
                           <th>ردیف</th>
                           <th class="text-right medium_th">عملیات</th>
-                          <!-- <th class="medium_th">SAY name کودک</th> -->
-                          <!-- <th>نام انگلیسی نیاز</th> -->
                           <th class="small_th">آیکون نیاز</th>
                           <th class="medium_th">نام نیاز</th>
                           <th class="medium_th">عنوان نیاز</th>
                           <th>هزینه نیاز</th>
-                          <!-- <th class="medium_th">میزان پرداخت شده</th> -->
-                          <!-- <th>میزان پیشرفت</th> -->
                           <th>وضعیت نیاز</th>
                           <th>نوع نیاز</th>
-                          <!-- <th class="wide_th">اطلاعات ضروری</th> -->
-                          <!-- <th class="wide_th">یادداشت مددکار</th> -->
                           <th>ضروری</th>
                           <th>دسته‌بندی</th>
-                          <!-- <th class="wide_th">توضیحات انگلیسی نیاز</th> -->
-                          <!-- <th class="wide_th">توضیحات فارسی نیاز</th> -->
-                          <!-- <th>مدت زمان انجام</th> -->
-                          <!-- <th class="medium_th">لینک affiliate خرید کالا</th> -->
-                          <!-- <th class="medium_th">لینک مستقیم خرید کالا</th> -->
-                          <!-- <th>رسید(ها)</th> -->
                           <th class="medium_th">تاریخ ایجاد</th>
-                          <!-- <th>وضعیت تایید</th> -->
-                          <!-- <th>تایید کننده</th> -->
-                          <!-- <th class="medium_th">تاریخ تایید</th> -->
-                          <!-- <th class="medium_th">تاریخ آخرین ویرایش</th> -->
+                        </tr>
 
+                        <tr id="full_rows" hidden>
+                          <th>ردیف</th>
+                          <th class="text-right medium_th">عملیات</th>
+                          <th class="medium_th">SAY name کودک</th>
+                          <th>نام انگلیسی نیاز</th>
+                          <th>نام فارسی نیاز</th>
+                          <th class="medium_th">عنوان نیاز</th>
+                          <th class="medium_th">آیکون نیاز</th>
+                          <th>هزینه نیاز</th>
+                          <th class="medium_th">میزان پرداخت شده</th>
+                          <th>میزان پیشرفت</th>
+                          <th>وضعیت نیاز</th>
+                          <th>نوع نیاز</th>
+                          <th class="wide_th">اطلاعات ضروری</th>
+                          <th class="wide_th">یادداشت مددکار</th>
+                          <th>ضروری</th>
+                          <th>دسته‌بندی</th>
+                          <th class="wide_th">توضیحات انگلیسی نیاز</th>
+                          <th class="wide_th">توضیحات فارسی نیاز</th>
+                          <th>مدت زمان انجام</th>
+                          <th class="medium_th">لینک affiliate خرید کالا</th>
+                          <th class="medium_th">لینک مستقیم خرید کالا</th>
+                          <th>رسید(ها)</th>
+                          <th class="medium_th">تاریخ ایجاد</th>
+                          <th>وضعیت تایید</th>
+                          <th>تایید کننده</th>
+                          <th class="medium_th">تاریخ تایید</th>
+                          <th class="medium_th">تاریخ آخرین ویرایش</th>
                         </tr>
                       </thead>
                       <tbody id="needList">

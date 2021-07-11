@@ -165,6 +165,8 @@ $(document).ready(function(){
         $('#child_sayName').empty();
         $('#child_avatar').empty();
         $('#childIdentity').removeClass('hidden');
+        $('#summary_rows').show();
+        $('#full_rows').hide();
 
         var selected_child = $(this).val();
         // Fill child avatar and SAY name
@@ -294,6 +296,8 @@ $(document).ready(function(){
     // Get Needs by confirm status and ngo_id
     $('.need_filter').change(function() {
         $('#childIdentity').addClass('hidden');
+        $('#summary_rows').hide();
+        $('#full_rows').show();
 
         var confirm_status = $('#need_confirm_status').val();
         var selected_ngo = $('#need_ngo').val();
