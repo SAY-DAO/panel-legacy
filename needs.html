@@ -124,15 +124,165 @@
 
         <!-- Details modal -->
         <div class="modal fade" id="details-modal" tabindex="-1" role="dialog" aria-hidden="true">
-          <div class="modal-dialog modal-bottomfull">
+          <div class="modal-dialog modal-dialog-centered modal-bottomfull modal-lg">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icons-office-52"></i></button>
-                <img class="preloader" id="children_existence_preloader" src="assets/images/preloader/25.gif"/>
-                <h4 class="modal-title">More information <strong id="sayName">-</strong></h4>
+                <img class="preloader" id="get_need_preloader" src="assets/images/preloader/25.gif"/>
+                <h4 class="modal-title rtl">
+                  اطلاعات بیش‌تر درمورد <strong class="clear" id="needName"></strong> <span class="clear" id="sayName"></span>
+                </h4>
+                <hr />
+                <div class="row">
+                  <div class="col-xs-6 col-sm-3 clear" id="needIcon"></div>
+                  <div class="col-xs-6 col-sm-3 clear" id="needImage"></div>
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="row">
+                      <div class="col-xs-6 rtl">نام فارسی نیاز</div>
+                      <div class="col-xs-6 clear say-color" id="needName_fa"></div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                      <div class="col-xs-6 rtl">نام انگلیسی نیاز</div>
+                      <div class="col-xs-6 clear say-color" id="needName_en"></div>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="modal-body">
-
+                
+                <div class="row">
+                  <div class="col-xs-6 rtl">عنوان نیاز</div>
+                  <div class="col-xs-6 rtl clear say-color" id="title"></div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-xs-6 rtl">هزینه نیاز</div>
+                  <div class="col-xs-6 rtl clear say-color" id="cost"></div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-xs-6 rtl">میزان پرداخت شده</div>
+                  <div class="col-xs-6 rtl clear say-color" id="paid"></div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-xs-6 rtl">میزان donation</div>
+                  <div class="col-xs-6 rtl clear say-color" id="donated"></div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-xs-6">
+                    <div class="row">
+                      <div class="col-xs-6 rtl">میزان پیشرفت</div>
+                      <div class="col-xs-6 clear say-color" id="progress"></div>
+                    </div>
+                  </div>
+                  <div class="col-xs-6">
+                    <div class="row">
+                      <div class="col-xs-6 rtl">وضعیت نیاز</div>
+                      <div class="col-xs-6 clear say-color" id="needStatus"></div>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-xs-6">
+                    <div class="row">
+                      <div class="col-xs-6 rtl">نوع نیاز</div>
+                      <div class="col-xs-6 clear say-color" id="type"></div>
+                    </div>
+                  </div>
+                  <div class="col-xs-6">
+                    <div class="row">
+                      <div class="col-xs-6 rtl">دسته‌بندی</div>
+                      <div class="col-xs-6 clear say-color" id="category"></div>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-xs-6 rtl">اطلاعات ضروری</div>
+                  <div class="col-xs-6 clear rtl say-color" id="informations"></div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-xs-6 rtl">یادداشت مددکار</div>
+                  <div class="col-xs-6 clear rtl say-color" id="details"></div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-xs-6 rtl">ضروری</div>
+                  <div class="col-xs-6 clear say-color" id="urgent"></div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-xs-6 rtl">توضیحات انگلیسی نیاز</div>
+                  <div class="col-xs-6 clear say-color" id="description_en"></div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-xs-6 rtl">توضیحات فارسی نیاز</div>
+                  <div class="col-xs-6 rtl clear say-color" id="description"></div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-xs-6 rtl">مدت زمان انجام</div>
+                  <div class="col-xs-6 rtl clear say-color" id="duration"></div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-xs-6 rtl">لینک‌ها</div>
+                  <div class="col-xs-6">
+                    <div class="row">
+                      <div class="col-xs-12 rtl say-color" id="aff"></div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                      <div class="col-xs-12 rtl say-color" id="direct"></div>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-xs-6 rtl">رسیدها</div>
+                  <div class="col-xs-6 clear say-color" id="receipts"></div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-xs-6 rtl">تاریخ ایجاد</div>
+                  <div class="col-xs-6 clear say-color" id="created"></div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-xs-6 rtl">تایید شده</div>
+                  <div class="col-xs-6 clear say-color" id="confirmStatus"></div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-xs-6 rtl">تایید کننده</div>
+                  <div class="col-xs-6 clear say-color" id="confirmUser"></div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-xs-6 rtl">تاریخ تایید</div>
+                  <div class="col-xs-6 clear say-color" id="confirmDate"></div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-xs-6 rtl">تاریخ آخرین ویرایش</div>
+                  <div class="col-xs-6 clear say-color" id="updated"></div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-xs-6 rtl">تاریخ تغییر وضعیت</div>
+                  <div class="col-xs-6 clear say-color" id="statusUpdated"></div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-xs-6 rtl">تاریخ انجام شدن</div>
+                  <div class="col-xs-6 clear say-color" id="doneAt"></div>
+                </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default btn-embossed" data-dismiss="modal">بستن</button>
@@ -587,15 +737,15 @@
 
 <script src="assets/js/ngo_data_serve_6.0.js"></script>  <!--NGO field data feed-->
 <script src="assets/js/need_data_serve_6.0.js"></script>  <!--Need data feed-->
-<script src="assets/js/child_data_serve_6.1.js"></script>
-<!--child data feed for child_id field-->
+<script src="assets/js/child_data_serve_7.0.js"></script> <!--child data feed for child_id field-->
+<script src="assets/js/social_worker_data_serve_4.0.js"></script>  <!--Social worker field data feed-->
 <script
   src="https://browser.sentry-cdn.com/5.22.3/bundle.tracing.min.js"
   crossorigin="anonymous"
 ></script>
 <script src="assets/js/config.js"></script>  <!--url configurations-->
 <script src="assets/js/html_config_1.0.js"></script>  <!--HTML url configurations-->
-<script src="assets/js/custom_6.4.js"></script>  <!--custom functions-->
+<script src="assets/js/custom_5.0.js"></script>  <!--custom functions-->
 <script src="assets/js/authorize_1.0.js"></script>  <!--Athorization-->
 <script src="assets/js/jwt-decode.min.js"></script>  <!--jwt decoder script-->
 <script src="assets/plugins/jdate.js" type="text/javascript" charset="utf-8"></script>  <!-- Jalali date -->

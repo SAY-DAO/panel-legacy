@@ -2479,7 +2479,7 @@ ul.list-unstyled {
   border: none;
 }
 .modal-dialog {
-  margin-top: 10%;
+  /* margin-top: 10%; */
   z-index: 10000;
 }
 .modal-header {

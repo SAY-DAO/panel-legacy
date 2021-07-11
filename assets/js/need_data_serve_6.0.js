@@ -301,18 +301,7 @@ $(document).ready(function(){
                         }
 
                         if (keys[i] == 'category') {
-                            if(value[keys[i]] == 0){
-                                value[keys[i]] = 'Growth';
-                            }
-                            if(value[keys[i]] == 1){
-                                value[keys[i]] = 'Joy';
-                            }
-                            if(value[keys[i]] == 2){
-                                value[keys[i]] = 'Health';
-                            }
-                            if(value[keys[i]] == 3){
-                                value[keys[i]] = 'Surroundings';
-                            }
+                            value[keys[i]] = generateCategory(value[keys[i]]);
                         }
 
                         // if(keys[i] == 'doing_duration') {
@@ -1004,9 +993,63 @@ $(document).ready(function(){
         })
     })
 
+    // Get need by ID
     $('#needList').on('click' , '.moreBtn' , function(e){
         var needId = $(this).parent().attr('id');
         $('#details-modal').modal('show');
+
+        $.ajax({
+            url: `${SAYApiUrl}/need/needId=${needId}`,
+            method: 'GET',
+            dataType: 'json',
+            beforeSend: function() {
+                $('.clear').empty();
+                $('#get_need_preloader').show();
+            },
+            success: function(data) {
+                var status = data['status'];
+                var type = data['type'];
+                getSwName(data['confirmUser'], function(output) {
+                    $('#confirmUser').html(data['confirmUser'] ? output : nullValues());
+                });
+
+                $('#needName, #needName_fa').text(data['name']);
+                $('#sayName').text(data['childSayName']);
+                $('#needIcon').html(getImgFile(data['imageUrl']));
+                $('#needImage').html(getImgFile(data['img']));
+                $('#needName_en').text(data['name_translations'].en);
+                $('#title').html(data['title'] ? data['title'] : nullValues());
+                $('#cost').text(cost(data['cost']));
+                $('#paid').text(cost(data['paid']));
+                $('#donated').text(cost(data['donated']));
+                $('#progress').text(data['progress'] + '%');
+                $('#needStatus').html(generateStatus(status, type));
+                $('#type').text(data['type_name']);
+                $('#category').text(generateCategory(data['category']));
+                $('#informations').html(data['informations'] ? data['informations'] : nullValues());
+                $('#details').html(data['details'] ? data['details'] : nullValues());
+                $('#description_en').text(data['description_translations'].en);
+                $('#description').text(data['description']);
+                $('#duration').text(data['doing_duration'] + ' روز');
+                $('#receipts').html(getFile(data['receipts']));
+                $('#created').html(jalaliDate(data['created']));
+                $('#confirmDate').html(jalaliDate(data['confirmDate']));
+                $('#updated').html(jalaliDate(data['updated']));
+                $('#statusUpdated').html(jalaliDate(data['status_updated_at']));
+                $('#doneAt').html(jalaliDate(data['doneAt']));
+                $('#confirmStatus').text(data['isConfirmed']);
+                $('#confirmUser').text(getSwName(data['confirmUser']));
+                $('#aff').html(data['affiliateLinkUrl'] ? linkTo(data['affiliateLinkUrl'], 'لینک affiliate خرید کالا') : nullValues());
+                $('#direct').html(data['link'] ? linkTo(data['link'], 'لینک مستقیم خرید کالا') : nullValues());
+                $('#urgent').text(booleanValue(data['isUrgent']));
+                $('#confirmStatus').text(booleanValue(data['isConfirmed']));
+
+                $('#get_need_preloader').hide();
+            },
+            error: function() {
+                console.log(data.responseJSON.message);
+            }            
+        })
     })
 
 })
