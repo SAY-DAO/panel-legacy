@@ -460,7 +460,9 @@ a.scrollup:hover {
   color: #BE0303;
 }
 .tableImg{  /* say */
-  width: 50%; 
+  width: 50%;
+  background-color: #fde1c1;
+  border-radius: 50%; 
 }
 .spinner {
   -moz-user-select: none;
