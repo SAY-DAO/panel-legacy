@@ -112,6 +112,7 @@ $(document).ready(function(){
                 'paid',
                 'purchase_cost',
                 'donated',
+                'informations',
                 'details',
                 'doing_duration',
                 'affiliateLinkUrl',
@@ -263,7 +264,7 @@ $(document).ready(function(){
                             }
                         }
 
-                        if (keys[i] == 'details' || keys[i] == 'title') {
+                        if (keys[i] == 'details' || keys[i] == 'title' || keys[i] == 'informations') {
                             if(value[keys[i]] != null) {
                                 value[keys[i]] = rtl(value[keys[i]]);
                             }
