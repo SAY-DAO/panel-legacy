@@ -664,7 +664,6 @@ $(document).ready(function(){
         
         var affiliateLinkUrl = $('#affiliate_link').val();
         var link = $('#direct_link').val();
-        var receipts = $('#need_receipts')[0].files[0];
 
         var form_data = new FormData();
         form_data.append('child_id', childId);
@@ -685,9 +684,6 @@ $(document).ready(function(){
         }
         if(link){
             form_data.append('link', link);
-        }
-        if(receipts){
-            form_data.append('receipts', receipts);
         }
         if(doing_duration){
             form_data.append('doing_duration', doing_duration);
@@ -827,7 +823,6 @@ $(document).ready(function(){
 
         var affiliateLinkUrl = $('#affiliate_link').val();
         var link = $('#direct_link').val();
-        var receipts = $('#need_receipts')[0].files[0];
 
         // append datas to a Form Data
         var form_data = new FormData();
@@ -855,9 +850,6 @@ $(document).ready(function(){
         }
         if(link){
             form_data.append('link', link);
-        }
-        if(receipts){
-            form_data.append('receipts', receipts);
         }
         if(doing_duration){
             form_data.append('doing_duration', doing_duration);
