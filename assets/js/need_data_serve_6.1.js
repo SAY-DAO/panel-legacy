@@ -126,12 +126,18 @@ $(document).ready(function(){
                 filesize: 3,    // MB
                 required: true,
             },
+            r_receipt_code: {
+                required: true,
+            },
         },
         messages: {
             "r_need_receipts[]": {
                 extension: "فرمت‌های قابل پذیرش: {0}",
                 filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB",
-                required: "رسید را وارد کنید.",
+                required: "رسید را انتخاب کنید.",
+            },
+            r_receipt_code: {
+                required: "کد رسید را وارد کنید.",
             },
         },
         errorPlacement: function(error, element) {
@@ -926,17 +932,25 @@ $(document).ready(function(){
         e.preventDefault();
 
         var receipts = $('#r_need_receipts')[0].files[0];
+        var code = $('r_receipt_code').val();
+        var title = $('r_receipt_title').val();
+        var description = $('r_receipt_description').val();
 
         // append datas to a Form Data
         var form_data = new FormData();
-        if (receipts) {
-            form_data.append('receipts', receipts);
+        form_data.append('attachment', receipts);
+        form_data.append('code', code);
+        if (title) {
+            form_data.append('title', title);
+        }
+        if (description) {
+            form_data.append('description', description);
         }
 
         if ( $('#receipt_form').valid() ) {
             $.ajax({
-                url: SAYApiUrl + '/need/update/needId=' + edit_needId,
-                method: 'PATCH',
+                url: `${SAYApiUrl}/needs/${edit_needId}/receipts`,
+                method: 'POST',
                 cache: false,
                 processData: false,
                 contentType: false,

@@ -153,7 +153,7 @@
 
                         <div class="col-md-4 col-sm-6 h-100">
                           <div class="form-group">
-                            <label for="r_child_id" class="control-label">کودک <span class="required">*</span></label>
+                            <label for="r_child_id" class="control-label">کودک</label>
                             <div class="option-group">
                               <select id="r_child_id" name="r_child_id" class="form-control">
                                 <option value="">کودک مورد نظر را انتخاب کنید</option>
@@ -174,12 +174,33 @@
 
                         <div class="col-md-4 col-sm-6 h-100">
                           <div class="form-group">
-                            <label class="control-label" for="r_need_receipts">رسید پرداخت</label>
+                            <label for="r_receipt_code" class="control-label">کد رسید <span class="required">*</span></label>
+                            <input type="text" id="r_receipt_code" name="r_receipt_code" class="form-control static" placeholder="کد رسید" />
+                          </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 h-100">
+                          <div class="form-group">
+                            <label class="control-label" for="r_need_receipts">رسید پرداخت <span class="required">*</span></label>
                             <div class="file">
                               <span class="file-button btn-primary">انتخاب عکس</span>
                               <input type="file" class="custom-file static" name="r_need_receipts[]" id="r_need_receipts" multiple="multiple" onchange="document.getElementById('r_need_receipts_uploader').value = this.value;" />
                               <input type="text" class="form-control static" id="r_need_receipts_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="" />
                             </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 h-100">
+                          <div class="form-group">
+                            <label for="r_receipt_title" class="control-label">عنوان رسید</label>
+                            <input type="text" id="r_receipt_title" name="r_receipt_title" class="form-control static" placeholder="عنوان رسید" />
+                          </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 h-100">
+                          <div class="form-group">
+                            <label for="r_receipt_description" class="control-label">توضیحات رسید</label>
+                            <textarea name="r_receipt_description" id="r_receipt_description" rows="2" class="form-control static" placeholder="توضیحات رسید"></textarea>
                           </div>
                         </div>
 
