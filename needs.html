@@ -142,7 +142,7 @@
 
             <div class="panel panel-default no-bd" id="receiptForm">
               <div class="panel-header bg-dark panel-controls">
-                <h3 class="panel-title">فرم<strong> افزودن رسید</strong><img class="preloader" id="need_form_preloader" src="assets/images/preloader/25.gif"/></h3>
+                <h3 class="panel-title">فرم<strong> رسید</strong><img class="preloader" id="need_form_preloader" src="assets/images/preloader/25.gif"/></h3>
                 
               </div>
               <div class="panel-content bg-white">
@@ -209,10 +209,29 @@
                       <div class="text-center  m-t-20">
                         
                         <button type="submit" class="btn btn-embossed btn-primary" id="addReceipt">افزودن رسید</button>
+                        <button type="submit" class="btn btn-embossed btn-primary" id="editReceipt">ویرایش رسید</button>
                         
                         <div class="alert alert-danger dis-none" role="alert"></div>
                       </div>
                     </form>
+                  </div>
+                </div>
+                <hr >
+                <div class="row">
+                  <h4 class="text-center">رسیدهای نیاز</h4>
+                  <div class="panel-content bg-white">                  
+                    <table class="table table-hover table-striped dataTable">
+                      <thead>
+                        <tr>
+                          <th class="small_th"></th>
+                          <th>رسید</th>
+                          <th>دسترسی</th>
+                          <th>عنوان</th>
+                          <th>توضیحات</th>
+                        </tr>
+                      </thead>
+                      <tbody id="need_receipts"></tbody>
+                    </table>
                   </div>
                 </div>
               </div>

@@ -160,7 +160,8 @@ $(document).ready(function(){
         }
     });
     
-    var edit_needId = -1;    
+    var edit_needId = -1;
+    var edit_receiptId = -1;
 
     var keys = ['id' , 'child_id' , 'name' , 'name_fa' , 'title' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'type' , 'informations' , 'details' , 'isUrgent' , 'category' , 'description' , 'description_fa' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'receipts' , 'created' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'updated']
 
@@ -897,10 +898,12 @@ $(document).ready(function(){
 
     })  //end of 'confirm edit' function
 
-    // Add receipt for needs
+    // Needs Receipt
     $('#needList').on('click', '.receiptBtn', function(e) {
         e.preventDefault();
         $('.static').val('');
+        $('#editReceipt').hide();
+        $('#addReceipt').show();
 
         $('#r_child_id').attr('disabled', true);
         $('#r_need_name_fa').attr('disabled', true);
@@ -926,15 +929,18 @@ $(document).ready(function(){
                 console.log(data.responseJSON.message);
             }
         })
+
+        showNeedReceipt(edit_needId);
     })
 
+    // Add receipt for needs
     $('#addReceipt').on('click', function(e) {
         e.preventDefault();
 
         var receipts = $('#r_need_receipts')[0].files[0];
-        var code = $('r_receipt_code').val();
-        var title = $('r_receipt_title').val();
-        var description = $('r_receipt_description').val();
+        var code = $('#r_receipt_code').val();
+        var title = $('#r_receipt_title').val();
+        var description = $('#r_receipt_description').val();
 
         // append datas to a Form Data
         var form_data = new FormData();
@@ -961,7 +967,8 @@ $(document).ready(function(){
                 },
                 success: function(data) {
                     alert("Success\nThe receipts added to need: " + edit_needId + "\n" + JSON.stringify(data.message));
-                    location.reload(true);
+                    $('.static').val('');
+                    showNeedReceipt(edit_needId);
                 },
                 error: function(data) {
                     bootbox.alert({
@@ -972,6 +979,77 @@ $(document).ready(function(){
             })
         }
 
+    })
+
+    // Delete receipt from a need
+    $('#need_receipts').on('click', '.delReceipt', function(e) {
+        e.preventDefault();
+        var receiptId = $(this).parent().attr('id');
+
+        delNeedReceiptById(edit_needId, receiptId);
+    })
+
+    // Edit receipt
+    $('#need_receipts').on('click', '.editReceipt', function(e) {
+        e.preventDefault();
+        $('#addReceipt').hide();
+        $('#editReceipt').show();
+        $('.static').val('');
+        edit_receiptId = $(this).parent().attr('id');
+        $('#need_form_preloader').show();
+        
+        getReceiptById(edit_receiptId, function(output) {
+            $('#r_receipt_code').val(output['code']);
+            $('#r_receipt_title').val(output['title']);
+            $('#r_receipt_description').val(output['description']);
+            $('#need_form_preloader').hide();
+        })
+    })
+
+    // confirm Edit receipt
+    $('#editReceipt').on('click', function(e) {
+        e.preventDefault();
+        var receipts = $('#r_need_receipts')[0].files[0];
+        var code = $('#r_receipt_code').val();
+        var title = $('#r_receipt_title').val();
+        var description = $('#r_receipt_description').val();
+
+        // append datas to a Form Data
+        var form_data = new FormData();
+        form_data.append('code', code);
+        if(receipts) {
+            form_data.append('attachment', receipts);
+        }
+        if (title) {
+            form_data.append('title', title);
+        }
+        if (description) {
+            form_data.append('description', description);
+        }
+
+        $.ajax({
+            url: `${SAYApiUrl}/receipts/${edit_receiptId}`,
+            method: 'PATCH',
+            cache: false,
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            data: form_data,
+            beforeSend: function(){
+                return confirm("You are about to edit the receipt.\nAre you sure?");
+            },
+            success: function(data) {
+                alert("Success\nReceipt " + edit_receiptId + " updated successfully");
+                $('.static').val('');
+                showNeedReceipt(edit_needId);
+            },
+            error: function(data) {
+                bootbox.alert({
+                    title: errorTitle(),
+                    message: errorContent(data.responseJSON.message),
+                });
+            }
+        })
     })
     
     // Delete a need
@@ -1004,3 +1082,77 @@ $(document).ready(function(){
     })
 
 })
+
+const getReceiptsByNeedId = (id, handleData) => {
+    $.ajax({
+        url: `${SAYApiUrl}/needs/${id}/receipts`,
+        method: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            handleData(data)
+        },
+        error: function(data) {
+            console.log(data.responseJSON.message);
+        }
+    })
+}
+
+const getReceiptById = (id, handleData) => {
+    $.ajax({
+        url: `${SAYApiUrl}/receipts/${id}`,
+        method: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            handleData(data)
+        },
+        error: function(data) {
+            console.log(data.responseJSON.message);
+        }
+    })
+}
+
+const delNeedReceiptById = (needId, receiptId) => {
+    $.ajax({
+        url: `${SAYApiUrl}/needs/${needId}/receipts/${receiptId}`,
+        method: 'DELETE',
+        beforeSend: function () {
+            return confirm('Are you sure?');
+        },
+        success: function(data) {
+            alert(`Success\n${data.code} deleted from this need successfully.`);
+            showNeedReceipt(needId);
+        },
+        error: function(data) {
+            console.log(data.responseJSON.message);
+        }
+    })
+}
+
+const showNeedReceipt = (id) => {
+    $('#need_receipts').empty();
+
+    getReceiptsByNeedId(id, function(output) {
+        if (Boolean(output.length)) {
+            $.each(output, (key, receipt) => {
+                var query = '';
+                var accessibility = receipt['isPublic'] ? 'Public' : 'Private';
+                
+                query += `<tr>\
+                            <td id=${receipt['id']}>\
+                                <button class="btn btn-rounded btn-transparent btn-danger btn-sm btn-block delReceipt">Delete</button>\
+                                <button class="btn btn-rounded btn-transparent btn-primary btn-sm btn-block editReceipt">Edit</button>\
+                            </td>\
+                            <td><a href=${receipt['attachment']} target='_blank'>${receipt['code']}</a></td>\
+                            <td>${accessibility}</td>\
+                            <td>${receipt['title'] || nullValues()}</td>\
+                            <td>${receipt['description'] || nullValues()}</td>\
+                        </tr>`
+                $('#need_receipts').append(query);
+            })
+        } else {
+            var query = '';
+            query += `<h5>رسیدی ثبت نشده</h5>`
+            $('#need_receipts').append(query);
+        }
+    })
+}
