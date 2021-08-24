@@ -30,10 +30,6 @@ $(document).ready(function(){
                 extension: "jpg,png,jpeg",
                 filesize: 1    // MB
             },
-            "need_receipts[]": {
-                extension: "jpg,png,jpeg,PDF",
-                filesize: 3,    // MB
-            },
             need_type: {
                 required: true,
             },
@@ -72,10 +68,6 @@ $(document).ready(function(){
             },
             "need_icon[]": {
                 // required: "انتخاب آیکون نیاز ضروری است.",    // TODO: temporarily disabled for problem in adding by pre-need
-                extension: "فرمت‌های قابل پذیرش: {0}",
-                filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB",
-            },
-            "need_receipts[]": {
                 extension: "فرمت‌های قابل پذیرش: {0}",
                 filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB",
             },
@@ -126,18 +118,12 @@ $(document).ready(function(){
                 filesize: 3,    // MB
                 required: true,
             },
-            r_receipt_code: {
-                required: true,
-            },
         },
         messages: {
             "r_need_receipts[]": {
                 extension: "فرمت‌های قابل پذیرش: {0}",
                 filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB",
                 required: "رسید را انتخاب کنید.",
-            },
-            r_receipt_code: {
-                required: "کد رسید را وارد کنید.",
             },
         },
         errorPlacement: function(error, element) {
@@ -163,7 +149,7 @@ $(document).ready(function(){
     var edit_needId = -1;
     var edit_receiptId = -1;
 
-    var keys = ['id' , 'child_id' , 'name' , 'name_fa' , 'title' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'type' , 'informations' , 'details' , 'isUrgent' , 'category' , 'description' , 'description_fa' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'receipts' , 'created' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'updated']
+    var keys = ['id' , 'child_id' , 'name' , 'name_fa' , 'title' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'type' , 'informations' , 'details' , 'isUrgent' , 'category' , 'description' , 'description_fa' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'created' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'updated']
 
     // Get Children Needs by child id
     $('#child_need_select').change(function() {
@@ -221,12 +207,6 @@ $(document).ready(function(){
 
                         if (keys[i] == 'imageUrl') {
                             value[keys[i]] = getImgFile(value[keys[i]]);
-                        }
-
-                        if (keys[i] == 'receipts') {
-                            if(value[keys[i]] != null){
-                                value[keys[i]] = getFile(value[keys[i]]);
-                            }
                         }
 
                         if (keys[i] == 'cost' || keys[i] == 'paid') {
@@ -424,12 +404,6 @@ $(document).ready(function(){
 
                         if (keys[i] == 'imageUrl') {
                             value[keys[i]] = getImgFile(value[keys[i]]);
-                        }
-
-                        if (keys[i] == 'receipts') {
-                            if(value[keys[i]] != null){
-                                value[keys[i]] = getFile(value[keys[i]]);
-                            }
                         }
 
                         if (keys[i] == 'cost' || keys[i] == 'paid') {
@@ -945,7 +919,9 @@ $(document).ready(function(){
         // append datas to a Form Data
         var form_data = new FormData();
         form_data.append('attachment', receipts);
-        form_data.append('code', code);
+        if (code) {
+            form_data.append('code', code);
+        }
         if (title) {
             form_data.append('title', title);
         }
@@ -954,6 +930,8 @@ $(document).ready(function(){
         }
 
         if ( $('#receipt_form').valid() ) {
+            $("div.alert").hide();
+
             $.ajax({
                 url: `${SAYApiUrl}/needs/${edit_needId}/receipts`,
                 method: 'POST',
@@ -1016,7 +994,9 @@ $(document).ready(function(){
 
         // append datas to a Form Data
         var form_data = new FormData();
-        form_data.append('code', code);
+        if (code) {
+            form_data.append('code', code);
+        }
         if(receipts) {
             form_data.append('attachment', receipts);
         }
@@ -1027,29 +1007,35 @@ $(document).ready(function(){
             form_data.append('description', description);
         }
 
-        $.ajax({
-            url: `${SAYApiUrl}/receipts/${edit_receiptId}`,
-            method: 'PATCH',
-            cache: false,
-            processData: false,
-            contentType: false,
-            dataType: 'json',
-            data: form_data,
-            beforeSend: function(){
-                return confirm("You are about to edit the receipt.\nAre you sure?");
-            },
-            success: function(data) {
-                alert("Success\nReceipt " + edit_receiptId + " updated successfully");
-                $('.static').val('');
-                showNeedReceipt(edit_needId);
-            },
-            error: function(data) {
-                bootbox.alert({
-                    title: errorTitle(),
-                    message: errorContent(data.responseJSON.message),
-                });
-            }
-        })
+        $('#r_need_receipts').rules('remove', 'required'); // Remove attachment requtred rule
+
+        if ( $('#receipt_form').valid() ) {
+            $("div.alert").hide();
+
+            $.ajax({
+                url: `${SAYApiUrl}/receipts/${edit_receiptId}`,
+                method: 'PATCH',
+                cache: false,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                data: form_data,
+                beforeSend: function(){
+                    return confirm("You are about to edit the receipt.\nAre you sure?");
+                },
+                success: function(data) {
+                    alert("Success\nReceipt " + edit_receiptId + " updated successfully");
+                    $('.static').val('');
+                    showNeedReceipt(edit_needId);
+                },
+                error: function(data) {
+                    bootbox.alert({
+                        title: errorTitle(),
+                        message: errorContent(data.responseJSON.message),
+                    });
+                }
+            })
+        }
     })
     
     // Delete a need
@@ -1119,7 +1105,7 @@ const delNeedReceiptById = (needId, receiptId) => {
             return confirm('Are you sure?');
         },
         success: function(data) {
-            alert(`Success\n${data.code} deleted from this need successfully.`);
+            alert(`Success\n${data.title} deleted from this need successfully.`);
             showNeedReceipt(needId);
         },
         error: function(data) {
@@ -1142,7 +1128,8 @@ const showNeedReceipt = (id) => {
                                 <button class="btn btn-rounded btn-transparent btn-danger btn-sm btn-block delReceipt">Delete</button>\
                                 <button class="btn btn-rounded btn-transparent btn-primary btn-sm btn-block editReceipt">Edit</button>\
                             </td>\
-                            <td><a href=${receipt['attachment']} target='_blank'>${receipt['code']}</a></td>\
+                            <td>${linkTo(receipt['attachment'])}</td>\
+                            <td>${receipt['code'] || nullValues()}</td>\
                             <td>${accessibility}</td>\
                             <td>${receipt['title'] || nullValues()}</td>\
                             <td>${receipt['description'] || nullValues()}</td>\
