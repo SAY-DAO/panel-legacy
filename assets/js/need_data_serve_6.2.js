@@ -118,12 +118,18 @@ $(document).ready(function(){
                 filesize: 3,    // MB
                 required: true,
             },
+            r_receipt_title: {
+                required: true,
+            },
         },
         messages: {
             "r_need_receipts[]": {
                 extension: "فرمت‌های قابل پذیرش: {0}",
                 filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB",
                 required: "رسید را انتخاب کنید.",
+            },
+            r_receipt_title: {
+                required: "عنوان رسید را وارد کنید.",
             },
         },
         errorPlacement: function(error, element) {
@@ -929,6 +935,10 @@ $(document).ready(function(){
             form_data.append('description', description);
         }
 
+        console.log(form_data)
+        $('#r_need_receipts').rules('add', 'required'); // Add attachment requtred rule in case after edit
+        $('#r_receipt_title').rules('add', 'required'); // Add title requtred rule in case after edit
+
         if ( $('#receipt_form').valid() ) {
             $("div.alert").hide();
 
@@ -970,9 +980,11 @@ $(document).ready(function(){
     // Edit receipt
     $('#need_receipts').on('click', '.editReceipt', function(e) {
         e.preventDefault();
+        $('#r_receipt_code').attr('disabled', true);
         $('#addReceipt').hide();
         $('#editReceipt').show();
         $('.static').val('');
+
         edit_receiptId = $(this).parent().attr('id');
         $('#need_form_preloader').show();
         
@@ -988,15 +1000,11 @@ $(document).ready(function(){
     $('#editReceipt').on('click', function(e) {
         e.preventDefault();
         var receipts = $('#r_need_receipts')[0].files[0];
-        var code = $('#r_receipt_code').val();
         var title = $('#r_receipt_title').val();
         var description = $('#r_receipt_description').val();
 
         // append datas to a Form Data
         var form_data = new FormData();
-        if (code) {
-            form_data.append('code', code);
-        }
         if(receipts) {
             form_data.append('attachment', receipts);
         }
@@ -1008,6 +1016,7 @@ $(document).ready(function(){
         }
 
         $('#r_need_receipts').rules('remove', 'required'); // Remove attachment requtred rule
+        $('#r_receipt_title').rules('remove', 'required'); // Remove title requtred rule
 
         if ( $('#receipt_form').valid() ) {
             $("div.alert").hide();
@@ -1026,6 +1035,9 @@ $(document).ready(function(){
                 success: function(data) {
                     alert("Success\nReceipt " + edit_receiptId + " updated successfully");
                     $('.static').val('');
+                    $('#addReceipt').show();
+                    $('#editReceipt').hide();
+                    $('#r_receipt_code').attr('disabled', false);
                     showNeedReceipt(edit_needId);
                 },
                 error: function(data) {
