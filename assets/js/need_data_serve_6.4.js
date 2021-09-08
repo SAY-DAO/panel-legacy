@@ -370,8 +370,8 @@ $(document).ready(function(){
             success: function(data) {
                 console.log(data);
                 var total_count = data['totalCount'];
-                $('.total_count').html(' - ' + total_count + ' تا');
-                data = data['needs'];
+                data = data['needs'].filter(n => n.child_id != 104);
+                $('.total_count').html(' - ' + data.length + ' تا');
                 var row_index = 1;
                 $.each(data, function(key, value){
                     var needId = value['id'];
