@@ -168,7 +168,7 @@ $(document).ready(function(){
         }
 
         $.ajax({
-            url: SAYApiUrl + '/need/all/confirm=2?done=1&ngoId=' + selected_ngo + '&type=' + selected_type + '&status=' + selected_status,
+            url: `${SAYApiUrl}/needs?idDone=true${selected_ngo ? `&ngoId=${selected_ngo}` : ``}${selected_type !== `` ? `&type=${selected_type}` : ``}${selected_status ? `&status=${selected_status}` : ``}`,
             method: 'GET',
             dataType: 'json',
             beforeSend: function() {
@@ -504,7 +504,7 @@ $(document).ready(function(){
         var selected_type_id = $('#need_type').val();
         console.log(selected_ngo);
         $.ajax({
-            url: SAYApiUrl + '/need/all/confirm=2?status=3&isReported=0&ngoId=' + selected_ngo + '&type=' + selected_type_id,
+            url: `${SAYApiUrl}/needs?status=3&isReported=false${selected_ngo ? `&ngoId=${selected_ngo}` : ``}${selected_type_id !== `` ? `&type=${selected_type_id}` : ``}`,
             method: 'GET',
             dataType: 'json',
             beforeSend: function() {
