@@ -361,7 +361,7 @@ $(document).ready(function(){
         var confirm_status = $('#need_confirm_status').val();
         var selected_ngo = $('#need_ngo').val();
         $.ajax({
-            url: SAYApiUrl + '/need/all/confirm=' + confirm_status + '?ngoId=' + selected_ngo,
+            url: `${SAYApiUrl}/needs?${confirm_status ? `isConfirmed=${confirm_status}` : ``}${selected_ngo ? `&ngoId=${selected_ngo}` : ``}&isChildConfirmed=true`,
             method: 'GET',
             dataType: 'json',
             beforeSend: function() {
