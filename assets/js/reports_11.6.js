@@ -119,7 +119,7 @@ $(document).ready(function(){
                 'link',
                 'ngoName',
                 'ngoAddress',
-                'receipts',
+                'receipt_count',
                 'doneAt'];
     
     // for the report to ngo ajax
@@ -249,12 +249,6 @@ $(document).ready(function(){
                         if(keys[i] == 'affiliateLinkUrl' || keys[i] == 'link') {
                             if(value[keys[i]] != null) {
                                 value[keys[i]] = linkTo(value[keys[i]]);
-                            }
-                        }
-
-                        if(keys[i] == 'receipts') {
-                            if(value[keys[i]]) {
-                                value[keys[i]] = getFile(value[keys[i]]);
                             }
                         }
 
