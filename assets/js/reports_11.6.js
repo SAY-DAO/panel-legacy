@@ -184,11 +184,16 @@ $(document).ready(function(){
                     var need_type = value['type'];
                     var need_status = -1;
                     
-                    var query = '<tr>\
-                    <td>' + row_index + '</td>\
-                    <td id="' + needId + '">\
+                    var query =
+                      '<tr>\
+                    <td>' +
+                      row_index +
+                      '</td>\
+                    <td id="' +
+                      needId +
+                      '">\
                     <button type="submit" class="btn btn-block btn-embossed btn-default btn-sm changeStatus" onclick="editScroll()">Change status</button>\
-                    <button class="btn btn-embossed btn-warning btn-block btn-sm receiptBtn">رسید دیجیکالا</button>\
+                    <button class="btn btn-embossed btn-warning btn-block btn-sm receiptBtn">رسید</button>\
                     </td>\
                     ';
 
@@ -354,14 +359,10 @@ $(document).ready(function(){
                     $('#product_status').hide();
                     $('#service_status').show();
                     $('#need_status_service').val(data['status']).change();  // need status feild in get need by id
-                    $('#p_receipts').hide();
-                    $('#s_receipts').show();
                 } else if (type_id == 1) {  // if product
                     $('#service_status').hide();
                     $('#product_status').show();
                     $('#need_status_product').val(data['status']).change();  // need status feild in get need by id
-                    $('#s_receipts').hide();
-                    $('#p_receipts').show();
                 }
 
                 $('#change_need_preloader').hide();
@@ -379,7 +380,6 @@ $(document).ready(function(){
         console.log("change status for need " + status_needId);
 
         var status = -1;
-        var receipts = -1;
         var expected_delivery = false;
         var real_delivery = false;
         var ngo_money_transfer = false;
@@ -390,7 +390,6 @@ $(document).ready(function(){
             $('#ngo_delivery_date').rules('remove', 'required');    // remove rule
 
             status = $('#need_status_service').val();
-            receipts = $('#service_receipts')[0].files[0];
             if (status == 3) {  // if money transferred to the NGO
                 ngo_money_transfer = true;
                 // add rule
@@ -406,7 +405,6 @@ $(document).ready(function(){
             $('#bank_track_id').rules('remove', 'required');    // remove rule
 
             status = $('#need_status_product').val();
-            receipts = $('#product_receipts')[0].files[0];
             if (status == 3) {
                 expected_delivery = true;
                 // add rule
@@ -438,9 +436,6 @@ $(document).ready(function(){
         var form_data = new FormData();
         if (status) {
             form_data.append('status', status);
-        }
-        if (receipts) {
-            form_data.append('receipts', receipts);
         }
         if (expected_delivery) { // if the product status is changing to 3
             form_data.append('expected_delivery_date', expected_delivery_date);

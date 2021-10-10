@@ -130,7 +130,7 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icons-office-52"></i></button>
                 <img class="preloader" id="dk_preloader" src="assets/images/preloader/25.gif"/>
-                <h4 class="modal-title" dir="rtl">رسید دیجیکالای <strong id="needName">-</strong></h4>
+                <h4 class="modal-title" dir="rtl">رسید <strong id="needName">-</strong></h4>
               </div>
               <div class="modal-body">
                 <p class="c-orange"><b style="border: 1px solid; border-radius: 50%; padding: 2px 10px;">!</b> برای یک نیاز بیش از یک رسید Public ثبت نکنید.</p>
@@ -275,30 +275,6 @@
                             <div class="form-group">
                               <label for="bank_track_id" class="control-label">شماره پیگیری واریز وجه</label>
                               <input type="text" id="bank_track_id" name="bank_track_id" class="form-control" placeholder="شماره پیگیری واریز وجه را وارد نمایید" />
-                            </div>
-                          </div>
-
-                          <!-- will show in product needs change status -->
-                          <div class="col-md-4 col-sm-6" id="p_receipts" hidden>
-                            <div class="form-group">
-                              <label class="control-label" for="product_receipts">رسید کالا</label>
-                              <div class="file">
-                                <span class="file-button btn-primary">انتخاب فایل</span>
-                                <input type="file" class="custom-file" name="product_receipts[]" id="product_receipts" multiple="multiple" onchange="document.getElementById('product_receipts_uploader').value = this.value;" />
-                                <input type="text" class="form-control" id="product_receipts_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="" />
-                              </div>
-                            </div>
-                          </div>
-
-                          <!-- will show in service needs change status -->
-                          <div class="col-md-4 col-sm-6" id="s_receipts" hidden>
-                            <div class="form-group">
-                              <label class="control-label" for="service_receipts">رسید سرویس</label>
-                              <div class="file">
-                                <span class="file-button btn-primary">انتخاب فایل</span>
-                                <input type="file" class="custom-file" name="service_receipts[]" id="service_receipts" multiple="multiple" onchange="document.getElementById('service_receipts_uploader').value = this.value;" />
-                                <input type="text" class="form-control" id="service_receipts_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="" />
-                              </div>
                             </div>
                           </div>
 
