@@ -278,8 +278,17 @@ $(document).ready(function(){
                     query += '</tr>';
                     $('#reportDoneNeedList').append(query);
 
-                    if (!(need_status === 14 || need_status === 15)) {
-                        $('#' + needId).find('.receiptBtn').hide();
+                    if (
+                      !(
+                        need_status === 14 ||
+                        need_status === 15 ||
+                        need_status === 03 ||
+                        need_status === 04
+                      )
+                    ) {
+                      $('#' + needId)
+                        .find('.receiptBtn')
+                        .hide();
                     }
 
                     row_index += 1;
