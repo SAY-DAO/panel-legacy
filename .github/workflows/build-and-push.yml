@@ -8,7 +8,7 @@ env:
   MAIN_BRANCH: master
   DEV_DOMAIN: panel.d.sayapp.company
   STAGE_DOMAIN: panel.s.sayapp.company
-  PROD_DOMAIN: panelsayapp.company
+  PROD_DOMAIN: panel.sayapp.company
   TARGET_LAYER: prod
   DEV_STACK_NAME: say-dev-panel
   STAGE_STACK_NAME: say-stag-panel
