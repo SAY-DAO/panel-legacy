@@ -710,7 +710,7 @@ $(document).ready(function(){
                     },
                     success: function (data) {
                         $('#receipt_preloader').hide();
-                        alert("Success\nReceipt " + data.title + " added successfully.");
+                        alert(`Success\nReceipt "${data.title}" added successfully.`);
                         resetReceiptForm();
                         showNeedReceipt(status_needId);
                     },
@@ -796,6 +796,8 @@ $(document).ready(function(){
                     $('#receipt_preloader').hide();
                     alert(`Success\nReceipt "${data.title}" changed successfully.`);
                     resetReceiptForm();
+                    $('#editReceipt').hide();
+                    $('#addReceipt').show();
                     showNeedReceipt(status_needId);
                 },
                 error: function (data) {
