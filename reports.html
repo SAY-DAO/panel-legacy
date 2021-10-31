@@ -160,17 +160,17 @@
                   <div class="row">
                     <div class="form-group col-md-6 col-xs-12">
                       <label for="receipt_code" class="control-label">کد رسید</label>
-                      <input type="text" id="receipt_code" name="receipt_code" class="form-control static" placeholder="کد رسید" />
+                      <input type="text" id="receipt_code" name="receipt_code" class="form-control static_r" placeholder="کد رسید" />
                     </div>
                     
                     <div class="form-group col-md-6 col-xs-12">
                       <label for="receipt_title" class="control-label">عنوان رسید <span class="required">*</span></label>
-                      <input type="text" id="receipt_title" name="receipt_title" class="form-control static" placeholder="عنوان رسید" required />
+                      <input type="text" id="receipt_title" name="receipt_title" class="form-control static_r" placeholder="عنوان رسید" required />
                     </div>
 
                     <div class="form-group col-md-6 col-xs-12">
                       <label for="isPublic" class="control-label">دسترسی</label>
-                      <select id="isPublic" name="isPublic" class="form-control static">
+                      <select id="isPublic" name="isPublic" class="form-control static_r">
                         <option value="0">Private</option>
                         <option value="1">Public</option>
                       </select>
@@ -178,7 +178,7 @@
                     
                     <div class="form-group col-md-6 col-xs-12">
                       <label for="receipt_description" class="control-label">توضیحات رسید</label>
-                      <textarea name="receipt_description" id="receipt_description" rows="2" class="form-control static" placeholder="توضیحات رسید"></textarea>
+                      <textarea name="receipt_description" id="receipt_description" rows="2" class="form-control static_r" placeholder="توضیحات رسید"></textarea>
                     </div>
 
                     <div id="receipt_file_container" class="form-group col-xs-12">
@@ -186,7 +186,7 @@
                       <div class="file">
                         <span class="file-button btn-primary">انتخاب فایل</span>
                         <input type="file" class="custom-file" name="receipts_file[]" id="receipts_file" multiple="multiple" onchange="document.getElementById('receipts_file_uploader').value = this.value;" />
-                        <input type="text" class="form-control static" id="receipts_file_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="" />
+                        <input type="text" class="form-control static_r" id="receipts_file_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="" />
                       </div>
                     </div>
                   </div>
@@ -548,7 +548,7 @@
   crossorigin="anonymous"
 ></script>
 
-<script src="assets/js/reports_12.1.js"></script>  <!--reports data feed-->
+<script src="assets/js/reports_12.2.js"></script>  <!--reports data feed-->
 <script src="assets/js/receipts_1.0.js"></script> <!--Receipts data for need's receipts-->
 <script src="assets/js/ngo_data_serve_6.0.js"></script>  <!--ngo data feed-->
 <script src="assets/js/config.js"></script>  <!--url configurations-->

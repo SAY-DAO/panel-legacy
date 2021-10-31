@@ -587,7 +587,7 @@ $(document).ready(function(){
 
     function resetReceiptForm() {
         receipt_id = -1;
-        $('.static').val(null);
+        $('.static_r').val(null);
         $('#receipt_code_search').empty();
         $('#receipt_code_search').append(
           '<option value="0">جستجوی رسیدهای پیشین</option>'
@@ -596,7 +596,7 @@ $(document).ready(function(){
         $('#isPublic').val(0).change();
         $('#receipt_form').validate().resetForm();
         $('#receipt_form .form-control').removeClass('error');
-        $('.static').prop('disabled', false);
+        $('.static_r').prop('disabled', false);
         $('#show_receipt').hide();
         $('#receipt_file_container').find('.file').show();
         getAllReceipts();
@@ -641,7 +641,7 @@ $(document).ready(function(){
         $('#receipt_title').val(output['title']);
         $('#receipt_description').val(output['description']);
         $('#show_receipt').attr('href', output['attachment']);
-        $('.static').prop('disabled', 'disabled');
+        $('.static_r').prop('disabled', 'disabled');
         $('#addReceipt').prop('disabled', false);
         $('#receipt_code_search').prop('disabled', false);
         $('#receipt_file_container').find('.file').hide();
