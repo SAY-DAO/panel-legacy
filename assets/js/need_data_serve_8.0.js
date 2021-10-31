@@ -165,6 +165,7 @@ $(document).ready(function(){
             method: 'GET',
             dataType: 'json',
             beforeSend: function() {
+                $('.select_btn').prop('disabled', 'disabled');
                 $('#needs_preloader').show();
             },
             success: function(data) {
@@ -347,10 +348,11 @@ $(document).ready(function(){
                     row_index += 1;
                 })
                 $('#needs_preloader').hide();
-
+                $('.select_btn').prop('disabled', false);
             },
             error: function(data) {
                 console.log(data.responseJSON.message);
+                $('.select_btn').prop('disabled', false);
             }
         })
         $('#needList').empty();
@@ -935,7 +937,6 @@ $(document).ready(function(){
             form_data.append('description', description);
         }
 
-        console.log(form_data)
         $('#r_need_receipts').rules('add', 'required'); // Add attachment requtred rule in case after edit
         $('#r_receipt_title').rules('add', 'required'); // Add title requtred rule in case after edit
 
@@ -951,14 +952,17 @@ $(document).ready(function(){
                 dataType: 'json',
                 data: form_data,
                 beforeSend: function(){
+                    $('#need_form_preloader').show();
                     return confirm("You are about to add receipts to the need.\nAre you sure?");
                 },
                 success: function(data) {
                     alert("Success\nThe receipts added to need: " + edit_needId + "\n" + JSON.stringify(data.message));
                     $('.static').val('');
+                    $('#need_form_preloader').hide();
                     showNeedReceipt(edit_needId);
                 },
                 error: function(data) {
+                    $('#need_form_preloader').hide();
                     bootbox.alert({
                         title: errorTitle(),
                         message: errorContent(data.responseJSON.message),
@@ -1080,78 +1084,3 @@ $(document).ready(function(){
     })
 
 })
-
-const getReceiptsByNeedId = (id, handleData) => {
-    $.ajax({
-        url: `${SAYApiUrl}/needs/${id}/receipts`,
-        method: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            handleData(data)
-        },
-        error: function(data) {
-            console.log(data.responseJSON.message);
-        }
-    })
-}
-
-const getReceiptById = (id, handleData) => {
-    $.ajax({
-        url: `${SAYApiUrl}/receipts/${id}`,
-        method: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            handleData(data)
-        },
-        error: function(data) {
-            console.log(data.responseJSON.message);
-        }
-    })
-}
-
-const delNeedReceiptById = (needId, receiptId) => {
-    $.ajax({
-        url: `${SAYApiUrl}/needs/${needId}/receipts/${receiptId}`,
-        method: 'DELETE',
-        beforeSend: function () {
-            return confirm('Are you sure?');
-        },
-        success: function(data) {
-            alert(`Success\n${data.title} deleted from this need successfully.`);
-            showNeedReceipt(needId);
-        },
-        error: function(data) {
-            console.log(data.responseJSON.message);
-        }
-    })
-}
-
-const showNeedReceipt = (id) => {
-    $('#need_receipts').empty();
-
-    getReceiptsByNeedId(id, function(output) {
-        if (Boolean(output.length)) {
-            $.each(output, (key, receipt) => {
-                var query = '';
-                var accessibility = receipt['isPublic'] ? 'Public' : 'Private';
-                
-                query += `<tr>\
-                            <td id=${receipt['id']}>\
-                                <button class="btn btn-rounded btn-transparent btn-danger btn-sm btn-block delReceipt">Delete</button>\
-                                <button class="btn btn-rounded btn-transparent btn-primary btn-sm btn-block editReceipt">Edit</button>\
-                            </td>\
-                            <td>${linkTo(receipt['attachment'])}</td>\
-                            <td>${receipt['code'] || nullValues()}</td>\
-                            <td>${accessibility}</td>\
-                            <td>${receipt['title'] || nullValues()}</td>\
-                            <td>${receipt['description'] || nullValues()}</td>\
-                        </tr>`
-                $('#need_receipts').append(query);
-            })
-        } else {
-            var query = '';
-            query += `<h5>رسیدی ثبت نشده</h5>`
-            $('#need_receipts').append(query);
-        }
-    })
-}
