@@ -1,122 +1,193 @@
 <!DOCTYPE html>
 <html class="rtl" lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <meta name="description" content="admin-themes-lab">
-  <meta name="author" content="themes-lab">
-  
-   <!--prevent caching-->
-   <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
-   <meta http-equiv="Pragma" content="no-cache" />
-   <meta http-equiv="Expires" content="0" />
-   <!--theme color-->
-   <meta name="theme-color" content="#FDE1C1" />
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <meta name="description" content="admin-themes-lab" />
+    <meta name="author" content="themes-lab" />
 
-  <!-- favicon -->
-  <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png">
-  <title>SAY - پنل کاربری مددکار</title>
+    <!--prevent caching-->
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <!--theme color-->
+    <meta name="theme-color" content="#FDE1C1" />
 
-  <!--css files-->
-  <link href="https://fonts.googleapis.com/css?family=Nothing+You+Could+Do" rel="stylesheet" type="text/css">
-  <link href="assets/css/style_4.1.css" rel="stylesheet"> <!-- MANDATORY -->
-  <link href="assets/css/theme.css" rel="stylesheet"> <!-- MANDATORY -->
-  <link href="assets/css/ui.css" rel="stylesheet"> <!-- MANDATORY -->
-  
-  <link href="assets/plugins/datatables/dataTables.min.css" rel="stylesheet">
-  <link href="assets/plugins/input-text/style.min.css" rel="stylesheet">
-  <link href="assets/plugins/dropzone/dropzone.min.css" rel="stylesheet">
-  <!-- <link href="assets/plugins/persian-datepicker/persian-datepicker.css" rel="stylesheet"> -->
+    <!-- favicon -->
+    <link
+      rel="shortcut icon"
+      href="assets/images/favicon.png"
+      type="image/png"
+    />
+    <title>SAY - پنل کاربری مددکار</title>
 
+    <!--css files-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Nothing+You+Could+Do"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="assets/css/style_4.1.css" rel="stylesheet" />
+    <!-- MANDATORY -->
+    <link href="assets/css/theme.css" rel="stylesheet" />
+    <!-- MANDATORY -->
+    <link href="assets/css/ui.css" rel="stylesheet" />
+    <!-- MANDATORY -->
 
-<link href="../builder/page-builder/plugins/slider-pips/jquery-ui-slider-pips.css" rel="stylesheet">
-  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]-->
-  <script src="assets/plugins/modernizr/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-  <!--[endif]-->
-</head>
-<!-- LAYOUT: Apply "submenu-hover" class to body element to have sidebar submenu show on mouse hover -->
-<!-- LAYOUT: Apply "sidebar-collapsed" class to body element to have collapsed sidebar -->
-<!-- LAYOUT: Apply "sidebar-top" class to body element to have sidebar on top of the page -->
-<!-- LAYOUT: Apply "sidebar-hover" class to body element to show sidebar only when your mouse is on left / right corner -->
-<!-- LAYOUT: Apply "submenu-hover" class to body element to show sidebar submenu on mouse hover -->
-<!-- LAYOUT: Apply "fixed-sidebar" class to body to have fixed sidebar -->
-<!-- LAYOUT: Apply "fixed-topbar" class to body to have fixed topbar -->
-<!-- LAYOUT: Apply "rtl" class to body to put the sidebar on the right side -->
-<!-- LAYOUT: Apply "boxed" class to body to have your page with 1200px max width -->
-<!-- THEME STYLE: Apply "theme-sdtl" for Sidebar Dark / Topbar Light -->
-<!-- THEME STYLE: Apply  "theme sdtd" for Sidebar Dark / Topbar Dark -->
-<!-- THEME STYLE: Apply "theme sltd" for Sidebar Light / Topbar Dark -->
-<!-- THEME STYLE: Apply "theme sltl" for Sidebar Light / Topbar Light -->
-<!-- THEME COLOR: Apply "color-default" for dark color: #2B2E33 -->
-<!-- THEME COLOR: Apply "color-primary" for primary color: #319DB5 -->
-<!-- THEME COLOR: Apply "color-red" for red color: #C9625F -->
-<!-- THEME COLOR: Apply "color-default" for green color: #18A689 -->
-<!-- THEME COLOR: Apply "color-default" for orange color: #B66D39 -->
-<!-- THEME COLOR: Apply "color-default" for purple color: #6E62B5 -->
-<!-- THEME COLOR: Apply "color-default" for blue color: #4A89DC -->
-<!-- BEGIN BODY -->
-<body class="fixed-topbar color-default rtl sidebar-condensed theme-sdtl fixed-sidebar bg-light-dark">
-  <section>
+    <link
+      href="assets/plugins/datatables/dataTables.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/plugins/input-text/style.min.css" rel="stylesheet" />
+    <link href="assets/plugins/dropzone/dropzone.min.css" rel="stylesheet" />
+    <!-- <link href="assets/plugins/persian-datepicker/persian-datepicker.css" rel="stylesheet"> -->
+
+    <link
+      href="../builder/page-builder/plugins/slider-pips/jquery-ui-slider-pips.css"
+      rel="stylesheet"
+    />
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]-->
+    <script src="assets/plugins/modernizr/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <!--[endif]-->
+  </head>
+  <!-- LAYOUT: Apply "submenu-hover" class to body element to have sidebar submenu show on mouse hover -->
+  <!-- LAYOUT: Apply "sidebar-collapsed" class to body element to have collapsed sidebar -->
+  <!-- LAYOUT: Apply "sidebar-top" class to body element to have sidebar on top of the page -->
+  <!-- LAYOUT: Apply "sidebar-hover" class to body element to show sidebar only when your mouse is on left / right corner -->
+  <!-- LAYOUT: Apply "submenu-hover" class to body element to show sidebar submenu on mouse hover -->
+  <!-- LAYOUT: Apply "fixed-sidebar" class to body to have fixed sidebar -->
+  <!-- LAYOUT: Apply "fixed-topbar" class to body to have fixed topbar -->
+  <!-- LAYOUT: Apply "rtl" class to body to put the sidebar on the right side -->
+  <!-- LAYOUT: Apply "boxed" class to body to have your page with 1200px max width -->
+  <!-- THEME STYLE: Apply "theme-sdtl" for Sidebar Dark / Topbar Light -->
+  <!-- THEME STYLE: Apply  "theme sdtd" for Sidebar Dark / Topbar Dark -->
+  <!-- THEME STYLE: Apply "theme sltd" for Sidebar Light / Topbar Dark -->
+  <!-- THEME STYLE: Apply "theme sltl" for Sidebar Light / Topbar Light -->
+  <!-- THEME COLOR: Apply "color-default" for dark color: #2B2E33 -->
+  <!-- THEME COLOR: Apply "color-primary" for primary color: #319DB5 -->
+  <!-- THEME COLOR: Apply "color-red" for red color: #C9625F -->
+  <!-- THEME COLOR: Apply "color-default" for green color: #18A689 -->
+  <!-- THEME COLOR: Apply "color-default" for orange color: #B66D39 -->
+  <!-- THEME COLOR: Apply "color-default" for purple color: #6E62B5 -->
+  <!-- THEME COLOR: Apply "color-default" for blue color: #4A89DC -->
+  <!-- BEGIN BODY -->
+  <body
+    class="
+      fixed-topbar
+      color-default
+      rtl
+      sidebar-condensed
+      theme-sdtl
+      fixed-sidebar
+      bg-light-dark
+    "
+  >
+    <section>
       <!-- BEGIN SIDEBAR -->
       <div class="sidebar">
-        
         <div class="sidebar-inner">
           <div class="sidebar-top">
-            <form action="#" method="post" class="searchform" id="search-results">
-              <input type="text" class="form-control" name="keyword" placeholder="Search here...">
+            <form
+              action="#"
+              method="post"
+              class="searchform"
+              id="search-results"
+            >
+              <input
+                type="text"
+                class="form-control"
+                name="keyword"
+                placeholder="Search here..."
+              />
             </form>
             <div class="userlogged clearfix">
               <i class="icon icons-faces-users-02"></i>
               <div class="user-details">
                 <h4 class="user_fullName"></h4>
                 <div class="user-login">
-                    <a href="profile.html"><button class="btn btn-xs btn-rounded" type="button">
-                        <span>پروفایل کاربری</span>
-                    </button></a>
+                  <a href="profile.html"
+                    ><button class="btn btn-xs btn-rounded" type="button">
+                      <span>پروفایل کاربری</span>
+                    </button></a
+                  >
                 </div>
               </div>
             </div>
-         </div>
+          </div>
           <ul class="nav nav-sidebar">
-            <li class="tm"><a href="dashboard.html"><i class="icon-home"></i><span>داشبورد</span></a></li>
-            <li class="tm"><a href="children.html"><i class="fa fa-child"></i><span>کودکان من</span></a></li>
-            <li class="tm"><a href="needs.html"><i class="fa fa-heart-o"></i><span>نیازها</span></a></li>
-            <li class="tm nav-active active privilege1"><a href="reports.html"><i class="fa icon-bar-chart"></i><span>گزارش</span></a></li>
-            <li class="tm privilege1"><a href="social_worker.html"><i class="fa icon-users"></i><span>مددکاران</span></a></li>
-            
+            <li class="tm">
+              <a href="dashboard.html"
+                ><i class="icon-home"></i><span>داشبورد</span></a
+              >
+            </li>
+            <li class="tm">
+              <a href="children.html"
+                ><i class="fa fa-child"></i><span>کودکان من</span></a
+              >
+            </li>
+            <li class="tm">
+              <a href="needs.html"
+                ><i class="fa fa-heart-o"></i><span>نیازها</span></a
+              >
+            </li>
+            <li class="tm nav-active active privilege1">
+              <a href="reports.html"
+                ><i class="fa icon-bar-chart"></i><span>گزارش</span></a
+              >
+            </li>
+            <li class="tm privilege1">
+              <a href="social_worker.html"
+                ><i class="fa icon-users"></i><span>مددکاران</span></a
+              >
+            </li>
+
             <li class="tm nav-parent privilege1">
-              <a href=""><i class="fa fa-edit"></i><span>تنظیمات</span> <span class="fa arrow"></span></a>
+              <a href=""
+                ><i class="fa fa-edit"></i><span>تنظیمات</span>
+                <span class="fa arrow"></span
+              ></a>
               <ul class="children collapse">
                 <li><a href="needcat.html">دسته بندی</a></li>
                 <li><a href="ngo.html">انجمن</a></li>
               </ul>
             </li>
-            
           </ul>
-          
+
           <div class="sidebar-footer clearfix">
-              <a class="pull-left btn-effect logout" href="#" data-modal="modal-1" data-rel="tooltip" data-placement="top" data-original-title="خروج از حساب">
-              <i class="icon-power"></i></a>
+            <a
+              class="pull-left btn-effect logout"
+              href="#"
+              data-modal="modal-1"
+              data-rel="tooltip"
+              data-placement="top"
+              data-original-title="خروج از حساب"
+            >
+              <i class="icon-power"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <!-- END SIDEBAR -->
+      <div class="main-content">
+        <!-- BEGIN TOPBAR -->
+        <div class="topbar">
+          <div class="header-left">
+            <div class="topnav">
+              <a class="menutoggle" href="#" data-toggle="sidebar-collapsed"
+                ><span class="menu__handle"><span>Menu</span></span></a
+              >
             </div>
-    
           </div>
+
+          <div class="header-right">
+            <div class="logopanel">
+              <h1><a class="SAYSite" target="_blank"></a></h1>
+            </div>
           </div>
-          <!-- END SIDEBAR -->
-          <div class="main-content">
-            <!-- BEGIN TOPBAR -->
-            <div class="topbar">
-              <div class="header-left">
-                <div class="topnav">
-                  <a class="menutoggle" href="#" data-toggle="sidebar-collapsed"><span class="menu__handle"><span>Menu</span></span></a>
-               </div>
-              </div>
-    
-              <div class="header-right">
-                <div class="logopanel">
-                  <h1><a class="SAYSite" target="_blank"></a></h1>
-                </div>
-              </div>
           <!-- header-right -->
         </div>
         <!-- END TOPBAR -->
@@ -124,19 +195,50 @@
         <!--say changes-->
 
         <!-- Receipt modal -->
-        <div class="modal fade" id="receipt-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div
+          class="modal fade"
+          id="receipt-modal"
+          tabindex="-1"
+          role="dialog"
+          aria-hidden="true"
+        >
           <div class="modal-dialog modal-bottomfull modal-lg">
             <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icons-office-52"></i></button>
-                
-                <h4 class="modal-title" dir="rtl">رسید(های) 
-                  <img class="preloader" id="receipt_preloader" src="assets/images/preloader/25.gif"/>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-hidden="true"
+                >
+                  <i class="icons-office-52"></i>
+                </button>
+
+                <h4 class="modal-title" dir="rtl">
+                  رسید(های)
+                  <img
+                    class="preloader"
+                    id="receipt_preloader"
+                    src="assets/images/preloader/25.gif"
+                  />
                   <strong id="needName">-</strong>
                 </h4>
               </div>
-              <div class="modal-body" style="max-height: 60vh;overflow: scroll;">
-                <p class="c-orange"><b style="border: 1px solid; border-radius: 50%; padding: 2px 10px;">!</b> لطفا برای یک نیاز بیش از یک رسید Public ثبت نکنید.</p>
+              <div
+                class="modal-body"
+                style="max-height: 60vh; overflow: scroll"
+              >
+                <p class="c-orange">
+                  <b
+                    style="
+                      border: 1px solid;
+                      border-radius: 50%;
+                      padding: 2px 10px;
+                    "
+                    >!</b
+                  >
+                  لطفا برای یک نیاز بیش از یک رسید Public ثبت نکنید.
+                </p>
                 <div class="panel-content bg-white rtl">
                   <table class="table table-hover table-striped dataTable">
                     <thead>
@@ -154,48 +256,122 @@
                 </div>
                 <br />
                 <h4>افزودن رسید جدید</h4>
-                <select id="receipt_code_search" name="receipt_code_search" class="form-control" data-search="true"></select>
+                <select
+                  id="receipt_code_search"
+                  name="receipt_code_search"
+                  class="form-control"
+                  data-search="true"
+                ></select>
                 <hr />
                 <form id="receipt_form">
                   <div class="row">
                     <div class="form-group col-md-6 col-xs-12">
-                      <label for="receipt_code" class="control-label">کد رسید</label>
-                      <input type="text" id="receipt_code" name="receipt_code" class="form-control static_r" placeholder="کد رسید" />
+                      <label for="receipt_code" class="control-label"
+                        >کد رسید</label
+                      >
+                      <input
+                        type="text"
+                        id="receipt_code"
+                        name="receipt_code"
+                        class="form-control static_r"
+                        placeholder="کد رسید"
+                      />
                     </div>
-                    
+
                     <div class="form-group col-md-6 col-xs-12">
-                      <label for="receipt_title" class="control-label">عنوان رسید <span class="required">*</span></label>
-                      <input type="text" id="receipt_title" name="receipt_title" class="form-control static_r" placeholder="عنوان رسید" required />
+                      <label for="receipt_title" class="control-label"
+                        >عنوان رسید <span class="required">*</span></label
+                      >
+                      <input
+                        type="text"
+                        id="receipt_title"
+                        name="receipt_title"
+                        class="form-control static_r"
+                        placeholder="عنوان رسید"
+                        required
+                      />
                     </div>
 
                     <div class="form-group col-md-6 col-xs-12">
                       <label for="isPublic" class="control-label">دسترسی</label>
-                      <select id="isPublic" name="isPublic" class="form-control static_r">
+                      <select
+                        id="isPublic"
+                        name="isPublic"
+                        class="form-control static_r"
+                      >
                         <option value="0">Private</option>
                         <option value="1">Public</option>
                       </select>
                     </div>
-                    
+
                     <div class="form-group col-md-6 col-xs-12">
-                      <label for="receipt_description" class="control-label">توضیحات رسید</label>
-                      <textarea name="receipt_description" id="receipt_description" rows="2" class="form-control static_r" placeholder="توضیحات رسید"></textarea>
+                      <label for="receipt_description" class="control-label"
+                        >توضیحات رسید</label
+                      >
+                      <textarea
+                        name="receipt_description"
+                        id="receipt_description"
+                        rows="2"
+                        class="form-control static_r"
+                        placeholder="توضیحات رسید"
+                      ></textarea>
                     </div>
 
-                    <div id="receipt_file_container" class="form-group col-xs-12">
-                      <a target='_blank' id='show_receipt' class='btn btn-info' hidden>دیدن رسید</a>
+                    <div
+                      id="receipt_file_container"
+                      class="form-group col-xs-12"
+                    >
+                      <a
+                        target="_blank"
+                        id="show_receipt"
+                        class="btn btn-info"
+                        hidden
+                        >دیدن رسید</a
+                      >
                       <div class="file">
                         <span class="file-button btn-primary">انتخاب فایل</span>
-                        <input type="file" class="custom-file" name="receipts_file[]" id="receipts_file" multiple="multiple" onchange="document.getElementById('receipts_file_uploader').value = this.value;" />
-                        <input type="text" class="form-control static_r" id="receipts_file_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="" />
+                        <input
+                          type="file"
+                          class="custom-file"
+                          name="receipts_file[]"
+                          id="receipts_file"
+                          multiple="multiple"
+                          onchange="document.getElementById('receipts_file_uploader').value = this.value;"
+                        />
+                        <input
+                          type="text"
+                          class="form-control static_r"
+                          id="receipts_file_uploader"
+                          placeholder="هیج فایلی انتخاب نشده است"
+                          readonly=""
+                        />
                       </div>
                     </div>
                   </div>
                 </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-embossed" data-dismiss="modal">بستن</button>
-                <button type="button" class="btn btn-primary btn-embossed" id="addReceipt">افزودن رسید</button>
-                <button type="button" class="btn btn-embossed btn-primary" id="editReceipt">ویرایش رسید</button>
+                <button
+                  type="button"
+                  class="btn btn-default btn-embossed"
+                  data-dismiss="modal"
+                >
+                  بستن
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary btn-embossed"
+                  id="addReceipt"
+                >
+                  افزودن رسید
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-embossed btn-primary"
+                  id="editReceipt"
+                >
+                  ویرایش رسید
+                </button>
               </div>
             </div>
           </div>
@@ -203,362 +379,625 @@
 
         <div class="page-content">
           <div class="custom-page text-center">
-                <div class="header">
-                    <div class="breadcrumb-wrapper">
-                        <ol class="breadcrumb">
-                            <li><a href="dashboard.html">صفحه اصلی</a>
-                            </li>
-                            <li class="active">گزارش</li>
-                        </ol>
-                    </div>
-                </div>
+            <div class="header">
+              <div class="breadcrumb-wrapper">
+                <ol class="breadcrumb">
+                  <li><a href="dashboard.html">صفحه اصلی</a></li>
+                  <li class="active">گزارش</li>
+                </ol>
+              </div>
+            </div>
             <h2 class="m-b-20 w-500">گزارش</h2>
 
-              <div class="panel panel-default no-bd" id="changeStatusForm">
-                <div class="panel-header bg-dark panel-controls">
-                  <h3 class="panel-title">فرم<strong> تغییر وضعیت نیاز</strong><img class="preloader" id="change_need_preloader" src="assets/images/preloader/25.gif"/></h3>
-                  
-                </div>
-
-                <div class="panel-content bg-white">
-                  <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                      <form role="form" id="change_need_form" method="POST" enctype="multipart/form-data">
-                        <div class="row">
-
-                          <div class="col-md-4 col-sm-6">
-                            <div class="form-group">
-                              <label for="need_name" class="control-label">نام نیاز</label>
-                              <input type="text" id="need_name" name="need_name" class="form-control" readonly />
-                            </div>
-                          </div>
-                          
-                          <!-- will show in product needs change status -->
-                          <div class="col-md-4 col-sm-6" id="product_status" hidden>
-                              <div class="form-group">
-                                  <label for="need_status_product" class="control-label">وضعیت نیاز <span class="required">*</span></label>
-                                  <div class="option-group">
-                                      <select id="need_status_product" name="need_status_product" class="form-control">
-                                        <option value="">وضعیت مورد نظر را انتخاب کنید</option>
-                                        <option value="2">Money transfer</option>
-                                        <option value="3">Product purchase</option>
-                                        <option value="4">Product delivery to the NGO</option>
-                                        <option value="5">Product delivery</option>
-                                      </select>
-                                  </div>
-                              </div>
-                          </div>
-
-                          <!-- will show in service needs change status -->
-                          <div class="col-md-4 col-sm-6" id="service_status" hidden>
-                              <div class="form-group">
-                                  <label for="need_status_service" class="control-label">وضعیت نیاز <span class="required">*</span></label>
-                                  <div class="option-group">
-                                      <select id="need_status_service" name="need_status_service" class="form-control">
-                                        <option value="">وضعیت مورد نظر را انتخاب کنید</option>
-                                        <option value="2">Money transfer</option>
-                                        <option value="3">Money transfer to the NGO</option>
-                                        <option value="4">Service delivery</option>
-                                      </select>
-                                  </div>
-                              </div>
-                          </div>
-
-                          <!-- will show in product needs change status 2->3 -->
-                          <div class="col-md-4 col-sm-6" id="expected_delivery" hidden>
-                            <div class="form-group">
-                              <label for="expected_delivery_date" class="control-label">تاریخ مورد انتظار تحویل کالا به انجمن <span class="required">*</span></label>
-                              <div class="append-icon">
-                                <input type="text" id="expected_delivery_date" name="expected_delivery_date" class="form-control date_time" />
-                                <i class="icon-calendar"></i>
-                              </div>
-                            </div>
-                          </div>
-
-                          <!-- will show in product needs change status 3->4 -->
-                          <div class="col-md-4 col-sm-6" id="real_delivery" hidden>
-                            <div class="form-group">
-                              <label for="ngo_delivery_date" class="control-label">تاریخ رسیدن کالا به انجمن <span class="required">*</span></label>
-                              <div class="append-icon">
-                                <input type="text" id="ngo_delivery_date" name="ngo_delivery_date" class="form-control date_time" />
-                                <i class="icon-calendar"></i>
-                              </div>
-                            </div>
-                          </div>
-
-                          <!-- will show in product needs change status 2->3 -->
-                          <div class="col-md-4 col-sm-6" id="cost_field" hidden>
-                            <div class="form-group">
-                              <label for="purchase_cost" class="control-label">هزینه پرداخت شده واقعی (تومان)</label>
-                              <div class="append-icon">
-                                <input type="text" id="purchase_cost" name="purchase_cost" class="form-control cost" placeholder="هزینه نیاز را وارد نمایید - تومان" />
-                                <i class="icon-tag"></i>
-                              </div>
-                            </div>
-                          </div>
-
-                          <!-- will show in Product needs only to status 3 -->
-                          <div class="col-md-4 col-sm-6" id="dkc_number" hidden>
-                            <div class="form-group">
-                              <label for="dkc" class="control-label">شماره سفارش دیجی‌کالا</label>
-                              <input type="text" id="dkc" name="dkc" class="form-control" placeholder="شماره سفارش دیجی‌کالا را وارد نمایید" />
-                            </div>
-                          </div>
-
-                          <!-- will show in Service needs change status 2->3 -->
-                          <div class="col-md-4 col-sm-6" id="track_id" hidden>
-                            <div class="form-group">
-                              <label for="bank_track_id" class="control-label">شماره پیگیری واریز وجه</label>
-                              <input type="text" id="bank_track_id" name="bank_track_id" class="form-control" placeholder="شماره پیگیری واریز وجه را وارد نمایید" />
-                            </div>
-                          </div>
-
-                        </div>
-
-                        <div class="text-center  m-t-20">
-                          <button type="submit" class="btn btn-embossed btn-primary" id="editNeedStatus">ثبت وضعیت</button>
-                          <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">پاک کردن فرم</button>
-                          <div class="alert alert-danger dis-none" role="alert"></div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-
+            <div class="panel panel-default no-bd" id="changeStatusForm">
+              <div class="panel-header bg-dark panel-controls">
+                <h3 class="panel-title">
+                  فرم<strong> تغییر وضعیت نیاز</strong
+                  ><img
+                    class="preloader"
+                    id="change_need_preloader"
+                    src="assets/images/preloader/25.gif"
+                  />
+                </h3>
               </div>
-                
-              <div class="panel panel-default no-bd">
-                <div class="panel-header bg-dark panel-controls">
-                  <h3 class="panel-title">گزارش <strong>نیازهای Done شده</strong><img class="preloader" id="done_need_preloader" src="assets/images/preloader/25.gif"/></h3>
-                  <span class="f-12">پیش‌فرض وضعیت نیازهای نمایش داده شده "Money transfer(2)" است. برای دیدن وضعیت‌های دیگر فیلتر مربوط را تغییر دهید.</span>
-                </div>
-                
-                <div class="panel-content report-content bg-white">
-                  
-                  <div class="option-group btn-group center-block col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div>
-                      <select id="ngo_filter" name="ngo_filter" class="btn btn-sm btn-dark btn-block col-lg-4 col-md-4 col-sm-4 col-xs-12 done_filter">
-                          <option value="">انتخاب انجمن...</option>
-                      </select>
-                    </div> 
-                    <div>
-                      <select id="type_filter" name="type_filter" class="btn btn-sm btn-dark btn-block col-lg-4 col-md-4 col-sm-4 col-xs-12 done_filter static">
-                          <option value="-1">انتخاب نوع نیاز...</option>
-                          <option value="0">Sevice</option>
-                          <option value="1">Product</option>
-                      </select>
-                    </div>
-                    <!-- SERVICE -->
-                    <div id="1s" hidden>
-                      <select id="status_filter_service" name="status_filter" class="btn btn-sm btn-dark btn-block col-lg-4 col-md-4 col-sm-4 col-xs-12 done_filter static">
-                          <option value="-1">انتخاب وضعیت نیاز...</option>
-                          <option value="2">Money transfer</option>
-                          <option value="3">Money transfer to the NGO</option>
-                          <option value="4">Service delivery</option>
-                      </select>
-                    </div>
-                    <!-- PRODUCT -->
-                    <div id="1p" hidden>
-                      <select id="status_filter_product" name="status_filter" class="btn btn-sm btn-dark btn-block col-lg-4 col-md-4 col-sm-4 col-xs-12 done_filter static">
-                        <option value="-1">انتخاب وضعیت نیاز...</option>
-                        <option value="2">Money transfer</option>
-                        <option value="3">Product purchase</option>
-                        <option value="4">Product delivery to the NGO</option>
-                        <option value="5">Product delivery</option>
-                      </select>
-                    </div>
 
+              <div class="panel-content bg-white">
+                <div class="row">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <form
+                      role="form"
+                      id="change_need_form"
+                      method="POST"
+                      enctype="multipart/form-data"
+                    >
+                      <div class="row">
+                        <div class="col-md-4 col-sm-6">
+                          <div class="form-group">
+                            <label for="need_name" class="control-label"
+                              >نام نیاز</label
+                            >
+                            <input
+                              type="text"
+                              id="need_name"
+                              name="need_name"
+                              class="form-control"
+                              readonly
+                            />
+                          </div>
+                        </div>
+
+                        <!-- will show in product needs change status -->
+                        <div
+                          class="col-md-4 col-sm-6"
+                          id="product_status"
+                          hidden
+                        >
+                          <div class="form-group">
+                            <label
+                              for="need_status_product"
+                              class="control-label"
+                              >وضعیت نیاز <span class="required">*</span></label
+                            >
+                            <div class="option-group">
+                              <select
+                                id="need_status_product"
+                                name="need_status_product"
+                                class="form-control"
+                              >
+                                <option value="">
+                                  وضعیت مورد نظر را انتخاب کنید
+                                </option>
+                                <option value="2">Money transfer</option>
+                                <option value="3">Product purchase</option>
+                                <option value="4">
+                                  Product delivery to the NGO
+                                </option>
+                                <option value="5">Product delivery</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- will show in service needs change status -->
+                        <div
+                          class="col-md-4 col-sm-6"
+                          id="service_status"
+                          hidden
+                        >
+                          <div class="form-group">
+                            <label
+                              for="need_status_service"
+                              class="control-label"
+                              >وضعیت نیاز <span class="required">*</span></label
+                            >
+                            <div class="option-group">
+                              <select
+                                id="need_status_service"
+                                name="need_status_service"
+                                class="form-control"
+                              >
+                                <option value="">
+                                  وضعیت مورد نظر را انتخاب کنید
+                                </option>
+                                <option value="2">Money transfer</option>
+                                <option value="3">
+                                  Money transfer to the NGO
+                                </option>
+                                <option value="4">Service delivery</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- will show in product needs change status 2->3 -->
+                        <div
+                          class="col-md-4 col-sm-6"
+                          id="expected_delivery"
+                          hidden
+                        >
+                          <div class="form-group">
+                            <label
+                              for="expected_delivery_date"
+                              class="control-label"
+                              >تاریخ مورد انتظار تحویل کالا به انجمن
+                              <span class="required">*</span></label
+                            >
+                            <div class="append-icon">
+                              <input
+                                type="text"
+                                id="expected_delivery_date"
+                                name="expected_delivery_date"
+                                class="form-control date_time"
+                              />
+                              <i class="icon-calendar"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- will show in product needs change status 3->4 -->
+                        <div
+                          class="col-md-4 col-sm-6"
+                          id="real_delivery"
+                          hidden
+                        >
+                          <div class="form-group">
+                            <label for="ngo_delivery_date" class="control-label"
+                              >تاریخ رسیدن کالا به انجمن
+                              <span class="required">*</span></label
+                            >
+                            <div class="append-icon">
+                              <input
+                                type="text"
+                                id="ngo_delivery_date"
+                                name="ngo_delivery_date"
+                                class="form-control date_time"
+                              />
+                              <i class="icon-calendar"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- will show in product needs change status 2->3 -->
+                        <div class="col-md-4 col-sm-6" id="cost_field" hidden>
+                          <div class="form-group">
+                            <label for="purchase_cost" class="control-label"
+                              >هزینه پرداخت شده واقعی (تومان)</label
+                            >
+                            <div class="append-icon">
+                              <input
+                                type="text"
+                                id="purchase_cost"
+                                name="purchase_cost"
+                                class="form-control cost"
+                                placeholder="هزینه نیاز را وارد نمایید - تومان"
+                              />
+                              <i class="icon-tag"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- will show in Product needs only to status 3 -->
+                        <div class="col-md-4 col-sm-6" id="dkc_number" hidden>
+                          <div class="form-group">
+                            <label for="dkc" class="control-label"
+                              >شماره سفارش دیجی‌کالا</label
+                            >
+                            <input
+                              type="text"
+                              id="dkc"
+                              name="dkc"
+                              class="form-control"
+                              placeholder="شماره سفارش دیجی‌کالا را وارد نمایید"
+                            />
+                          </div>
+                        </div>
+
+                        <!-- will show in Service needs change status 2->3 -->
+                        <div class="col-md-4 col-sm-6" id="track_id" hidden>
+                          <div class="form-group">
+                            <label for="bank_track_id" class="control-label"
+                              >شماره پیگیری واریز وجه</label
+                            >
+                            <input
+                              type="text"
+                              id="bank_track_id"
+                              name="bank_track_id"
+                              class="form-control"
+                              placeholder="شماره پیگیری واریز وجه را وارد نمایید"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="text-center m-t-20">
+                        <button
+                          type="submit"
+                          class="btn btn-embossed btn-primary"
+                          id="editNeedStatus"
+                        >
+                          ثبت وضعیت
+                        </button>
+                        <button
+                          type="reset"
+                          class="
+                            cancel
+                            btn btn-embossed btn-default
+                            m-b-10 m-r-0
+                          "
+                        >
+                          پاک کردن فرم
+                        </button>
+                        <div
+                          class="alert alert-danger dis-none"
+                          role="alert"
+                        ></div>
+                      </div>
+                    </form>
                   </div>
-                    
-                  <table class="table table-hover table-striped dataTable" id="table-editable">
-                      <thead>
-                        <tr>
-                          <th>ردیف</th>
-                          <th class="medium_th">عملیات</th>
-                          <th>نام نیاز</th>
-                          <th class="medium_th">عنوان نیاز</th>
-                          <th>وضعیت نیاز</th>
-                          <th class="medium_th">تاریخ مورد انتظار تحویل کالا به انجمن</th>
-                          <th class="medium_th">تاریخ رسیدن کالا به انجمن</th>
-                          <th class="medium_th">DKC</th>
-                          <th class="medium_th">شماره پیگیری واریز وجه</th>
-                          <th class="small_th">آیکون نیاز</th>
-                          <th>کد کودک</th>
-                          <th>نام SAY کودک</th>
-                          <th>نام کودک</th>
-                          <th class="medium_th">نام خانوادگی کودک</th>
-                          <th>هزینه نیاز</th>
-                          <th class="medium_th">هزینه پرداخت شده کاربر</th>
-                          <th class="medium_th">هزینه پرداخت شده واقعی</th>
-                          <th>مبلغ Donation</th>
-                          <th class="wide_th">اطلاعات ضروری</th>
-                          <th class="wide_th">یادداشت مددکار</th>
-                          <th>مدت زمان انجام</th>
-                          <th class="medium_th">لینک affiliate خرید کالا</th>
-                          <th class="medium_th">لینک مستقیم خرید کالا</th>
-                          <th>نام انجمن</th>
-                          <th class="wide_th">آدرس انجمن</th>
-                          <th>تعداد رسیدها</th>
-                          <th class="medium_th">تاریخ Done شدن نیاز</th>
-                        </tr>
-                      </thead>
-                      <tbody id="reportDoneNeedList">
+                </div>
+              </div>
+            </div>
 
-                      </tbody>
-                      <!-- <tfoot id="footerReportDoneNeedList">
+            <div class="panel panel-default no-bd">
+              <div class="panel-header bg-dark panel-controls">
+                <h3 class="panel-title">
+                  گزارش <strong>نیازهای Done شده</strong
+                  ><img
+                    class="preloader"
+                    id="done_need_preloader"
+                    src="assets/images/preloader/25.gif"
+                  />
+                </h3>
+                <span class="f-12"
+                  >پیش‌فرض وضعیت نیازهای نمایش داده شده "Money transfer(2)" است.
+                  برای دیدن وضعیت‌های دیگر فیلتر مربوط را تغییر دهید.</span
+                >
+              </div>
+
+              <div class="panel-content report-content bg-white">
+                <div
+                  class="
+                    option-group
+                    btn-group
+                    center-block
+                    col-lg-12 col-md-12 col-sm-12 col-xs-12
+                  "
+                >
+                  <div>
+                    <select
+                      id="ngo_filter"
+                      name="ngo_filter"
+                      class="
+                        btn btn-sm btn-dark btn-block
+                        col-lg-4 col-md-4 col-sm-4 col-xs-12
+                        done_filter
+                      "
+                    >
+                      <option value="">انتخاب انجمن...</option>
+                    </select>
+                  </div>
+                  <div>
+                    <select
+                      id="type_filter"
+                      name="type_filter"
+                      class="
+                        btn btn-sm btn-dark btn-block
+                        col-lg-4 col-md-4 col-sm-4 col-xs-12
+                        done_filter
+                        static
+                      "
+                    >
+                      <option value="-1">انتخاب نوع نیاز...</option>
+                      <option value="0">Sevice</option>
+                      <option value="1">Product</option>
+                    </select>
+                  </div>
+                  <!-- SERVICE -->
+                  <div id="1s" hidden>
+                    <select
+                      id="status_filter_service"
+                      name="status_filter"
+                      class="
+                        btn btn-sm btn-dark btn-block
+                        col-lg-4 col-md-4 col-sm-4 col-xs-12
+                        done_filter
+                        static
+                      "
+                    >
+                      <option value="-1">انتخاب وضعیت نیاز...</option>
+                      <option value="2">Money transfer</option>
+                      <option value="3">Money transfer to the NGO</option>
+                      <option value="4">Service delivery</option>
+                    </select>
+                  </div>
+                  <!-- PRODUCT -->
+                  <div id="1p" hidden>
+                    <select
+                      id="status_filter_product"
+                      name="status_filter"
+                      class="
+                        btn btn-sm btn-dark btn-block
+                        col-lg-4 col-md-4 col-sm-4 col-xs-12
+                        done_filter
+                        static
+                      "
+                    >
+                      <option value="-1">انتخاب وضعیت نیاز...</option>
+                      <option value="2">Money transfer</option>
+                      <option value="3">Product purchase</option>
+                      <option value="4">Product delivery to the NGO</option>
+                      <option value="5">Product delivery</option>
+                    </select>
+                  </div>
+                </div>
+
+                <table
+                  class="table table-hover table-striped dataTable"
+                  id="table-editable"
+                >
+                  <thead>
+                    <tr>
+                      <th>ردیف</th>
+                      <th class="medium_th">عملیات</th>
+                      <th>نام نیاز</th>
+                      <th class="medium_th">عنوان نیاز</th>
+                      <th>وضعیت نیاز</th>
+                      <th class="medium_th">
+                        تاریخ مورد انتظار تحویل کالا به انجمن
+                      </th>
+                      <th class="medium_th">تاریخ رسیدن کالا به انجمن</th>
+                      <th class="medium_th">DKC</th>
+                      <th class="medium_th">شماره پیگیری واریز وجه</th>
+                      <th class="small_th">آیکون نیاز</th>
+                      <th>کد کودک</th>
+                      <th>نام SAY کودک</th>
+                      <th>نام کودک</th>
+                      <th class="medium_th">نام خانوادگی کودک</th>
+                      <th>هزینه نیاز</th>
+                      <th class="medium_th">هزینه پرداخت شده کاربر</th>
+                      <th class="medium_th">هزینه پرداخت شده واقعی</th>
+                      <th>مبلغ Donation</th>
+                      <th class="wide_th">اطلاعات ضروری</th>
+                      <th class="wide_th">یادداشت مددکار</th>
+                      <th>مدت زمان انجام</th>
+                      <th class="medium_th">لینک affiliate خرید کالا</th>
+                      <th class="medium_th">لینک مستقیم خرید کالا</th>
+                      <th>نام انجمن</th>
+                      <th class="wide_th">آدرس انجمن</th>
+                      <th>تعداد رسیدها</th>
+                      <th class="medium_th">تاریخ Done شدن نیاز</th>
+                    </tr>
+                  </thead>
+                  <tbody id="reportDoneNeedList"></tbody>
+                  <!-- <tfoot id="footerReportDoneNeedList">
 
                       </tfoot> -->
-                  </table>
-                </div>
+                </table>
               </div>
-
-              <div class="panel panel-default no-bd"  id="reportList">
-                <div class="panel-header bg-dark panel-controls">
-                  <h3 class="panel-title"> گزارش <strong>نیازهای پرداخت شده/ارسال شده</strong> به انجمن<img class="preloader" id="report_ngo_preloader" src="assets/images/preloader/25.gif"/></h3>
-                  <span id="email-hint" class="f-12"></span>
-                </div>
-                
-                <div class="panel-content bg-white">
-
-                  <div class="option-group btn-group center-block col-lg-6 col-md-8 col-sm-8  col-xs-12">
-                    <select id="need_ngo" name="need_ngo" class="btn btn-sm btn-dark btn-block col-lg-6 col-md-6 col-sm-6 col-xs-12 report_filter">
-                        <option value="">انتخاب انجمن...</option>
-                    </select>
-                    <select id="need_type" name="need_type" class="btn btn-sm btn-dark btn-block col-lg-6 col-md-6 col-sm-6 col-xs-12 report_filter static">
-                        <option value="">انتخاب نوع نیاز...</option>
-                        <option value="0">Sevice</option>
-                        <option value="1">Product</option>
-                    </select>
-                  </div>
-                    
-                  <table class="table table-hover table-striped dataTable" id="table-editable">
-                      <thead>
-                        <tr>
-                          <th>ردیف</th>
-                          <th>کد کودک</th>
-                          <th class="medium_th">نام کودک</th>
-                          <th class="medium_th">نام خانوادگی کودک</th>
-                          <th>نام نیاز</th>
-                          <th class="medium_th">عنوان نیاز</th>
-                          <th class="small_th">آیکون نیاز</th>
-                          <th class="medium_th">هزینه نیاز</th>
-                          <th class="medium_th">هزینه پرداخت شده واقعی</th>
-                          <th class="medium_th">تاریخ مورد انتظار تحویل کالا به انجمن</th>
-                          <th class="medium_th">شماره پیگیری واریز وجه</th>
-                          <th class="medium_th">DKC</th>
-                        </tr>
-                      </thead>
-                      <tbody id="reportNGONeedList">
-
-                      </tbody>
-                      
-                  </table>
-                </div>
-              </div>
-            
-          </div>
-        <div class="footer">
-            <div class="copyright">
-                <p class="pull-left sm-pull-reset"> <span>کلیه حق و حقوق این سایت متعلق به تیم SAY می باشد. </span> </p>
-                <p class="pull-right sm-pull-reset"> <span><a href="#" class="m-r-10">پشتیبانی</a> | <a href="#" class="m-l-10 m-r-10">شرایط استفاده</a> | <a href="#" class="m-l-10">حریم خصوصی</a></span> </p>
             </div>
+
+            <div class="panel panel-default no-bd" id="reportList">
+              <div class="panel-header bg-dark panel-controls">
+                <h3 class="panel-title">
+                  گزارش <strong>نیازهای پرداخت شده/ارسال شده</strong> به
+                  انجمن<img
+                    class="preloader"
+                    id="report_ngo_preloader"
+                    src="assets/images/preloader/25.gif"
+                  />
+                </h3>
+                <span id="email-hint" class="f-12"></span>
+              </div>
+
+              <div class="panel-content bg-white">
+                <div
+                  class="
+                    option-group
+                    btn-group
+                    center-block
+                    col-lg-6 col-md-8 col-sm-8 col-xs-12
+                  "
+                >
+                  <select
+                    id="need_ngo"
+                    name="need_ngo"
+                    class="
+                      btn btn-sm btn-dark btn-block
+                      col-lg-6 col-md-6 col-sm-6 col-xs-12
+                      report_filter
+                    "
+                  >
+                    <option value="">انتخاب انجمن...</option>
+                  </select>
+                  <select
+                    id="need_type"
+                    name="need_type"
+                    class="
+                      btn btn-sm btn-dark btn-block
+                      col-lg-6 col-md-6 col-sm-6 col-xs-12
+                      report_filter
+                      static
+                    "
+                  >
+                    <option value="">انتخاب نوع نیاز...</option>
+                    <option value="0">Sevice</option>
+                    <option value="1">Product</option>
+                  </select>
+                </div>
+
+                <table
+                  class="table table-hover table-striped dataTable"
+                  id="table-editable"
+                >
+                  <thead>
+                    <tr>
+                      <th>ردیف</th>
+                      <th>کد کودک</th>
+                      <th class="medium_th">نام کودک</th>
+                      <th class="medium_th">نام خانوادگی کودک</th>
+                      <th>نام نیاز</th>
+                      <th class="medium_th">عنوان نیاز</th>
+                      <th class="small_th">آیکون نیاز</th>
+                      <th class="medium_th">هزینه نیاز</th>
+                      <th class="medium_th">هزینه پرداخت شده واقعی</th>
+                      <th class="medium_th">
+                        تاریخ مورد انتظار تحویل کالا به انجمن
+                      </th>
+                      <th class="medium_th">شماره پیگیری واریز وجه</th>
+                      <th class="medium_th">DKC</th>
+                    </tr>
+                  </thead>
+                  <tbody id="reportNGONeedList"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="footer">
+            <div class="copyright">
+              <p class="pull-left sm-pull-reset">
+                <span>کلیه حق و حقوق این سایت متعلق به تیم SAY می باشد. </span>
+              </p>
+              <p class="pull-right sm-pull-reset">
+                <span
+                  ><a href="#" class="m-r-10">پشتیبانی</a> |
+                  <a href="#" class="m-l-10 m-r-10">شرایط استفاده</a> |
+                  <a href="#" class="m-l-10">حریم خصوصی</a></span
+                >
+              </p>
+            </div>
+          </div>
         </div>
-</div>
-        
+
         <!-- END PAGE CONTENT -->
-        
-      <!-- END PAGE CONTENT -->
+
+        <!-- END PAGE CONTENT -->
       </div>
       <!-- END MAIN CONTENT -->
     </section>
-<!-- Preloader -->
-<div class="loader-overlay">
-  <div class="spinner">
-    <div class="bounce1"></div>
-    <div class="bounce2"></div>
-    <div class="bounce3"></div>
-  </div>
-</div>
-<a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a>
-<script src="assets/plugins/jquery/jquery-1.11.1.min.js"></script>
-<!-- persian datetime picker -->
-<!-- FIXME: problem in sending date to back -->
-<!-- <script src="assets/plugins/persian-datepicker/persian-datepicker.js"></script> -->
-<!-- datetime picker -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/1.1.1/jquery.datetimepicker.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-dateFormat/1.0/jquery.dateFormat.min.js"></script> jquery date format | NOTICE: cannot use this with jquery validation library!!! u shoud use without jquery- library -->
-<script src="assets/plugins/dateFormat.min.js"></script> <!-- jquery date format -->
-<script src="assets/plugins/jquery-validation/jquery.validate.min.js"></script> <!-- Form validation -->
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script> <!-- Additional methods for form validation -->
-<script src="assets/plugins/jquery/jquery-migrate-1.2.1.min.js"></script>
-<script src="assets/plugins/gsap/main-gsap.min.js"></script> <!-- HTML Animations -->
-<script src="assets/plugins/jquery-ui/jquery-ui-1.11.2.min.js"></script>
-<script src="assets/plugins/jquery-block-ui/jquery.blockUI.min.js"></script> <!-- simulate synchronous behavior when using AJAX -->
-<script src="assets/plugins/translate/jqueryTranslator.min.js"></script> <!-- Translate Plugin with JSON data -->
-<script src="assets/plugins/bootbox/bootbox.min.js"></script>
-<script src="assets/plugins/mcustom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script> <!-- Custom Scrollbar sidebar -->
-<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/plugins/bootstrap-dropdown/bootstrap-hover-dropdown.min.js"></script> <!-- Show Dropdown on Mouseover -->
-<script src="assets/plugins/bootstrap-progressbar/bootstrap-progressbar.min.js"></script> <!-- Animated Progress Bar -->
-<script src="assets/plugins/switchery/switchery.min.js"></script> <!-- IOS Switch -->
-<script src="assets/plugins/charts-sparkline/sparkline.min.js"></script> <!-- Charts Sparkline -->
-<script src="assets/plugins/retina/retina.min.js"></script>  <!-- Retina Display -->
-<script src="assets/plugins/jquery-cookies/jquery.cookies.js"></script> <!-- Jquery Cookies, for theme -->
-<script src="assets/plugins/bootstrap/js/jasny-bootstrap.min.js"></script> <!-- File Upload and Input Masks -->
-<script src="assets/plugins/select2/select2.min.js"></script> <!-- Select Inputs -->
-<script src="assets/plugins/bootstrap-tags-input/bootstrap-tagsinput.min.js"></script> <!-- Select Inputs -->
-<script src="assets/plugins/bootstrap-loading/lada.min.js"></script> <!-- Buttons Loading State -->
-<script src="assets/plugins/timepicker/jquery-ui-timepicker-addon.min.js"></script> <!-- Time Picker -->
-<script src="assets/plugins/multidatepicker/multidatespicker.min.js"></script> <!-- Multi dates Picker -->
-<script src="assets/plugins/colorpicker/spectrum.min.js"></script> <!-- Color Picker -->
-<script src="assets/plugins/touchspin/jquery.bootstrap-touchspin.min.js"></script> <!-- A mobile and touch friendly input spinner component for Bootstrap -->
-<script src="assets/plugins/autosize/autosize.min.js"></script> <!-- Textarea autoresize -->
-<script src="assets/plugins/icheck/icheck.min.js"></script> <!-- Icheck -->
-<script src="assets/plugins/bootstrap-editable/js/bootstrap-editable.min.js"></script> <!-- Inline Edition X-editable -->
-<script src="assets/plugins/bootstrap-context-menu/bootstrap-contextmenu.min.js"></script> <!-- File Upload and Input Masks -->
-<script src="assets/plugins/prettify/prettify.min.js"></script> <!-- Show html code -->
-<script src="assets/plugins/slick/slick.min.js"></script> <!-- Slider -->
-<script src="assets/plugins/countup/countUp.min.js"></script> <!-- Animated Counter Number -->
-<script src="assets/plugins/noty/jquery.noty.packaged.min.js"></script>  <!-- Notifications -->
-<script src="assets/plugins/backstretch/backstretch.min.js"></script> <!-- Background Image -->
-<script src="assets/plugins/charts-chartjs/Chart.min.js"></script>  <!-- ChartJS Chart -->
-<script src="assets/plugins/bootstrap-slider/bootstrap-slider.js"></script> <!-- Bootstrap Input Slider -->
-<script src="assets/plugins/visible/jquery.visible.min.js"></script> <!-- Visible in Viewport -->
-<script src="assets/js/builder.js"></script>
-<script src="assets/js/sidebar_hover.js"></script>
-<script src="assets/js/application_2.2.js"></script> <!-- Main Application Script -->
-<script src="assets/js/plugins.js"></script> <!-- Main Plugin Initialization Script -->
-<script src="assets/js/widgets/notes.js"></script>
-<script src="assets/js/quickview.js"></script> <!-- Quickview Script -->
-<script src="assets/js/pages/search.js"></script> <!-- Search Script -->
-<!-- BEGIN PAGE SCRIPTS -->
-<script src="assets/plugins/datatables/jquery.dataTables.min.js"></script> <!-- Tables Filtering, Sorting & Editing -->
-<script src="assets/plugins/summernote/summernote.js"></script>
-<script src="assets/plugins/skycons/skycons.js"></script>
-<script src="assets/plugins/simple-weather/jquery.simpleWeather.min.js"></script>
-<script src="assets/js/widgets/widget_weather.js"></script>
-<script src="assets/js/widgets/todo_list.js"></script>
-<script src="../builder/page-builder/plugins/slider-pips/jquery-ui-slider-pips.min.js"></script>
-<script src="../builder/page-builder/plugins/saveas/saveAs.js"></script>
-<script src="../builder/page-builder/js/builder_page.js"></script>
-<!-- <script src="assets/js/pages/table_dynamic.js"></script> -->
-<!-- <script src="assets/js/pages/table_editable.js"></script> -->
-<script
-  src="https://browser.sentry-cdn.com/5.22.3/bundle.tracing.min.js"
-  crossorigin="anonymous"
-></script>
+    <!-- Preloader -->
+    <div class="loader-overlay">
+      <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+    </div>
+    <a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a>
+    <script src="assets/plugins/jquery/jquery-1.11.1.min.js"></script>
+    <!-- persian datetime picker -->
+    <!-- FIXME: problem in sending date to back -->
+    <!-- <script src="assets/plugins/persian-datepicker/persian-datepicker.js"></script> -->
+    <!-- datetime picker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/1.1.1/jquery.datetimepicker.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-dateFormat/1.0/jquery.dateFormat.min.js"></script> jquery date format | NOTICE: cannot use this with jquery validation library!!! u shoud use without jquery- library -->
+    <script src="assets/plugins/dateFormat.min.js"></script>
+    <!-- jquery date format -->
+    <script src="assets/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <!-- Form validation -->
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <!-- Additional methods for form validation -->
+    <script src="assets/plugins/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script src="assets/plugins/gsap/main-gsap.min.js"></script>
+    <!-- HTML Animations -->
+    <script src="assets/plugins/jquery-ui/jquery-ui-1.11.2.min.js"></script>
+    <script src="assets/plugins/jquery-block-ui/jquery.blockUI.min.js"></script>
+    <!-- simulate synchronous behavior when using AJAX -->
+    <script src="assets/plugins/translate/jqueryTranslator.min.js"></script>
+    <!-- Translate Plugin with JSON data -->
+    <script src="assets/plugins/bootbox/bootbox.min.js"></script>
+    <script src="assets/plugins/mcustom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- Custom Scrollbar sidebar -->
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/plugins/bootstrap-dropdown/bootstrap-hover-dropdown.min.js"></script>
+    <!-- Show Dropdown on Mouseover -->
+    <script src="assets/plugins/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- Animated Progress Bar -->
+    <script src="assets/plugins/switchery/switchery.min.js"></script>
+    <!-- IOS Switch -->
+    <script src="assets/plugins/charts-sparkline/sparkline.min.js"></script>
+    <!-- Charts Sparkline -->
+    <script src="assets/plugins/retina/retina.min.js"></script>
+    <!-- Retina Display -->
+    <script src="assets/plugins/jquery-cookies/jquery.cookies.js"></script>
+    <!-- Jquery Cookies, for theme -->
+    <script src="assets/plugins/bootstrap/js/jasny-bootstrap.min.js"></script>
+    <!-- File Upload and Input Masks -->
+    <script src="assets/plugins/select2/select2.min.js"></script>
+    <!-- Select Inputs -->
+    <script src="assets/plugins/bootstrap-tags-input/bootstrap-tagsinput.min.js"></script>
+    <!-- Select Inputs -->
+    <script src="assets/plugins/bootstrap-loading/lada.min.js"></script>
+    <!-- Buttons Loading State -->
+    <script src="assets/plugins/timepicker/jquery-ui-timepicker-addon.min.js"></script>
+    <!-- Time Picker -->
+    <script src="assets/plugins/multidatepicker/multidatespicker.min.js"></script>
+    <!-- Multi dates Picker -->
+    <script src="assets/plugins/colorpicker/spectrum.min.js"></script>
+    <!-- Color Picker -->
+    <script src="assets/plugins/touchspin/jquery.bootstrap-touchspin.min.js"></script>
+    <!-- A mobile and touch friendly input spinner component for Bootstrap -->
+    <script src="assets/plugins/autosize/autosize.min.js"></script>
+    <!-- Textarea autoresize -->
+    <script src="assets/plugins/icheck/icheck.min.js"></script>
+    <!-- Icheck -->
+    <script src="assets/plugins/bootstrap-editable/js/bootstrap-editable.min.js"></script>
+    <!-- Inline Edition X-editable -->
+    <script src="assets/plugins/bootstrap-context-menu/bootstrap-contextmenu.min.js"></script>
+    <!-- File Upload and Input Masks -->
+    <script src="assets/plugins/prettify/prettify.min.js"></script>
+    <!-- Show html code -->
+    <script src="assets/plugins/slick/slick.min.js"></script>
+    <!-- Slider -->
+    <script src="assets/plugins/countup/countUp.min.js"></script>
+    <!-- Animated Counter Number -->
+    <script src="assets/plugins/noty/jquery.noty.packaged.min.js"></script>
+    <!-- Notifications -->
+    <script src="assets/plugins/backstretch/backstretch.min.js"></script>
+    <!-- Background Image -->
+    <script src="assets/plugins/charts-chartjs/Chart.min.js"></script>
+    <!-- ChartJS Chart -->
+    <script src="assets/plugins/bootstrap-slider/bootstrap-slider.js"></script>
+    <!-- Bootstrap Input Slider -->
+    <script src="assets/plugins/visible/jquery.visible.min.js"></script>
+    <!-- Visible in Viewport -->
+    <script src="assets/js/builder.js"></script>
+    <script src="assets/js/sidebar_hover.js"></script>
+    <script src="assets/js/application_2.2.js"></script>
+    <!-- Main Application Script -->
+    <script src="assets/js/plugins.js"></script>
+    <!-- Main Plugin Initialization Script -->
+    <script src="assets/js/widgets/notes.js"></script>
+    <script src="assets/js/quickview.js"></script>
+    <!-- Quickview Script -->
+    <script src="assets/js/pages/search.js"></script>
+    <!-- Search Script -->
+    <!-- BEGIN PAGE SCRIPTS -->
+    <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <!-- Tables Filtering, Sorting & Editing -->
+    <script src="assets/plugins/summernote/summernote.js"></script>
+    <script src="assets/plugins/skycons/skycons.js"></script>
+    <script src="assets/plugins/simple-weather/jquery.simpleWeather.min.js"></script>
+    <script src="assets/js/widgets/widget_weather.js"></script>
+    <script src="assets/js/widgets/todo_list.js"></script>
+    <script src="../builder/page-builder/plugins/slider-pips/jquery-ui-slider-pips.min.js"></script>
+    <script src="../builder/page-builder/plugins/saveas/saveAs.js"></script>
+    <script src="../builder/page-builder/js/builder_page.js"></script>
+    <!-- <script src="assets/js/pages/table_dynamic.js"></script> -->
+    <!-- <script src="assets/js/pages/table_editable.js"></script> -->
+    <script
+      src="https://browser.sentry-cdn.com/5.22.3/bundle.tracing.min.js"
+      crossorigin="anonymous"
+    ></script>
 
-<script src="assets/js/reports_12.2.js"></script>  <!--reports data feed-->
-<script src="assets/js/receipts_1.0.js"></script> <!--Receipts data for need's receipts-->
-<script src="assets/js/ngo_data_serve_6.0.js"></script>  <!--ngo data feed-->
-<script src="assets/js/config.js"></script>  <!--url configurations-->
-<script src="assets/js/html_config_1.0.js"></script>  <!--HTML url configurations-->
-<script src="assets/js/custom_6.4.js"></script>  <!--custom functions-->
-<script src="assets/js/authorize_1.0.js"></script>  <!--Athorization-->
-<script src="assets/js/jwt-decode.min.js"></script>  <!--jwt decoder script-->
-<script src="assets/plugins/jdate.js" type="text/javascript" charset="utf-8"></script>  <!-- Jalali date -->
-<script src="assets/plugins/jdate.min.js" type="text/javascript" charset="utf-8"></script>  <!-- Jalali date -->
+    <script src="assets/js/reports_12.2.js"></script>
+    <!--reports data feed-->
+    <script src="assets/js/receipts_1.0.js"></script>
+    <!--Receipts data for need's receipts-->
+    <script src="assets/js/ngo_data_serve_6.0.js"></script>
+    <!--ngo data feed-->
+    <script src="assets/js/config.js"></script>
+    <!--url configurations-->
+    <script src="assets/js/html_config_1.0.js"></script>
+    <!--HTML url configurations-->
+    <script src="assets/js/custom_6_5.js.js"></script>
+    <!--custom functions-->
+    <script src="assets/js/authorize_1.0.js"></script>
+    <!--Athorization-->
+    <script src="assets/js/jwt-decode.min.js"></script>
+    <!--jwt decoder script-->
+    <script
+      src="assets/plugins/jdate.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+    <!-- Jalali date -->
+    <script
+      src="assets/plugins/jdate.min.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+    <!-- Jalali date -->
 
-<!-- END PAGE SCRIPTS -->
-</body>
+    <!-- END PAGE SCRIPTS -->
+  </body>
 </html>
