@@ -1,120 +1,191 @@
 <!DOCTYPE html>
 <html class="rtl" lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <meta name="description" content="admin-themes-lab">
-  <meta name="author" content="themes-lab">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <meta name="description" content="admin-themes-lab" />
+    <meta name="author" content="themes-lab" />
 
-  <!--prevent caching-->
-  <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-  <!--theme color-->
-  <meta name="theme-color" content="#FDE1C1" />
+    <!--prevent caching-->
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <!--theme color-->
+    <meta name="theme-color" content="#FDE1C1" />
 
-  <!-- favicon -->
-  <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png">
-  <title>SAY - پنل کاربری مددکار</title>
+    <!-- favicon -->
+    <link
+      rel="shortcut icon"
+      href="assets/images/favicon.png"
+      type="image/png"
+    />
+    <title>SAY - پنل کاربری مددکار</title>
 
-  <!--css files-->
-  <link href="https://fonts.googleapis.com/css?family=Nothing+You+Could+Do" rel="stylesheet" type="text/css">
-  <link href="assets/css/style_4.1.css" rel="stylesheet"> <!-- MANDATORY -->
-  <link href="assets/css/theme.css" rel="stylesheet"> <!-- MANDATORY -->
-  <link href="assets/css/ui.css" rel="stylesheet"> <!-- MANDATORY -->
-  
-  <link href="assets/plugins/datatables/dataTables.min.css" rel="stylesheet">
-  <link href="assets/plugins/input-text/style.min.css" rel="stylesheet">
-  <link href="assets/plugins/dropzone/dropzone.min.css" rel="stylesheet">
+    <!--css files-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Nothing+You+Could+Do"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="assets/css/style_4.1.css" rel="stylesheet" />
+    <!-- MANDATORY -->
+    <link href="assets/css/theme.css" rel="stylesheet" />
+    <!-- MANDATORY -->
+    <link href="assets/css/ui.css" rel="stylesheet" />
+    <!-- MANDATORY -->
 
+    <link
+      href="assets/plugins/datatables/dataTables.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/plugins/input-text/style.min.css" rel="stylesheet" />
+    <link href="assets/plugins/dropzone/dropzone.min.css" rel="stylesheet" />
 
-  <link href="../builder/page-builder/plugins/slider-pips/jquery-ui-slider-pips.css" rel="stylesheet">
-  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]-->
-  <script src="assets/plugins/modernizr/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-  <!--[endif]-->
-</head>
-<!-- LAYOUT: Apply "submenu-hover" class to body element to have sidebar submenu show on mouse hover -->
-<!-- LAYOUT: Apply "sidebar-collapsed" class to body element to have collapsed sidebar -->
-<!-- LAYOUT: Apply "sidebar-top" class to body element to have sidebar on top of the page -->
-<!-- LAYOUT: Apply "sidebar-hover" class to body element to show sidebar only when your mouse is on left / right corner -->
-<!-- LAYOUT: Apply "submenu-hover" class to body element to show sidebar submenu on mouse hover -->
-<!-- LAYOUT: Apply "fixed-sidebar" class to body to have fixed sidebar -->
-<!-- LAYOUT: Apply "fixed-topbar" class to body to have fixed topbar -->
-<!-- LAYOUT: Apply "rtl" class to body to put the sidebar on the right side -->
-<!-- LAYOUT: Apply "boxed" class to body to have your page with 1200px max width -->
-<!-- THEME STYLE: Apply "theme-sdtl" for Sidebar Dark / Topbar Light -->
-<!-- THEME STYLE: Apply  "theme sdtd" for Sidebar Dark / Topbar Dark -->
-<!-- THEME STYLE: Apply "theme sltd" for Sidebar Light / Topbar Dark -->
-<!-- THEME STYLE: Apply "theme sltl" for Sidebar Light / Topbar Light -->
-<!-- THEME COLOR: Apply "color-default" for dark color: #2B2E33 -->
-<!-- THEME COLOR: Apply "color-primary" for primary color: #319DB5 -->
-<!-- THEME COLOR: Apply "color-red" for red color: #C9625F -->
-<!-- THEME COLOR: Apply "color-default" for green color: #18A689 -->
-<!-- THEME COLOR: Apply "color-default" for orange color: #B66D39 -->
-<!-- THEME COLOR: Apply "color-default" for purple color: #6E62B5 -->
-<!-- THEME COLOR: Apply "color-default" for blue color: #4A89DC -->
-<!-- BEGIN BODY -->
-<body class="fixed-topbar color-default rtl sidebar-condensed theme-sdtl fixed-sidebar bg-light-dark">
-  <section>
+    <link
+      href="../builder/page-builder/plugins/slider-pips/jquery-ui-slider-pips.css"
+      rel="stylesheet"
+    />
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]-->
+    <script src="assets/plugins/modernizr/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <!--[endif]-->
+  </head>
+  <!-- LAYOUT: Apply "submenu-hover" class to body element to have sidebar submenu show on mouse hover -->
+  <!-- LAYOUT: Apply "sidebar-collapsed" class to body element to have collapsed sidebar -->
+  <!-- LAYOUT: Apply "sidebar-top" class to body element to have sidebar on top of the page -->
+  <!-- LAYOUT: Apply "sidebar-hover" class to body element to show sidebar only when your mouse is on left / right corner -->
+  <!-- LAYOUT: Apply "submenu-hover" class to body element to show sidebar submenu on mouse hover -->
+  <!-- LAYOUT: Apply "fixed-sidebar" class to body to have fixed sidebar -->
+  <!-- LAYOUT: Apply "fixed-topbar" class to body to have fixed topbar -->
+  <!-- LAYOUT: Apply "rtl" class to body to put the sidebar on the right side -->
+  <!-- LAYOUT: Apply "boxed" class to body to have your page with 1200px max width -->
+  <!-- THEME STYLE: Apply "theme-sdtl" for Sidebar Dark / Topbar Light -->
+  <!-- THEME STYLE: Apply  "theme sdtd" for Sidebar Dark / Topbar Dark -->
+  <!-- THEME STYLE: Apply "theme sltd" for Sidebar Light / Topbar Dark -->
+  <!-- THEME STYLE: Apply "theme sltl" for Sidebar Light / Topbar Light -->
+  <!-- THEME COLOR: Apply "color-default" for dark color: #2B2E33 -->
+  <!-- THEME COLOR: Apply "color-primary" for primary color: #319DB5 -->
+  <!-- THEME COLOR: Apply "color-red" for red color: #C9625F -->
+  <!-- THEME COLOR: Apply "color-default" for green color: #18A689 -->
+  <!-- THEME COLOR: Apply "color-default" for orange color: #B66D39 -->
+  <!-- THEME COLOR: Apply "color-default" for purple color: #6E62B5 -->
+  <!-- THEME COLOR: Apply "color-default" for blue color: #4A89DC -->
+  <!-- BEGIN BODY -->
+  <body
+    class="
+      fixed-topbar
+      color-default
+      rtl
+      sidebar-condensed
+      theme-sdtl
+      fixed-sidebar
+      bg-light-dark
+    "
+  >
+    <section>
       <!-- BEGIN SIDEBAR -->
       <div class="sidebar">
-        
         <div class="sidebar-inner">
           <div class="sidebar-top">
-            <form action="#" method="post" class="searchform" id="search-results">
-              <input type="text" class="form-control" name="keyword" placeholder="Search here...">
+            <form
+              action="#"
+              method="post"
+              class="searchform"
+              id="search-results"
+            >
+              <input
+                type="text"
+                class="form-control"
+                name="keyword"
+                placeholder="Search here..."
+              />
             </form>
             <div class="userlogged clearfix">
               <i class="icon icons-faces-users-02"></i>
               <div class="user-details">
                 <h4 class="user_fullName"></h4>
                 <div class="user-login">
-                  <a href="profile.html"><button class="btn btn-xs btn-rounded" type="button">
-                    <span>پروفایل کاربری</span>
-                  </button></a>
+                  <a href="profile.html"
+                    ><button class="btn btn-xs btn-rounded" type="button">
+                      <span>پروفایل کاربری</span>
+                    </button></a
+                  >
                 </div>
               </div>
             </div>
-</div>
+          </div>
           <ul class="nav nav-sidebar">
-            <li class="tm"><a href="dashboard.html"><i class="icon-home"></i><span>داشبورد</span></a></li>
-            <li class="tm"><a href="children.html"><i class="fa fa-child"></i><span>کودکان من</span></a></li>
-            <li class="tm"><a href="needs.html"><i class="fa fa-heart-o"></i><span>نیازها</span></a></li>
-            <li class="tm privilege1"><a href="reports.html"><i class="fa icon-bar-chart"></i><span>گزارش</span></a></li>
-            <li class="tm privilege1"><a href="social_worker.html"><i class="fa icon-users"></i><span>مددکاران</span></a></li>
-            
+            <li class="tm">
+              <a href="dashboard.html"
+                ><i class="icon-home"></i><span>داشبورد</span></a
+              >
+            </li>
+            <li class="tm">
+              <a href="children.html"
+                ><i class="fa fa-child"></i><span>کودکان من</span></a
+              >
+            </li>
+            <li class="tm">
+              <a href="needs.html"
+                ><i class="fa fa-heart-o"></i><span>نیازها</span></a
+              >
+            </li>
+            <li class="tm privilege1">
+              <a href="reports.html"
+                ><i class="fa icon-bar-chart"></i><span>گزارش</span></a
+              >
+            </li>
+            <li class="tm privilege1">
+              <a href="social_worker.html"
+                ><i class="fa icon-users"></i><span>مددکاران</span></a
+              >
+            </li>
+
             <li class="tm nav-parent privilege1">
-              <a href=""><i class="fa fa-edit"></i><span>تنظیمات</span> <span class="fa arrow"></span></a>
+              <a href=""
+                ><i class="fa fa-edit"></i><span>تنظیمات</span>
+                <span class="fa arrow"></span
+              ></a>
               <ul class="children collapse">
                 <li><a href="needcat.html">دسته بندی</a></li>
                 <li><a href="ngo.html">انجمن</a></li>
               </ul>
             </li>
-            
           </ul>
           <div class="sidebar-footer clearfix">
-              <a class="pull-left btn-effect logout" href="#" data-modal="modal-1" data-rel="tooltip" data-placement="top" data-original-title="خروج از حساب">
-              <i class="icon-power"></i></a>
+            <a
+              class="pull-left btn-effect logout"
+              href="#"
+              data-modal="modal-1"
+              data-rel="tooltip"
+              data-placement="top"
+              data-original-title="خروج از حساب"
+            >
+              <i class="icon-power"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <!-- END SIDEBAR -->
+      <div class="main-content">
+        <!-- BEGIN TOPBAR -->
+        <div class="topbar">
+          <div class="header-left">
+            <div class="topnav">
+              <a class="menutoggle" href="#" data-toggle="sidebar-collapsed"
+                ><span class="menu__handle"><span>Menu</span></span></a
+              >
             </div>
-    
           </div>
+
+          <div class="header-right">
+            <div class="logopanel">
+              <h1><a class="SAYSite" target="_blank"></a></h1>
+            </div>
           </div>
-          <!-- END SIDEBAR -->
-          <div class="main-content">
-            <!-- BEGIN TOPBAR -->
-            <div class="topbar">
-              <div class="header-left">
-                <div class="topnav">
-                  <a class="menutoggle" href="#" data-toggle="sidebar-collapsed"><span class="menu__handle"><span>Menu</span></span></a>
-               </div>
-              </div>
-    
-              <div class="header-right">
-                <div class="logopanel">
-                  <h1><a class="SAYSite" target="_blank"></a></h1>
-                </div>
-              </div>
           <!-- header-right -->
         </div>
         <!-- END TOPBAR -->
@@ -122,494 +193,825 @@
         <!--say changes-->
         <div class="page-content">
           <div class="custom-page text-center">
-                <div class="header">
-                    <div class="breadcrumb-wrapper">
-                        <ol class="breadcrumb">
-                            <li><a href="dashboard.html">صفحه اصلی</a>
-                            </li>
-                            <li class="active">پروفایل کاربری</li>
-                        </ol>
-                    </div>
+            <div class="header">
+              <div class="breadcrumb-wrapper">
+                <ol class="breadcrumb">
+                  <li><a href="dashboard.html">صفحه اصلی</a></li>
+                  <li class="active">پروفایل کاربری</li>
+                </ol>
+              </div>
+            </div>
+            <h2 class="m-b-20 w-500">پروفایل کاربری</h2>
+
+            <div class="panel widget-member2">
+              <div class="row">
+                <div class="col-lg-2 col-xs-3">
+                  <!-- <i class="pull-left img-responsive user-img icons-faces-users-02"></i> -->
+                  <img
+                    src="assets/images/avatars/user-default-avatar.png"
+                    alt="profil 4"
+                    class="pull-left img-responsive"
+                  />
                 </div>
-                <h2 class="m-b-20 w-500">پروفایل کاربری</h2>
-
-                    <div class="panel widget-member2">
-                        <div class="row">
-                          <div class="col-lg-2 col-xs-3">
-                              <!-- <i class="pull-left img-responsive user-img icons-faces-users-02"></i> -->
-                              <img src="assets/images/avatars/user-default-avatar.png" alt="profil 4" class="pull-left img-responsive">
-                          </div>
-                          <div class="col-lg-10 col-xs-9">
-                              <div class="row m-t-20">
-                              <h3 class="m-t-0 member-name col-sm-6"><strong class="user_fullName"></strong></h3>
-                              <span class="member-code col-sm-6 c-gray p-r-30"></span>
-                              </div>
-                              <div class="row m-t-20">
-                              
-                              <div class="col-sm-6 ">
-                                  <p><i class="fa fa-phone c-gray-light p-r-10"></i> </p>
-                              </div>
-                              <div class="col-sm-6">
-                                  <p><i class="fa fa-envelope c-gray-light p-r-10"></i> </p>
-                              </div>
-                              </div>
-                              
-                          </div>                        
-                        </div>
+                <div class="col-lg-10 col-xs-9">
+                  <div class="row m-t-20">
+                    <h3 class="m-t-0 member-name col-sm-6">
+                      <strong class="user_fullName"></strong>
+                    </h3>
+                    <span class="member-code col-sm-6 c-gray p-r-30"></span>
+                  </div>
+                  <div class="row m-t-20">
+                    <div class="col-sm-6">
+                      <p><i class="fa fa-phone c-gray-light p-r-10"></i></p>
                     </div>
+                    <div class="col-sm-6">
+                      <p><i class="fa fa-envelope c-gray-light p-r-10"></i></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
+            <div class="row">
+              <div class="col-xs-12">
                 <div class="row">
-                    <div class="col-xs-12">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <button id="editProfileBtn" type="button" class="btn btn-embossed btn-primary btn-block" disabled><i class="icon-pencil c-gray-light p-r-10"></i> ویرایش پروفایل</button>
-                            </div>
-                            <div class="col-sm-4">
-                                <button id="changePassBtn" type="button" class="btn btn-embossed btn-primary btn-block" disabled><i class="icon-lock-open c-gray-light p-r-10"></i> تغییر پسورد</button>
-                            </div>
-                            <div class="col-sm-4">
-                                <a href="#"><button type="button" class="btn btn-embossed btn-primary btn-block logout"><i class="icon-logout c-gray-light p-r-10"></i> خروج از حساب</button></a>
-                            </div>
-                        </div>
-                    </div>
+                  <div class="col-sm-4">
+                    <button
+                      id="editProfileBtn"
+                      type="button"
+                      class="btn btn-embossed btn-primary btn-block"
+                      disabled
+                    >
+                      <i class="icon-pencil c-gray-light p-r-10"></i> ویرایش
+                      پروفایل
+                    </button>
+                  </div>
+                  <div class="col-sm-4">
+                    <button
+                      id="changePassBtn"
+                      type="button"
+                      class="btn btn-embossed btn-primary btn-block"
+                      disabled
+                    >
+                      <i class="icon-lock-open c-gray-light p-r-10"></i> تغییر
+                      پسورد
+                    </button>
+                  </div>
+                  <div class="col-sm-4">
+                    <a href="#"
+                      ><button
+                        type="button"
+                        class="btn btn-embossed btn-primary btn-block logout"
+                      >
+                        <i class="icon-logout c-gray-light p-r-10"></i> خروج از
+                        حساب
+                      </button></a
+                    >
+                  </div>
                 </div>
-                
-                <div class="panel panel-default no-bd" id="editPass">
-                    <div class="panel-header bg-dark panel-controls">
-                        <h3 class="panel-title">فرم<strong> تغییر پسورد</strong></h3>
-                    </div>
-                    <div class="panel-content bg-white">
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <form role="form" class="form-validation" id="pass">
-                                    <div class="row">
+              </div>
+            </div>
 
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label for="pre-pass" class="control-label">پسورد پیشین</label>
-                                                <div class="append-icon">
-                                                    <input type="password" class="form-control" id="pre-pass" name="pre-pass" placeholder="پسورد پیشین خود را وارد نمایید" required>
-                                                    <i class="icon-lock"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label for="password" class="control-label">پسورد جدید</label>
-                                                <div class="append-icon">
-                                                    <input type="password" class="form-control" id="password" name="password" placeholder="پسورد جدید خود را وارد نمایید" required>
-                                                    <i class="icon-lock"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label for="password2" class="control-label">تکرار پسورد جدید</label>
-                                                <div class="append-icon">
-                                                    <input type="password" class="form-control" id="password2" name="password2" placeholder="پسورد جدید خود را مجددا وارد نمایید" required>
-                                                    <i class="icon-lock"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="text-center  m-t-20">
-                                            <button type="submit" class="btn btn-embossed btn-primary" disabled>ذخیره</button>
-                                            <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0" disabled>پاک کردن</button>
-                                        </div>
-
-                                    </div>
-                                </form>
+            <div class="panel panel-default no-bd" id="editPass">
+              <div class="panel-header bg-dark panel-controls">
+                <h3 class="panel-title">فرم<strong> تغییر پسورد</strong></h3>
+              </div>
+              <div class="panel-content bg-white">
+                <div class="row">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <form role="form" class="form-validation" id="pass">
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <label for="pre-pass" class="control-label"
+                              >پسورد پیشین</label
+                            >
+                            <div class="append-icon">
+                              <input
+                                type="password"
+                                class="form-control"
+                                id="pre-pass"
+                                name="pre-pass"
+                                placeholder="پسورد پیشین خود را وارد نمایید"
+                                required
+                              />
+                              <i class="icon-lock"></i>
                             </div>
+                          </div>
                         </div>
-                    </div>
+
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <label for="password" class="control-label"
+                              >پسورد جدید</label
+                            >
+                            <div class="append-icon">
+                              <input
+                                type="password"
+                                class="form-control"
+                                id="password"
+                                name="password"
+                                placeholder="پسورد جدید خود را وارد نمایید"
+                                required
+                              />
+                              <i class="icon-lock"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <label for="password2" class="control-label"
+                              >تکرار پسورد جدید</label
+                            >
+                            <div class="append-icon">
+                              <input
+                                type="password"
+                                class="form-control"
+                                id="password2"
+                                name="password2"
+                                placeholder="پسورد جدید خود را مجددا وارد نمایید"
+                                required
+                              />
+                              <i class="icon-lock"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="text-center m-t-20">
+                          <button
+                            type="submit"
+                            class="btn btn-embossed btn-primary"
+                            disabled
+                          >
+                            ذخیره
+                          </button>
+                          <button
+                            type="reset"
+                            class="
+                              cancel
+                              btn btn-embossed btn-default
+                              m-b-10 m-r-0
+                            "
+                            disabled
+                          >
+                            پاک کردن
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
                 </div>
-                
-                <div class="panel panel-default no-bd" id="editProfile">
-                    <div class="panel-header bg-dark panel-controls">
-                        <h3 class="panel-title">فرم<strong> تغییر پروفایل</strong></h3>
-                        
-                    </div>
-                    <div class="panel-content bg-white">
-                        <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <form role="form" class="form-validation" id="profile">
-                            <div class="row">
-    
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="swcode" class="control-label">کد مددکار</label>
-                                        <div class="append-icon">
-                                            <input type="text" class="form-control" id="swcode" name="swcode" placeholder="کد مددکار را وارد نمایید" value="" required>
-                                            <i class="icon-key"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="swfname" class="control-label">نام مددکار</label>
-                                    <div class="append-icon">
-                                    <input type="text" id="swfname" name="swfname" class="form-control" minlength="3" oninvalid="this.setCustomValidity('لطفا این فیلد را پر کنید')" placeholder="نام مددکار را وارد نمایید" value="" required>
-                                    <i class="icon-user"></i>
-                                    </div>
-                                </div>
-                                </div>
+              </div>
+            </div>
 
-                                <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="swlname" class="control-label">نام خانوادگی مددکار</label>
-                                    <div class="append-icon">
-                                    <input type="text" id="swlname" name="swlname" class="form-control" minlength="3" placeholder="نام خانوادگی مددکار را وارد نمایید" value="" required>
-                                    <i class="icon-user"></i>
-                                    </div>
-                                </div>
-                                </div>  
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="swidnum" class="control-label">شماره شناسنامه</label>
-                                        <div class="append-icon">
-                                            <input type="text" id="swidnum" name="swidnum" class="form-control" placeholder="شماره شناسنامه را وارد نمایید" value="" required>
-                                            <i class="icon-credit-card"></i>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="swnatcode" class="control-label">کد ملی</label>
-                                        <div class="append-icon">
-                                            <input type="text" id="swnatcode" name="swnatcode" class="form-control" placeholder="کد ملی را وارد نمایید" value="" required>
-                                            <i class="icon-credit-card"></i>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="swbirth" class="control-label">تاریخ تولد</label>
-                                        <div class="append-icon">
-                                        <input type="date" id="swbirth" name="swbirth" class="form-control" value="" required>
-                                        <i class="icon-calendar"></i>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="swphone" class="control-label">شماره تماس</label>
-                                        <div class="append-icon">
-                                            <input type="text" id="swphone" name="swphone" class="form-control" placeholder="شماره تماس را وارد نمایید" value="" required>
-                                            <i class="icon-screen-smartphone"></i>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="swuphone" class="control-label">شماره تماس ضروری</label>
-                                        <div class="append-icon">
-                                            <input type="text" id="swuphone" name="swuphone" class="form-control" placeholder="شماره تماس ضروری را وارد نمایید" value="" required>
-                                            <i class="icon-screen-smartphone"></i>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="swemail" class="control-label">ایمیل</label>
-                                        <div class="append-icon">
-                                            <input type="text" id="swemail" name="swemail" class="form-control" placeholder="آدرس ایمیل را وارد نمایید" value="" required>
-                                            <i class="fa fa-envelope"></i>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="swtelegram" class="control-label">ID تلگرام</label>
-                                        <div class="append-icon">
-                                            <input type="text" id="swtelegram" name="swtelegram" class="form-control" placeholder="ID تلگرام را وارد نمایید" value="" required>
-                                            <i class="fa fa-send"></i>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="swaddr" class="control-label">آدرس</label>
-                                        <textarea name="swaddr" id="swaddr" rows="2" class="form-control" placeholder="آدرس را وارد نمایید..." value="" minlength="5" required="" aria-required="true"></textarea>
-                                    </div>
-                                </div>
-    
-                                <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="control-label" for="swnatcard">تصویر کارت ملی</label>
-                                    <div class="file">
-                                    <div class="option-group">
-                                        <span class="file-button btn-primary">انتخاب فایل</span>
-                                        <input type="file" class="custom-file" name="swnatcard" id="swnatcard" onchange="document.getElementById('uploader').value = this.value;" required>
-                                        <input type="text" class="form-control" id="uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="">
-                                    </div>
-                                    </div>
-                                </div>
-                                </div>
-    
-                                
-                                <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="control-label">آیا شرایط و ضوابط ما را می پذیرید؟</label>
-                                    <div class="option-group">
-                                    <label  for="terms" class="m-t-10">
-                                    <input type="checkbox" name="terms" id="terms" data-checkbox="icheckbox_flat-blue" required/>
-                                    با شرایط و ضوابط SAY موافق هستم
-                                    </label>    
-                                    </div>
-                                </div>
-                                </div>
-    
+            <div class="panel panel-default no-bd" id="editProfile">
+              <div class="panel-header bg-dark panel-controls">
+                <h3 class="panel-title">فرم<strong> تغییر پروفایل</strong></h3>
+              </div>
+              <div class="panel-content bg-white">
+                <div class="row">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <form role="form" class="form-validation" id="profile">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label for="swcode" class="control-label"
+                              >کد مددکار</label
+                            >
+                            <div class="append-icon">
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="swcode"
+                                name="swcode"
+                                placeholder="کد مددکار را وارد نمایید"
+                                value=""
+                                required
+                              />
+                              <i class="icon-key"></i>
                             </div>
-    
-                            <div class="text-center  m-t-20">
-                                <button type="submit" class="btn btn-embossed btn-primary" disabled>ذخیره</button>
-                                <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0" disabled>پاک کردن</button>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label for="swfname" class="control-label"
+                              >نام مددکار</label
+                            >
+                            <div class="append-icon">
+                              <input
+                                type="text"
+                                id="swfname"
+                                name="swfname"
+                                class="form-control"
+                                minlength="3"
+                                oninvalid="this.setCustomValidity('لطفا این فیلد را پر کنید')"
+                                placeholder="نام مددکار را وارد نمایید"
+                                value=""
+                                required
+                              />
+                              <i class="icon-user"></i>
                             </div>
-                            </form>
+                          </div>
                         </div>
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label for="swlname" class="control-label"
+                              >نام خانوادگی مددکار</label
+                            >
+                            <div class="append-icon">
+                              <input
+                                type="text"
+                                id="swlname"
+                                name="swlname"
+                                class="form-control"
+                                minlength="3"
+                                placeholder="نام خانوادگی مددکار را وارد نمایید"
+                                value=""
+                                required
+                              />
+                              <i class="icon-user"></i>
+                            </div>
+                          </div>
                         </div>
-                    </div>
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label for="swidnum" class="control-label"
+                              >شماره شناسنامه</label
+                            >
+                            <div class="append-icon">
+                              <input
+                                type="text"
+                                id="swidnum"
+                                name="swidnum"
+                                class="form-control"
+                                placeholder="شماره شناسنامه را وارد نمایید"
+                                value=""
+                                required
+                              />
+                              <i class="icon-credit-card"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label for="swnatcode" class="control-label"
+                              >کد ملی</label
+                            >
+                            <div class="append-icon">
+                              <input
+                                type="text"
+                                id="swnatcode"
+                                name="swnatcode"
+                                class="form-control"
+                                placeholder="کد ملی را وارد نمایید"
+                                value=""
+                                required
+                              />
+                              <i class="icon-credit-card"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label for="swbirth" class="control-label"
+                              >تاریخ تولد</label
+                            >
+                            <div class="append-icon">
+                              <input
+                                type="date"
+                                id="swbirth"
+                                name="swbirth"
+                                class="form-control"
+                                value=""
+                                required
+                              />
+                              <i class="icon-calendar"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label for="swphone" class="control-label"
+                              >شماره تماس</label
+                            >
+                            <div class="append-icon">
+                              <input
+                                type="text"
+                                id="swphone"
+                                name="swphone"
+                                class="form-control"
+                                placeholder="شماره تماس را وارد نمایید"
+                                value=""
+                                required
+                              />
+                              <i class="icon-screen-smartphone"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label for="swuphone" class="control-label"
+                              >شماره تماس ضروری</label
+                            >
+                            <div class="append-icon">
+                              <input
+                                type="text"
+                                id="swuphone"
+                                name="swuphone"
+                                class="form-control"
+                                placeholder="شماره تماس ضروری را وارد نمایید"
+                                value=""
+                                required
+                              />
+                              <i class="icon-screen-smartphone"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label for="swemail" class="control-label"
+                              >ایمیل</label
+                            >
+                            <div class="append-icon">
+                              <input
+                                type="text"
+                                id="swemail"
+                                name="swemail"
+                                class="form-control"
+                                placeholder="آدرس ایمیل را وارد نمایید"
+                                value=""
+                                required
+                              />
+                              <i class="fa fa-envelope"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label for="swtelegram" class="control-label"
+                              >ID تلگرام</label
+                            >
+                            <div class="append-icon">
+                              <input
+                                type="text"
+                                id="swtelegram"
+                                name="swtelegram"
+                                class="form-control"
+                                placeholder="ID تلگرام را وارد نمایید"
+                                value=""
+                                required
+                              />
+                              <i class="fa fa-send"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label for="swaddr" class="control-label"
+                              >آدرس</label
+                            >
+                            <textarea
+                              name="swaddr"
+                              id="swaddr"
+                              rows="2"
+                              class="form-control"
+                              placeholder="آدرس را وارد نمایید..."
+                              value=""
+                              minlength="5"
+                              required=""
+                              aria-required="true"
+                            ></textarea>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label class="control-label" for="swnatcard"
+                              >تصویر کارت ملی</label
+                            >
+                            <div class="file">
+                              <div class="option-group">
+                                <span class="file-button btn-primary"
+                                  >انتخاب فایل</span
+                                >
+                                <input
+                                  type="file"
+                                  class="custom-file"
+                                  name="swnatcard"
+                                  id="swnatcard"
+                                  onchange="document.getElementById('uploader').value = this.value;"
+                                  required
+                                />
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="uploader"
+                                  placeholder="هیج فایلی انتخاب نشده است"
+                                  readonly=""
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label class="control-label"
+                              >آیا شرایط و ضوابط ما را می پذیرید؟</label
+                            >
+                            <div class="option-group">
+                              <label for="terms" class="m-t-10">
+                                <input
+                                  type="checkbox"
+                                  name="terms"
+                                  id="terms"
+                                  data-checkbox="icheckbox_flat-blue"
+                                  required
+                                />
+                                با شرایط و ضوابط SAY موافق هستم
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="text-center m-t-20">
+                        <button
+                          type="submit"
+                          class="btn btn-embossed btn-primary"
+                          disabled
+                        >
+                          ذخیره
+                        </button>
+                        <button
+                          type="reset"
+                          class="
+                            cancel
+                            btn btn-embossed btn-default
+                            m-b-10 m-r-0
+                          "
+                          disabled
+                        >
+                          پاک کردن
+                        </button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
+              </div>
+            </div>
 
+            <div class="row">
+              <div class="col-md-6 user-data" id="user-pdata">
+                <div class="panel">
+                  <div class="panel-header panel-controls">
+                    <h3>اطلاعات شخصی</h3>
+                  </div>
+                  <div class="panel-content">
                     <div class="row">
-                        <div class="col-md-6 user-data" id="user-pdata">
-                                <div class="panel">
-                                    <div class="panel-header panel-controls">
-                                        <h3>اطلاعات شخصی</h3>
-                                    </div>
-                                    <div class="panel-content">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <p>
-                                                    <i class="icon-user c-gray-light p-r-10 col-sm-2"></i>
-                                                    <span class="col-sm-10 c-gray-light"><strong>نام</strong></span>
-                                                    <span class="col-sm-10 pull-right"></span>
-                                                </p>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <p>
-                                                    <i class="icon-key c-gray-light p-r-10 col-sm-2"></i>
-                                                    <span class="col-sm-10 c-gray-light"><strong>کد</strong></span>
-                                                    <span class="col-sm-10 pull-right"></span>
-                                                </p>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <p>
-                                                    <i class="icon-credit-card c-gray-light p-r-10 col-sm-2"></i>
-                                                    <span class="col-sm-10 c-gray-light"><strong>شماره شناسنامه</strong></span>
-                                                    <span class="col-sm-10 pull-right"></span>
-                                                </p>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <p>
-                                                    <i class="icon-credit-card c-gray-light p-r-10 col-sm-2"></i>
-                                                    <span class="col-sm-10 c-gray-light"><strong>کد ملی</strong></span>
-                                                    <span class="col-sm-10 pull-right"></span>
-                                                </p>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <p>
-                                                    <i class="fa fa-calendar c-gray-light p-r-10 col-sm-2"></i>
-                                                    <span class="col-sm-10 c-gray-light"><strong>تاریخ تولد</strong></span>
-                                                    <span class="col-sm-10 pull-right"></span>
-                                                </p>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <p>
-                                                    <i class="icon-credit-card c-gray-light p-r-10 col-sm-2"></i>
-                                                    <span class="col-sm-10 c-gray-light"><strong>کارت ملی</strong></span>
-                                                    <span class="col-sm-10 pull-right">
-                                                            <!-- <img src="#"> -->
-                                                    </span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                        </div>
-
-                        <div class="col-md-6 user-data" id="user-contact">
-                                <div class="panel">
-                                    <div class="panel-header panel-controls">
-                                        <h3>ارتباطات</h3>
-                                    </div>
-                                    <div class="panel-content">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <p>
-                                                    <i class="fa fa-phone c-gray-light p-r-10 col-sm-2"></i>
-                                                    <span class="col-sm-10 c-gray-light"><strong>شماره تماس</strong></span>
-                                                    <span class="col-sm-10 pull-right"></span>
-                                                </p>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <p>
-                                                    <i class="icon-screen-smartphone c-gray-light p-r-10 col-sm-2"></i>
-                                                    <span class="col-sm-10 c-gray-light"><strong>شماره موبایل</strong></span>
-                                                    <span class="col-sm-10 pull-right"></span>
-                                                </p>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <p>
-                                                    <i class="fa fa-send c-gray-light p-r-10 col-sm-2"></i>
-                                                    <span class="col-sm-10 c-gray-light"><strong>تلگرام</strong></span>
-                                                    <span class="col-sm-10 pull-right"></span>
-                                                </p>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <p>
-                                                    <i class="fa fa-envelope c-gray-light p-r-10 col-sm-2"></i>
-                                                    <span class="col-sm-10 c-gray-light"><strong>ایمیل</strong></span>
-                                                    <span class="col-sm-10 pull-right"></span>
-                                                </p>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <p>
-                                                    <i class="fa fa-map-marker c-gray-light p-r-10 col-sm-1"></i>
-                                                    <span class="col-sm-11 c-gray-light"><strong>آدرس</strong></span>
-                                                    <span class="col-sm-11 pull-right"></span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                        </div>
+                      <div class="col-sm-6">
+                        <p>
+                          <i class="icon-user c-gray-light p-r-10 col-sm-2"></i>
+                          <span class="col-sm-10 c-gray-light"
+                            ><strong>نام</strong></span
+                          >
+                          <span class="col-sm-10 pull-right"></span>
+                        </p>
+                      </div>
+                      <div class="col-sm-6">
+                        <p>
+                          <i class="icon-key c-gray-light p-r-10 col-sm-2"></i>
+                          <span class="col-sm-10 c-gray-light"
+                            ><strong>کد</strong></span
+                          >
+                          <span class="col-sm-10 pull-right"></span>
+                        </p>
+                      </div>
+                      <div class="col-sm-6">
+                        <p>
+                          <i
+                            class="
+                              icon-credit-card
+                              c-gray-light
+                              p-r-10
+                              col-sm-2
+                            "
+                          ></i>
+                          <span class="col-sm-10 c-gray-light"
+                            ><strong>شماره شناسنامه</strong></span
+                          >
+                          <span class="col-sm-10 pull-right"></span>
+                        </p>
+                      </div>
+                      <div class="col-sm-6">
+                        <p>
+                          <i
+                            class="
+                              icon-credit-card
+                              c-gray-light
+                              p-r-10
+                              col-sm-2
+                            "
+                          ></i>
+                          <span class="col-sm-10 c-gray-light"
+                            ><strong>کد ملی</strong></span
+                          >
+                          <span class="col-sm-10 pull-right"></span>
+                        </p>
+                      </div>
+                      <div class="col-sm-6">
+                        <p>
+                          <i
+                            class="fa fa-calendar c-gray-light p-r-10 col-sm-2"
+                          ></i>
+                          <span class="col-sm-10 c-gray-light"
+                            ><strong>تاریخ تولد</strong></span
+                          >
+                          <span class="col-sm-10 pull-right"></span>
+                        </p>
+                      </div>
+                      <div class="col-sm-6">
+                        <p>
+                          <i
+                            class="
+                              icon-credit-card
+                              c-gray-light
+                              p-r-10
+                              col-sm-2
+                            "
+                          ></i>
+                          <span class="col-sm-10 c-gray-light"
+                            ><strong>کارت ملی</strong></span
+                          >
+                          <span class="col-sm-10 pull-right">
+                            <!-- <img src="#"> -->
+                          </span>
+                        </p>
+                      </div>
                     </div>
+                  </div>
+                </div>
+              </div>
 
+              <div class="col-md-6 user-data" id="user-contact">
+                <div class="panel">
+                  <div class="panel-header panel-controls">
+                    <h3>ارتباطات</h3>
+                  </div>
+                  <div class="panel-content">
                     <div class="row">
-                            <div class="col-md-12 activity" id="user-activity">
-                                    <div class="panel">
-                                        <div class="panel-header panel-controls">
-                                            <h3>فعالیت ها</h3>
-
-                                            <table class="table table-hover dataTable" id="table-editable">
-                                              <thead>
-                                                <tr>
-                                                  <th>مددکار</th>
-                                                  <th>نوع فعالیت</th>
-                                                </tr>
-                                              </thead>
-                                              <tbody id="activityList">
-                        
-                                              </tbody>
-                                          </table>
-                                        </div>
-                                        <div class="panel-content">
-                                            <div class="row">
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                            </div>
+                      <div class="col-sm-6">
+                        <p>
+                          <i
+                            class="fa fa-phone c-gray-light p-r-10 col-sm-2"
+                          ></i>
+                          <span class="col-sm-10 c-gray-light"
+                            ><strong>شماره تماس</strong></span
+                          >
+                          <span class="col-sm-10 pull-right"></span>
+                        </p>
+                      </div>
+                      <div class="col-sm-6">
+                        <p>
+                          <i
+                            class="
+                              icon-screen-smartphone
+                              c-gray-light
+                              p-r-10
+                              col-sm-2
+                            "
+                          ></i>
+                          <span class="col-sm-10 c-gray-light"
+                            ><strong>شماره موبایل</strong></span
+                          >
+                          <span class="col-sm-10 pull-right"></span>
+                        </p>
+                      </div>
+                      <div class="col-sm-6">
+                        <p>
+                          <i
+                            class="fa fa-send c-gray-light p-r-10 col-sm-2"
+                          ></i>
+                          <span class="col-sm-10 c-gray-light"
+                            ><strong>تلگرام</strong></span
+                          >
+                          <span class="col-sm-10 pull-right"></span>
+                        </p>
+                      </div>
+                      <div class="col-sm-6">
+                        <p>
+                          <i
+                            class="fa fa-envelope c-gray-light p-r-10 col-sm-2"
+                          ></i>
+                          <span class="col-sm-10 c-gray-light"
+                            ><strong>ایمیل</strong></span
+                          >
+                          <span class="col-sm-10 pull-right"></span>
+                        </p>
+                      </div>
+                      <div class="col-sm-12">
+                        <p>
+                          <i
+                            class="
+                              fa fa-map-marker
+                              c-gray-light
+                              p-r-10
+                              col-sm-1
+                            "
+                          ></i>
+                          <span class="col-sm-11 c-gray-light"
+                            ><strong>آدرس</strong></span
+                          >
+                          <span class="col-sm-11 pull-right"></span>
+                        </p>
+                      </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-                
-    
+            <div class="row">
+              <div class="col-md-12 activity" id="user-activity">
+                <div class="panel">
+                  <div class="panel-header panel-controls">
+                    <h3>فعالیت ها</h3>
+
+                    <table
+                      class="table table-hover dataTable"
+                      id="table-editable"
+                    >
+                      <thead>
+                        <tr>
+                          <th>مددکار</th>
+                          <th>نوع فعالیت</th>
+                        </tr>
+                      </thead>
+                      <tbody id="activityList"></tbody>
+                    </table>
+                  </div>
+                  <div class="panel-content">
+                    <div class="row"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-      <div class="footer">
-        <div class="copyright">
-          <p class="pull-left sm-pull-reset"> <span>کلیه حق و حقوق این سایت متعلق به تیم SAY می باشد. </span> </p>
-          <p class="pull-right sm-pull-reset"> <span><a href="#" class="m-r-10">پشتیبانی</a> | <a href="#" class="m-l-10 m-r-10">شرایط استفاده</a> | <a href="#" class="m-l-10">حریم خصوصی</a></span> </p>
+          <div class="footer">
+            <div class="copyright">
+              <p class="pull-left sm-pull-reset">
+                <span>کلیه حق و حقوق این سایت متعلق به تیم SAY می باشد. </span>
+              </p>
+              <p class="pull-right sm-pull-reset">
+                <span
+                  ><a href="#" class="m-r-10">پشتیبانی</a> |
+                  <a href="#" class="m-l-10 m-r-10">شرایط استفاده</a> |
+                  <a href="#" class="m-l-10">حریم خصوصی</a></span
+                >
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-</div>
-        
+
         <!-- END PAGE CONTENT -->
-        
-      <!-- END PAGE CONTENT -->
+
+        <!-- END PAGE CONTENT -->
       </div>
       <!-- END MAIN CONTENT -->
     </section>
-<!-- Preloader -->
-<div class="loader-overlay">
-  <div class="spinner">
-    <div class="bounce1"></div>
-    <div class="bounce2"></div>
-    <div class="bounce3"></div>
-  </div>
-</div>
-<a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a>
-<script src="assets/plugins/jquery/jquery-1.11.1.min.js"></script>
-<script src="assets/plugins/jquery-validation/jquery.validate.min.js"></script> <!-- Form validation -->
-<script src="assets/plugins/jquery/jquery-migrate-1.2.1.min.js"></script>
-<script src="assets/plugins/gsap/main-gsap.min.js"></script> <!-- HTML Animations -->
-<script src="assets/plugins/jquery-ui/jquery-ui-1.11.2.min.js"></script>
-<script src="assets/plugins/jquery-block-ui/jquery.blockUI.min.js"></script> <!-- simulate synchronous behavior when using AJAX -->
-<script src="assets/plugins/translate/jqueryTranslator.min.js"></script> <!-- Translate Plugin with JSON data -->
-<script src="assets/plugins/bootbox/bootbox.min.js"></script>
-<script src="assets/plugins/mcustom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script> <!-- Custom Scrollbar sidebar -->
-<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/plugins/bootstrap-dropdown/bootstrap-hover-dropdown.min.js"></script> <!-- Show Dropdown on Mouseover -->
-<script src="assets/plugins/bootstrap-progressbar/bootstrap-progressbar.min.js"></script> <!-- Animated Progress Bar -->
-<script src="assets/plugins/switchery/switchery.min.js"></script> <!-- IOS Switch -->
-<script src="assets/plugins/charts-sparkline/sparkline.min.js"></script> <!-- Charts Sparkline -->
-<script src="assets/plugins/retina/retina.min.js"></script>  <!-- Retina Display -->
-<script src="assets/plugins/jquery-cookies/jquery.cookies.js"></script> <!-- Jquery Cookies, for theme -->
-<script src="assets/plugins/bootstrap/js/jasny-bootstrap.min.js"></script> <!-- File Upload and Input Masks -->
-<script src="assets/plugins/select2/select2.min.js"></script> <!-- Select Inputs -->
-<script src="assets/plugins/bootstrap-tags-input/bootstrap-tagsinput.min.js"></script> <!-- Select Inputs -->
-<script src="assets/plugins/bootstrap-loading/lada.min.js"></script> <!-- Buttons Loading State -->
-<script src="assets/plugins/timepicker/jquery-ui-timepicker-addon.min.js"></script> <!-- Time Picker -->
-<script src="assets/plugins/multidatepicker/multidatespicker.min.js"></script> <!-- Multi dates Picker -->
-<script src="assets/plugins/colorpicker/spectrum.min.js"></script> <!-- Color Picker -->
-<script src="assets/plugins/touchspin/jquery.bootstrap-touchspin.min.js"></script> <!-- A mobile and touch friendly input spinner component for Bootstrap -->
-<script src="assets/plugins/autosize/autosize.min.js"></script> <!-- Textarea autoresize -->
-<script src="assets/plugins/icheck/icheck.min.js"></script> <!-- Icheck -->
-<script src="assets/plugins/bootstrap-editable/js/bootstrap-editable.min.js"></script> <!-- Inline Edition X-editable -->
-<script src="assets/plugins/bootstrap-context-menu/bootstrap-contextmenu.min.js"></script> <!-- File Upload and Input Masks -->
-<script src="assets/plugins/prettify/prettify.min.js"></script> <!-- Show html code -->
-<script src="assets/plugins/slick/slick.min.js"></script> <!-- Slider -->
-<script src="assets/plugins/countup/countUp.min.js"></script> <!-- Animated Counter Number -->
-<script src="assets/plugins/noty/jquery.noty.packaged.min.js"></script>  <!-- Notifications -->
-<script src="assets/plugins/backstretch/backstretch.min.js"></script> <!-- Background Image -->
-<script src="assets/plugins/charts-chartjs/Chart.min.js"></script>  <!-- ChartJS Chart -->
-<script src="assets/plugins/bootstrap-slider/bootstrap-slider.js"></script> <!-- Bootstrap Input Slider -->
-<script src="assets/plugins/visible/jquery.visible.min.js"></script> <!-- Visible in Viewport -->
-<script src="assets/js/builder.js"></script>
-<script src="assets/js/sidebar_hover.js"></script>
-<script src="assets/js/application_2.2.js"></script> <!-- Main Application Script -->
-<script src="assets/js/plugins.js"></script> <!-- Main Plugin Initialization Script -->
-<script src="assets/js/widgets/notes.js"></script>
-<script src="assets/js/quickview.js"></script> <!-- Quickview Script -->
-<script src="assets/js/pages/search.js"></script> <!-- Search Script -->
-<!-- BEGIN PAGE SCRIPTS -->
-<script src="assets/plugins/datatables/jquery.dataTables.min.js"></script> <!-- Tables Filtering, Sorting & Editing -->
-<script src="assets/plugins/summernote/summernote.js"></script>
-<script src="assets/plugins/skycons/skycons.js"></script>
-<script src="assets/plugins/simple-weather/jquery.simpleWeather.min.js"></script>
-<script src="assets/js/widgets/widget_weather.js"></script>
-<script src="assets/js/widgets/todo_list.js"></script>
-<script src="../builder/page-builder/plugins/slider-pips/jquery-ui-slider-pips.min.js"></script>
-<script src="../builder/page-builder/plugins/saveas/saveAs.js"></script>
-<script src="../builder/page-builder/js/builder_page.js"></script>
-<!-- <script src="assets/js/pages/table_dynamic.js"></script> -->
-<script src="assets/js/pages/table_editable.js"></script>
-<script src="assets/plugins/magnific/jquery.magnific-popup.min.js"></script>  <!-- Image Popup -->
-<script src="assets/plugins/isotope/isotope.pkgd.min.js"></script>  <!-- Filter & sort magical Gallery -->
-<script src="assets/js/activity_data_serve_1.0.js"></script>
-<script
-  src="https://browser.sentry-cdn.com/5.22.3/bundle.tracing.min.js"
-  crossorigin="anonymous"
-></script>
-<script src="assets/js/profile_1.0.js"></script>  <!--profile data feed-->
-<script src="assets/js/config.js"></script>  <!--url configurations-->
-<script src="assets/js/html_config_1.0.js"></script>  <!--HTML url configurations-->
-<script src="assets/js/custom_6.4.js"></script>  <!--custom functions-->
-<script src="assets/js/authorize_1.0.js"></script>  <!--Athorization-->
-<script src="assets/js/jwt-decode.min.js"></script>  <!--jwt decoder script-->
+    <!-- Preloader -->
+    <div class="loader-overlay">
+      <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+    </div>
+    <a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a>
+    <script src="assets/plugins/jquery/jquery-1.11.1.min.js"></script>
+    <script src="assets/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <!-- Form validation -->
+    <script src="assets/plugins/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script src="assets/plugins/gsap/main-gsap.min.js"></script>
+    <!-- HTML Animations -->
+    <script src="assets/plugins/jquery-ui/jquery-ui-1.11.2.min.js"></script>
+    <script src="assets/plugins/jquery-block-ui/jquery.blockUI.min.js"></script>
+    <!-- simulate synchronous behavior when using AJAX -->
+    <script src="assets/plugins/translate/jqueryTranslator.min.js"></script>
+    <!-- Translate Plugin with JSON data -->
+    <script src="assets/plugins/bootbox/bootbox.min.js"></script>
+    <script src="assets/plugins/mcustom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- Custom Scrollbar sidebar -->
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/plugins/bootstrap-dropdown/bootstrap-hover-dropdown.min.js"></script>
+    <!-- Show Dropdown on Mouseover -->
+    <script src="assets/plugins/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- Animated Progress Bar -->
+    <script src="assets/plugins/switchery/switchery.min.js"></script>
+    <!-- IOS Switch -->
+    <script src="assets/plugins/charts-sparkline/sparkline.min.js"></script>
+    <!-- Charts Sparkline -->
+    <script src="assets/plugins/retina/retina.min.js"></script>
+    <!-- Retina Display -->
+    <script src="assets/plugins/jquery-cookies/jquery.cookies.js"></script>
+    <!-- Jquery Cookies, for theme -->
+    <script src="assets/plugins/bootstrap/js/jasny-bootstrap.min.js"></script>
+    <!-- File Upload and Input Masks -->
+    <script src="assets/plugins/select2/select2.min.js"></script>
+    <!-- Select Inputs -->
+    <script src="assets/plugins/bootstrap-tags-input/bootstrap-tagsinput.min.js"></script>
+    <!-- Select Inputs -->
+    <script src="assets/plugins/bootstrap-loading/lada.min.js"></script>
+    <!-- Buttons Loading State -->
+    <script src="assets/plugins/timepicker/jquery-ui-timepicker-addon.min.js"></script>
+    <!-- Time Picker -->
+    <script src="assets/plugins/multidatepicker/multidatespicker.min.js"></script>
+    <!-- Multi dates Picker -->
+    <script src="assets/plugins/colorpicker/spectrum.min.js"></script>
+    <!-- Color Picker -->
+    <script src="assets/plugins/touchspin/jquery.bootstrap-touchspin.min.js"></script>
+    <!-- A mobile and touch friendly input spinner component for Bootstrap -->
+    <script src="assets/plugins/autosize/autosize.min.js"></script>
+    <!-- Textarea autoresize -->
+    <script src="assets/plugins/icheck/icheck.min.js"></script>
+    <!-- Icheck -->
+    <script src="assets/plugins/bootstrap-editable/js/bootstrap-editable.min.js"></script>
+    <!-- Inline Edition X-editable -->
+    <script src="assets/plugins/bootstrap-context-menu/bootstrap-contextmenu.min.js"></script>
+    <!-- File Upload and Input Masks -->
+    <script src="assets/plugins/prettify/prettify.min.js"></script>
+    <!-- Show html code -->
+    <script src="assets/plugins/slick/slick.min.js"></script>
+    <!-- Slider -->
+    <script src="assets/plugins/countup/countUp.min.js"></script>
+    <!-- Animated Counter Number -->
+    <script src="assets/plugins/noty/jquery.noty.packaged.min.js"></script>
+    <!-- Notifications -->
+    <script src="assets/plugins/backstretch/backstretch.min.js"></script>
+    <!-- Background Image -->
+    <script src="assets/plugins/charts-chartjs/Chart.min.js"></script>
+    <!-- ChartJS Chart -->
+    <script src="assets/plugins/bootstrap-slider/bootstrap-slider.js"></script>
+    <!-- Bootstrap Input Slider -->
+    <script src="assets/plugins/visible/jquery.visible.min.js"></script>
+    <!-- Visible in Viewport -->
+    <script src="assets/js/builder.js"></script>
+    <script src="assets/js/sidebar_hover.js"></script>
+    <script src="assets/js/application_2.2.js"></script>
+    <!-- Main Application Script -->
+    <script src="assets/js/plugins.js"></script>
+    <!-- Main Plugin Initialization Script -->
+    <script src="assets/js/widgets/notes.js"></script>
+    <script src="assets/js/quickview.js"></script>
+    <!-- Quickview Script -->
+    <script src="assets/js/pages/search.js"></script>
+    <!-- Search Script -->
+    <!-- BEGIN PAGE SCRIPTS -->
+    <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <!-- Tables Filtering, Sorting & Editing -->
+    <script src="assets/plugins/summernote/summernote.js"></script>
+    <script src="assets/plugins/skycons/skycons.js"></script>
+    <script src="assets/plugins/simple-weather/jquery.simpleWeather.min.js"></script>
+    <script src="assets/js/widgets/widget_weather.js"></script>
+    <script src="assets/js/widgets/todo_list.js"></script>
+    <script src="../builder/page-builder/plugins/slider-pips/jquery-ui-slider-pips.min.js"></script>
+    <script src="../builder/page-builder/plugins/saveas/saveAs.js"></script>
+    <script src="../builder/page-builder/js/builder_page.js"></script>
+    <!-- <script src="assets/js/pages/table_dynamic.js"></script> -->
+    <script src="assets/js/pages/table_editable.js"></script>
+    <script src="assets/plugins/magnific/jquery.magnific-popup.min.js"></script>
+    <!-- Image Popup -->
+    <script src="assets/plugins/isotope/isotope.pkgd.min.js"></script>
+    <!-- Filter & sort magical Gallery -->
+    <script src="assets/js/activity_data_serve_1.0.js"></script>
+    <script
+      src="https://browser.sentry-cdn.com/5.22.3/bundle.tracing.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="assets/js/profile_1.0.js"></script>
+    <!--profile data feed-->
+    <script src="assets/js/config.js"></script>
+    <!--url configurations-->
+    <script src="assets/js/html_config_1.0.js"></script>
+    <!--HTML url configurations-->
+    <script src="assets/js/custom_6_5.js"></script>
+    <!--custom functions-->
+    <script src="assets/js/authorize_1.0.js"></script>
+    <!--Athorization-->
+    <script src="assets/js/jwt-decode.min.js"></script>
+    <!--jwt decoder script-->
 
-
-<!-- END PAGE SCRIPTS -->
-</body>
+    <!-- END PAGE SCRIPTS -->
+  </body>
 </html>

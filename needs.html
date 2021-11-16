@@ -1,121 +1,192 @@
 <!DOCTYPE html>
 <html class="rtl" lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <meta name="description" content="admin-themes-lab">
-  <meta name="author" content="themes-lab">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <meta name="description" content="admin-themes-lab" />
+    <meta name="author" content="themes-lab" />
 
-  <!--prevent caching-->
-  <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-  <!--theme color-->
-  <meta name="theme-color" content="#FDE1C1" />
+    <!--prevent caching-->
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <!--theme color-->
+    <meta name="theme-color" content="#FDE1C1" />
 
-  <!-- favicon -->
-  <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png">
-  <title>SAY - پنل کاربری مددکار</title>
+    <!-- favicon -->
+    <link
+      rel="shortcut icon"
+      href="assets/images/favicon.png"
+      type="image/png"
+    />
+    <title>SAY - پنل کاربری مددکار</title>
 
-  <!--css files-->
-  <link href="https://fonts.googleapis.com/css?family=Nothing+You+Could+Do" rel="stylesheet" type="text/css">
-  <link href="assets/css/style_4.1.css" rel="stylesheet"> <!-- MANDATORY -->
-  <link href="assets/css/theme.css" rel="stylesheet"> <!-- MANDATORY -->
-  <link href="assets/css/ui.css" rel="stylesheet"> <!-- MANDATORY -->
-  
-  <link href="assets/plugins/datatables/dataTables.min.css" rel="stylesheet">
-  <link href="assets/plugins/input-text/style.min.css" rel="stylesheet">
-  <link href="assets/plugins/dropzone/dropzone.min.css" rel="stylesheet">
+    <!--css files-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Nothing+You+Could+Do"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="assets/css/style_4.1.css" rel="stylesheet" />
+    <!-- MANDATORY -->
+    <link href="assets/css/theme.css" rel="stylesheet" />
+    <!-- MANDATORY -->
+    <link href="assets/css/ui.css" rel="stylesheet" />
+    <!-- MANDATORY -->
 
+    <link
+      href="assets/plugins/datatables/dataTables.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/plugins/input-text/style.min.css" rel="stylesheet" />
+    <link href="assets/plugins/dropzone/dropzone.min.css" rel="stylesheet" />
 
-<link href="../builder/page-builder/plugins/slider-pips/jquery-ui-slider-pips.css" rel="stylesheet">
-  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]-->
-  <script src="assets/plugins/modernizr/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-  <!--[endif]-->
-</head>
-<!-- LAYOUT: Apply "submenu-hover" class to body element to have sidebar submenu show on mouse hover -->
-<!-- LAYOUT: Apply "sidebar-collapsed" class to body element to have collapsed sidebar -->
-<!-- LAYOUT: Apply "sidebar-top" class to body element to have sidebar on top of the page -->
-<!-- LAYOUT: Apply "sidebar-hover" class to body element to show sidebar only when your mouse is on left / right corner -->
-<!-- LAYOUT: Apply "submenu-hover" class to body element to show sidebar submenu on mouse hover -->
-<!-- LAYOUT: Apply "fixed-sidebar" class to body to have fixed sidebar -->
-<!-- LAYOUT: Apply "fixed-topbar" class to body to have fixed topbar -->
-<!-- LAYOUT: Apply "rtl" class to body to put the sidebar on the right side -->
-<!-- LAYOUT: Apply "boxed" class to body to have your page with 1200px max width -->
-<!-- THEME STYLE: Apply "theme-sdtl" for Sidebar Dark / Topbar Light -->
-<!-- THEME STYLE: Apply  "theme sdtd" for Sidebar Dark / Topbar Dark -->
-<!-- THEME STYLE: Apply "theme sltd" for Sidebar Light / Topbar Dark -->
-<!-- THEME STYLE: Apply "theme sltl" for Sidebar Light / Topbar Light -->
-<!-- THEME COLOR: Apply "color-default" for dark color: #2B2E33 -->
-<!-- THEME COLOR: Apply "color-primary" for primary color: #319DB5 -->
-<!-- THEME COLOR: Apply "color-red" for red color: #C9625F -->
-<!-- THEME COLOR: Apply "color-default" for green color: #18A689 -->
-<!-- THEME COLOR: Apply "color-default" for orange color: #B66D39 -->
-<!-- THEME COLOR: Apply "color-default" for purple color: #6E62B5 -->
-<!-- THEME COLOR: Apply "color-default" for blue color: #4A89DC -->
-<!-- BEGIN BODY -->
-<body class="fixed-topbar color-default rtl sidebar-condensed theme-sdtl fixed-sidebar bg-light-dark">
-  <section>
+    <link
+      href="../builder/page-builder/plugins/slider-pips/jquery-ui-slider-pips.css"
+      rel="stylesheet"
+    />
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]-->
+    <script src="assets/plugins/modernizr/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <!--[endif]-->
+  </head>
+  <!-- LAYOUT: Apply "submenu-hover" class to body element to have sidebar submenu show on mouse hover -->
+  <!-- LAYOUT: Apply "sidebar-collapsed" class to body element to have collapsed sidebar -->
+  <!-- LAYOUT: Apply "sidebar-top" class to body element to have sidebar on top of the page -->
+  <!-- LAYOUT: Apply "sidebar-hover" class to body element to show sidebar only when your mouse is on left / right corner -->
+  <!-- LAYOUT: Apply "submenu-hover" class to body element to show sidebar submenu on mouse hover -->
+  <!-- LAYOUT: Apply "fixed-sidebar" class to body to have fixed sidebar -->
+  <!-- LAYOUT: Apply "fixed-topbar" class to body to have fixed topbar -->
+  <!-- LAYOUT: Apply "rtl" class to body to put the sidebar on the right side -->
+  <!-- LAYOUT: Apply "boxed" class to body to have your page with 1200px max width -->
+  <!-- THEME STYLE: Apply "theme-sdtl" for Sidebar Dark / Topbar Light -->
+  <!-- THEME STYLE: Apply  "theme sdtd" for Sidebar Dark / Topbar Dark -->
+  <!-- THEME STYLE: Apply "theme sltd" for Sidebar Light / Topbar Dark -->
+  <!-- THEME STYLE: Apply "theme sltl" for Sidebar Light / Topbar Light -->
+  <!-- THEME COLOR: Apply "color-default" for dark color: #2B2E33 -->
+  <!-- THEME COLOR: Apply "color-primary" for primary color: #319DB5 -->
+  <!-- THEME COLOR: Apply "color-red" for red color: #C9625F -->
+  <!-- THEME COLOR: Apply "color-default" for green color: #18A689 -->
+  <!-- THEME COLOR: Apply "color-default" for orange color: #B66D39 -->
+  <!-- THEME COLOR: Apply "color-default" for purple color: #6E62B5 -->
+  <!-- THEME COLOR: Apply "color-default" for blue color: #4A89DC -->
+  <!-- BEGIN BODY -->
+  <body
+    class="
+      fixed-topbar
+      color-default
+      rtl
+      sidebar-condensed
+      theme-sdtl
+      fixed-sidebar
+      bg-light-dark
+    "
+  >
+    <section>
       <!-- BEGIN SIDEBAR -->
       <div class="sidebar">
-        
         <div class="sidebar-inner">
           <div class="sidebar-top">
-            <form action="#" method="post" class="searchform" id="search-results">
-              <input type="text" class="form-control" name="keyword" placeholder="Search here...">
+            <form
+              action="#"
+              method="post"
+              class="searchform"
+              id="search-results"
+            >
+              <input
+                type="text"
+                class="form-control"
+                name="keyword"
+                placeholder="Search here..."
+              />
             </form>
             <div class="userlogged clearfix">
               <i class="icon icons-faces-users-02"></i>
               <div class="user-details">
                 <h4 class="user_fullName"></h4>
                 <div class="user-login">
-                  <a href="profile.html"><button class="btn btn-xs btn-rounded" type="button">
-                    <span>پروفایل کاربری</span>
-                  </button></a>
+                  <a href="profile.html"
+                    ><button class="btn btn-xs btn-rounded" type="button">
+                      <span>پروفایل کاربری</span>
+                    </button></a
+                  >
                 </div>
               </div>
             </div>
           </div>
           <ul class="nav nav-sidebar">
-            <li class="tm"><a href="dashboard.html"><i class="icon-home"></i><span>داشبورد</span></a></li>
-            <li class="tm"><a href="children.html"><i class="fa fa-child"></i><span>کودکان من</span></a></li>
-            <li class="tm nav-active active"><a href="needs.html"><i class="fa fa-heart-o"></i><span>نیازها</span></a></li>
-            <li class="tm privilege1"><a href="reports.html"><i class="fa icon-bar-chart"></i><span>گزارش</span></a></li>
-            <li class="tm privilege1"><a href="social_worker.html"><i class="fa icon-users"></i><span>مددکاران</span></a></li>
-            
+            <li class="tm">
+              <a href="dashboard.html"
+                ><i class="icon-home"></i><span>داشبورد</span></a
+              >
+            </li>
+            <li class="tm">
+              <a href="children.html"
+                ><i class="fa fa-child"></i><span>کودکان من</span></a
+              >
+            </li>
+            <li class="tm nav-active active">
+              <a href="needs.html"
+                ><i class="fa fa-heart-o"></i><span>نیازها</span></a
+              >
+            </li>
+            <li class="tm privilege1">
+              <a href="reports.html"
+                ><i class="fa icon-bar-chart"></i><span>گزارش</span></a
+              >
+            </li>
+            <li class="tm privilege1">
+              <a href="social_worker.html"
+                ><i class="fa icon-users"></i><span>مددکاران</span></a
+              >
+            </li>
+
             <li class="tm nav-parent privilege1">
-              <a href=""><i class="fa fa-edit"></i><span>تنظیمات</span> <span class="fa arrow"></span></a>
+              <a href=""
+                ><i class="fa fa-edit"></i><span>تنظیمات</span>
+                <span class="fa arrow"></span
+              ></a>
               <ul class="children collapse">
                 <li><a href="needcat.html">دسته بندی</a></li>
                 <li><a href="ngo.html">انجمن</a></li>
               </ul>
             </li>
-            
           </ul>
-          
+
           <div class="sidebar-footer clearfix">
-            <a class="pull-left btn-effect logout" href="#" data-modal="modal-1" data-rel="tooltip" data-placement="top" data-original-title="خروج از حساب">
-            <i class="icon-power"></i></a>
+            <a
+              class="pull-left btn-effect logout"
+              href="#"
+              data-modal="modal-1"
+              data-rel="tooltip"
+              data-placement="top"
+              data-original-title="خروج از حساب"
+            >
+              <i class="icon-power"></i
+            ></a>
           </div>
-  
         </div>
-        </div>
-        <!-- END SIDEBAR -->
-        <div class="main-content">
-          <!-- BEGIN TOPBAR -->
-          <div class="topbar">
-            <div class="header-left">
-              <div class="topnav">
-                <a class="menutoggle" href="#" data-toggle="sidebar-collapsed"><span class="menu__handle"><span>Menu</span></span></a>
-             </div>
+      </div>
+      <!-- END SIDEBAR -->
+      <div class="main-content">
+        <!-- BEGIN TOPBAR -->
+        <div class="topbar">
+          <div class="header-left">
+            <div class="topnav">
+              <a class="menutoggle" href="#" data-toggle="sidebar-collapsed"
+                ><span class="menu__handle"><span>Menu</span></span></a
+              >
             </div>
-  
-            <div class="header-right">
-              <div class="logopanel">
-                <h1><a class="SAYSite" target="_blank"></a></h1>
-              </div>
+          </div>
+
+          <div class="header-right">
+            <div class="logopanel">
+              <h1><a class="SAYSite" target="_blank"></a></h1>
             </div>
+          </div>
           <!-- header-right -->
         </div>
         <!-- END TOPBAR -->
@@ -123,40 +194,62 @@
         <!--say changes-->
         <div class="page-content">
           <div class="custom-page text-center">
-                <div class="header">
-                    <div class="breadcrumb-wrapper">
-                        <ol class="breadcrumb">
-                            <li><a href="dashboard.html">صفحه اصلی</a>
-                            </li>
-                            <li class="active">نیازها</li>
-                        </ol>
-                    </div>
-                </div>
+            <div class="header">
+              <div class="breadcrumb-wrapper">
+                <ol class="breadcrumb">
+                  <li><a href="dashboard.html">صفحه اصلی</a></li>
+                  <li class="active">نیازها</li>
+                </ol>
+              </div>
+            </div>
             <h2 class="m-b-20 w-500">نیازها</h2>
-            
+
             <div class="row">
               <div class="btn-group col-md-12 col-sm-12 col-xs-12">
-                <button id="needTableNew" class="btn btn-primary btn-square h-50"><i class="fa fa-plus"></i> اضافه کردن نیاز جدید</button>
+                <button
+                  id="needTableNew"
+                  class="btn btn-primary btn-square h-50"
+                >
+                  <i class="fa fa-plus"></i> اضافه کردن نیاز جدید
+                </button>
               </div>
             </div>
 
             <div class="panel panel-default no-bd" id="receiptForm">
               <div class="panel-header bg-dark panel-controls">
-                <h3 class="panel-title">فرم<strong> رسید</strong><img class="preloader" id="need_form_preloader" src="assets/images/preloader/25.gif"/></h3>
-                
+                <h3 class="panel-title">
+                  فرم<strong> رسید</strong
+                  ><img
+                    class="preloader"
+                    id="need_form_preloader"
+                    src="assets/images/preloader/25.gif"
+                  />
+                </h3>
               </div>
               <div class="panel-content bg-white">
                 <div class="row">
                   <div class="col-md-12 col-sm-12 col-xs-12">
-                    <form role="form" id="receipt_form" method="POST" enctype="multipart/form-data">
+                    <form
+                      role="form"
+                      id="receipt_form"
+                      method="POST"
+                      enctype="multipart/form-data"
+                    >
                       <div class="row">
-
                         <div class="col-md-4 col-sm-6 h-100">
                           <div class="form-group">
-                            <label for="r_child_id" class="control-label">کودک</label>
+                            <label for="r_child_id" class="control-label"
+                              >کودک</label
+                            >
                             <div class="option-group">
-                              <select id="r_child_id" name="r_child_id" class="form-control">
-                                <option value="">کودک مورد نظر را انتخاب کنید</option>
+                              <select
+                                id="r_child_id"
+                                name="r_child_id"
+                                class="form-control"
+                              >
+                                <option value="">
+                                  کودک مورد نظر را انتخاب کنید
+                                </option>
                               </select>
                             </div>
                           </div>
@@ -164,9 +257,17 @@
 
                         <div class="col-md-4 col-sm-6 h-100">
                           <div class="form-group">
-                            <label for="r_need_name_fa" class="control-label">نام فارسی نیاز</label>
+                            <label for="r_need_name_fa" class="control-label"
+                              >نام فارسی نیاز</label
+                            >
                             <div class="append-icon">
-                              <input type="text" id="r_need_name_fa" name="r_need_name_fa" class="form-control" placeholder="نام فارسی نیاز را وارد نمایید" />
+                              <input
+                                type="text"
+                                id="r_need_name_fa"
+                                name="r_need_name_fa"
+                                class="form-control"
+                                placeholder="نام فارسی نیاز را وارد نمایید"
+                              />
                               <i class="icon-heart"></i>
                             </div>
                           </div>
@@ -174,52 +275,109 @@
 
                         <div class="col-md-4 col-sm-6 h-100">
                           <div class="form-group">
-                            <label for="r_receipt_code" class="control-label">کد رسید</label>
-                            <input type="text" id="r_receipt_code" name="r_receipt_code" class="form-control static" placeholder="کد رسید" />
+                            <label for="r_receipt_code" class="control-label"
+                              >کد رسید</label
+                            >
+                            <input
+                              type="text"
+                              id="r_receipt_code"
+                              name="r_receipt_code"
+                              class="form-control static"
+                              placeholder="کد رسید"
+                            />
                           </div>
                         </div>
 
                         <div class="col-md-4 col-sm-6 h-100">
                           <div class="form-group">
-                            <label class="control-label" for="r_need_receipts">رسید پرداخت <span class="required">*</span></label>
+                            <label class="control-label" for="r_need_receipts"
+                              >رسید پرداخت
+                              <span class="required">*</span></label
+                            >
                             <div class="file">
-                              <span class="file-button btn-primary">انتخاب عکس</span>
-                              <input type="file" class="custom-file static" name="r_need_receipts[]" id="r_need_receipts" multiple="multiple" onchange="document.getElementById('r_need_receipts_uploader').value = this.value;" />
-                              <input type="text" class="form-control static" id="r_need_receipts_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="" />
+                              <span class="file-button btn-primary"
+                                >انتخاب عکس</span
+                              >
+                              <input
+                                type="file"
+                                class="custom-file static"
+                                name="r_need_receipts[]"
+                                id="r_need_receipts"
+                                multiple="multiple"
+                                onchange="document.getElementById('r_need_receipts_uploader').value = this.value;"
+                              />
+                              <input
+                                type="text"
+                                class="form-control static"
+                                id="r_need_receipts_uploader"
+                                placeholder="هیج فایلی انتخاب نشده است"
+                                readonly=""
+                              />
                             </div>
                           </div>
                         </div>
 
                         <div class="col-md-4 col-sm-6 h-100">
                           <div class="form-group">
-                            <label for="r_receipt_title" class="control-label">عنوان رسید <span class="required">*</span></label>
-                            <input type="text" id="r_receipt_title" name="r_receipt_title" class="form-control static" placeholder="عنوان رسید" />
+                            <label for="r_receipt_title" class="control-label"
+                              >عنوان رسید <span class="required">*</span></label
+                            >
+                            <input
+                              type="text"
+                              id="r_receipt_title"
+                              name="r_receipt_title"
+                              class="form-control static"
+                              placeholder="عنوان رسید"
+                            />
                           </div>
                         </div>
 
                         <div class="col-md-4 col-sm-6 h-100">
                           <div class="form-group">
-                            <label for="r_receipt_description" class="control-label">توضیحات رسید</label>
-                            <textarea name="r_receipt_description" id="r_receipt_description" rows="2" class="form-control static" placeholder="توضیحات رسید"></textarea>
+                            <label
+                              for="r_receipt_description"
+                              class="control-label"
+                              >توضیحات رسید</label
+                            >
+                            <textarea
+                              name="r_receipt_description"
+                              id="r_receipt_description"
+                              rows="2"
+                              class="form-control static"
+                              placeholder="توضیحات رسید"
+                            ></textarea>
                           </div>
                         </div>
-
                       </div>
 
-                      <div class="text-center  m-t-20">
-                        
-                        <button type="submit" class="btn btn-embossed btn-primary" id="addReceipt">افزودن رسید</button>
-                        <button type="submit" class="btn btn-embossed btn-primary" id="editReceipt">ویرایش رسید</button>
-                        
-                        <div class="alert alert-danger dis-none" role="alert"></div>
+                      <div class="text-center m-t-20">
+                        <button
+                          type="submit"
+                          class="btn btn-embossed btn-primary"
+                          id="addReceipt"
+                        >
+                          افزودن رسید
+                        </button>
+                        <button
+                          type="submit"
+                          class="btn btn-embossed btn-primary"
+                          id="editReceipt"
+                        >
+                          ویرایش رسید
+                        </button>
+
+                        <div
+                          class="alert alert-danger dis-none"
+                          role="alert"
+                        ></div>
                       </div>
                     </form>
                   </div>
                 </div>
-                <hr >
+                <hr />
                 <div class="row">
                   <h4 class="text-center">رسیدهای نیاز</h4>
-                  <div class="panel-content bg-white">                  
+                  <div class="panel-content bg-white">
                     <table class="table table-hover table-striped dataTable">
                       <thead>
                         <tr>
@@ -237,379 +395,696 @@
                 </div>
               </div>
             </div>
-              
+
             <div class="panel panel-default no-bd" id="needForm">
-                <div class="panel-header bg-dark panel-controls">
-                  <h3 class="panel-title">فرم<strong> نیازها</strong><img class="preloader" id="need_form_preloader" src="assets/images/preloader/25.gif"/></h3>
-                  
-                </div>
-                <div class="panel-content bg-white">
-                  <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                      <form role="form" id="need_form" method="POST" enctype="multipart/form-data">
-                        <div class="row">
-
-                          <div class="col-sm-12" id="pre_need">
-                            <div class="form-group">
-                              <label for="pre_need_id" class="control-label">نیاز</label>
-                              <div class="option-group">
-                                <select id="pre_need_id" name="pre_need_id" class="form-control" data-search="true">
-                                  <option value="">نیاز پیش‌فرض مورد نظر را انتخاب کنید</option>
-                                </select>
-                              </div>
+              <div class="panel-header bg-dark panel-controls">
+                <h3 class="panel-title">
+                  فرم<strong> نیازها</strong
+                  ><img
+                    class="preloader"
+                    id="need_form_preloader"
+                    src="assets/images/preloader/25.gif"
+                  />
+                </h3>
+              </div>
+              <div class="panel-content bg-white">
+                <div class="row">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <form
+                      role="form"
+                      id="need_form"
+                      method="POST"
+                      enctype="multipart/form-data"
+                    >
+                      <div class="row">
+                        <div class="col-sm-12" id="pre_need">
+                          <div class="form-group">
+                            <label for="pre_need_id" class="control-label"
+                              >نیاز</label
+                            >
+                            <div class="option-group">
+                              <select
+                                id="pre_need_id"
+                                name="pre_need_id"
+                                class="form-control"
+                                data-search="true"
+                              >
+                                <option value="">
+                                  نیاز پیش‌فرض مورد نظر را انتخاب کنید
+                                </option>
+                              </select>
                             </div>
                           </div>
-                          
-                          <div class="col-md-4 col-sm-6 h-100">
-                            <div class="form-group">
-                              <label for="child_id" class="control-label">کودک <span class="required">*</span></label>
-                              <div class="option-group">
-                                <select id="child_id" name="child_id" class="form-control" data-search="true">
-                                  <option value="">کودک مورد نظر را انتخاب کنید</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                          
-                          <!-- Farsi -->
-                          <div class="col-md-4 col-sm-6 h-100">
-                            <div class="form-group">
-                              <label for="need_name_fa" class="control-label">نام فارسی نیاز <span class="required">*</span></label>
-                              <div class="append-icon">
-                                <input type="text" id="need_name_fa" name="need_name_fa" class="form-control static" placeholder="نام فارسی نیاز را وارد نمایید" />
-                                <i class="icon-heart"></i>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="col-md-4 col-sm-6 h-100">
-                            <div class="form-group">
-                              <label for="need_name" class="control-label">نام انگلیسی نیاز <span class="required">*</span></label>
-                              <div class="append-icon">
-                                <input type="text" id="need_name" name="need_name" class="form-control static" placeholder="نام انگلیسی نیاز را وارد نمایید" />
-                                <i class="icon-heart"></i>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="col-md-4 col-sm-6 h-100">
-                            <div class="form-group">
-                              <label for="need_type" class="control-label"> نوع نیاز <span class="required">*</span></label>
-                              <div class="option-group">
-                                <select id="need_type" name="need_type" class="form-control static">
-                                  <option value="">نوع نیاز را انتخاب کنید</option>
-                                  <option value="0">Service</option>
-                                  <option value="1">Product</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="col-md-4 col-sm-6 h-100">
-                            <div class="form-group">
-                              <label for="need_category" class="control-label">دسته‌بندی <span class="required">*</span></label>
-                              <div class="option-group">
-                                <select id="need_category" name="need_category" class="form-control static">
-                                  <option value="">دسته مورد نظر را انتخاب کنید</option>
-                                  <option value="0">Growth</option>
-                                  <option value="1">Joy</option>
-                                  <option value="2">Health</option>
-                                  <option value="3">Surroundings</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="col-md-4 col-sm-6 h-100">
-                            <div class="form-group">
-                              <label for="need_cost" class="control-label">هزینه نیاز (تومان) <span class="required">*</span></label>
-                              <div class="append-icon">
-                                <input type="text" id="need_cost" name="need_cost" class="form-control cost static" placeholder="هزینه نیاز را وارد نمایید - تومان" />
-                                <i class="icon-tag"></i>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="col-md-4 col-sm-6 h-100">
-                            <div class="form-group">
-                              <label for="affiliate_link" class="control-label">لینک affiliate خرید کالا</label>
-                              <div class="append-icon">
-                                <input type="text" id="affiliate_link" name="affiliate_link" class="form-control static" placeholder="لینک affiliate خرید کالا را وارد نمایید" />
-                                <i class="icon-globe"></i>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="col-md-4 col-sm-6 h-100">
-                            <div class="form-group">
-                              <label for="direct_link" class="control-label">لینک مستقیم خرید کالا</label>
-                              <div class="append-icon">
-                                <input type="text" id="direct_link" name="direct_link" class="form-control static" placeholder="لینک مستقیم خرید کالا را وارد نمایید" />
-                                <i class="icon-globe"></i>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="col-md-4 col-sm-6 h-100">
-                            <div class="form-group">
-                              <label for="need_doing_duration" class="control-label">مدت زمان انجام (روز)</label>
-                              <div class="append-icon">
-                                <input type="text" id="need_doing_duration" name="need_doing_duration" class="form-control static" placeholder="مدت زمان انجام نیاز را وارد نمایید - روز" />
-                                <i class="icon-clock"></i>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="col-md-4 col-sm-6 h-100">
-                            <div class="form-group">
-                              <label class="control-label" for="need_icon">آیکون نیاز</label>
-                              <div class="file">
-                                <span class="file-button btn-primary">انتخاب عکس</span>
-                                <input type="file" class="custom-file static" name="need_icon[]" id="need_icon" onchange="document.getElementById('need_icon_uploader').value = this.value;" />
-                                <input type="text" class="form-control static" id="need_icon_uploader" placeholder="هیج فایلی انتخاب نشده است" readonly="" />
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="col-md-4 col-sm-6 h-100">
-                            <div class="form-group">
-                              <label for="need_details" class="control-label">یادداشت مددکار <small class="c-orange">(نمایش در اپلیکیشن)</small></label>
-                              <textarea name="need_details" id="need_details" rows="2" class="form-control static" placeholder="یادداشت مددکار"></textarea>
-                            </div>
-                          </div>
-
-                          <div class="col-md-4 col-sm-6 h-100">
-                            <div class="form-group">
-                              <label for="need_informations" class="control-label">اطلاعات ضروری</label>
-                              <textarea name="need_informations" id="need_informations" rows="2" class="form-control static" placeholder="اطلاعات ضروری مورد نیاز هنگام خرید"></textarea>
-                            </div>
-                          </div>
-
-                          <!-- Farsi -->
-                          <div class="col-sm-6">
-                            <div class="form-group">
-                              <label for="need_description_fa" class="control-label">شرح فارسی نیاز <span class="required">*</span></label>
-                              <textarea name="need_description_fa" id="need_description_fa" rows="2" class="form-control static" placeholder="شرح فارسی نیاز را وارد نمایید"></textarea>
-                            </div>
-                          </div>
-
-                          <div class="col-sm-6">
-                            <div class="form-group">
-                              <label for="need_description" class="control-label">شرح انگلیسی نیاز <span class="required">*</span></label>
-                              <textarea name="need_description" id="need_description" rows="2" class="form-control textarea_en static" placeholder="شرح انگلیسی نیاز را وارد نمایید"></textarea>
-                            </div>
-                          </div>
-                          
-                          <!-- Option input -->
-                          <div class="col-md-4 col-sm-6 h-100">
-                            <div class="form-group">
-                              <label for="is_urgent" class="control-label"> نیاز ضروری است؟</label>
-                              <div class="option-group">
-                                <select id="is_urgent" name="is_urgent" class="form-control static">
-                                  <option value="false">خیر</option>
-                                  <option value="true">بله</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="col-md-4 col-sm-6" hidden>
-                            <div class="form-group">
-                              <label for="product_need_status" class="control-label">وضعیت نیاز</label>
-                              <div class="option-group">
-                                <select id="product_need_status" name="product_need_status" class="form-control">
-                                  <option value="">وضعیت نیاز را انتخاب کنید</option>
-                                  <option value="3">Product purchased</option>
-                                  <option value="4">NGO received the product</option>
-                                  <option value="5">Delivered to the child</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="col-md-4 col-sm-6" hidden>
-                            <div class="form-group">
-                              <label for="service_need_status" class="control-label">وضعیت نیاز</label>
-                              <div class="option-group">
-                                <select id="service_need_status" name="service_need_status" class="form-control">
-                                  <option value="">وضعیت نیاز را انتخاب کنید</option>
-                                  <option value="3">NGO received the payment</option>
-                                  <option value="4">Service is available for the child</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-
                         </div>
 
-                        <div class="text-center  m-t-20">
-                          <button type="submit" class="btn btn-embossed btn-primary" id="editNeedData">ویرایش نیاز</button>
-                          <button type="submit" class="btn btn-embossed btn-primary" id="sendNeedData">افزودن نیاز</button>
-                          <button type="reset" class="cancel btn btn-embossed btn-default m-b-10 m-r-0">پاک کردن فرم</button>
-                          <div class="alert alert-danger dis-none" role="alert"></div>
+                        <div class="col-md-4 col-sm-6 h-100">
+                          <div class="form-group">
+                            <label for="child_id" class="control-label"
+                              >کودک <span class="required">*</span></label
+                            >
+                            <div class="option-group">
+                              <select
+                                id="child_id"
+                                name="child_id"
+                                class="form-control"
+                                data-search="true"
+                              >
+                                <option value="">
+                                  کودک مورد نظر را انتخاب کنید
+                                </option>
+                              </select>
+                            </div>
+                          </div>
                         </div>
-                      </form>
-                    </div>
+
+                        <!-- Farsi -->
+                        <div class="col-md-4 col-sm-6 h-100">
+                          <div class="form-group">
+                            <label for="need_name_fa" class="control-label"
+                              >نام فارسی نیاز
+                              <span class="required">*</span></label
+                            >
+                            <div class="append-icon">
+                              <input
+                                type="text"
+                                id="need_name_fa"
+                                name="need_name_fa"
+                                class="form-control static"
+                                placeholder="نام فارسی نیاز را وارد نمایید"
+                              />
+                              <i class="icon-heart"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 h-100">
+                          <div class="form-group">
+                            <label for="need_name" class="control-label"
+                              >نام انگلیسی نیاز
+                              <span class="required">*</span></label
+                            >
+                            <div class="append-icon">
+                              <input
+                                type="text"
+                                id="need_name"
+                                name="need_name"
+                                class="form-control static"
+                                placeholder="نام انگلیسی نیاز را وارد نمایید"
+                              />
+                              <i class="icon-heart"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 h-100">
+                          <div class="form-group">
+                            <label for="need_type" class="control-label">
+                              نوع نیاز <span class="required">*</span></label
+                            >
+                            <div class="option-group">
+                              <select
+                                id="need_type"
+                                name="need_type"
+                                class="form-control static"
+                              >
+                                <option value="">
+                                  نوع نیاز را انتخاب کنید
+                                </option>
+                                <option value="0">Service</option>
+                                <option value="1">Product</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 h-100">
+                          <div class="form-group">
+                            <label for="need_category" class="control-label"
+                              >دسته‌بندی <span class="required">*</span></label
+                            >
+                            <div class="option-group">
+                              <select
+                                id="need_category"
+                                name="need_category"
+                                class="form-control static"
+                              >
+                                <option value="">
+                                  دسته مورد نظر را انتخاب کنید
+                                </option>
+                                <option value="0">Growth</option>
+                                <option value="1">Joy</option>
+                                <option value="2">Health</option>
+                                <option value="3">Surroundings</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 h-100">
+                          <div class="form-group">
+                            <label for="need_cost" class="control-label"
+                              >هزینه نیاز (تومان)
+                              <span class="required">*</span></label
+                            >
+                            <div class="append-icon">
+                              <input
+                                type="text"
+                                id="need_cost"
+                                name="need_cost"
+                                class="form-control cost static"
+                                placeholder="هزینه نیاز را وارد نمایید - تومان"
+                              />
+                              <i class="icon-tag"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 h-100">
+                          <div class="form-group">
+                            <label for="affiliate_link" class="control-label"
+                              >لینک affiliate خرید کالا</label
+                            >
+                            <div class="append-icon">
+                              <input
+                                type="text"
+                                id="affiliate_link"
+                                name="affiliate_link"
+                                class="form-control static"
+                                placeholder="لینک affiliate خرید کالا را وارد نمایید"
+                              />
+                              <i class="icon-globe"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 h-100">
+                          <div class="form-group">
+                            <label for="direct_link" class="control-label"
+                              >لینک مستقیم خرید کالا</label
+                            >
+                            <div class="append-icon">
+                              <input
+                                type="text"
+                                id="direct_link"
+                                name="direct_link"
+                                class="form-control static"
+                                placeholder="لینک مستقیم خرید کالا را وارد نمایید"
+                              />
+                              <i class="icon-globe"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 h-100">
+                          <div class="form-group">
+                            <label
+                              for="need_doing_duration"
+                              class="control-label"
+                              >مدت زمان انجام (روز)</label
+                            >
+                            <div class="append-icon">
+                              <input
+                                type="text"
+                                id="need_doing_duration"
+                                name="need_doing_duration"
+                                class="form-control static"
+                                placeholder="مدت زمان انجام نیاز را وارد نمایید - روز"
+                              />
+                              <i class="icon-clock"></i>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 h-100">
+                          <div class="form-group">
+                            <label class="control-label" for="need_icon"
+                              >آیکون نیاز</label
+                            >
+                            <div class="file">
+                              <span class="file-button btn-primary"
+                                >انتخاب عکس</span
+                              >
+                              <input
+                                type="file"
+                                class="custom-file static"
+                                name="need_icon[]"
+                                id="need_icon"
+                                onchange="document.getElementById('need_icon_uploader').value = this.value;"
+                              />
+                              <input
+                                type="text"
+                                class="form-control static"
+                                id="need_icon_uploader"
+                                placeholder="هیج فایلی انتخاب نشده است"
+                                readonly=""
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 h-100">
+                          <div class="form-group">
+                            <label for="need_details" class="control-label"
+                              >یادداشت مددکار
+                              <small class="c-orange"
+                                >(نمایش در اپلیکیشن)</small
+                              ></label
+                            >
+                            <textarea
+                              name="need_details"
+                              id="need_details"
+                              rows="2"
+                              class="form-control static"
+                              placeholder="یادداشت مددکار"
+                            ></textarea>
+                          </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 h-100">
+                          <div class="form-group">
+                            <label for="need_informations" class="control-label"
+                              >اطلاعات ضروری</label
+                            >
+                            <textarea
+                              name="need_informations"
+                              id="need_informations"
+                              rows="2"
+                              class="form-control static"
+                              placeholder="اطلاعات ضروری مورد نیاز هنگام خرید"
+                            ></textarea>
+                          </div>
+                        </div>
+
+                        <!-- Farsi -->
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label
+                              for="need_description_fa"
+                              class="control-label"
+                              >شرح فارسی نیاز
+                              <span class="required">*</span></label
+                            >
+                            <textarea
+                              name="need_description_fa"
+                              id="need_description_fa"
+                              rows="2"
+                              class="form-control static"
+                              placeholder="شرح فارسی نیاز را وارد نمایید"
+                            ></textarea>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label for="need_description" class="control-label"
+                              >شرح انگلیسی نیاز
+                              <span class="required">*</span></label
+                            >
+                            <textarea
+                              name="need_description"
+                              id="need_description"
+                              rows="2"
+                              class="form-control textarea_en static"
+                              placeholder="شرح انگلیسی نیاز را وارد نمایید"
+                            ></textarea>
+                          </div>
+                        </div>
+
+                        <!-- Option input -->
+                        <div class="col-md-4 col-sm-6 h-100">
+                          <div class="form-group">
+                            <label for="is_urgent" class="control-label">
+                              نیاز ضروری است؟</label
+                            >
+                            <div class="option-group">
+                              <select
+                                id="is_urgent"
+                                name="is_urgent"
+                                class="form-control static"
+                              >
+                                <option value="false">خیر</option>
+                                <option value="true">بله</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6" hidden>
+                          <div class="form-group">
+                            <label
+                              for="product_need_status"
+                              class="control-label"
+                              >وضعیت نیاز</label
+                            >
+                            <div class="option-group">
+                              <select
+                                id="product_need_status"
+                                name="product_need_status"
+                                class="form-control"
+                              >
+                                <option value="">
+                                  وضعیت نیاز را انتخاب کنید
+                                </option>
+                                <option value="3">Product purchased</option>
+                                <option value="4">
+                                  NGO received the product
+                                </option>
+                                <option value="5">
+                                  Delivered to the child
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6" hidden>
+                          <div class="form-group">
+                            <label
+                              for="service_need_status"
+                              class="control-label"
+                              >وضعیت نیاز</label
+                            >
+                            <div class="option-group">
+                              <select
+                                id="service_need_status"
+                                name="service_need_status"
+                                class="form-control"
+                              >
+                                <option value="">
+                                  وضعیت نیاز را انتخاب کنید
+                                </option>
+                                <option value="3">
+                                  NGO received the payment
+                                </option>
+                                <option value="4">
+                                  Service is available for the child
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="text-center m-t-20">
+                        <button
+                          type="submit"
+                          class="btn btn-embossed btn-primary"
+                          id="editNeedData"
+                        >
+                          ویرایش نیاز
+                        </button>
+                        <button
+                          type="submit"
+                          class="btn btn-embossed btn-primary"
+                          id="sendNeedData"
+                        >
+                          افزودن نیاز
+                        </button>
+                        <button
+                          type="reset"
+                          class="
+                            cancel
+                            btn btn-embossed btn-default
+                            m-b-10 m-r-0
+                          "
+                        >
+                          پاک کردن فرم
+                        </button>
+                        <div
+                          class="alert alert-danger dis-none"
+                          role="alert"
+                        ></div>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
+            </div>
 
-              <div class="panel panel-default no-bd">
-                <div class="panel-header bg-dark panel-controls">
-                  <h3 class="panel-title">لیست<strong> نیازها</strong><span class="total_count"></span><img class="preloader" id="needs_preloader" src="assets/images/preloader/25.gif"/></h3>
-                </div>
-
-                <div class="option-group btn-group center-block col-md-12 col-sm-12 col-xs-12">
-                    <select id="child_need_select" name="child_need_select" class="btn btn-sm btn-dark btn-block col-md-4 col-sm-5 pull-left select_btn" data-search="true">
-                        <option value="">انتخاب کودک...</option>
-                    </select>
-                    <select id="need_confirm_status" name="need_confirm_status" class="btn btn-sm btn-dark btn-block col-md-3 col-sm-3 col-xs-12 pull-right need_filter privilege1 select_btn">
-                        <option value="">وضعیت تایید...</option>
-                        <option value="false">تایید نشده‌ها</option>
-                        <option value="true">تایید شده‌ها</option>
-                    </select>
-                    <select id="need_ngo" name="need_ngo" class="btn btn-sm btn-dark btn-block col-md-3 col-sm-3 col-xs-12 pull-right report_filter privilege1 select_btn">
-                        <option value="">انتخاب انجمن...</option>
-                    </select>
-                </div>
-                <div class="panel-content bg-white">                  
-                  <table class="table table-hover table-striped dataTable" id="table-editable">
-                      <thead>
-                        <tr>
-                          <th>ردیف</th>
-                          <th class="text-right">عملیات</th>
-                          <th class="medium_th">SAY name کودک</th>
-                          <th>نام انگلیسی نیاز</th>
-                          <th class="medium_th">نام فارسی نیاز</th>
-                          <th class="medium_th">عنوان نیاز</th>
-                          <th class="medium_th">آیکون نیاز</th>
-                          <th>هزینه نیاز</th>
-                          <th class="medium_th">میزان پرداخت شده</th>
-                          <th>میزان پیشرفت</th>
-                          <th>وضعیت نیاز</th>
-                          <th>نوع نیاز</th>
-                          <th class="wide_th">اطلاعات ضروری</th>
-                          <th class="wide_th">یادداشت مددکار</th>
-                          <th>ضروری</th>
-                          <th>دسته‌بندی</th>
-                          <th class="wide_th">توضیحات انگلیسی نیاز</th>
-                          <th class="wide_th">توضیحات فارسی نیاز</th>
-                          <th>مدت زمان انجام</th>
-                          <th class="medium_th">لینک affiliate خرید کالا</th>
-                          <th class="medium_th">لینک مستقیم خرید کالا</th>
-                          <th class="medium_th">تاریخ ایجاد</th>
-                          <th>وضعیت تایید</th>
-                          <th>تایید کننده</th>
-                          <th class="medium_th">تاریخ تایید</th>
-                          <th class="medium_th">تاریخ آخرین ویرایش</th>
-
-                        </tr>
-                      </thead>
-                      <tbody id="needList">
-
-                      </tbody>
-                  </table>
-                </div>
+            <div class="panel panel-default no-bd">
+              <div class="panel-header bg-dark panel-controls">
+                <h3 class="panel-title">
+                  لیست<strong> نیازها</strong><span class="total_count"></span
+                  ><img
+                    class="preloader"
+                    id="needs_preloader"
+                    src="assets/images/preloader/25.gif"
+                  />
+                </h3>
               </div>
-            
+
+              <div
+                class="
+                  option-group
+                  btn-group
+                  center-block
+                  col-md-12 col-sm-12 col-xs-12
+                "
+              >
+                <select
+                  id="child_need_select"
+                  name="child_need_select"
+                  class="
+                    btn btn-sm btn-dark btn-block
+                    col-md-4 col-sm-5
+                    pull-left
+                    select_btn
+                  "
+                  data-search="true"
+                >
+                  <option value="">انتخاب کودک...</option>
+                </select>
+                <select
+                  id="need_confirm_status"
+                  name="need_confirm_status"
+                  class="
+                    btn btn-sm btn-dark btn-block
+                    col-md-3 col-sm-3 col-xs-12
+                    pull-right
+                    need_filter
+                    privilege1
+                    select_btn
+                  "
+                >
+                  <option value="">وضعیت تایید...</option>
+                  <option value="false">تایید نشده‌ها</option>
+                  <option value="true">تایید شده‌ها</option>
+                </select>
+                <select
+                  id="need_ngo"
+                  name="need_ngo"
+                  class="
+                    btn btn-sm btn-dark btn-block
+                    col-md-3 col-sm-3 col-xs-12
+                    pull-right
+                    report_filter
+                    privilege1
+                    select_btn
+                  "
+                >
+                  <option value="">انتخاب انجمن...</option>
+                </select>
+              </div>
+              <div class="panel-content bg-white">
+                <table
+                  class="table table-hover table-striped dataTable"
+                  id="table-editable"
+                >
+                  <thead>
+                    <tr>
+                      <th>ردیف</th>
+                      <th class="text-right">عملیات</th>
+                      <th class="medium_th">SAY name کودک</th>
+                      <th>نام انگلیسی نیاز</th>
+                      <th class="medium_th">نام فارسی نیاز</th>
+                      <th class="medium_th">عنوان نیاز</th>
+                      <th class="medium_th">آیکون نیاز</th>
+                      <th>هزینه نیاز</th>
+                      <th class="medium_th">میزان پرداخت شده</th>
+                      <th>میزان پیشرفت</th>
+                      <th>وضعیت نیاز</th>
+                      <th>نوع نیاز</th>
+                      <th class="wide_th">اطلاعات ضروری</th>
+                      <th class="wide_th">یادداشت مددکار</th>
+                      <th>ضروری</th>
+                      <th>دسته‌بندی</th>
+                      <th class="wide_th">توضیحات انگلیسی نیاز</th>
+                      <th class="wide_th">توضیحات فارسی نیاز</th>
+                      <th>مدت زمان انجام</th>
+                      <th class="medium_th">لینک affiliate خرید کالا</th>
+                      <th class="medium_th">لینک مستقیم خرید کالا</th>
+                      <th class="medium_th">تاریخ ایجاد</th>
+                      <th>وضعیت تایید</th>
+                      <th>تایید کننده</th>
+                      <th class="medium_th">تاریخ تایید</th>
+                      <th class="medium_th">تاریخ آخرین ویرایش</th>
+                    </tr>
+                  </thead>
+                  <tbody id="needList"></tbody>
+                </table>
+              </div>
+            </div>
           </div>
           <div class="footer">
             <div class="copyright">
-              <p class="pull-left sm-pull-reset"> <span>کلیه حق و حقوق این سایت متعلق به تیم SAY می باشد. </span> </p>
-              <p class="pull-right sm-pull-reset"> <span><a href="#" class="m-r-10">پشتیبانی</a> | <a href="#" class="m-l-10 m-r-10">شرایط استفاده</a> | <a href="#" class="m-l-10">حریم خصوصی</a></span> </p>
+              <p class="pull-left sm-pull-reset">
+                <span>کلیه حق و حقوق این سایت متعلق به تیم SAY می باشد. </span>
+              </p>
+              <p class="pull-right sm-pull-reset">
+                <span
+                  ><a href="#" class="m-r-10">پشتیبانی</a> |
+                  <a href="#" class="m-l-10 m-r-10">شرایط استفاده</a> |
+                  <a href="#" class="m-l-10">حریم خصوصی</a></span
+                >
+              </p>
             </div>
           </div>
-      </div>
-        
-      <!-- END PAGE CONTENT -->
+        </div>
+
+        <!-- END PAGE CONTENT -->
       </div>
       <!-- END MAIN CONTENT -->
     </section>
 
-<!-- Preloader -->
-<div class="loader-overlay">
-  <div class="spinner">
-    <div class="bounce1"></div>
-    <div class="bounce2"></div>
-    <div class="bounce3"></div>
-  </div>
-</div>
-<a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a>
-<script src="assets/plugins/jquery/jquery-1.11.1.min.js"></script>
-<script src="assets/plugins/jquery-validation/jquery.validate.min.js"></script> <!-- Form validation -->
-<script src="assets/plugins/jquery-validation/additional-methods.min.js"></script> <!-- Additional methods -->
-<script src="assets/plugins/jquery/jquery-migrate-1.2.1.min.js"></script>
-<script src="assets/plugins/gsap/main-gsap.min.js"></script> <!-- HTML Animations -->
-<script src="assets/plugins/jquery-ui/jquery-ui-1.11.2.min.js"></script>
-<script src="assets/plugins/jquery-block-ui/jquery.blockUI.min.js"></script> <!-- simulate synchronous behavior when using AJAX -->
-<script src="assets/plugins/translate/jqueryTranslator.min.js"></script> <!-- Translate Plugin with JSON data -->
-<script src="assets/plugins/bootbox/bootbox.min.js"></script>
-<script src="assets/plugins/mcustom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script> <!-- Custom Scrollbar sidebar -->
-<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/plugins/bootstrap-dropdown/bootstrap-hover-dropdown.min.js"></script> <!-- Show Dropdown on Mouseover -->
-<script src="assets/plugins/bootstrap-progressbar/bootstrap-progressbar.min.js"></script> <!-- Animated Progress Bar -->
-<script src="assets/plugins/switchery/switchery.min.js"></script> <!-- IOS Switch -->
-<script src="assets/plugins/charts-sparkline/sparkline.min.js"></script> <!-- Charts Sparkline -->
-<script src="assets/plugins/retina/retina.min.js"></script>  <!-- Retina Display -->
-<script src="assets/plugins/jquery-cookies/jquery.cookies.js"></script> <!-- Jquery Cookies, for theme -->
-<script src="assets/plugins/bootstrap/js/jasny-bootstrap.min.js"></script> <!-- File Upload and Input Masks -->
-<script src="assets/plugins/select2/select2.min.js"></script> <!-- Select Inputs -->
-<script src="assets/plugins/bootstrap-tags-input/bootstrap-tagsinput.min.js"></script> <!-- Select Inputs -->
-<script src="assets/plugins/bootstrap-loading/lada.min.js"></script> <!-- Buttons Loading State -->
-<script src="assets/plugins/timepicker/jquery-ui-timepicker-addon.min.js"></script> <!-- Time Picker -->
-<script src="assets/plugins/multidatepicker/multidatespicker.min.js"></script> <!-- Multi dates Picker -->
-<script src="assets/plugins/colorpicker/spectrum.min.js"></script> <!-- Color Picker -->
-<script src="assets/plugins/touchspin/jquery.bootstrap-touchspin.min.js"></script> <!-- A mobile and touch friendly input spinner component for Bootstrap -->
-<script src="assets/plugins/autosize/autosize.min.js"></script> <!-- Textarea autoresize -->
-<script src="assets/plugins/icheck/icheck.min.js"></script> <!-- Icheck -->
-<script src="assets/plugins/bootstrap-editable/js/bootstrap-editable.min.js"></script> <!-- Inline Edition X-editable -->
-<script src="assets/plugins/bootstrap-context-menu/bootstrap-contextmenu.min.js"></script> <!-- File Upload and Input Masks -->
-<script src="assets/plugins/prettify/prettify.min.js"></script> <!-- Show html code -->
-<script src="assets/plugins/slick/slick.min.js"></script> <!-- Slider -->
-<script src="assets/plugins/countup/countUp.min.js"></script> <!-- Animated Counter Number -->
-<script src="assets/plugins/noty/jquery.noty.packaged.min.js"></script>  <!-- Notifications -->
-<script src="assets/plugins/backstretch/backstretch.min.js"></script> <!-- Background Image -->
-<script src="assets/plugins/charts-chartjs/Chart.min.js"></script>  <!-- ChartJS Chart -->
-<script src="assets/plugins/bootstrap-slider/bootstrap-slider.js"></script> <!-- Bootstrap Input Slider -->
-<script src="assets/plugins/visible/jquery.visible.min.js"></script> <!-- Visible in Viewport -->
-<script src="assets/js/builder.js"></script>
-<script src="assets/js/sidebar_hover.js"></script>
-<script src="assets/js/application_2.2.js"></script> <!-- Main Application Script -->
-<script src="assets/js/plugins.js"></script> <!-- Main Plugin Initialization Script -->
-<script src="assets/js/widgets/notes.js"></script>
-<script src="assets/js/quickview.js"></script> <!-- Quickview Script -->
-<script src="assets/js/pages/search.js"></script> <!-- Search Script -->
-<!-- BEGIN PAGE SCRIPTS -->
-<script src="assets/plugins/datatables/jquery.dataTables.min.js"></script> <!-- Tables Filtering, Sorting & Editing -->
-<script src="assets/plugins/summernote/summernote.js"></script>
-<script src="assets/plugins/skycons/skycons.js"></script>
-<script src="assets/plugins/simple-weather/jquery.simpleWeather.min.js"></script>
-<script src="assets/js/widgets/widget_weather.js"></script>
-<script src="assets/js/widgets/todo_list.js"></script>
-<script src="../builder/page-builder/plugins/slider-pips/jquery-ui-slider-pips.min.js"></script>
-<script src="../builder/page-builder/plugins/saveas/saveAs.js"></script>
-<script src="../builder/page-builder/js/builder_page.js"></script>
+    <!-- Preloader -->
+    <div class="loader-overlay">
+      <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+    </div>
+    <a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a>
+    <script src="assets/plugins/jquery/jquery-1.11.1.min.js"></script>
+    <script src="assets/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <!-- Form validation -->
+    <script src="assets/plugins/jquery-validation/additional-methods.min.js"></script>
+    <!-- Additional methods -->
+    <script src="assets/plugins/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script src="assets/plugins/gsap/main-gsap.min.js"></script>
+    <!-- HTML Animations -->
+    <script src="assets/plugins/jquery-ui/jquery-ui-1.11.2.min.js"></script>
+    <script src="assets/plugins/jquery-block-ui/jquery.blockUI.min.js"></script>
+    <!-- simulate synchronous behavior when using AJAX -->
+    <script src="assets/plugins/translate/jqueryTranslator.min.js"></script>
+    <!-- Translate Plugin with JSON data -->
+    <script src="assets/plugins/bootbox/bootbox.min.js"></script>
+    <script src="assets/plugins/mcustom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- Custom Scrollbar sidebar -->
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/plugins/bootstrap-dropdown/bootstrap-hover-dropdown.min.js"></script>
+    <!-- Show Dropdown on Mouseover -->
+    <script src="assets/plugins/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- Animated Progress Bar -->
+    <script src="assets/plugins/switchery/switchery.min.js"></script>
+    <!-- IOS Switch -->
+    <script src="assets/plugins/charts-sparkline/sparkline.min.js"></script>
+    <!-- Charts Sparkline -->
+    <script src="assets/plugins/retina/retina.min.js"></script>
+    <!-- Retina Display -->
+    <script src="assets/plugins/jquery-cookies/jquery.cookies.js"></script>
+    <!-- Jquery Cookies, for theme -->
+    <script src="assets/plugins/bootstrap/js/jasny-bootstrap.min.js"></script>
+    <!-- File Upload and Input Masks -->
+    <script src="assets/plugins/select2/select2.min.js"></script>
+    <!-- Select Inputs -->
+    <script src="assets/plugins/bootstrap-tags-input/bootstrap-tagsinput.min.js"></script>
+    <!-- Select Inputs -->
+    <script src="assets/plugins/bootstrap-loading/lada.min.js"></script>
+    <!-- Buttons Loading State -->
+    <script src="assets/plugins/timepicker/jquery-ui-timepicker-addon.min.js"></script>
+    <!-- Time Picker -->
+    <script src="assets/plugins/multidatepicker/multidatespicker.min.js"></script>
+    <!-- Multi dates Picker -->
+    <script src="assets/plugins/colorpicker/spectrum.min.js"></script>
+    <!-- Color Picker -->
+    <script src="assets/plugins/touchspin/jquery.bootstrap-touchspin.min.js"></script>
+    <!-- A mobile and touch friendly input spinner component for Bootstrap -->
+    <script src="assets/plugins/autosize/autosize.min.js"></script>
+    <!-- Textarea autoresize -->
+    <script src="assets/plugins/icheck/icheck.min.js"></script>
+    <!-- Icheck -->
+    <script src="assets/plugins/bootstrap-editable/js/bootstrap-editable.min.js"></script>
+    <!-- Inline Edition X-editable -->
+    <script src="assets/plugins/bootstrap-context-menu/bootstrap-contextmenu.min.js"></script>
+    <!-- File Upload and Input Masks -->
+    <script src="assets/plugins/prettify/prettify.min.js"></script>
+    <!-- Show html code -->
+    <script src="assets/plugins/slick/slick.min.js"></script>
+    <!-- Slider -->
+    <script src="assets/plugins/countup/countUp.min.js"></script>
+    <!-- Animated Counter Number -->
+    <script src="assets/plugins/noty/jquery.noty.packaged.min.js"></script>
+    <!-- Notifications -->
+    <script src="assets/plugins/backstretch/backstretch.min.js"></script>
+    <!-- Background Image -->
+    <script src="assets/plugins/charts-chartjs/Chart.min.js"></script>
+    <!-- ChartJS Chart -->
+    <script src="assets/plugins/bootstrap-slider/bootstrap-slider.js"></script>
+    <!-- Bootstrap Input Slider -->
+    <script src="assets/plugins/visible/jquery.visible.min.js"></script>
+    <!-- Visible in Viewport -->
+    <script src="assets/js/builder.js"></script>
+    <script src="assets/js/sidebar_hover.js"></script>
+    <script src="assets/js/application_2.2.js"></script>
+    <!-- Main Application Script -->
+    <script src="assets/js/plugins.js"></script>
+    <!-- Main Plugin Initialization Script -->
+    <script src="assets/js/widgets/notes.js"></script>
+    <script src="assets/js/quickview.js"></script>
+    <!-- Quickview Script -->
+    <script src="assets/js/pages/search.js"></script>
+    <!-- Search Script -->
+    <!-- BEGIN PAGE SCRIPTS -->
+    <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <!-- Tables Filtering, Sorting & Editing -->
+    <script src="assets/plugins/summernote/summernote.js"></script>
+    <script src="assets/plugins/skycons/skycons.js"></script>
+    <script src="assets/plugins/simple-weather/jquery.simpleWeather.min.js"></script>
+    <script src="assets/js/widgets/widget_weather.js"></script>
+    <script src="assets/js/widgets/todo_list.js"></script>
+    <script src="../builder/page-builder/plugins/slider-pips/jquery-ui-slider-pips.min.js"></script>
+    <script src="../builder/page-builder/plugins/saveas/saveAs.js"></script>
+    <script src="../builder/page-builder/js/builder_page.js"></script>
 
-<script src="assets/js/ngo_data_serve_6.0.js"></script>  <!--NGO field data feed-->
-<script src="assets/js/need_data_serve_8.0.js"></script>  <!--Need data feed-->
-<script src="assets/js/child_data_serve_6.1.js"></script> <!--child data feed for child_id field-->
-<script src="assets/js/receipts_1.0.js"></script> <!--Receipts data for need's receipts-->
-<script
-  src="https://browser.sentry-cdn.com/5.22.3/bundle.tracing.min.js"
-  crossorigin="anonymous"
-></script>
-<script src="assets/js/config.js"></script>  <!--url configurations-->
-<script src="assets/js/html_config_1.0.js"></script>  <!--HTML url configurations-->
-<script src="assets/js/custom_6.4.js"></script>  <!--custom functions-->
-<script src="assets/js/authorize_1.0.js"></script>  <!--Athorization-->
-<script src="assets/js/jwt-decode.min.js"></script>  <!--jwt decoder script-->
-<script src="assets/plugins/jdate.js" type="text/javascript" charset="utf-8"></script>  <!-- Jalali date -->
-<script src="assets/plugins/jdate.min.js" type="text/javascript" charset="utf-8"></script>  <!-- Jalali date -->
+    <script src="assets/js/ngo_data_serve_6.0.js"></script>
+    <!--NGO field data feed-->
+    <script src="assets/js/need_data_serve_8.0.js"></script>
+    <!--Need data feed-->
+    <script src="assets/js/child_data_serve_6.1.js"></script>
+    <!--child data feed for child_id field-->
+    <script src="assets/js/receipts_1.0.js"></script>
+    <!--Receipts data for need's receipts-->
+    <script
+      src="https://browser.sentry-cdn.com/5.22.3/bundle.tracing.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="assets/js/config.js"></script>
+    <!--url configurations-->
+    <script src="assets/js/html_config_1.0.js"></script>
+    <!--HTML url configurations-->
+    <script src="assets/js/custom_6_5.js"></script>
+    <!--custom functions-->
+    <script src="assets/js/authorize_1.0.js"></script>
+    <!--Athorization-->
+    <script src="assets/js/jwt-decode.min.js"></script>
+    <!--jwt decoder script-->
+    <script
+      src="assets/plugins/jdate.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+    <!-- Jalali date -->
+    <script
+      src="assets/plugins/jdate.min.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+    <!-- Jalali date -->
 
+    <!-- <script src="assets/js/pages/table_dynamic.js"></script> -->
+    <!-- <script src="assets/js/pages/table_editable.js"></script> -->
 
-<!-- <script src="assets/js/pages/table_dynamic.js"></script> -->
-<!-- <script src="assets/js/pages/table_editable.js"></script> -->
-
-<!-- END PAGE SCRIPTS -->
-</body>
+    <!-- END PAGE SCRIPTS -->
+  </body>
 </html>
