@@ -44,6 +44,10 @@ $(document).ready(function(){
                 required: true,
                 extension: "jpg,png,jpeg",
                 filesize: 1   // MB
+            },
+            social_worker_current_password: {
+                required: true,
+                minlength: 6,
             }
         },
         messages: {
@@ -86,7 +90,11 @@ $(document).ready(function(){
                 required: "انتخاب تصویر مددکار ضروری است.",
                 extension: "فرمت‌های قابل پذیرش: {0}",
                 filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
-            }
+            },
+            social_worker_current_password: {
+                required: "رمز عبور ضروری است",
+                minlength: "رمز عبور باید حداقل {0} رقم باشد."
+            },
         },
         errorPlacement: function(error, element) {
             error.appendTo(element.parent('div'));
@@ -287,6 +295,7 @@ $(document).ready(function(){
         var idCardUrl = $('#social_worker_id_card')[0].files[0];
         var passportUrl = $('#social_worker_passport')[0].files[0];
         var avatarUrl = $('#social_worker_avatar')[0].files[0];
+        var password = $('#social_worker_current_password').val();
 
         var form_data = new FormData();
         if(idCardUrl){        
@@ -335,6 +344,7 @@ $(document).ready(function(){
         form_data.append('emergencyPhoneNumber', emergencyPhoneNumber);
         form_data.append('emailAddress', emailAddress);
         form_data.append('telegramId', telegramId);
+        form_data.append('password', password);
 
         console.log(form_data);
 
