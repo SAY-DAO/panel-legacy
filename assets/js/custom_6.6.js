@@ -152,8 +152,12 @@ function UTCDate(value) {
 
 // Cost values
 function cost(value) {
-  beauty_cost = value.toLocaleString() + " Toman";
-  return beauty_cost;
+  if (value) {
+    beauty_cost = value.toLocaleString() + " Toman";
+    return beauty_cost;
+  } else {
+    return
+  }
 }
 
 // Custom methods for form validation
