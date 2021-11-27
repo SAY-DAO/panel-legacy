@@ -110,13 +110,13 @@ $(document).ready(function(){
                 'donated',
                 'informations',
                 'details',
-                'doing_duration',
                 'affiliateLinkUrl',
                 'link',
                 'ngoName',
                 'ngoAddress',
                 'receipt_count',
-                'doneAt'];
+                'doneAt',
+                'child_delivery_date'];
     
     // for the report to ngo ajax
     var reportNGO_keys = ['id',
@@ -253,7 +253,7 @@ $(document).ready(function(){
                             }
                         }
 
-                        if (keys[i] == 'expected_delivery_date' || keys[i] == 'ngo_delivery_date' || keys[i] == 'doneAt') {
+                        if (keys[i] == 'expected_delivery_date' || keys[i] == 'ngo_delivery_date' || keys[i] == 'doneAt' || keys[i] == 'child_delivery_date') {
                             if (value[keys[i]] != null) {
                                 value[keys[i]] = jalaliDate(value[keys[i]]);
                             }
