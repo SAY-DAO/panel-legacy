@@ -520,7 +520,9 @@ $(document).ready(function(){
                         }
 
                         if (reportNGO_keys[i] == 'cost' || reportNGO_keys[i] == 'purchase_cost') {
-                            value[reportNGO_keys[i]] = cost(value[reportNGO_keys[i]]);
+                            if (value[reportNGO_keys[i]] != null) {
+                                value[reportNGO_keys[i]] = cost(value[reportNGO_keys[i]]);
+                            }
                         }
 
                         if (reportNGO_keys[i] == 'expected_delivery_date') {
