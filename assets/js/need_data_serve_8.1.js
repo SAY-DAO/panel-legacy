@@ -155,7 +155,7 @@ $(document).ready(function(){
     var edit_needId = -1;
     var edit_receiptId = -1;
 
-    var keys = ['id' , 'child_id' , 'name' , 'name_fa' , 'title' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'type' , 'informations' , 'details' , 'isUrgent' , 'category' , 'description' , 'description_fa' , 'doing_duration' , 'affiliateLinkUrl' , 'link' , 'created' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'updated']
+    var keys = ['id' , 'child_id' , 'name' , 'name_fa' , 'title' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'type' , 'informations' , 'details' , 'isUrgent' , 'category' , 'description' , 'description_fa' , 'affiliateLinkUrl' , 'link' , 'created' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'updated', 'doneAt', 'child_delivery_date']
 
     // Get Children Needs by child id
     $('#child_need_select').change(function() {
@@ -302,10 +302,6 @@ $(document).ready(function(){
                             }
                         }
 
-                        if(keys[i] == 'doing_duration') {
-                            value[keys[i]] = value[keys[i]] + " days";
-                        }
-
                         if (keys[i] == 'isConfirmed') {
                             if(value[keys[i]] == false){
                                 value[keys[i]] = 'Not confirmed';
@@ -316,7 +312,7 @@ $(document).ready(function(){
                             }
                         }
 
-                        if(keys[i] == 'confirmDate' || keys[i] == 'created' || keys[i] == 'updated') {
+                        if(keys[i] == 'confirmDate' || keys[i] == 'created' || keys[i] == 'updated' || keys[i] == 'child_delivery_date' || keys[i] == 'doneAt') {
                             value[keys[i]] = jalaliDate(value[keys[i]]);
                         }
  
