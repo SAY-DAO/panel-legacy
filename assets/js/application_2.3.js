@@ -694,6 +694,7 @@ function handlePanelAction() {
     $('#socialWorkerForm').css('display', 'none');
     $('#socialWorkerTableNew').click(function (e) {
         e.preventDefault();
+        $('.static').val(null);
         $('#socialWorkerForm').slideDown();
         $('#sendSocialWorkerData').show();
         $('#editSocialWorkerData').hide();
