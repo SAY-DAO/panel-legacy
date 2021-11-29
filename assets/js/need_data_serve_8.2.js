@@ -33,9 +33,6 @@ $(document).ready(function(){
             need_type: {
                 required: true,
             },
-            affiliate_link: {
-                url: true,
-            },
             direct_link: {
                 url: true,
             },
@@ -73,9 +70,6 @@ $(document).ready(function(){
             },
             need_type: {
                 required: "انتخاب نوع نیاز ضروری است.",
-            },
-            affiliate_link: {
-                url: "اشتباه شد.",
             },
             direct_link: {
                 url: "اشتباه شد.",
@@ -155,7 +149,7 @@ $(document).ready(function(){
     var edit_needId = -1;
     var edit_receiptId = -1;
 
-    var keys = ['id' , 'child_id' , 'name' , 'name_fa' , 'title' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'type' , 'informations' , 'details' , 'isUrgent' , 'category' , 'description' , 'description_fa' , 'affiliateLinkUrl' , 'link' , 'created' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'updated', 'doneAt', 'child_delivery_date']
+    var keys = ['id' , 'child_id' , 'name' , 'name_fa' , 'title' , 'imageUrl' , 'cost' , 'paid' , 'progress' , 'status' , 'type' , 'informations' , 'details' , 'isUrgent' , 'category' , 'description' , 'description_fa', 'link' , 'created' , 'isConfirmed' , 'confirmUser' , 'confirmDate' , 'updated', 'doneAt', 'child_delivery_date']
 
     // Get Children Needs by child id
     $('#child_need_select').change(function() {
@@ -220,7 +214,7 @@ $(document).ready(function(){
                             value[keys[i]] = cost(value[keys[i]]);
                         }
 
-                        if (keys[i] == 'affiliateLinkUrl' || keys[i] == 'link') {
+                        if (keys[i] == 'link') {
                             if(value[keys[i]] != null) {
                                 value[keys[i]] = linkTo(value[keys[i]]);
                             }
@@ -414,7 +408,7 @@ $(document).ready(function(){
                             value[keys[i]] = cost(value[keys[i]]);
                         }
 
-                        if (keys[i] == 'affiliateLinkUrl' || keys[i] == 'link') {
+                        if (keys[i] == 'link') {
                             if(value[keys[i]] != null) {
                                 value[keys[i]] = linkTo(value[keys[i]]);
                             }
@@ -602,7 +596,6 @@ $(document).ready(function(){
                 $('#need_details').val(data['details']);
                 $('#need_informations').val(data['informations']);
                 $('#need_doing_duration').val(data['doing_duration']);
-                $('#affiliate_link').val(data['affiliateLinkUrl']);
                 $('#direct_link').val(data['link']);
 
                 // // Trying to show predefined icon
@@ -647,7 +640,6 @@ $(document).ready(function(){
             fa: $('#need_description_fa').val(),
         });
         
-        var affiliateLinkUrl = $('#affiliate_link').val();
         var link = $('#direct_link').val();
 
         var form_data = new FormData();
@@ -663,9 +655,6 @@ $(document).ready(function(){
 
         if (imageUrl) {
             form_data.append('imageUrl', imageUrl);
-        }
-        if(affiliateLinkUrl){
-            form_data.append('affiliateLinkUrl', affiliateLinkUrl);
         }
         if(link){
             form_data.append('link', link);
@@ -768,7 +757,6 @@ $(document).ready(function(){
                 $('#need_description').val(description_translations.en);
                 $('#need_description_fa').val(description_translations.fa);
                 $('#need_type').val(data['type']).change();
-                $('#affiliate_link').val(data['affiliateLinkUrl']);
                 $('#direct_link').val(data['link']);
                 $('#need_doing_duration').val(data['doing_duration']);
                 $('#is_urgent').val(data['isUrgent']).change();
@@ -806,7 +794,6 @@ $(document).ready(function(){
             fa: $('#need_description_fa').val(),
         });
 
-        var affiliateLinkUrl = $('#affiliate_link').val();
         var link = $('#direct_link').val();
 
         // append datas to a Form Data
@@ -829,9 +816,6 @@ $(document).ready(function(){
         }
         if(isUrgent) {
             form_data.append('isUrgent', isUrgent);
-        }
-        if(affiliateLinkUrl){
-            form_data.append('affiliateLinkUrl', affiliateLinkUrl);
         }
         if(link){
             form_data.append('link', link);
