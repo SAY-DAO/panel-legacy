@@ -46,7 +46,6 @@ $(document).ready(function(){
                 filesize: 1   // MB
             },
             social_worker_current_password: {
-                required: true,
                 minlength: 6,
             }
         },
@@ -92,7 +91,6 @@ $(document).ready(function(){
                 filesize: "بیش‌ترین حجم قابل پذیرش: {0} MB"
             },
             social_worker_current_password: {
-                required: "رمز عبور ضروری است",
                 minlength: "رمز عبور باید حداقل {0} رقم باشد."
             },
         },
@@ -295,7 +293,6 @@ $(document).ready(function(){
         var idCardUrl = $('#social_worker_id_card')[0].files[0];
         var passportUrl = $('#social_worker_passport')[0].files[0];
         var avatarUrl = $('#social_worker_avatar')[0].files[0];
-        var password = $('#social_worker_current_password').val();
 
         var form_data = new FormData();
         if(idCardUrl){        
@@ -344,7 +341,6 @@ $(document).ready(function(){
         form_data.append('emergencyPhoneNumber', emergencyPhoneNumber);
         form_data.append('emailAddress', emailAddress);
         form_data.append('telegramId', telegramId);
-        form_data.append('password', password);
 
         console.log(form_data);
 
@@ -378,6 +374,7 @@ $(document).ready(function(){
     // Edit a social worker
     $('#socialWorkerList').on('click' , '.editBtn' , function(e){
         e.preventDefault();
+        $('.static').val(null);
 
         $('#sendSocialWorkerData').attr("disabled" , true);
         $('#social_worker_current_password').attr("disabled", false);

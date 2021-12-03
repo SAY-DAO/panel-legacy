@@ -6,6 +6,18 @@ $(document).ready(function(){
     jwt.src = "assets/js/jwt-decode.min.js";
     document.body.appendChild(jwt);
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+
+    if (token) {
+        var jsonPayload = jwt_decode(token);
+        var expDate = new Date(jsonPayload.exp * 1000); // Expiration date in token is in second, so it needs *1000 to be in milisecond
+        $.cookie('access_token', token, {expires: expDate}); // set access token in cookie for authorization
+        window.location.href = "dashboard.html";
+    } else if ($.cookie('access_token')) {
+        window.location.href = "dashboard.html";
+    }
+
     // login form validation
     $('#login_form').validate({
         ignore: [], // To validate hidden input

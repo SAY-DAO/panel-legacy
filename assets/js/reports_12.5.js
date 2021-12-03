@@ -110,7 +110,6 @@ $(document).ready(function(){
                 'donated',
                 'informations',
                 'details',
-                'affiliateLinkUrl',
                 'link',
                 'ngoName',
                 'ngoAddress',
@@ -247,7 +246,7 @@ $(document).ready(function(){
                             value[keys[i]] = value[keys[i]] + " days";
                         }
 
-                        if(keys[i] == 'affiliateLinkUrl' || keys[i] == 'link') {
+                        if(keys[i] == 'link') {
                             if(value[keys[i]] != null) {
                                 value[keys[i]] = linkTo(value[keys[i]]);
                             }
