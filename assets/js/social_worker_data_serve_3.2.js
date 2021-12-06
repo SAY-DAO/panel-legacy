@@ -46,7 +46,7 @@ $(document).ready(function () {
         filesize: 1, // MB
       },
       social_worker_current_password: {
-        minlength: 6,
+        minlength: 8,
       },
     },
     messages: {
@@ -565,10 +565,10 @@ $(document).ready(function () {
       form_data.append("birthDate", birthDate);
     }
     if (phoneNumber) {
-      form_data.append("phoneNumber", phoneNumber);
+      form_data.append("phoneNumber", "+98" + phoneNumber);
     }
     if (emergencyPhoneNumber) {
-      form_data.append("emergencyPhoneNumber", emergencyPhoneNumber);
+      form_data.append("emergencyPhoneNumber", "+98" + emergencyPhoneNumber);
     }
     if (emailAddress) {
       form_data.append("emailAddress", emailAddress);
