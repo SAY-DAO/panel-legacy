@@ -565,10 +565,10 @@ $(document).ready(function () {
       form_data.append("birthDate", birthDate);
     }
     if (phoneNumber) {
-      form_data.append("phoneNumber", "+98" + phoneNumber);
+      form_data.append("phoneNumber", phoneNumber);
     }
     if (emergencyPhoneNumber) {
-      form_data.append("emergencyPhoneNumber", "+98" + emergencyPhoneNumber);
+      form_data.append("emergencyPhoneNumber", emergencyPhoneNumber);
     }
     if (emailAddress) {
       form_data.append("emailAddress", emailAddress);
@@ -641,7 +641,12 @@ $(document).ready(function () {
         error: function (data) {
           bootbox.alert({
             title: errorTitle(),
-            message: errorContent(data.responseJSON.message),
+            message: errorContent(
+              data.responseJSON.message ||
+                data.responseJSON
+                  .map((e) => e.loc[0] + ": " + e.msg)
+                  .join("<br>")
+            ),
           });
         },
       }); //end of Update ajax
