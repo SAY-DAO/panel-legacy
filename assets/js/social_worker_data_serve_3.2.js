@@ -28,12 +28,12 @@ $(document).ready(function () {
       },
       social_worker_phone_number: {
         required: true,
-        digits: true,
+        // digits: true,
         minlength: 8,
       },
       social_worker_emergency_phone_number: {
         required: true,
-        digits: true,
+        // digits: true,
         minlength: 8,
       },
       social_worker_email_address: {
@@ -73,12 +73,12 @@ $(document).ready(function () {
       },
       social_worker_phone_number: {
         required: "وارد کردن شماره تماس ضروری است.",
-        digits: "شماره تماس تنها می‌تواند شامل اعداد باشد.",
+        // digits: "شماره تماس تنها می‌تواند شامل اعداد باشد.",
         minlength: "شماره تماس حداقل باید {0} رقم باشد.",
       },
       social_worker_emergency_phone_number: {
         required: "وارد کردن شماره تماس ضروری است.",
-        digits: "شماره تماس تنها می‌تواند شامل اعداد باشد.",
+        // digits: "شماره تماس تنها می‌تواند شامل اعداد باشد.",
         minlength: "شماره تماس حداقل باید {0} رقم باشد.",
       },
       social_worker_email_address: {
