@@ -40,15 +40,16 @@ function isAuthorized() {
         global_username = username;
         global_user_role = user_role;
         global_user_ngo = user_ngoId;
-        
+
         // default setting for all ajax
-        $.ajaxSetup({         
+        $.ajaxSetup({
             headers : {
                 'Authorization': $.cookie('access_token'),
             },
             statusCode: {
                 401: function(){
                     alert("Your are logged out.\nPlease login again.");
+                    $.removeCookie("access_token", { path: "/" });
                     window.location.href = "login.html";
                 }
             }
