@@ -48,7 +48,6 @@ function isAuthorized() {
             },
             statusCode: {
                 401: function(){
-                    alert("Your are logged out.\nPlease login again.");
                     $.removeCookie("access_token", { path: "/" });
                     window.location.href = "login.html";
                 }
