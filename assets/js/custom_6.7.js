@@ -191,14 +191,15 @@ function rtl(value) {
 }
 
 // JQuery datetime picker customize
-$(".date_time").datetimepicker({
-  dateFormat: "yy-m-d",
-  timeFormat: "H:0:0",
+$('.date_time').datetimepicker({
+  showTimepicker: false,
+  dateFormat: 'yy-m-d',
+  timeFormat: '03:30:0',
   prevText: '<i class="fa fa-chevron-circle-left custom"></i>',
   nextText: '<i class="fa fa-chevron-circle-right custom"></i>',
-  currentText: "امروز",
-  closeText: "بستن",
-  dayNamesMin: ["ی", "د", "س", "چ", "پ", "ج", "ش"],
+  currentText: 'امروز',
+  closeText: 'بستن',
+  dayNamesMin: ['ی', 'د', 'س', 'چ', 'پ', 'ج', 'ش'],
   firstDay: 6,
 });
 
