@@ -290,7 +290,7 @@ $(document).ready(function () {
 
   // Get social workers list for drop down menue in forms
   $.ajax({
-    url: SAYApiUrl + "/socialWorkers/",
+    url: SAYApiUrl + "/socialworkers/",
     method: "GET",
     dataType: "json",
 
@@ -402,7 +402,7 @@ $(document).ready(function () {
 
     if ($("#socialworker_form").valid()) {
       $.ajax({
-        url: SAYApiUrl + "/socialWorkers/",
+        url: SAYApiUrl + "/socialworkers/",
         method: "POST",
         cache: false,
         processData: false,
@@ -445,7 +445,7 @@ $(document).ready(function () {
 
     // get the need's data to the form
     $.ajax({
-      url: SAYApiUrl + "/socialWorkers/" + edit_socialworkerId,
+      url: SAYApiUrl + "/socialworkers/" + edit_socialworkerId,
       method: "GET",
       dataType: "json",
 
@@ -616,7 +616,7 @@ $(document).ready(function () {
     // update the need with new data in the form
     if ($("#socialworker_form").valid()) {
       $.ajax({
-        url: SAYApiUrl + "/socialWorkers/" + edit_socialworkerId,
+        url: SAYApiUrl + "/socialworkers/" + edit_socialworkerId,
         method: "PATCH",
         cache: false,
         processData: false,
@@ -662,7 +662,7 @@ $(document).ready(function () {
     console.log(id);
 
     $.ajax({
-      url: SAYApiUrl + "/socialWorkers/" + id + "/deactivate",
+      url: SAYApiUrl + "/socialworkers/" + id + "/deactivate",
       method: "POST",
       cache: false,
       processData: false,
@@ -769,7 +769,7 @@ $(document).ready(function () {
     console.log(socialworkerId);
 
     $.ajax({
-      url: SAYApiUrl + "/socialWorkers/=" + socialworkerId,
+      url: SAYApiUrl + "/socialworkers/" + socialworkerId,
       method: "PATCH",
 
       cache: false,
