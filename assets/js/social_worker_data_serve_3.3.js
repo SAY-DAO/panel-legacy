@@ -770,7 +770,7 @@ $(document).ready(function () {
 
     $.ajax({
       url: SAYApiUrl + "/socialworkers/" + socialworkerId,
-      method: "PATCH",
+      method: "DELETE",
 
       cache: false,
       processData: false,
