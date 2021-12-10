@@ -152,7 +152,7 @@ $(document).ready(function () {
 
   // Get all Social workers
   $.ajax({
-    url: SAYApiUrl + "/socialWorker/all",
+    url: SAYApiUrl + "/socialworkers/",
     method: "GET",
     dataType: "json",
 
@@ -290,7 +290,7 @@ $(document).ready(function () {
 
   // Get social workers list for drop down menue in forms
   $.ajax({
-    url: SAYApiUrl + "/socialWorker/all",
+    url: SAYApiUrl + "/socialWorkers/",
     method: "GET",
     dataType: "json",
 
@@ -402,7 +402,7 @@ $(document).ready(function () {
 
     if ($("#socialworker_form").valid()) {
       $.ajax({
-        url: SAYApiUrl + "/socialWorker/add",
+        url: SAYApiUrl + "/socialWorkers/",
         method: "POST",
         cache: false,
         processData: false,
@@ -445,7 +445,7 @@ $(document).ready(function () {
 
     // get the need's data to the form
     $.ajax({
-      url: SAYApiUrl + "/socialWorker/socialWorkerId=" + edit_socialworkerId,
+      url: SAYApiUrl + "/socialWorkers/" + edit_socialworkerId,
       method: "GET",
       dataType: "json",
 
@@ -616,10 +616,7 @@ $(document).ready(function () {
     // update the need with new data in the form
     if ($("#socialworker_form").valid()) {
       $.ajax({
-        url:
-          SAYApiUrl +
-          "/socialWorker/update/socialWorkerId=" +
-          edit_socialworkerId,
+        url: SAYApiUrl + "/socialWorkers/" + edit_socialworkerId,
         method: "PATCH",
         cache: false,
         processData: false,
@@ -665,7 +662,7 @@ $(document).ready(function () {
     console.log(id);
 
     $.ajax({
-      url: SAYApiUrl + "/socialWorker/deactivate/socialWorkerId=" + id,
+      url: SAYApiUrl + "/socialWorkers/" + id + "/deactivate",
       method: "POST",
       cache: false,
       processData: false,
@@ -772,7 +769,7 @@ $(document).ready(function () {
     console.log(socialworkerId);
 
     $.ajax({
-      url: SAYApiUrl + "/socialWorker/delete/socialWorkerId=" + socialworkerId,
+      url: SAYApiUrl + "/socialWorkers/=" + socialworkerId,
       method: "PATCH",
 
       cache: false,
