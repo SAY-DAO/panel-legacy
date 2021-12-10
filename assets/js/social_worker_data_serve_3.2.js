@@ -666,7 +666,7 @@ $(document).ready(function () {
 
     $.ajax({
       url: SAYApiUrl + "/socialWorker/deactivate/socialWorkerId=" + id,
-      method: "PATCH",
+      method: "POST",
       cache: false,
       processData: false,
       contentType: false,
