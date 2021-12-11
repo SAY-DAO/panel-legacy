@@ -118,10 +118,7 @@ function jalaliDate(value) {
   var jalali_date = -1;
   if (value != null) {
     var that_date = new Date(value);
-    jalali_date =
-      new JDate(that_date).format("dddd D MMMM YYYY") +
-      "<br />" +
-      that_date.toLocaleTimeString("en-GB");
+    jalali_date = new JDate(that_date).format('dddd D MMMM YYYY');
     // local_date = that_date.toLocaleTimeString();
   } else {
     jalali_date = null;
@@ -135,7 +132,7 @@ function localeDate(value) {
   var locale_date = -1;
   if (value != null) {
     var that_date = new Date(value);
-    locale_date = that_date.toLocaleString();
+    locale_date = that_date.toLocaleString().split(',')[0];
   } else {
     locale_date = null;
   }
@@ -191,14 +188,15 @@ function rtl(value) {
 }
 
 // JQuery datetime picker customize
-$(".date_time").datetimepicker({
-  dateFormat: "yy-m-d",
-  timeFormat: "H:0:0",
+$('.date_time').datetimepicker({
+  showTimepicker: false,
+  dateFormat: 'yy-m-d',
+  timeFormat: '03:30:0',
   prevText: '<i class="fa fa-chevron-circle-left custom"></i>',
   nextText: '<i class="fa fa-chevron-circle-right custom"></i>',
-  currentText: "امروز",
-  closeText: "بستن",
-  dayNamesMin: ["ی", "د", "س", "چ", "پ", "ج", "ش"],
+  currentText: 'امروز',
+  closeText: 'بستن',
+  dayNamesMin: ['ی', 'د', 'س', 'چ', 'پ', 'ج', 'ش'],
   firstDay: 6,
 });
 
