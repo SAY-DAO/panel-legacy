@@ -730,29 +730,29 @@ $(document).ready(function () {
     var formData = new FormData();
     formData.append("destinationSocialWorkerId", newSwId);
     $.ajax({
-      url: SAYApiUrl + "/socialWorker/" + prevSwId + "/children/migrate",
-      method: "POST",
+      url: SAYApiUrl + '/socialworkers/' + prevSwId + '/children/migrate',
+      method: 'POST',
       cache: false,
       processData: false,
       contentType: false,
-      dataType: "json",
+      dataType: 'json',
       data: formData,
       beforeSend: function () {
-        $("#content_preloader").show();
+        $('#content_preloader').show();
       },
       success: function (data) {
-        $("#content_preloader").hide();
+        $('#content_preloader').hide();
         alert(
-          "Success\nکودکان مددکار " +
+          'Success\nکودکان مددکار ' +
             prevSwId +
-            " با موفقیت به مددکار " +
+            ' با موفقیت به مددکار ' +
             newSwId +
-            " انتقال یافتند."
+            ' انتقال یافتند.'
         );
         deactivateSW(prevSwId);
       },
       error: function (data) {
-        $("#content_preloader").hide();
+        $('#content_preloader').hide();
         bootbox.alert({
           title: errorTitle(),
           message: errorContent(data.responseJSON.message),
