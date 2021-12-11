@@ -118,10 +118,7 @@ function jalaliDate(value) {
   var jalali_date = -1;
   if (value != null) {
     var that_date = new Date(value);
-    jalali_date =
-      new JDate(that_date).format("dddd D MMMM YYYY") +
-      "<br />" +
-      that_date.toLocaleTimeString("en-GB");
+    jalali_date = new JDate(that_date).format('dddd D MMMM YYYY');
     // local_date = that_date.toLocaleTimeString();
   } else {
     jalali_date = null;
