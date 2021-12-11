@@ -132,7 +132,7 @@ function localeDate(value) {
   var locale_date = -1;
   if (value != null) {
     var that_date = new Date(value);
-    locale_date = that_date.toLocaleString();
+    locale_date = that_date.toLocaleString().split(',')[0];
   } else {
     locale_date = null;
   }

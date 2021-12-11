@@ -435,8 +435,6 @@ $(document).ready(function(){
         var purchase_cost = $('#purchase_cost').val().replaceAll(',','');
         var bank_track_id = $('#bank_track_id').val();
         var dkc = $('#dkc').val();
-        console.log(expected_delivery_date);
-        console.log(ngo_delivery_date);
 
         // append datas to a Form Data
         var form_data = new FormData();
