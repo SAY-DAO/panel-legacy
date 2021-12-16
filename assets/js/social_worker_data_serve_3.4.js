@@ -122,10 +122,10 @@ $(document).ready(function () {
     "generatedCode",
     "firstName",
     "lastName",
-    "userName",
+    "username",
     "avatarUrl",
-    "id_type",
-    "id_ngo",
+    "typeId",
+    "ngoId",
     "birthCertificateNumber",
     "city",
     "country",
@@ -137,7 +137,7 @@ $(document).ready(function () {
     "birthDate",
     "phoneNumber",
     "emergencyPhoneNumber",
-    "emailAddress",
+    "email",
     "telegramId",
     "postalAddress",
     "currentChildCount",
@@ -214,7 +214,7 @@ $(document).ready(function () {
             value[keys[i]] = getImgFile(value[keys[i]]);
           }
 
-          if (keys[i] == "id_type") {
+          if (keys[i] == "typeId") {
             if (value[keys[i]] == 1) {
               value[keys[i]] = "Super admin";
             }
@@ -235,7 +235,7 @@ $(document).ready(function () {
             }
           }
 
-          if (keys[i] == "id_ngo") {
+          if (keys[i] == "ngoId") {
             if (value[keys[i]] == 1) {
               value[keys[i]] = "Noora";
             }
@@ -255,7 +255,7 @@ $(document).ready(function () {
             value[keys[i]] = phoneTo(value[keys[i]]);
           }
 
-          if (keys[i] == "emailAddress") {
+          if (keys[i] == "email") {
             value[keys[i]] = mailTo(value[keys[i]]);
           }
 
@@ -325,8 +325,8 @@ $(document).ready(function () {
     // recieving data from html form
     var firstName = $("#social_worker_first_name").val();
     var lastName = $("#social_worker_last_name").val();
-    var id_type = $("#social_worker_type").val();
-    var id_ngo = $("#social_worker_ngo").val();
+    var typeId = $("#social_worker_type").val();
+    var ngoId = $("#social_worker_ngo").val();
     var birthCertificateNumber = $("#social_worker_certificate_number").val();
     var country = $("#social_worker_country").val();
     var city = $("#social_worker_city").val();
@@ -336,7 +336,7 @@ $(document).ready(function () {
     var birthDate = $("#social_worker_birth_date").val();
     var phoneNumber = $("#social_worker_phone_number").val();
     var emergencyPhoneNumber = $("#social_worker_emergency_phone_number").val();
-    var emailAddress = $("#social_worker_email_address").val();
+    var email = $("#social_worker_email_address").val();
     var telegramId = $("#social_worker_telegram_id").val();
     var postalAddress = $("#social_worker_postal_address").val();
     var bankAccountNumber = $("#social_worker_bank_account_number").val();
@@ -389,13 +389,13 @@ $(document).ready(function () {
     }
     form_data.append("avatarUrl", avatarUrl);
     form_data.append("lastName", lastName);
-    form_data.append("id_type", id_type);
-    form_data.append("id_ngo", id_ngo);
+    form_data.append("typeId", typeId);
+    form_data.append("ngoId", ngoId);
     form_data.append("idNumber", idNumber);
     form_data.append("gender", gender);
     form_data.append("phoneNumber", "+98" + phoneNumber);
     form_data.append("emergencyPhoneNumber", "+98" + emergencyPhoneNumber);
-    form_data.append("emailAddress", emailAddress);
+    form_data.append("email", email);
     form_data.append("telegramId", telegramId);
 
     console.log(form_data);
@@ -456,8 +456,8 @@ $(document).ready(function () {
         // console.log(data);
         $("#social_worker_first_name").val(data["firstName"]);
         $("#social_worker_last_name").val(data["lastName"]);
-        $("#social_worker_type").val(data["id_type"]).change();
-        $("#social_worker_ngo").val(data["id_ngo"]).change();
+        $("#social_worker_type").val(data["typeId"]).change();
+        $("#social_worker_ngo").val(data["ngoId"]).change();
         $("#social_worker_certificate_number").val(
           data["birthCertificateNumber"]
         );
@@ -471,7 +471,7 @@ $(document).ready(function () {
         $("#social_worker_emergency_phone_number").val(
           data["emergencyPhoneNumber"]
         );
-        $("#social_worker_email_address").val(data["emailAddress"]);
+        $("#social_worker_email_address").val(data["email"]);
         $("#social_worker_telegram_id").val(data["telegramId"]);
         $("#social_worker_bank_account_number").val(data["bankAccountNumber"]);
         $("#social_worker_bank_account_sheba_number").val(
@@ -480,7 +480,7 @@ $(document).ready(function () {
         $("#social_worker_bank_account_card_number").val(
           data["bankAccountCardNumber"]
         );
-        $("#social_worker_current_username").val(data["userName"]);
+        $("#social_worker_current_username").val(data["username"]);
         $("#social_worker_current_child_count").val(data["currentChildCount"]);
         $("#social_worker_current_need_count").val(data["currentNeedCount"]);
 
@@ -502,8 +502,8 @@ $(document).ready(function () {
 
     var firstName = $("#social_worker_first_name").val();
     var lastName = $("#social_worker_last_name").val();
-    var id_type = $("#social_worker_type").val();
-    var id_ngo = $("#social_worker_ngo").val();
+    var typeId = $("#social_worker_type").val();
+    var ngoId = $("#social_worker_ngo").val();
     var birthCertificateNumber = $("#social_worker_certificate_number").val();
     var country = $("#social_worker_country").val();
     var city = $("#social_worker_city").val();
@@ -513,10 +513,10 @@ $(document).ready(function () {
     var birthDate = $("#social_worker_birth_date").val();
     var phoneNumber = $("#social_worker_phone_number").val();
     var emergencyPhoneNumber = $("#social_worker_emergency_phone_number").val();
-    var emailAddress = $("#social_worker_email_address").val();
+    var email = $("#social_worker_email_address").val();
     var telegramId = $("#social_worker_telegram_id").val();
     var postalAddress = $("#social_worker_postal_address").val();
-    var userName = $("#social_worker_current_username").val();
+    var username = $("#social_worker_current_username").val();
     var password = $("#social_worker_current_password").val();
     var bankAccountNumber = $("#social_worker_bank_account_number").val();
     var bankAccountShebaNumber = $(
@@ -537,11 +537,11 @@ $(document).ready(function () {
     if (lastName) {
       form_data.append("lastName", lastName);
     }
-    if (id_type) {
-      form_data.append("id_type", id_type);
+    if (typeId) {
+      form_data.append("typeId", typeId);
     }
-    if (id_ngo) {
-      form_data.append("id_ngo", id_ngo);
+    if (ngoId) {
+      form_data.append("ngoId", ngoId);
     }
     if (birthCertificateNumber) {
       form_data.append("birthCertificateNumber", birthCertificateNumber);
@@ -570,8 +570,8 @@ $(document).ready(function () {
     if (emergencyPhoneNumber) {
       form_data.append("emergencyPhoneNumber", emergencyPhoneNumber);
     }
-    if (emailAddress) {
-      form_data.append("emailAddress", emailAddress);
+    if (email) {
+      form_data.append("email", email);
     }
     if (telegramId) {
       form_data.append("telegramId", telegramId);
@@ -579,8 +579,8 @@ $(document).ready(function () {
     if (postalAddress) {
       form_data.append("postalAddress", postalAddress);
     }
-    if (userName) {
-      form_data.append("userName", userName);
+    if (username) {
+      form_data.append("username", username);
     }
     if (password) {
       form_data.append("password", password);
