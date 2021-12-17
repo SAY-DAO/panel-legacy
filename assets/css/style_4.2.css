@@ -456,6 +456,11 @@ a.scrollup:hover {
   top: 45%;
   width: 30px;
 }
+.thead { /* SAY */
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
 .required{  /* say */
   color: #BE0303;
 }
@@ -548,6 +553,10 @@ a.scrollup:hover {
   -webkit-animation: dash 1.5s ease-in-out infinite, color 4s ease-in-out infinite;
   animation: dash 1.5s ease-in-out infinite, color 4s ease-in-out infinite;
   stroke-linecap: round;
+}
+.panel-height { /*SAY*/
+  max-height: 70vh;
+  overflow-y: scroll !important;
 }
 .main-content .page-content .panel .panel-header h2 {
   margin-bottom: 5px;
