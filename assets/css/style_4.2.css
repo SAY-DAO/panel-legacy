@@ -456,9 +456,10 @@ a.scrollup:hover {
   top: 45%;
   width: 30px;
 }
-.thead {
+.thead { /* SAY */
   position: sticky;
   top: 0;
+  z-index: 1;
 }
 .required{  /* say */
   color: #BE0303;
