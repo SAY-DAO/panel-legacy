@@ -457,6 +457,9 @@ a.scrollup:hover {
   width: 30px;
 }
 .thead { /* SAY */
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -ms-sticky;
   position: sticky;
   top: 0;
   z-index: 1;
