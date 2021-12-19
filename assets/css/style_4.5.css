@@ -465,7 +465,8 @@ a.scrollup:hover {
   position: fixed;
   overflow-y: scroll;
   width: 100%;
-  -webkit-overflow-scrolling: touch;
+  top: 0;
+  bottom: 0;
 }
 .shadow { /* SAY */
   box-shadow: 0 .125rem rgba(0,0,0,.15);
