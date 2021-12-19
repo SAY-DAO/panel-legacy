@@ -1220,7 +1220,7 @@ $('.dropdown-menu').find('form').click(function(e) {
 });
 /***** Scroll to top button *****/
 function scrollTop() {
-    $(window).scroll(function() {
+    $('section').scroll(function() {
         if ($(this).scrollTop() > 100) {
             $('.scrollup').fadeIn();
         } else {
@@ -1228,7 +1228,7 @@ function scrollTop() {
         }
     });
     $('.scrollup').click(function() {
-        $("html, body").animate({
+        $("html, body, section").animate({
             scrollTop: 0
         }, 1000);
         return false;
