@@ -30,7 +30,7 @@
       rel="stylesheet"
       type="text/css"
     />
-    <link href="assets/css/style_4.3.css" rel="stylesheet" />
+    <link href="assets/css/style_4.4.css" rel="stylesheet" />
     <!-- MANDATORY -->
     <link href="assets/css/theme.css" rel="stylesheet" />
     <!-- MANDATORY -->
@@ -86,7 +86,7 @@
       bg-light-dark
     "
   >
-    <section>
+    <section class="fixed">
       <!-- BEGIN SIDEBAR -->
       <div class="sidebar">
         <div class="sidebar-inner">
@@ -379,7 +379,7 @@
 
         <div class="page-content">
           <div class="custom-page text-center">
-            <div class="header">
+            <div class="header headerWrapper">
               <div class="breadcrumb-wrapper">
                 <ol class="breadcrumb">
                   <li><a href="dashboard.html">صفحه اصلی</a></li>
@@ -387,7 +387,7 @@
                 </ol>
               </div>
             </div>
-            <h2 class="m-b-20 w-500">گزارش</h2>
+            <h2 class="m-b-20 w-500" style="display: none;">گزارش</h2>
 
             <div class="panel panel-default no-bd" id="changeStatusForm">
               <div class="panel-header bg-dark panel-controls">
@@ -636,7 +636,7 @@
                 >
               </div>
 
-              <div class="panel-content report-content bg-white panel-height">
+              <div class="panel-content report-content bg-white panel-height vh-40">
                 <div
                   class="
                     option-group
@@ -717,7 +717,7 @@
                   class="table table-hover table-striped dataTable"
                   id="table-editable"
                 >
-                  <thead class="bg-white thead">
+                  <thead class="bg-white sticky shadow">
                     <tr>
                       <th>ردیف</th>
                       <th class="medium_th">عملیات</th>
@@ -770,7 +770,7 @@
                 <span id="email-hint" class="f-12"></span>
               </div>
 
-              <div class="panel-content bg-white panel-height">
+              <div class="panel-content bg-white panel-height vh-40">
                 <div
                   class="
                     option-group
@@ -810,7 +810,7 @@
                   class="table table-hover table-striped dataTable"
                   id="table-editable"
                 >
-                  <thead class="bg-white thead">
+                  <thead class="bg-white sticky shadow">
                     <tr>
                       <th>ردیف</th>
                       <th>کد کودک</th>
@@ -943,7 +943,7 @@
     <!-- Visible in Viewport -->
     <script src="assets/js/builder.js"></script>
     <script src="assets/js/sidebar_hover.js"></script>
-    <script src="assets/js/application_2.3.js"></script>
+    <script src="assets/js/application_2.4.js"></script>
     <!-- Main Application Script -->
     <script src="assets/js/plugins.js"></script>
     <!-- Main Plugin Initialization Script -->

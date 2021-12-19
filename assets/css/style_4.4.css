@@ -456,13 +456,18 @@ a.scrollup:hover {
   top: 45%;
   width: 30px;
 }
-.thead { /* SAY */
-  position: -webkit-sticky;
-  position: -moz-sticky;
-  position: -ms-sticky;
+.sticky { /* SAY */
   position: sticky;
   top: 0;
   z-index: 1;
+}
+.fixed { /* SAY */
+  position: fixed;
+  overflow-y: scroll;
+  width: 100%;
+}
+.shadow { /* SAY */
+  box-shadow: 0 .125rem rgba(0,0,0,.15);
 }
 .required{  /* say */
   color: #BE0303;
@@ -557,9 +562,21 @@ a.scrollup:hover {
   animation: dash 1.5s ease-in-out infinite, color 4s ease-in-out infinite;
   stroke-linecap: round;
 }
+.vh-60 { /*SAY*/
+  max-height: 60vh;
+}
+.vh-50 { /*SAY*/
+  max-height: 50vh;
+}
+.vh-40 { /*SAY*/
+  max-height: 40vh;
+}
 .panel-height { /*SAY*/
-  max-height: 70vh;
   overflow-y: scroll !important;
+  padding-top: 0 !important;
+}
+.headerWrapper {
+  padding-bottom: 15px;
 }
 .main-content .page-content .panel .panel-header h2 {
   margin-bottom: 5px;
