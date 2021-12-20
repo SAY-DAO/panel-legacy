@@ -564,8 +564,12 @@ a.scrollup:hover {
   animation: dash 1.5s ease-in-out infinite, color 4s ease-in-out infinite;
   stroke-linecap: round;
 }
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
 ::-webkit-scrollbar-thumb {
-  background-color: #F59E39;
+  background-color: #fde1c1;
   border-radius: 5px;
 }
 .vh-60 { /*SAY*/
