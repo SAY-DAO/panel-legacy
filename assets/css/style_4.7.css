@@ -564,6 +564,10 @@ a.scrollup:hover {
   animation: dash 1.5s ease-in-out infinite, color 4s ease-in-out infinite;
   stroke-linecap: round;
 }
+::-webkit-scrollbar-thumb {
+  background-color: #F59E39;
+  border-radius: 5px;
+}
 .vh-60 { /*SAY*/
   max-height: 60vh;
 }
@@ -574,7 +578,7 @@ a.scrollup:hover {
   max-height: 40vh;
 }
 .panel-height { /*SAY*/
-  max-height: 70vh;
+  max-height: 80vh;
   overflow-y: scroll !important;
   padding-top: 0 !important;
 }
