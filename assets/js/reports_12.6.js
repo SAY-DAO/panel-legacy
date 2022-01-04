@@ -430,8 +430,8 @@ $(document).ready(function(){
                 $('#ngo_delivery_date').rules('remove', 'required');    // remove rule
             }
         }
-        var expected_delivery_date = UTCDate($('#expected_delivery_date').val());   // utc date to back
-        var ngo_delivery_date = UTCDate($('#ngo_delivery_date').val()); // utc date to back
+        var expected_delivery_date = sendingDate($('#expected_delivery_date').val());   // sending date to back
+        var ngo_delivery_date = sendingDate($('#ngo_delivery_date').val()); // sending date to back
         var purchase_cost = $('#purchase_cost').val().replaceAll(',','');
         var bank_track_id = $('#bank_track_id').val();
         var dkc = $('#dkc').val();
