@@ -140,11 +140,14 @@ function localeDate(value) {
   return locale_date;
 }
 
-//UTC date time
-function UTCDate(value) {
-  var utc_date_string = new Date(value).toUTCString();
-  var utc_date = DateFormat.format.date(utc_date_string, date_format); // u cannot use $.format(...) because it cannot use with jquery validation library, so we use DateFormat.format(...)
-  return utc_date;
+//sending date time
+function sendingDate(value) {
+  // var utc_date_string = new Date(value).toUTCString();
+  // var utc_date = DateFormat.format.date(utc_date_string, date_format); // u cannot use $.format(...) because it cannot use with jquery validation library, so we use DateFormat.format(...)
+
+  // cannot change toLocaleString separator format to - like utc, so I use Sweden time format. 
+  var myDate = new Date(value).toLocaleString("sv-SE");
+  return myDate;
 }
 
 // Cost values
