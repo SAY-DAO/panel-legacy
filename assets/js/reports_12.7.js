@@ -325,6 +325,11 @@ $(document).ready(function(){
         } else {
             $('#track_id').hide();
         }
+        if ($(this).val() == 4) {   // if service delivered to the child
+            $('#cost_field').show();
+        } else {
+            $('#cost_field').hide();
+        }
     })
 
     // change needs status
@@ -387,6 +392,7 @@ $(document).ready(function(){
         var expected_delivery = false;
         var real_delivery = false;
         var ngo_money_transfer = false;
+        var service_delivery = false;
         var need_name = $('#need_name').val();
         if (type_id == 0) { // if service
             $('#need_status_product').rules('remove', 'required');  // remove rule
@@ -403,6 +409,9 @@ $(document).ready(function(){
                 });
             } else {
                 $('#bank_track_id').rules('remove', 'required');    // remove rule
+            }
+            if (status == 4) {  // if service delivered to the child
+                service_delivery = true;
             }
         } else if (type_id == 1) {  // if product
             $('#need_status_service').rules('remove', 'required');  // remove rule
@@ -451,6 +460,9 @@ $(document).ready(function(){
         }
         if (ngo_money_transfer) {   // if the Service status is changing to 3
             form_data.append('bank_track_id', bank_track_id);
+        }
+        if (service_delivery) { // if the Service status is changing to 4
+            form_data.append('purchase_cost', purchase_cost);
         }
 
         if($('#change_need_form').valid()) {
