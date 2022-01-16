@@ -118,7 +118,7 @@ function jalaliDate(value) {
   var jalali_date = -1;
   if (value != null) {
     var that_date = new Date(value);
-    jalali_date = new JDate(that_date).format('dddd D MMMM YYYY');
+    jalali_date = new JDate(that_date).format("dddd D MMMM YYYY");
     // local_date = that_date.toLocaleTimeString();
   } else {
     jalali_date = null;
@@ -132,7 +132,7 @@ function localeDate(value) {
   var locale_date = -1;
   if (value != null) {
     var that_date = new Date(value);
-    locale_date = that_date.toLocaleString().split(',')[0];
+    locale_date = that_date.toLocaleString().split(",")[0];
   } else {
     locale_date = null;
   }
@@ -145,8 +145,8 @@ function sendingDate(value) {
   // var utc_date_string = new Date(value).toUTCString();
   // var utc_date = DateFormat.format.date(utc_date_string, date_format); // u cannot use $.format(...) because it cannot use with jquery validation library, so we use DateFormat.format(...)
 
-  // cannot change toLocaleString separator format to - like utc, so I use Sweden time format. 
-  var myDate = new Date(value).toLocaleString("sv-SE");
+  // cannot change toLocaleString separator format to - like utc, so I use Sweden time format.
+  var myDate = new Date(value).toLocaleDateString("sv-SE");
   return myDate;
 }
 
@@ -156,7 +156,7 @@ function cost(value) {
     beauty_cost = value.toLocaleString() + " Toman";
     return beauty_cost;
   } else {
-    return
+    return;
   }
 }
 
@@ -191,15 +191,15 @@ function rtl(value) {
 }
 
 // JQuery datetime picker customize
-$('.date_time').datetimepicker({
+$(".date_time").datetimepicker({
   showTimepicker: false,
-  dateFormat: 'yy-m-d',
-  timeFormat: '03:30:0',
+  dateFormat: "yy-m-d",
+  timeFormat: "03:30:0",
   prevText: '<i class="fa fa-chevron-circle-left custom"></i>',
   nextText: '<i class="fa fa-chevron-circle-right custom"></i>',
-  currentText: 'امروز',
-  closeText: 'بستن',
-  dayNamesMin: ['ی', 'د', 'س', 'چ', 'پ', 'ج', 'ش'],
+  currentText: "امروز",
+  closeText: "بستن",
+  dayNamesMin: ["ی", "د", "س", "چ", "پ", "ج", "ش"],
   firstDay: 6,
 });
 
