@@ -172,9 +172,12 @@ $(document).ready(function(){
             },
             success: function(data) {
                 needData = data['needs'];
+
+                // Sort done needs result by status_updated_at (Show oldest first)
+                var sortedNeedData = needData.sort(SortByDate);
                 var row_index = 1;
 
-                $.each(needData, function(key, value){
+                $.each(sortedNeedData, function(key, value){
                     var needId = value[keys[0]];
                     var need_type = value['type'];
                     var need_status = -1;

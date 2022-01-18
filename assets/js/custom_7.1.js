@@ -213,3 +213,10 @@ if (ENVIRONMENT !== "local") {
     });
   });
 }
+
+function SortByDate(a, b) {
+  aDate = new Date(a.status_updated_at);
+  bDate = new Date(b.status_updated_at);
+
+  return aDate - bDate;
+}
