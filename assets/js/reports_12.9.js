@@ -87,6 +87,9 @@ $(document).ready(function(){
       },
     });
 
+    var sortAsc = true;
+    $('#sortAsc').prop('disabled', true);
+    var need_data = null;
     var status_needId = -1;
     var receipt_id = -1;
     var type_id = -1;
@@ -150,6 +153,146 @@ $(document).ready(function(){
             $('#status_filter_product').val('-1');
         }
     })
+
+    // Handle sorting
+    $('#sortAsc').click(function() {
+        sortAsc = true;
+        $(this).prop('disabled', true);
+        $('#sortDesc').prop('disabled', false);
+        ShowNeeds(need_data);
+    })
+    $('#sortDesc').click(function() {
+        sortAsc = false;
+        $(this).prop('disabled', true);
+        $('#sortAsc').prop('disabled', false);
+        ShowNeeds(need_data);
+    })
+
+    function ShowNeeds(needData) {
+        if (needData) {
+            var copy_needData = $.extend(true, [], needData);
+            // Sort done needs result by status_updated_at (Show oldest first)
+            var sortedNeedData = sortAsc ? copy_needData.sort(SortByDateAsc) : copy_needData.sort(SortByDateDesc);
+            var row_index = 1;
+            $('#reportDoneNeedList').empty();
+
+            $.each(sortedNeedData, function(key, value){
+                var needId = value[keys[0]];
+                var need_type = value['type'];
+                var need_status = -1;
+                var result = [];
+                
+                var query =
+                '<tr>\
+                <td>' +
+                row_index +
+                '</td>\
+                <td id="' +
+                needId +
+                '">\
+                <button type="submit" class="btn btn-block btn-embossed btn-default btn-sm changeStatus" onclick="editScroll()">Change status</button>\
+                <button class="btn btn-embossed btn-warning btn-block btn-sm receiptBtn">رسید</button>\
+                </td>\
+                ';
+
+                for (var i=2 ; i < keys.length ; i++) {
+                    result[keys[i]] = value[keys[i]];
+                    if (keys[i] == 'status') {
+                        if(result[keys[i]] == 0){
+                            result[keys[i]] = 'Not paid';
+                        }
+                        if(result[keys[i]] == 1){
+                            result[keys[i]] = "Partially paid";
+                        }
+                        if(result[keys[i]] == 2){
+                            result[keys[i]] = fullPayment();
+                        }
+
+                        if(need_type == 0){
+                            if(result[keys[i]] == 3) {
+                                result[keys[i]] = ngoDelivery();
+                                need_status = 03;
+                            }
+                            if(result[keys[i]] == 4) {
+                                result[keys[i]] = childDelivery();
+                                need_status = 04;
+                            }
+                        }
+
+                        if(need_type == 1){
+                            if(result[keys[i]] == 3) {
+                                result[keys[i]] = purchased();
+                                need_status = 13;
+                            }
+                            if(result[keys[i]] == 4) {
+                                result[keys[i]] = ngoDelivery();
+                                need_status = 14;
+                            }
+                            if(result[keys[i]] == 5) {
+                                result[keys[i]] = childDelivery();
+                                need_status = 15;
+                            }
+                        }
+                    }
+
+                    if (keys[i] == 'imageUrl') {
+                        result[keys[i]] = getImgFile(result[keys[i]]);
+                    }
+
+                    if (keys[i] == 'cost' || keys[i] == 'paid' || keys[i] == 'purchase_cost' || keys[i] == 'donated') {
+                        if (result[keys[i]] != null) {
+                            result[keys[i]] = cost(result[keys[i]]);
+                        }
+                    }
+
+                    if(keys[i] == 'doing_duration') {
+                        result[keys[i]] = result[keys[i]] + " days";
+                    }
+
+                    if(keys[i] == 'link') {
+                        if(result[keys[i]] != null) {
+                            result[keys[i]] = linkTo(result[keys[i]]);
+                        }
+                    }
+
+                    if (keys[i] == 'expected_delivery_date' || keys[i] == 'ngo_delivery_date' || keys[i] == 'doneAt' || keys[i] == 'child_delivery_date') {
+                        if (result[keys[i]] != null) {
+                            result[keys[i]] = jalaliDate(result[keys[i]]);
+                        }
+                    }
+
+                    if (keys[i] == 'details' || keys[i] == 'title' || keys[i] == 'informations') {
+                        if(result[keys[i]] != null) {
+                            result[keys[i]] = rtl(result[keys[i]]);
+                        }
+                    }
+
+                    if (result[keys[i]] == null) {
+                        result[keys[i]] = nullValues();
+                    }
+                    query += '<td>' + result[keys[i]] + '</td>';
+                }
+
+                query += '</tr>';
+                $('#reportDoneNeedList').append(query);
+
+                if (
+                !(
+                    need_status === 14 ||
+                    need_status === 15 ||
+                    need_status === 03 ||
+                    need_status === 04
+                )
+                ) {
+                $('#' + needId)
+                    .find('.receiptBtn')
+                    .hide();
+                }
+
+                row_index += 1;
+            })
+        }
+    }
     
     // get Done needs
     $('.done_filter').change(function() {
@@ -171,126 +314,10 @@ $(document).ready(function(){
                 $('#done_need_preloader').show();
             },
             success: function(data) {
-                needData = data['needs'];
+                var needData = data['needs'];
+                need_data = needData;
+                ShowNeeds(needData);
 
-                // Sort done needs result by status_updated_at (Show oldest first)
-                var sortedNeedData = needData.sort(SortByDate);
-                var row_index = 1;
-
-                $.each(sortedNeedData, function(key, value){
-                    var needId = value[keys[0]];
-                    var need_type = value['type'];
-                    var need_status = -1;
-                    
-                    var query =
-                      '<tr>\
-                    <td>' +
-                      row_index +
-                      '</td>\
-                    <td id="' +
-                      needId +
-                      '">\
-                    <button type="submit" class="btn btn-block btn-embossed btn-default btn-sm changeStatus" onclick="editScroll()">Change status</button>\
-                    <button class="btn btn-embossed btn-warning btn-block btn-sm receiptBtn">رسید</button>\
-                    </td>\
-                    ';
-
-                    for (var i=2 ; i < keys.length ; i++) {
-                        
-                        if (keys[i] == 'status') {
-                            if(value[keys[i]] == 0){
-                                value[keys[i]] = 'Not paid';
-                            }
-                            if(value[keys[i]] == 1){
-                                value[keys[i]] = "Partially paid";
-                            }
-                            if(value[keys[i]] == 2){
-                                value[keys[i]] = fullPayment();
-                            }
-
-                            if(need_type == 0){
-                                if(value[keys[i]] == 3) {
-                                    value[keys[i]] = ngoDelivery();
-                                    need_status = 03;
-                                }
-                                if(value[keys[i]] == 4) {
-                                    value[keys[i]] = childDelivery();
-                                    need_status = 04;
-                                }
-                            }
-
-                            if(need_type == 1){
-                                if(value[keys[i]] == 3) {
-                                    value[keys[i]] = purchased();
-                                    need_status = 13;
-                                }
-                                if(value[keys[i]] == 4) {
-                                    value[keys[i]] = ngoDelivery();
-                                    need_status = 14;
-                                }
-                                if(value[keys[i]] == 5) {
-                                    value[keys[i]] = childDelivery();
-                                    need_status = 15;
-                                }
-                            }
-                        }
-
-                        if (keys[i] == 'imageUrl') {
-                            value[keys[i]] = getImgFile(value[keys[i]]);
-                        }
-
-                        if (keys[i] == 'cost' || keys[i] == 'paid' || keys[i] == 'purchase_cost' || keys[i] == 'donated') {
-                            if (value[keys[i]] != null) {
-                                value[keys[i]] = cost(value[keys[i]]);
-                            }
-                        }
-
-                        if(keys[i] == 'doing_duration') {
-                            value[keys[i]] = value[keys[i]] + " days";
-                        }
-
-                        if(keys[i] == 'link') {
-                            if(value[keys[i]] != null) {
-                                value[keys[i]] = linkTo(value[keys[i]]);
-                            }
-                        }
-
-                        if (keys[i] == 'expected_delivery_date' || keys[i] == 'ngo_delivery_date' || keys[i] == 'doneAt' || keys[i] == 'child_delivery_date') {
-                            if (value[keys[i]] != null) {
-                                value[keys[i]] = jalaliDate(value[keys[i]]);
-                            }
-                        }
-
-                        if (keys[i] == 'details' || keys[i] == 'title' || keys[i] == 'informations') {
-                            if(value[keys[i]] != null) {
-                                value[keys[i]] = rtl(value[keys[i]]);
-                            }
-                        }
-
-                        if (value[keys[i]] == null) {
-                            value[keys[i]] = nullValues();
-                        }
-                        query += '<td>' + value[keys[i]] + '</td>';
-                    }
-
-                    query += '</tr>';
-                    $('#reportDoneNeedList').append(query);
-
-                    if (
-                      !(
-                        need_status === 14 ||
-                        need_status === 15 ||
-                        need_status === 03 ||
-                        need_status === 04
-                      )
-                    ) {
-                      $('#' + needId)
-                        .find('.receiptBtn')
-                        .hide();
-                    }
-
-                    row_index += 1;
-                })
                 $('#done_need_preloader').hide();
                 $('.done_filter').prop('disabled', false);
             },
