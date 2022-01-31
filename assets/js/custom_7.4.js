@@ -183,7 +183,7 @@ jQuery.validator.addMethod(
 $(".cost").on("keyup", function () {
   var n = toEnglishNumber($(this).val());
   var number = parseInt(n.replace(/\D/g, ""), 10);
-  $(this).val(number.toLocaleString());
+  $(this).val(number.toLocaleString('en-US'));
 });
 
 // Make the text rtl
