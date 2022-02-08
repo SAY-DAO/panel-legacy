@@ -4,6 +4,7 @@ $(document).ready(function(){
 
     // Reset static fields after refresh
     $('.static').val('');
+    $('.static').prop('selectedIndex',0);
 
     // needs form validation
     $('#need_form').validate({
@@ -12,15 +13,17 @@ $(document).ready(function(){
             child_id: {
                 required: true,
             },
-            need_name: {
-                required: true,
-            },
+            // TODO: temporarily disabled due to first adding new need by SWs
+            // need_name: {
+            //     required: true,
+            // },
             need_name_fa: {
                 required: true,
             },
-            need_category: {
-                required:true,
-            },
+            // TODO: temporarily disabled due to first adding new need by SWs
+            // need_category: {
+            //     required:true,
+            // },
             need_cost: {
                 required: true,
                 number: true,
@@ -39,26 +42,29 @@ $(document).ready(function(){
             need_doing_duration: {
                 number: true,
             },
-            need_description: {
-                required: true,
-            },
-            need_description_fa: {
-                required: true,
-            },
+            // TODO: temporarily disabled due to first adding new need by SWs
+            // need_description: {
+            //     required: true,
+            // },
+            // need_description_fa: {
+            //     required: true,
+            // },
         },
         messages: {
             child_id: {
                 required: "انتخاب کودک ضروری است.",
             },
-            need_name: {
-                required: "وارد کردن نام نیاز ضروری است.",
-            },
+            // TODO: temporarily disabled due to first adding new need by SWs
+            // need_name: {
+            //     required: "وارد کردن نام نیاز ضروری است.",
+            // },
             need_name_fa: {
                 required: "وارد کردن نام نیاز ضروری است.",
             },
-            need_category: {
-              required: "انتخاب دسته‌بندی نیاز ضروری است.",
-            },
+            // TODO: temporarily disabled due to first adding new need by SWs
+            // need_category: {
+            //   required: "انتخاب دسته‌بندی نیاز ضروری است.",
+            // },
             need_cost: {
                 required: "وارد کردن هزینه نیاز ضروری است.",
                 number: "لطفا فقط عدد وارد کنید.",
@@ -77,12 +83,13 @@ $(document).ready(function(){
             need_doing_duration: {
                 number: "لطفا فقط عدد وارد کنید.",
             },
-            need_description: {
-                required: "وارد کردن شرح نیاز ضروری است.",
-            },
-            need_description_fa: {
-                required: "وارد کردن شرح نیاز ضروری است.",
-            },
+            // TODO: temporarily disabled due to first adding new need by SWs
+            // need_description: {
+            //     required: "وارد کردن شرح نیاز ضروری است.",
+            // },
+            // need_description_fa: {
+            //     required: "وارد کردن شرح نیاز ضروری است.",
+            // },
         },
         errorPlacement: function(error, element) {
             error.appendTo(element.parent('div'));
@@ -358,6 +365,7 @@ $(document).ready(function(){
             dataType: 'json',
             beforeSend: function() {
                 $('#needs_preloader').show();
+                $('.select_btn').prop('disabled', 'disabled');
             },
             success: function(data) {
                 console.log(data);
@@ -525,9 +533,11 @@ $(document).ready(function(){
                     row_index += 1;
                 })
                 $('#needs_preloader').hide();
+                $('.select_btn').prop('disabled', false);
             },
             error: function(data) {
                 console.log(data.responseJSON.message);
+                $('.select_btn').prop('disabled', false);
             }
         })
         $('#needList').empty();
@@ -624,7 +634,7 @@ $(document).ready(function(){
         // recieving data from html form
         var childId = $('#child_id').val();
         var imageUrl = $('#need_icon')[0].files[0];
-        var category = $('#need_category').val();
+        var category = $('#need_category').val() || -1;
         var cost = $('#need_cost').val().replaceAll(',','');
         var details = $('#need_details').val();
         var informations = $('#need_informations').val();
@@ -632,12 +642,12 @@ $(document).ready(function(){
         var doing_duration = $('#need_doing_duration').val();
         var isUrgent = $('#is_urgent').val();
         var name_translations = JSON.stringify({
-            en: $('#need_name').val(),
+            en: $('#need_name').val() || "",
             fa: $('#need_name_fa').val(),
         });
         var description_translations = JSON.stringify({
-            en: $('#need_description').val(),
-            fa: $('#need_description_fa').val(),
+            en: $('#need_description').val() || "",
+            fa: $('#need_description_fa').val() || "",
         });
         
         var link = $('#direct_link').val();
@@ -663,8 +673,6 @@ $(document).ready(function(){
             form_data.append('doing_duration', doing_duration);
         }
        
-        console.log(form_data);
-        
         if($('#need_form').valid()) {
             $.ajax({
                 url: SAYApiUrl + '/need/',
@@ -917,8 +925,8 @@ $(document).ready(function(){
             form_data.append('description', description);
         }
 
-        $('#r_need_receipts').rules('add', 'required'); // Add attachment requtred rule in case after edit
-        $('#r_receipt_title').rules('add', 'required'); // Add title requtred rule in case after edit
+        $('#r_need_receipts').rules('add', 'required'); // Add attachment required rule in case after edit
+        $('#r_receipt_title').rules('add', 'required'); // Add title required rule in case after edit
 
         if ( $('#receipt_form').valid() ) {
             $("div.alert").hide();
@@ -999,8 +1007,8 @@ $(document).ready(function(){
             form_data.append('description', description);
         }
 
-        $('#r_need_receipts').rules('remove', 'required'); // Remove attachment requtred rule
-        $('#r_receipt_title').rules('remove', 'required'); // Remove title requtred rule
+        $('#r_need_receipts').rules('remove', 'required'); // Remove attachment required rule
+        $('#r_receipt_title').rules('remove', 'required'); // Remove title required rule
 
         if ( $('#receipt_form').valid() ) {
             $("div.alert").hide();

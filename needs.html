@@ -481,8 +481,9 @@
                           <div class="form-group">
                             <label for="need_name" class="control-label"
                               >نام انگلیسی نیاز
-                              <span class="required">*</span></label
-                            >
+                              <!-- TODO: temporarily disabled due to first adding new need by SWs -->
+                              <!-- <span class="required">*</span> -->
+                            </label>
                             <div class="append-icon">
                               <input
                                 type="text"
@@ -499,8 +500,9 @@
                         <div class="col-md-4 col-sm-6 h-100">
                           <div class="form-group">
                             <label for="need_type" class="control-label">
-                              نوع نیاز <span class="required">*</span></label
-                            >
+                              نوع نیاز 
+                              <span class="required">*</span>
+                            </label>
                             <div class="option-group">
                               <select
                                 id="need_type"
@@ -520,8 +522,10 @@
                         <div class="col-md-4 col-sm-6 h-100">
                           <div class="form-group">
                             <label for="need_category" class="control-label"
-                              >دسته‌بندی <span class="required">*</span></label
-                            >
+                              >دسته‌بندی 
+                              <!-- TODO: temporarily disabled due to first adding new need by SWs -->
+                              <!-- <span class="required">*</span> -->
+                            </label>
                             <div class="option-group">
                               <select
                                 id="need_category"
@@ -664,8 +668,9 @@
                               for="need_description_fa"
                               class="control-label"
                               >شرح فارسی نیاز
-                              <span class="required">*</span></label
-                            >
+                              <!-- TODO: temporarily disabled due to first adding new need by SWs -->
+                              <!-- <span class="required">*</span> -->
+                            </label>
                             <textarea
                               name="need_description_fa"
                               id="need_description_fa"
@@ -680,8 +685,9 @@
                           <div class="form-group">
                             <label for="need_description" class="control-label"
                               >شرح انگلیسی نیاز
-                              <span class="required">*</span></label
-                            >
+                              <!-- TODO: temporarily disabled due to first adding new need by SWs -->
+                              <!-- <span class="required">*</span> -->
+                            </label>
                             <textarea
                               name="need_description"
                               id="need_description"
@@ -859,6 +865,7 @@
                     btn btn-sm btn-dark btn-block
                     col-md-3 col-sm-3 col-xs-12
                     pull-right
+                    need_filter
                     report_filter
                     privilege1
                     select_btn
@@ -1031,7 +1038,7 @@
 
     <script src="assets/js/ngo_data_serve_6.0.js"></script>
     <!--NGO field data feed-->
-    <script src="assets/js/need_data_serve_8.2.js"></script>
+    <script src="assets/js/need_data_serve_8.3.js"></script>
     <!--Need data feed-->
     <script src="assets/js/child_data_serve_6.1.js"></script>
     <!--child data feed for child_id field-->
