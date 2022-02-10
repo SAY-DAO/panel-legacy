@@ -171,7 +171,7 @@ $(document).ready(function(){
             },
             success: function(data) {
                 $('.total_count').empty();
-                console.log('option:' + selected_child);
+                var pre_needs = selected_child === "104" || false;
                 var row_index = 1;
                 
                 // Change data to needs
@@ -179,7 +179,7 @@ $(document).ready(function(){
 
                 // Sort needs list => first !done needs(based on `created` Descending), second done needs(based on `doneAt` Descending)
                 var copy_needData = $.extend(true, [], data);
-                var sortedNeedData = copy_needData.sort(SortByDone).sort(SortNeedsList);
+                var sortedNeedData = pre_needs ? copy_needData : copy_needData.sort(SortByDone).sort(SortNeedsList);
                 
                 $.each(sortedNeedData, function(key, value){
                     var needId = value['id'];
