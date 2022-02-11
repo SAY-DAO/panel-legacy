@@ -229,6 +229,29 @@ function SortByDateDesc(a, b) {
   return bDate - aDate;
 }
 
+function SortNeedsList(a, b) {
+  var result1 = null;
+  var result2 = null;
+  
+  if (!(a.isDone || b.isDone)) {  // not done needs
+    aDate = new Date(a.created);
+    bDate = new Date(b.created);
+    result1 = bDate - aDate;
+    return result1;
+  } else if (a.isDone && b.isDone) {  // done needs
+    aDate = new Date(a.doneAt);
+    bDate = new Date(b.doneAt);
+    result2 = bDate - aDate;
+    return result2
+  }
+}
+
+function SortByDone(a, b) {
+  aDone = a.isDone;
+  bDone = b.isDone;
+  return aDone - bDone;
+}
+
 function toEnglishNumber(strNum) {
   var pn = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
   var en = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];

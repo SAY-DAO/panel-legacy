@@ -171,12 +171,17 @@ $(document).ready(function(){
             },
             success: function(data) {
                 $('.total_count').empty();
-                console.log('option:' + selected_child);
+                var pre_needs = selected_child === "104" || false;
                 var row_index = 1;
                 
                 // Change data to needs
                 data = data['needs'];
-                $.each(data, function(key, value){
+
+                // Sort needs list => first !done needs(based on `created` Descending), second done needs(based on `doneAt` Descending)
+                var copy_needData = $.extend(true, [], data);
+                var sortedNeedData = pre_needs ? copy_needData : copy_needData.sort(SortByDone).sort(SortNeedsList);
+                
+                $.each(sortedNeedData, function(key, value){
                     var needId = value['id'];
                     var name_translations = value['name_translations'];
                     var description_translations = value['description_translations'];
@@ -373,7 +378,12 @@ $(document).ready(function(){
                 data = data['needs'].filter(n => n.child_id != 104);
                 $('.total_count').html(' - ' + data.length + ' تا');
                 var row_index = 1;
-                $.each(data, function(key, value){
+
+                // Sort needs list => first !done needs(based on `created` Descending), second done needs(based on `doneAt` Descending)
+                var copy_needData = $.extend(true, [], data);
+                var sortedNeedData = copy_needData.sort(SortByDone).sort(SortNeedsList);
+
+                $.each(sortedNeedData, function(key, value){
                     var needId = value['id'];
                     var confirmStatus = -1;
                     var needType = value['type'];
@@ -512,7 +522,7 @@ $(document).ready(function(){
                             }
                         }
 
-                        if(keys[i] == 'confirmDate' || keys[i] == 'created' || keys[i] == 'updated') {
+                        if(keys[i] == 'confirmDate' || keys[i] == 'created' || keys[i] == 'updated' || keys[i] == 'doneAt' || keys[i] == 'child_delivery_date') {
                             value[keys[i]] = jalaliDate(value[keys[i]]);
                         }
  
