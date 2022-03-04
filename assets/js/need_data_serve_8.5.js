@@ -161,202 +161,204 @@ $(document).ready(function(){
     // Get Children Needs by child id
     $('#child_need_select').change(function() {
         var selected_child = $(this).val();
-        $.ajax({
-            url: SAYApiUrl + '/child/childId=' + selected_child + '/needs',
-            method: 'GET',
-            dataType: 'json',
-            beforeSend: function() {
-                $('.select_btn').prop('disabled', 'disabled');
-                $('#needs_preloader').show();
-            },
-            success: function(data) {
-                $('.total_count').empty();
-                var pre_needs = selected_child === "104" || false;
-                var row_index = 1;
-                
-                // Change data to needs
-                data = data['needs'];
-
-                // Sort needs list => first !done needs(based on `created` Descending), second done needs(based on `doneAt` Descending)
-                var copy_needData = $.extend(true, [], data);
-                var sortedNeedData = pre_needs ? copy_needData : copy_needData.sort(SortByDone).sort(SortNeedsList);
-                
-                $.each(sortedNeedData, function(key, value){
-                    var needId = value['id'];
-                    var name_translations = value['name_translations'];
-                    var description_translations = value['description_translations'];
+        if(selected_child) {
+            $.ajax({
+                url: SAYApiUrl + '/child/childId=' + selected_child + '/needs',
+                method: 'GET',
+                dataType: 'json',
+                beforeSend: function() {
+                    $('.select_btn').prop('disabled', 'disabled');
+                    $('#needs_preloader').show();
+                },
+                success: function(data) {
+                    $('.total_count').empty();
+                    var pre_needs = selected_child === "104" || false;
+                    var row_index = 1;
                     
-                    var confirmStatus = -1;
-                    var needType = value['type'];
-                    var sayName = value['childSayName'];
-    
-                    // first td for row count numbers, second td for operational buttons
-                    var query = '<tr>\
-                    <td>' + row_index + '</td>\
-                    <td id="' + needId + '">\
-                    <button type="submit" class="btn btn-embossed btn-success btn-block btn-sm confirmBtn">Confirm</button>\
-                    <button class="btn btn-embossed btn-primary btn-block btn-sm editBtn" onclick="editScroll()">Edit</button>\
-                    <button class="btn btn-embossed btn-warning btn-block btn-sm receiptBtn" onclick="editScroll()">Receipt</button>\
-                    <button class="btn btn-embossed btn-danger btn-block btn-sm deleteBtn">Delete</button>\
-                    </td>\
-                    <td>' + sayName + '</td>';
-                    for(var i=2 ; i < keys.length ; i++){
+                    // Change data to needs
+                    data = data['needs'];
+
+                    // Sort needs list => first !done needs(based on `created` Descending), second done needs(based on `doneAt` Descending)
+                    var copy_needData = $.extend(true, [], data);
+                    var sortedNeedData = pre_needs ? copy_needData : copy_needData.sort(SortByDone).sort(SortNeedsList);
+                    
+                    $.each(sortedNeedData, function(key, value){
+                        var needId = value['id'];
+                        var name_translations = value['name_translations'];
+                        var description_translations = value['description_translations'];
                         
-                        if ( keys[i] == 'name') {
-                            value[keys[i]] = name_translations.en;
-                        }
-
-                        if ( keys[i] == 'name_fa') {
-                            value[keys[i]] = rtl(name_translations.fa);
-                        }
-
-                        if ( keys[i] == 'description') {
-                            value[keys[i]] = description_translations.en;
-                        }
-
-                        if ( keys[i] == 'description_fa') {
-                            value[keys[i]] = rtl(description_translations.fa);
-                        }
-
-                        if (keys[i] == 'imageUrl') {
-                            value[keys[i]] = getImgFile(value[keys[i]]);
-                        }
-
-                        if (keys[i] == 'cost' || keys[i] == 'paid') {
-                            value[keys[i]] = cost(value[keys[i]]);
-                        }
-
-                        if (keys[i] == 'link') {
-                            if(value[keys[i]] != null) {
-                                value[keys[i]] = linkTo(value[keys[i]]);
-                            }
-                        }
-
-                        if (keys[i] == 'progress') {
-                            value[keys[i]] = value[keys[i]] + '%'
-                        }
-
-                        if (keys[i] == 'type') {
-                            if(value[keys[i]] == 0){
-                                value[keys[i]] = 'Service';
-                            }
-                            if(value[keys[i]] == 1){
-                                value[keys[i]] = 'Product';
-                            }
-                        }
-
-                        if (keys[i] == 'status') {
-                            if(value[keys[i]] == 0){
-                                value[keys[i]] = 'Not paid';
-                            }
-                            if(value[keys[i]] == 1){
-                                value[keys[i]] = 'Partially paid';
-                            }
-                            if(value[keys[i]] == 2){
-                                value[keys[i]] = fullPayment();
-                            }
+                        var confirmStatus = -1;
+                        var needType = value['type'];
+                        var sayName = value['childSayName'];
+        
+                        // first td for row count numbers, second td for operational buttons
+                        var query = '<tr>\
+                        <td>' + row_index + '</td>\
+                        <td id="' + needId + '">\
+                        <button type="submit" class="btn btn-embossed btn-success btn-block btn-sm confirmBtn">Confirm</button>\
+                        <button class="btn btn-embossed btn-primary btn-block btn-sm editBtn" onclick="editScroll()">Edit</button>\
+                        <button class="btn btn-embossed btn-warning btn-block btn-sm receiptBtn" onclick="editScroll()">Receipt</button>\
+                        <button class="btn btn-embossed btn-danger btn-block btn-sm deleteBtn">Delete</button>\
+                        </td>\
+                        <td>' + sayName + '</td>';
+                        for(var i=2 ; i < keys.length ; i++){
                             
-                            if(needType == 0){
-                                if(value[keys[i]] == 3) {
-                                    value[keys[i]] = ngoDelivery();
+                            if ( keys[i] == 'name') {
+                                value[keys[i]] = name_translations.en;
+                            }
+
+                            if ( keys[i] == 'name_fa') {
+                                value[keys[i]] = rtl(name_translations.fa);
+                            }
+
+                            if ( keys[i] == 'description') {
+                                value[keys[i]] = description_translations.en;
+                            }
+
+                            if ( keys[i] == 'description_fa') {
+                                value[keys[i]] = rtl(description_translations.fa);
+                            }
+
+                            if (keys[i] == 'imageUrl') {
+                                value[keys[i]] = getImgFile(value[keys[i]]);
+                            }
+
+                            if (keys[i] == 'cost' || keys[i] == 'paid') {
+                                value[keys[i]] = cost(value[keys[i]]);
+                            }
+
+                            if (keys[i] == 'link') {
+                                if(value[keys[i]] != null) {
+                                    value[keys[i]] = linkTo(value[keys[i]]);
                                 }
-                                if(value[keys[i]] == 4) {
-                                    value[keys[i]] = childDelivery();
+                            }
+
+                            if (keys[i] == 'progress') {
+                                value[keys[i]] = value[keys[i]] + '%'
+                            }
+
+                            if (keys[i] == 'type') {
+                                if(value[keys[i]] == 0){
+                                    value[keys[i]] = 'Service';
                                 }
+                                if(value[keys[i]] == 1){
+                                    value[keys[i]] = 'Product';
+                                }
+                            }
+
+                            if (keys[i] == 'status') {
+                                if(value[keys[i]] == 0){
+                                    value[keys[i]] = 'Not paid';
+                                }
+                                if(value[keys[i]] == 1){
+                                    value[keys[i]] = 'Partially paid';
+                                }
+                                if(value[keys[i]] == 2){
+                                    value[keys[i]] = fullPayment();
+                                }
+                                
+                                if(needType == 0){
+                                    if(value[keys[i]] == 3) {
+                                        value[keys[i]] = ngoDelivery();
+                                    }
+                                    if(value[keys[i]] == 4) {
+                                        value[keys[i]] = childDelivery();
+                                    }
+                                }
+        
+                                if(needType == 1){
+                                    if(value[keys[i]] == 3) {
+                                        value[keys[i]] = purchased();
+                                    }
+                                    if(value[keys[i]] == 4) {
+                                        value[keys[i]] = ngoDelivery();
+                                    }
+                                    if(value[keys[i]] == 5) {
+                                        value[keys[i]] = childDelivery();
+                                    }
+                                }
+                            }
+
+                            if (keys[i] == 'details' || keys[i] == 'title' || keys[i] == 'informations') {
+                                if(Boolean(value[keys[i]]) != false) {
+                                    value[keys[i]] = rtl(value[keys[i]]);
+                                }
+                            }
+
+                            if (keys[i] == 'isUrgent') {
+                                if(value[keys[i]] == false){
+                                    value[keys[i]] = 'Not urgent';
+                                }
+                                if(value[keys[i]] == true){
+                                    value[keys[i]] = 'Urgent';
+                                }
+                            }
+
+                            if (keys[i] == 'category') {
+                                if(value[keys[i]] == 0){
+                                    value[keys[i]] = 'Growth';
+                                }
+                                if(value[keys[i]] == 1){
+                                    value[keys[i]] = 'Joy';
+                                }
+                                if(value[keys[i]] == 2){
+                                    value[keys[i]] = 'Health';
+                                }
+                                if(value[keys[i]] == 3){
+                                    value[keys[i]] = 'Surroundings';
+                                }
+                            }
+
+                            if (keys[i] == 'isConfirmed') {
+                                if(value[keys[i]] == false){
+                                    value[keys[i]] = 'Not confirmed';
+                                }
+                                if(value[keys[i]] == true){
+                                    value[keys[i]] = 'Confirmed';
+                                    confirmStatus = 1;
+                                }
+                            }
+
+                            if(keys[i] == 'confirmDate' || keys[i] == 'created' || keys[i] == 'updated' || keys[i] == 'child_delivery_date' || keys[i] == 'doneAt') {
+                                value[keys[i]] = jalaliDate(value[keys[i]]);
                             }
     
-                            if(needType == 1){
-                                if(value[keys[i]] == 3) {
-                                    value[keys[i]] = purchased();
-                                }
-                                if(value[keys[i]] == 4) {
-                                    value[keys[i]] = ngoDelivery();
-                                }
-                                if(value[keys[i]] == 5) {
-                                    value[keys[i]] = childDelivery();
-                                }
+                            if(Boolean(value[keys[i]]) == false){
+                                value[keys[i]] = nullValues();
                             }
+
+                            query += '<td>' + value[keys[i]] + '</td>';
+                        }
+                        query += '</tr>';
+                        $('#needList').append(query);
+                        hasPrivilege();
+
+                        // disable confirm button if the need has confirmed already!
+                        if(confirmStatus == 1){
+                            $('#' + needId).find('.confirmBtn').prop("disabled", true);
+                            $('#' + needId).find('.confirmBtn').text("Confirmed");
                         }
 
-                        if (keys[i] == 'details' || keys[i] == 'title' || keys[i] == 'informations') {
-                            if(Boolean(value[keys[i]]) != false) {
-                                value[keys[i]] = rtl(value[keys[i]]);
-                            }
+                        if (global_user_role != ROLES.SUPER_ADMIN && confirmStatus == 1) {
+                            $('#' + needId).find('.editBtn').prop("disabled", true);
                         }
 
-                        if (keys[i] == 'isUrgent') {
-                            if(value[keys[i]] == false){
-                                value[keys[i]] = 'Not urgent';
-                            }
-                            if(value[keys[i]] == true){
-                                value[keys[i]] = 'Urgent';
-                            }
+                        // TODO: Pre Defined needs (this is a hard code)
+                        if (selected_child == 104) {
+                            $('#' + needId).find('.confirmBtn').hide();
+                            $('#' + needId).find('.receiptBtn').hide();
                         }
-
-                        if (keys[i] == 'category') {
-                            if(value[keys[i]] == 0){
-                                value[keys[i]] = 'Growth';
-                            }
-                            if(value[keys[i]] == 1){
-                                value[keys[i]] = 'Joy';
-                            }
-                            if(value[keys[i]] == 2){
-                                value[keys[i]] = 'Health';
-                            }
-                            if(value[keys[i]] == 3){
-                                value[keys[i]] = 'Surroundings';
-                            }
-                        }
-
-                        if (keys[i] == 'isConfirmed') {
-                            if(value[keys[i]] == false){
-                                value[keys[i]] = 'Not confirmed';
-                            }
-                            if(value[keys[i]] == true){
-                                value[keys[i]] = 'Confirmed';
-                                confirmStatus = 1;
-                            }
-                        }
-
-                        if(keys[i] == 'confirmDate' || keys[i] == 'created' || keys[i] == 'updated' || keys[i] == 'child_delivery_date' || keys[i] == 'doneAt') {
-                            value[keys[i]] = jalaliDate(value[keys[i]]);
-                        }
- 
-                        if(Boolean(value[keys[i]]) == false){
-                            value[keys[i]] = nullValues();
-                        }
-
-                        query += '<td>' + value[keys[i]] + '</td>';
-                    }
-                    query += '</tr>';
-                    $('#needList').append(query);
-                    hasPrivilege();
-
-                    // disable confirm button if the need has confirmed already!
-                    if(confirmStatus == 1){
-                        $('#' + needId).find('.confirmBtn').prop("disabled", true);
-                        $('#' + needId).find('.confirmBtn').text("Confirmed");
-                    }
-
-                    if (global_user_role != ROLES.SUPER_ADMIN && confirmStatus == 1) {
-                        $('#' + needId).find('.editBtn').prop("disabled", true);
-                    }
-
-                    // TODO: Pre Defined needs (this is a hard code)
-                    if (selected_child == 104) {
-                        $('#' + needId).find('.confirmBtn').hide();
-                        $('#' + needId).find('.receiptBtn').hide();
-                    }
-                    row_index += 1;
-                })
-                $('#needs_preloader').hide();
-                $('.select_btn').prop('disabled', false);
-            },
-            error: function(data) {
-                console.log(data.responseJSON.message);
-                $('.select_btn').prop('disabled', false);
-            }
-        })
+                        row_index += 1;
+                    })
+                    $('#needs_preloader').hide();
+                    $('.select_btn').prop('disabled', false);
+                },
+                error: function(data) {
+                    console.log(data.responseJSON.message);
+                    $('.select_btn').prop('disabled', false);
+                }
+            })
+        }
         $('#needList').empty();
     })
 
@@ -364,192 +366,196 @@ $(document).ready(function(){
     $('.need_filter').change(function() {
         var confirm_status = $('#need_confirm_status').val();
         var selected_ngo = $('#need_ngo').val();
-        $.ajax({
-            url: `${SAYApiUrl}/needs?${confirm_status ? `isConfirmed=${confirm_status}` : ``}${selected_ngo ? `&ngoId=${selected_ngo}` : ``}&isChildConfirmed=true`,
-            method: 'GET',
-            dataType: 'json',
-            beforeSend: function() {
-                $('#needs_preloader').show();
-                $('.select_btn').prop('disabled', 'disabled');
-            },
-            success: function(data) {
-                console.log(data);
-                var total_count = data['totalCount'];
-                data = data['needs'].filter(n => n.child_id != 104);
-                $('.total_count').html(' - ' + data.length + ' تا');
-                var row_index = 1;
+        if(confirm_status && selected_ngo) {
+            $.ajax({
+                url: `${SAYApiUrl}/needs?${confirm_status ? `isConfirmed=${confirm_status}` : ``}${selected_ngo ? `&ngoId=${selected_ngo}` : ``}&isChildConfirmed=true`,
+                method: 'GET',
+                dataType: 'json',
+                beforeSend: function() {
+                    $('#needs_preloader').show();
+                    $('.select_btn').prop('disabled', 'disabled');
+                },
+                success: function(data) {
+                    console.log(data);
+                    var total_count = data['totalCount'];
+                    data = data['needs'].filter(n => n.child_id != 104);
+                    $('.total_count').html(' - ' + data.length + ' تا');
+                    var row_index = 1;
 
-                // Sort needs list => first !done needs(based on `created` Descending), second done needs(based on `doneAt` Descending)
-                var copy_needData = $.extend(true, [], data);
-                var sortedNeedData = copy_needData.sort(SortByDone).sort(SortNeedsList);
+                    // Sort needs list => first !done needs(based on `created` Descending), second done needs(based on `doneAt` Descending)
+                    var copy_needData = $.extend(true, [], data);
+                    var sortedNeedData = copy_needData.sort(SortByDone).sort(SortNeedsList);
 
-                $.each(sortedNeedData, function(key, value){
-                    var needId = value['id'];
-                    var confirmStatus = -1;
-                    var needType = value['type'];
-                    var sayName = value['childSayName'];
-                    var name_translations = value['name_translations'];
-                    var description_translations = value['description_translations'];
+                    $.each(sortedNeedData, function(key, value){
+                        var needId = value['id'];
+                        var confirmStatus = -1;
+                        var needType = value['type'];
+                        var sayName = value['childSayName'];
+                        var name_translations = value['name_translations'];
+                        var description_translations = value['description_translations'];
 
-                    // first td for row count numbers, second td for operational buttons
-                    var query = '<tr>\
-                    <td>' + row_index + '</td>\
-                    <td id="' + needId + '">\
-                    <button type="submit" class="btn btn-embossed btn-success btn-block btn-sm confirmBtn">Confirm</button>\
-                    <button class="btn btn-embossed btn-primary btn-block btn-sm editBtn" onclick="editScroll()">Edit</button>\
-                    <button class="btn btn-embossed btn-danger btn-block btn-sm deleteBtn">Delete</button>\
-                    </td>\
-                    <td>' + sayName + '</td>';
-                    for(var i=2 ; i < keys.length ; i++){
-                        
-                        if ( keys[i] == 'name') {
-                            value[keys[i]] = name_translations.en;
-                        }
-
-                        if ( keys[i] == 'name_fa') {
-                            value[keys[i]] = rtl(name_translations.fa);
-                        }
-
-                        if ( keys[i] == 'description') {
-                            value[keys[i]] = description_translations.en;
-                        }
-
-                        if ( keys[i] == 'description_fa') {
-                            value[keys[i]] = rtl(description_translations.fa);
-                        }
-
-                        if (keys[i] == 'imageUrl') {
-                            value[keys[i]] = getImgFile(value[keys[i]]);
-                        }
-
-                        if (keys[i] == 'cost' || keys[i] == 'paid') {
-                            value[keys[i]] = cost(value[keys[i]]);
-                        }
-
-                        if (keys[i] == 'link') {
-                            if(value[keys[i]] != null) {
-                                value[keys[i]] = linkTo(value[keys[i]]);
-                            }
-                        }
-
-                        if (keys[i] == 'progress') {
-                            value[keys[i]] = value[keys[i]] + '%'
-                        }
-
-                        if (keys[i] == 'type') {
-                            if(value[keys[i]] == 0){
-                                value[keys[i]] = 'Service';
-                            }
-                            if(value[keys[i]] == 1){
-                                value[keys[i]] = 'Product';
-                            }
-                        }
-
-                        if (keys[i] == 'status') {
-                            if(value[keys[i]] == 0){
-                                value[keys[i]] = 'Not paid';
-                            }
-                            if(value[keys[i]] == 1){
-                                value[keys[i]] = 'Partially paid';
-                            }
-                            if(value[keys[i]] == 2){
-                                value[keys[i]] = fullPayment();
-                            }
+                        // first td for row count numbers, second td for operational buttons
+                        var query = '<tr>\
+                        <td>' + row_index + '</td>\
+                        <td id="' + needId + '">\
+                        <button type="submit" class="btn btn-embossed btn-success btn-block btn-sm confirmBtn">Confirm</button>\
+                        <button class="btn btn-embossed btn-primary btn-block btn-sm editBtn" onclick="editScroll()">Edit</button>\
+                        <button class="btn btn-embossed btn-danger btn-block btn-sm deleteBtn">Delete</button>\
+                        </td>\
+                        <td>' + sayName + '</td>';
+                        for(var i=2 ; i < keys.length ; i++){
                             
-                            if(needType == 0){
-                                if(value[keys[i]] == 3) {
-                                    value[keys[i]] = ngoDelivery();
+                            if ( keys[i] == 'name') {
+                                value[keys[i]] = name_translations.en;
+                            }
+
+                            if ( keys[i] == 'name_fa') {
+                                value[keys[i]] = rtl(name_translations.fa);
+                            }
+
+                            if ( keys[i] == 'description') {
+                                value[keys[i]] = description_translations.en;
+                            }
+
+                            if ( keys[i] == 'description_fa') {
+                                value[keys[i]] = rtl(description_translations.fa);
+                            }
+
+                            if (keys[i] == 'imageUrl') {
+                                value[keys[i]] = getImgFile(value[keys[i]]);
+                            }
+
+                            if (keys[i] == 'cost' || keys[i] == 'paid') {
+                                value[keys[i]] = cost(value[keys[i]]);
+                            }
+
+                            if (keys[i] == 'link') {
+                                if(value[keys[i]] != null) {
+                                    value[keys[i]] = linkTo(value[keys[i]]);
                                 }
-                                if(value[keys[i]] == 4) {
-                                    value[keys[i]] = childDelivery();
+                            }
+
+                            if (keys[i] == 'progress') {
+                                value[keys[i]] = value[keys[i]] + '%'
+                            }
+
+                            if (keys[i] == 'type') {
+                                if(value[keys[i]] == 0){
+                                    value[keys[i]] = 'Service';
                                 }
+                                if(value[keys[i]] == 1){
+                                    value[keys[i]] = 'Product';
+                                }
+                            }
+
+                            if (keys[i] == 'status') {
+                                if(value[keys[i]] == 0){
+                                    value[keys[i]] = 'Not paid';
+                                }
+                                if(value[keys[i]] == 1){
+                                    value[keys[i]] = 'Partially paid';
+                                }
+                                if(value[keys[i]] == 2){
+                                    value[keys[i]] = fullPayment();
+                                }
+                                
+                                if(needType == 0){
+                                    if(value[keys[i]] == 3) {
+                                        value[keys[i]] = ngoDelivery();
+                                    }
+                                    if(value[keys[i]] == 4) {
+                                        value[keys[i]] = childDelivery();
+                                    }
+                                }
+        
+                                if(needType == 1){
+                                    if(value[keys[i]] == 3) {
+                                        value[keys[i]] = purchased();
+                                    }
+                                    if(value[keys[i]] == 4) {
+                                        value[keys[i]] = ngoDelivery();
+                                    }
+                                    if(value[keys[i]] == 5) {
+                                        value[keys[i]] = childDelivery();
+                                    }
+                                }
+                            }
+
+                            if (keys[i] == 'details' || keys[i] == 'title' || keys[i] == 'informations') {
+                                if(Boolean(value[keys[i]]) != false) {
+                                    value[keys[i]] = rtl(value[keys[i]]);
+                                }
+                            }
+
+                            if (keys[i] == 'isUrgent') {
+                                if(value[keys[i]] == false){
+                                    value[keys[i]] = 'Not urgent';
+                                }
+                                if(value[keys[i]] == true){
+                                    value[keys[i]] = 'Urgent';
+                                }
+                            }
+
+                            if (keys[i] == 'category') {
+                                if(value[keys[i]] == 0){
+                                    value[keys[i]] = 'Growth';
+                                }
+                                if(value[keys[i]] == 1){
+                                    value[keys[i]] = 'Joy';
+                                }
+                                if(value[keys[i]] == 2){
+                                    value[keys[i]] = 'Health';
+                                }
+                                if(value[keys[i]] == 3){
+                                    value[keys[i]] = 'Surroundings';
+                                }
+                            }
+
+                            if(keys[i] == 'doing_duration') {
+                                value[keys[i]] = value[keys[i]] + " days";
+                            }
+
+                            if (keys[i] == 'isConfirmed') {
+                                if(value[keys[i]] == false){
+                                    value[keys[i]] = 'Not confirmed';
+                                }
+                                if(value[keys[i]] == true){
+                                    value[keys[i]] = 'Confirmed';
+                                    confirmStatus = 1;
+                                }
+                            }
+
+                            if(keys[i] == 'confirmDate' || keys[i] == 'created' || keys[i] == 'updated' || keys[i] == 'doneAt' || keys[i] == 'child_delivery_date') {
+                                value[keys[i]] = jalaliDate(value[keys[i]]);
                             }
     
-                            if(needType == 1){
-                                if(value[keys[i]] == 3) {
-                                    value[keys[i]] = purchased();
-                                }
-                                if(value[keys[i]] == 4) {
-                                    value[keys[i]] = ngoDelivery();
-                                }
-                                if(value[keys[i]] == 5) {
-                                    value[keys[i]] = childDelivery();
-                                }
+                            if(Boolean(value[keys[i]]) == false){
+                                value[keys[i]] = nullValues();
                             }
-                        }
 
-                        if (keys[i] == 'details' || keys[i] == 'title' || keys[i] == 'informations') {
-                            if(Boolean(value[keys[i]]) != false) {
-                                value[keys[i]] = rtl(value[keys[i]]);
-                            }
+                            query += '<td>' + value[keys[i]] + '</td>';
                         }
+                        query += '</tr>';
+                        $('#needList').append(query);
+                        hasPrivilege();
 
-                        if (keys[i] == 'isUrgent') {
-                            if(value[keys[i]] == false){
-                                value[keys[i]] = 'Not urgent';
-                            }
-                            if(value[keys[i]] == true){
-                                value[keys[i]] = 'Urgent';
-                            }
+                        // disable confirm button if the need has confirmed already!
+                        if(confirmStatus == 1){
+                            $('#' + needId).find('.confirmBtn').prop("disabled", true);
                         }
-
-                        if (keys[i] == 'category') {
-                            if(value[keys[i]] == 0){
-                                value[keys[i]] = 'Growth';
-                            }
-                            if(value[keys[i]] == 1){
-                                value[keys[i]] = 'Joy';
-                            }
-                            if(value[keys[i]] == 2){
-                                value[keys[i]] = 'Health';
-                            }
-                            if(value[keys[i]] == 3){
-                                value[keys[i]] = 'Surroundings';
-                            }
-                        }
-
-                        if(keys[i] == 'doing_duration') {
-                            value[keys[i]] = value[keys[i]] + " days";
-                        }
-
-                        if (keys[i] == 'isConfirmed') {
-                            if(value[keys[i]] == false){
-                                value[keys[i]] = 'Not confirmed';
-                            }
-                            if(value[keys[i]] == true){
-                                value[keys[i]] = 'Confirmed';
-                                confirmStatus = 1;
-                            }
-                        }
-
-                        if(keys[i] == 'confirmDate' || keys[i] == 'created' || keys[i] == 'updated' || keys[i] == 'doneAt' || keys[i] == 'child_delivery_date') {
-                            value[keys[i]] = jalaliDate(value[keys[i]]);
-                        }
- 
-                        if(Boolean(value[keys[i]]) == false){
-                            value[keys[i]] = nullValues();
-                        }
-
-                        query += '<td>' + value[keys[i]] + '</td>';
-                    }
-                    query += '</tr>';
-                    $('#needList').append(query);
-                    hasPrivilege();
-
-                    // disable confirm button if the need has confirmed already!
-                    if(confirmStatus == 1){
-                        $('#' + needId).find('.confirmBtn').prop("disabled", true);
-                    }
-                    row_index += 1;
-                })
-                $('#needs_preloader').hide();
-                $('.select_btn').prop('disabled', false);
-            },
-            error: function(data) {
-                console.log(data.responseJSON.message);
-                $('.select_btn').prop('disabled', false);
-            }
-        })
+                        row_index += 1;
+                    })
+                    $('#needs_preloader').hide();
+                    $('.select_btn').prop('disabled', false);
+                },
+                error: function(data) {
+                    console.log(data.responseJSON.message);
+                    $('.select_btn').prop('disabled', false);
+                }
+            })
+        } else {
+            $('.total_count').empty();
+        }
         $('#needList').empty();
     })
 
