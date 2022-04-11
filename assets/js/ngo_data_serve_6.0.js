@@ -106,6 +106,7 @@ $(document).ready(function(){
 
             $.each(data , function(key ,value){
                 var ngoId = value[keys[0]];
+                var city = value['city'];
 
                 // first td for row count numbers, second td for operational buttons
                 var query = '<tr>\
@@ -120,18 +121,11 @@ $(document).ready(function(){
                     // console.log("ngoSeccess:" + keys[i]);
                    
                     if (keys[i] == 'country'){
-                        if(value[keys[i]] == '98'){
-                            value[keys[i]] = 'Iran';
-                        }
+                        city ? value[keys[i]] = city.countryName : '';
                     }
 
                     if (keys[i] == 'city'){
-                        if(value[keys[i]] == '1'){
-                            value[keys[i]] = 'Tehran';
-                        }
-                        if(value[keys[i]] == '2'){
-                            value[keys[i]] = 'Karaj';
-                        }
+                        city ? value[keys[i]] = city.name : '';
                     }
 
                     if (keys[i] == 'logoUrl'){
