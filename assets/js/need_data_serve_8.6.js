@@ -178,6 +178,7 @@ $(document).ready(function(){
                     // Change data to needs
                     data = data['needs'];
 
+                    $('.total_count').html(' - ' + data.length + ' تا');
                     // Sort needs list => first !done needs(based on `created` Descending), second done needs(based on `doneAt` Descending)
                     var copy_needData = $.extend(true, [], data);
                     var sortedNeedData = pre_needs ? copy_needData : copy_needData.sort(SortByDone).sort(SortNeedsList);
@@ -366,11 +367,15 @@ $(document).ready(function(){
     $('.need_filter').change(function() {
         var confirm_status = $('#need_confirm_status').val();
         var selected_ngo = $('#need_ngo').val();
-        if(confirm_status && selected_ngo) {
+        var payable_status = $('#need_payable_status').val();
+        if((confirm_status && selected_ngo) || payable_status) {
             $.ajax({
-                url: `${SAYApiUrl}/needs?${confirm_status ? `isConfirmed=${confirm_status}` : ``}${selected_ngo ? `&ngoId=${selected_ngo}` : ``}&isChildConfirmed=true`,
+                url: `${SAYApiUrl}/needs?${confirm_status ? `isConfirmed=${confirm_status}&` : ``}${selected_ngo ? `ngoId=${selected_ngo}&` : ``}${payable_status ? `unpayable=${!$.parseJSON(payable_status)}` : ``}&isChildConfirmed=true`,
                 method: 'GET',
                 dataType: 'json',
+                headers: {
+                    'X-TAKE': '500',
+                },
                 beforeSend: function() {
                     $('#needs_preloader').show();
                     $('.select_btn').prop('disabled', 'disabled');
@@ -380,6 +385,7 @@ $(document).ready(function(){
                     var total_count = data['totalCount'];
                     data = data['needs'].filter(n => n.child_id != 104);
                     $('.total_count').html(' - ' + data.length + ' تا');
+                    console.log(total_count)
                     var row_index = 1;
 
                     // Sort needs list => first !done needs(based on `created` Descending), second done needs(based on `doneAt` Descending)
