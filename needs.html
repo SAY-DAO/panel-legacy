@@ -842,28 +842,33 @@
                 >
                   <option value="">انتخاب کودک...</option>
                 </select>
+
+                <!-- need confirm status filter -->
                 <select
                   id="need_confirm_status"
                   name="need_confirm_status"
                   class="
                     btn btn-sm btn-dark btn-block
-                    col-md-3 col-sm-3 col-xs-12
+                    col-md-2 col-sm-2 col-xs-12
                     pull-right
                     need_filter
                     privilege1
                     select_btn
+                    static
                   "
                 >
                   <option value="">وضعیت تایید...</option>
                   <option value="false">تایید نشده‌ها</option>
                   <option value="true">تایید شده‌ها</option>
                 </select>
+
+                <!-- ngo filter -->
                 <select
                   id="need_ngo"
                   name="need_ngo"
                   class="
                     btn btn-sm btn-dark btn-block
-                    col-md-3 col-sm-3 col-xs-12
+                    col-md-2 col-sm-2 col-xs-12
                     pull-right
                     need_filter
                     report_filter
@@ -872,6 +877,25 @@
                   "
                 >
                   <option value="">انتخاب انجمن...</option>
+                </select>
+
+                <!-- need payable status filter -->
+                <select
+                  id="need_payable_status"
+                  name="need_payable_status"
+                  class="
+                    btn btn-sm btn-dark btn-block
+                    col-md-2 col-sm-2 col-xs-12
+                    pull-right
+                    need_filter
+                    privilege1
+                    select_btn
+                    static
+                  "
+                >
+                  <option value="">وضعیت موجودی...</option>
+                  <option value="true">موجود</option>
+                  <option value="false">ناموجود</option>
                 </select>
               </div>
               <div class="panel-content bg-white panel-height">
@@ -1038,7 +1062,7 @@
 
     <script src="assets/js/ngo_data_serve_6.1.js"></script>
     <!--NGO field data feed-->
-    <script src="assets/js/need_data_serve_8.5.js"></script>
+    <script src="assets/js/need_data_serve_8.6.js"></script>
     <!--Need data feed-->
     <script src="assets/js/child_data_serve_6.1.js"></script>
     <!--child data feed for child_id field-->
