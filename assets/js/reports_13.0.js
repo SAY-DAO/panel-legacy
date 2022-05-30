@@ -306,7 +306,7 @@ $(document).ready(function(){
         }
 
         $.ajax({
-            url: `${SAYApiUrl}/needs?idDone=true${selected_ngo ? `&ngoId=${selected_ngo}` : ``}${selected_type !== `` ? `&type=${selected_type}` : ``}${selected_status ? `&status=${selected_status}` : ``}`,
+            url: `${SAYApiUrl}/needs?isDone=true${selected_ngo ? `&ngoId=${selected_ngo}` : ``}${selected_type !== `` ? `&type=${selected_type}` : ``}${selected_status ? `&status=${selected_status}` : ``}`,
             method: 'GET',
             dataType: 'json',
             beforeSend: function() {
